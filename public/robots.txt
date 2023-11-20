@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /*thanks*
+Disallow: /*?*
+Allow: *.js
+Allow: *.css
+Allow: *.png
+Allow: *.svg
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.woff
+Allow: *.ttf

@@ -1,0 +1,48 @@
+version: "3.8"
+
+networks:
+  nuxt-network:
+    driver: bridge
+
+services:
+  nuxt:
+    container_name: app_nuxt
+    restart: always
+    build:
+      context: .
+      dockerfile: _docker/app/Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - nuxt-network
+    tty: true
+
+  nginx:
+    container_name: app_nginx
+    image: nginx:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./_docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./_docker/nginx/ssl:/etc/nginx/ssl
+      - ./_docker/nginx/logs:/var/log/nginx/
+      - ./_docker/certbot/www:/var/www/certbot
+      - ./_docker/certbot/conf/:/etc/letsencrypt
+    depends_on:
+      - nuxt
+    networks:
+      - nuxt-network
+    tty: true
+
+  certbot:
+    image: certbot/certbot:latest
+    container_name: certbot
+    volumes:
+      - ./_docker/certbot/www/:/var/www/certbot
+      - ./_docker/certbot/conf/:/etc/letsencrypt
+    #command: certonly --webroot -w /var/www/certbot --force-renewal --email dev@igamov.ru -d atlas-dealer.ru --agree-tos
+    command: certonly --webroot -w /var/www/certbot --dry-run --email dev@igamov.ru -d atlas-dealer.ru --agree-tos
+    networks:
+      - nuxt-network
