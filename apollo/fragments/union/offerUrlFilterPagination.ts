@@ -1,0 +1,9 @@
+export const OfferUrlFilterPagination = gql`fragment OfferUrlFilterPagination on OfferUrlFilterPaginationType {
+    mark_slug_array
+    folder_slug_array
+    generation_slug_array
+    year_from
+    engine_type_id_array
+    body_type_id_array
+    category
+}`;

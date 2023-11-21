@@ -38,7 +38,7 @@ import {OffersTypeData, OffersTypeRequest, OfferType} from "~/app/types/offers";
 import {VueEternalLoading, LoadAction} from '@ts-pro/vue-eternal-loading';
 import {useModals} from "~/store/modals";
 import {request} from '~/helpers/request'
-import {offersGql} from "~/apollo/queries/offer/offers";
+import {offersGql} from "~/apollo/queries/offer/offers00";
 
 const loading = ref<boolean>(true)
 const current_page = ref(1)

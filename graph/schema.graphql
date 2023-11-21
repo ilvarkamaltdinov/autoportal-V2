@@ -1,0 +1,646 @@
+# This file was generated. Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+union OfferUnionType = OfferUrlFilterPaginationType | OfferUrlType
+
+type Article {
+    body: String
+    category: ArticleCategory
+    "Format output date"
+    createdAt(format: String = "Y-m-d H:i:s", relative: Boolean = false, sub_day: Boolean = false): String
+    description: String
+    id: Int!
+    image: ArticleImageItem
+    image_preview: ArticleImagePreview
+    image_slide: [ArticleImageSlide]
+    long_title: String
+    page_title: String
+    "Format output date"
+    publishedAt(format: String = "Y-m-d H:i:s", relative: Boolean = false, sub_day: Boolean = false): String
+    short_description: String
+    slug: String
+    "Format output date"
+    updatedAt(format: String = "Y-m-d H:i:s", relative: Boolean = false, sub_day: Boolean = false): String
+    url: String
+    video_youtube: String
+    views: String
+}
+
+type ArticleCategory {
+    articles(limit: Int): [Article]
+    description: String
+    id: Int!
+    long_title: String
+    page_title: String
+    slug: String
+    url: String
+}
+
+type ArticleImageItem {
+    large: String
+    large_webp: String
+    medium: String
+    medium_webp: String
+    src: String
+}
+
+type ArticleImagePreview {
+    small: String
+    small_webp: String
+    src: String
+    thumb: String
+    thumb_webp: String
+}
+
+type ArticleImageSlide {
+    src: String
+    thumb: String
+}
+
+type ArticlesPaginate {
+    "Current page of the cursor"
+    current_page: Int!
+    "List of items on the current page"
+    data: [Article]
+    "Number of the first item returned"
+    from: Int
+    "Determines if cursor has more pages after the current page"
+    has_more_pages: Boolean!
+    "The last page (number of pages)"
+    last_page: Int!
+    "Number of items returned per page"
+    per_page: Int!
+    "Number of the last item returned"
+    to: Int
+    "Number of total items selected by the query"
+    total: Int!
+}
+
+type Bank {
+    approval: Int
+    id: Int!
+    image: String
+    image_car: BankImageCar
+    license_file: String
+    license_title: String
+    name: String!
+    rate: Float
+    rating: Float
+    request: Int
+    site_text: SiteText
+    slug: String!
+    title: String
+}
+
+type BankImageCar {
+    small: String
+    small_webp: String
+    src: String
+    thumb: String
+    thumb_webp: String
+}
+
+type BodyType {
+    id: Int!
+    name: String
+    title: String
+}
+
+type BodyTypeField {
+    id: Int
+    slug: String
+    title: String
+}
+
+type ChosenFieldType {
+    bodyType: [BodyTypeField]
+    driveType: [DriveTypeField]
+    engineType: [EngineTypeField]
+    folder: [FolderField]
+    gearbox: [GearboxField]
+    generation: [GenerationField]
+    mark: [MarkField]
+    owner: [OwnerField]
+    priceFrom: Int
+    priceTo: Int
+    runFrom: Int
+    runTo: Int
+    yearFrom: Int
+    yearTo: Int
+}
+
+type Color {
+    id: Int!
+    name: String
+    title: String
+}
+
+type Complectation {
+    id: Int!
+    name: String
+}
+
+type Dealer {
+    address: String
+    city: String
+    coordinates: String
+    description: String
+    id: Int!
+    image_logo: String
+    images: [DealerImage]
+    metro: String
+    phone: String
+    rating: Float
+    schedule: String
+    short_description: String
+    site: String
+    slug: String
+    title: String
+    youtube_playlist_review: String
+}
+
+type DealerImage {
+    medium: String
+    medium_webp: String
+    small: String
+    small_webp: String
+    src: String
+}
+
+type DriveType {
+    id: Int!
+    name: String
+    title: String
+}
+
+type DriveTypeField {
+    id: Int
+    slug: String
+    title: String
+}
+
+type EngineType {
+    id: Int!
+    name: String
+    title: String
+}
+
+type EngineTypeField {
+    id: Int
+    slug: String
+    title: String
+}
+
+"Order object"
+type Feedback {
+    "The id of the Order"
+    id: Int
+}
+
+type Folder {
+    "Идентификатор"
+    id: Int!
+    "Кол-во объявлений"
+    offers_count: Int
+    "Алиас"
+    slug: String!
+    "Наименование"
+    title: String!
+    "Наименование на русском"
+    title_rus: String
+}
+
+type FolderField {
+    id: Int
+    mark_id: Int
+    slug: String
+    title: String
+}
+
+type FolderGeneration {
+    generations: [Generation]
+    "Идентификатор"
+    id: Int!
+    "Кол-во объявлений"
+    offers_count: Int
+    "Алиас"
+    slug: String!
+    "Наименование"
+    title: String!
+    "Наименование на русском"
+    title_rus: String
+}
+
+type Gearbox {
+    id: Int!
+    name: String
+    title: String
+    title_short: String
+    title_short_rus: String
+}
+
+type GearboxField {
+    id: Int
+    slug: String
+    title: String
+    title_short: String
+    title_short_rus: String
+}
+
+type Generation {
+    id: Int
+    name: String
+    "The count of generations"
+    offers_count: Int
+    slug: String!
+    year_begin: Int
+    year_end: Int
+}
+
+type GenerationField {
+    id: Int
+    slug: String
+    title: String
+}
+
+type KeyValue {
+    key: String
+    value: String
+}
+
+type Mark {
+    "Идентификатор"
+    id: Int!
+    "Кол-во объявлений"
+    offers_count: Int
+    "Сортировка марки"
+    order_column: Int
+    "Алиас"
+    slug: String!
+    "Наименование"
+    title: String!
+    "Наименование на русском"
+    title_rus: String
+}
+
+type MarkField {
+    id: Int
+    slug: String
+    title: String
+}
+
+type MarkFolder {
+    folders: [FolderGeneration]
+    "Идентификатор"
+    id: Int!
+    "Кол-во объявлений"
+    offers_count: Int
+    "Алиас"
+    slug: String!
+    "Наименование"
+    title: String!
+    "Наименование на русском"
+    title_rus: String
+}
+
+type Modification {
+    bodyType: [TitleName]
+    generation: [Generation]
+    id: Int!
+    name: String
+}
+
+type Mutation {
+    feedback(bank_title: String, client_age: String, client_name: String, client_phone: String!, client_region: String, client_session: String, client_vehicle_body_type: String, client_vehicle_engine: String, client_vehicle_gearbox: String, client_vehicle_mark: String, client_vehicle_model: String, client_vehicle_owners: String, client_vehicle_price: String, client_vehicle_run: String, client_vehicle_year: String, comment: String, credit_initial_fee: String, credit_period: String, external_id: Int, external_unique_id: String, offer_price: String, offer_title: String, site_id: Int!, type: String!, utm_campaign: String, utm_content: String, utm_medium: String, utm_source: String, utm_term: String): Feedback
+}
+
+type Offer {
+    "Кузов"
+    bodyType: BodyType
+    "Категория"
+    category_enum: String
+    "Цвет"
+    color: Color
+    "Название комплектации"
+    complectation: Complectation
+    "Format output date"
+    createdAt(format: String = "Y-m-d H:i:s", relative: Boolean = false, sub_day: Boolean = false): String
+    "Автосалон"
+    dealer: Dealer
+    "Текстовое описание для сайта"
+    description: String
+    "Привод"
+    driveType: DriveType
+    "Двигатель"
+    engineType: EngineType
+    "Мощность двигателя"
+    engine_power: Int
+    "Объем двигателя"
+    engine_volume: Float
+    "Сгруппированные дополнительные характеристики"
+    equipment_groups: [TitleValues]
+    "Внешний идентификатор"
+    external_id: Int
+    "Внешний уникальный идентификатор"
+    external_unique_id: String
+    "Модель"
+    folder: Folder
+    "КПП"
+    gearbox: Gearbox
+    "Поколение"
+    generation: Generation
+    "Идентификатор"
+    id: Int!
+    "Изображения"
+    images: [OfferImage]
+    "Активное объявление"
+    is_active: Boolean
+    "На складе"
+    is_stock: Boolean
+    "Марка"
+    mark: Mark
+    "Модификация"
+    modification: Modification
+    name: String!
+    "Владельцы"
+    owner: Owner
+    "Цена, руб"
+    price: Int!
+    "Старая цена, руб"
+    price_old: Int
+    "Рейтинг"
+    rating: Rating
+    "Пробег, км"
+    run: Int
+    "Format output date"
+    updatedAt(format: String = "Y-m-d H:i:s", relative: Boolean = false, sub_day: Boolean = false): String
+    "Ссылка на видео"
+    video: String
+    "VIN-номер"
+    vin: String
+    "Руль"
+    wheel: Wheel
+    "Год"
+    year: Int
+}
+
+type OfferFilterValues {
+    bodyType: [BodyTypeField]
+    chosen: ChosenFieldType
+    driveType: [DriveTypeField]
+    engineType: [EngineTypeField]
+    folder: [FolderField]
+    gearbox: [GearboxField]
+    generation: [GenerationField]
+    mark: [MarkField]
+    owner: [OwnerField]
+    price: [Int]
+    run: [Int]
+    year: [Int]
+}
+
+type OfferImage {
+    medium: String
+    medium_webp: String
+    original: String
+    small: String
+    small_webp: String
+    src: String @deprecated(reason: "Используйте medium")
+    thumb: String @deprecated(reason: "Используйте small")
+    tiny: String
+    tiny_webp: String
+}
+
+type OfferTypePagination {
+    "Current page of the cursor"
+    current_page: Int!
+    "List of items on the current page"
+    data: [Offer]
+    "Number of the first item returned"
+    from: Int
+    "Determines if cursor has more pages after the current page"
+    has_more_pages: Boolean!
+    "The last page (number of pages)"
+    last_page: Int!
+    "Number of items returned per page"
+    per_page: Int!
+    "Number of the last item returned"
+    to: Int
+    "Number of total items selected by the query"
+    total: Int!
+}
+
+type OfferUrlFilterPaginationType {
+    body_type_id_array: [String]
+    category: String
+    engine_type_id_array: [Int]
+    folder_slug_array: [String]
+    generation_slug_array: [String]
+    mark_slug_array: [String]
+    year_from: Int
+}
+
+type OfferUrlType {
+    external_id: Int
+    folder_slug: String
+    mark_slug: String
+}
+
+type Owner {
+    id: Int!
+    name: String
+    number: Int!
+    title: String
+}
+
+type OwnerField {
+    id: Int
+    slug: String
+    title: String
+}
+
+type Query {
+    "Статья"
+    article(site_id: Int, url: String): Article
+    "Категории статей"
+    articleCategory(site_id: Int): [ArticleCategory]
+    "Список статей"
+    articlesPaginate(category_url: String, limit: Int, page: Int, site_id: Int): ArticlesPaginate
+    "Банк"
+    bank(site_id: Int, slug: String): Bank
+    "Список банков"
+    banks(site_id: Int): [Bank]
+    "Автосалон"
+    dealer(site_id: Int, slug: String): Dealer
+    "Список автосалонов"
+    dealers(site_id: Int): [Dealer]
+    "Список моделей"
+    folders(category: String, mark_id: Int, mark_slug: String, site_id: Int): [Folder]
+    "Список поколений"
+    generations(category: String, folder_id: Int, folder_slug: String, mark_slug: String, site_id: Int): [Generation]
+    "Список марок"
+    markFolderGeneration(category: String, site_id: Int): [MarkFolder]
+    "Список марок"
+    marks(category: String, id: ID, site_id: Int, slug: String): [Mark]
+    "Объявление"
+    offer(external_id: Int, folder_slug: String, generation_slug: String, mark_slug: String, site_id: Int): Offer
+    "Фильтр объявлений"
+    offerFilters(body_type_id: Int, body_type_id_array: [Int], category: String, drive_type_id: Int, drive_type_id_array: [Int], engine_type_id: Int, engine_type_id_array: [Int], except_external_id: Int, external_id_array: [Int], folder_id: Int, folder_slug: String, folder_slug_array: [String], gearbox_id: Int, gearbox_id_array: [Int], generation_id: Int, generation_slug: String, generation_slug_array: [String], limit: Int, mark_id: Int, mark_slug: String, mark_slug_array: [String], owner_id: Int, owner_id_array: [Int], page: Int, price_from: Int, price_to: Int, run_from: Int, run_to: Int, set: [String], site_id: Int, sort: String, url: String, year_from: Int, year_to: Int): OfferFilterValues
+    "Определение объявление или фильтр"
+    offerUrl(site_id: Int, url: String): OfferUnionType
+    "Список объявлений"
+    offers(body_type_id: Int, body_type_id_array: [Int], category: String, drive_type_id: Int, drive_type_id_array: [Int], engine_type_id: Int, engine_type_id_array: [Int], except_external_id: Int, external_id_array: [Int], folder_id: Int, folder_slug: String, folder_slug_array: [String], gearbox_id: Int, gearbox_id_array: [Int], generation_id: Int, generation_slug: String, generation_slug_array: [String], limit: Int, mark_id: Int, mark_slug: String, mark_slug_array: [String], owner_id: Int, owner_id_array: [Int], page: Int, price_from: Int, price_to: Int, run_from: Int, run_to: Int, set: [String], site_id: Int, sort: String, url: String, year_from: Int, year_to: Int): OfferTypePagination
+    "Список регионов"
+    regions(site_id: Int): [Region]
+    "SEO теги"
+    seoTag(site_id: Int, url: String): SeoTag
+    "Настройки сайта"
+    settings(site_id: Int): SiteSetting
+    "Список баннеров"
+    slides(site_id: Int): [Slide]
+    "Список категорий услуг сервиса"
+    stationCategory(site_id: Int): [StationCategory]
+    "Список историй"
+    stories(site_id: Int): [Story]
+    "Список содержимого историй"
+    storyContents(site_id: Int, story_id: Int): [StoryContent]
+}
+
+type Rating {
+    rating_body: Float
+    rating_interior: Float
+    rating_technical: Float
+    rating_total: Float
+}
+
+type Region {
+    id: Int
+    title: String
+}
+
+type SeoTag {
+    crumbs: [SeoTagCrumbs]
+    "The description of the seo tags"
+    description: String
+    "The title of the seo tags"
+    page_title: String
+    site_text: SiteText
+    "The title of the seo tags"
+    title: String
+}
+
+type SeoTagCrumbs {
+    link: String
+    title: String
+}
+
+type SiteSetting {
+    id: Int!
+    settings: [KeyValue]
+}
+
+type SiteText {
+    body: String
+}
+
+type Slide {
+    body: String
+    id: Int!
+    image: SlideImageItemType
+    image_element: SlideImageElementItemType
+    link: String
+    title: String
+}
+
+type SlideImageElementItemType {
+    small: String
+    small_webp: String
+    src: String
+    thumb: String
+    thumb_webp: String
+}
+
+type SlideImageItemType {
+    slide_1x: String
+    slide_1x_webp: String
+    slide_2x: String
+    slide_2x_webp: String
+    src: String
+}
+
+type Station {
+    id: Int!
+    image: StationImage
+    price: String
+    title: String
+}
+
+type StationCategory {
+    id: Int!
+    stations: [Station]
+    title: String
+}
+
+type StationImage {
+    large: String
+    large_webp: String
+    medium: String
+    medium_webp: String
+    src: String
+}
+
+type Story {
+    id: Int!
+    image: StoryImage
+    stories: [StoryContent]
+    title: String
+}
+
+type StoryContent {
+    body: String
+    button_color: String
+    button_link: String
+    button_title: String
+    id: Int!
+    image: StoryImageContent
+    title: String
+}
+
+type StoryImage {
+    src: String
+    thumb: String
+    thumb_webp: String
+    tiny: String
+    tiny_webp: String
+    xs: String
+    xs_webp: String
+}
+
+type StoryImageContent {
+    medium: String
+    medium_webp: String
+    small: String
+    small_webp: String
+    src: String
+}
+
+type TitleName {
+    id: Int!
+    name: String
+    title: String
+}
+
+type TitleValues {
+    title: String
+    values: [String]
+}
+
+type Wheel {
+    id: Int!
+    name: String
+    title: String
+}

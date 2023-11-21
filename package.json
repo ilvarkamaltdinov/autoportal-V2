@@ -9,7 +9,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "webp": "gulp webp",
-    "compress": "gulp compress"
+    "compress": "gulp compress",
+    "codegen": "graphql-codegen --config codegen.ts"
   },
   "overrides": {
     "vue": "latest"
@@ -17,6 +18,8 @@
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxtjs/apollo": "^5.0.0-alpha.6",
+    "@graphql-codegen/cli": "5.0.0",
+    "@graphql-codegen/client-preset": "4.1.0",
     "@nuxtjs/device": "^3.1.0",
     "@types/aos": "^3.0.5",
     "@types/inputmask": "^5.0.3",
@@ -29,6 +32,7 @@
     "nuxt-icon": "^0.4.0"
   },
   "dependencies": {
+    "@graphql-codegen/cli": "5.0.0",
     "@fancyapps/ui": "^5.0.17",
     "@nuxtjs/google-fonts": "^3.0.0",
     "@pinia/nuxt": "^0.4.9",
