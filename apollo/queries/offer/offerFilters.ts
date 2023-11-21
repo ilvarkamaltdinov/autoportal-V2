@@ -1,7 +1,6 @@
 import {OfferFilterValues} from "~/apollo/fragments/filters/offerFilterValues";
 
 export const offerFilters = gql`
-    ${OfferFilterValues}
     query offerFilters(
   $site_id: Int,
   $category: String,

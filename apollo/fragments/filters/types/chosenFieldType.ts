@@ -7,13 +7,6 @@ import {EngineTypeFieldType} from "~/apollo/fragments/filters/types/engineTypeFi
 import {GearboxFieldType} from "~/apollo/fragments/filters/types/gearboxFieldType";
 
 export const ChosenFieldType = gql`
-    ${MarkFieldType}
-    ${FolderFieldType}
-    ${GenerationFieldType}
-    ${GearboxFieldType}
-    ${EngineTypeFieldType}
-    ${DriveTypeFieldType}
-    ${BodyTypeFieldType}
 fragment ChosenFieldType on ChosenFieldType {
   mark{
     ... MarkFieldType

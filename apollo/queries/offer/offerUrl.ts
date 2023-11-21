@@ -2,8 +2,6 @@ import {OfferUrlFilterPagination} from "~/apollo/fragments/union/offerUrlFilterP
 import {OfferUrl} from "~/apollo/fragments/union/offerUrl";
 
 export const offerUrl = gql`
-    ${OfferUrl}
-    ${OfferUrlFilterPagination}
     query offerUrl(
     $site_id: Int,
     $url: String

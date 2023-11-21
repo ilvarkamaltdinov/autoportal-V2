@@ -10,16 +10,6 @@ import {BodyTypeType} from "~/apollo/fragments/offer/types/bodyTypeType";
 import {GearboxType} from "~/apollo/fragments/offer/types/gearboxType";
 
 export const OfferPagination = gql`
-    ${ColorType}
-    ${MarkType}
-    ${FolderType}
-    ${OwnerType}
-    ${DriveTypeType}
-    ${BodyTypeType}
-    ${GearboxType}
-    ${EngineTypeType}
-    ${GenerationOfferType}
-    ${DealerMiniType}
     fragment OfferPagination on OfferTypePagination {
   data {
     id

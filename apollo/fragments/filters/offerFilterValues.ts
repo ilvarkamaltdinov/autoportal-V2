@@ -8,14 +8,6 @@ import {FolderFieldType} from "~/apollo/fragments/filters/types/folderFieldType"
 import {MarkFieldType} from "~/apollo/fragments/filters/types/markFieldType";
 
 export const OfferFilterValues = gql`
-    ${MarkFieldType}
-    ${FolderFieldType}
-    ${GenerationFieldType}
-    ${GearboxFieldType}
-    ${EngineTypeFieldType}
-    ${DriveTypeFieldType}
-    ${BodyTypeFieldType}
-    ${ChosenFieldType}
     fragment OfferFilterValues on OfferFilterValues {
   mark{
     ... MarkFieldType

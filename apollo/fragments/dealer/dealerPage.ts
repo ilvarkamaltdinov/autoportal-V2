@@ -1,7 +1,6 @@
 import {DealerImage} from "~/apollo/fragments/image/dealerImage";
 
 export const DealerPage = gql`
-    ${DealerImage}
     fragment DealerPage on Dealer {
     id
     slug
