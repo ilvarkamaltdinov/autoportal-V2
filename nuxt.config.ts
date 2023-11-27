@@ -58,6 +58,9 @@ export default defineNuxtConfig({
     'nuxt-jsonld',
     '@nuxtjs/device',
   ],
+  plugins: [
+    '~/plugins/settings.ts',
+  ],
   swiper: {
     // Swiper options
     //----------------------
