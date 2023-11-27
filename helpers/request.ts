@@ -1,7 +1,10 @@
 import {DocumentNode} from 'graphql/language';
+import {useRequestURL} from '#app';
+import {useSiteId} from '#imports';
 
 export const request = async <Response, Request = undefined>(query: DocumentNode, variables?: Request, isNewApi?: boolean, isLazy?: boolean) => {
-  const siteId = 21;
+  const { host } = useRequestURL();
+  const {siteId} = useSiteId(host);
   const assignVariables = {
     site_id: siteId
   };

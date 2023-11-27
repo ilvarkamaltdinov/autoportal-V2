@@ -1,13 +1,4 @@
 <template>
-  <div class="skeleton skeleton--stories" :class="{'stories--desktop grid__col-8':!$device.isMobileOrTablet}">
-    <ul class="skeleton__stories">
-      <li class="skeleton__item"></li>
-      <li class="skeleton__item"></li>
-      <li class="skeleton__item"></li>
-      <li class="skeleton__item"></li>
-      <li class="skeleton__item"></li>
-    </ul>
-  </div>
   <div class="skeleton skeleton--stories" v-if="loading">
     <ul class="skeleton__stories">
       <li class="skeleton__item"></li>
@@ -19,7 +10,7 @@
   </div>
   <ul class="stories__list"
       v-if="$device.isMobileOrTablet">
-    <stories-item :story="item"
+    <StoriesItem :story="item"
                   @click="openStories(item)"
                   v-for="item in stories"
                   :key="item.id" />
@@ -27,10 +18,18 @@
   <div v-else
        class="swiper swiper--stories">
     <ul class="stories__list swiper-wrapper">
-      <stories-item :story="item"
-                    @click="openStories(item)"
-                    v-for="item in stories"
-                    :key="item.id" />
+      <swiper class="swiper"
+              :slides-per-view="5"
+              :watch-slides-progress="true"
+              :modules="[Autoplay, Navigation]"
+              :autoplay="false"
+              :navigation="{prevEl: '.stories--desktop .swiper-button-prev', nextEl: '.stories--desktop .swiper-button-next'}"
+              :space-between="16">
+
+        <swiper-slide v-for="item in stories" :key="item.id" #default="{ isVisible }">
+          <StoriesItem :story="item" :class="{'swiper-slide-visible': isVisible}" />
+        </swiper-slide>
+      </swiper>
     </ul>
   </div>
   <button v-if="!$device.isMobileOrTablet"
@@ -49,17 +48,15 @@
 <script setup lang="ts">
 import {request} from '~/helpers/request';
 import {stories as storiesQuery} from '~/apollo/queries/stories/stories';
-import {StoriesQuery, StoriesQueryVariables} from '~/types/graphql';
+import {Story, StoriesQueryVariables} from '~/types/graphql';
+import StoriesItem from '~/components/Stories/StoriesItem.vue';
+import {Swiper, SwiperSlide} from 'swiper/vue';
+import {Autoplay, Navigation} from 'swiper/modules';
 
-const loading = ref(true);
-const stories = ref([]);
+const stories = ref<Story[]>([]);
 
-onMounted(async () => {
-  loading.value = true;
-  let response = await request<StoriesQuery, StoriesQueryVariables>(storiesQuery, { site_id: 21 });
-  this.stories = response.data.stories;
-  this.loading = false;
-});
+let {pending: loading, data: response} = await request<{stories: Story[]}, StoriesQueryVariables>(storiesQuery);
+stories.value = response.value.stories;
 </script>
 
 
