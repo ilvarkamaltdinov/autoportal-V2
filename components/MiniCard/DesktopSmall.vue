@@ -90,25 +90,26 @@
     			}"
                       @click="ratingClick"
                       :rating="offer.rating"/>
-          <catalog-item-tech-list :offer="offer"/>
+          <CatalogItemTechList :offer="offer"/>
         </div>
-    <!--    <catalog-item-buttons-->
-    <!--        :is-form="isForm"-->
-    <!--        :choose="choose"-->
-    <!--        v-if="hasButtons"-->
-    <!--        :offer="offer"/>-->
+        <catalog-item-buttons
+            :is-form="isForm"
+            :choose="choose"
+            v-if="hasButtons"
+            :offer="offer"/>
   </article>
 </template>
 <script setup lang="ts">
-import {OfferType} from '~/app/types/offers';
 import {creditPrice, engineVolume, numberFormat} from '~/helpers/filters';
+import CatalogItemTechList from '~/components/Catalog/CatalogItem/CatalogItemComponents/CatalogItemTechList.vue';
+import {Offer} from '~/types/graphql';
 
 const props = defineProps<{
   isForm?: boolean,
   choose?: boolean,
   hasButtons?: boolean,
   slide?: boolean,
-  offer: OfferType
+  offer: Offer
 }>();
 
 const activeTmb = ref<number>(0);
@@ -117,13 +118,13 @@ const isLoaded = false;
 const limit = ref(7);
 const forceCoverPhoto = ref<string>('');
 
-const placeholderUrl = computed(() => props.offer.images[0].small_webp);
+const placeholderUrl = computed(() => props.offer!.images![0]!.small_webp);
 const photos = computed(() => props.offer.images);
 const coverSrc = computed(() => {
   return forceCoverPhoto.value
     ? forceCoverPhoto.value
-    : photos.value.length > 0
-      ? photos.value[0].small_webp
+    : photos!.value!.length > 0
+      ? photos!.value![0]!.small_webp
       : placeholderUrl.value;
 });
 
