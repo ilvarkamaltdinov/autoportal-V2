@@ -15,6 +15,7 @@
                   v-for="item in stories"
                   :key="item.id" />
   </ul>
+<!--  todo add skeleton-->
   <div v-else
        class="swiper swiper--stories">
     <ul class="stories__list swiper-wrapper">
