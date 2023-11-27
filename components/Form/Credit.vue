@@ -2,9 +2,8 @@
   <div class="heading-group heading-group--form">
     <div class="heading-group__wrap">
       <h2 class="heading heading--h2">
-        Автокредит от
+        Автокредит от {{ $settings.credit_percent }}
         <span class="heading__promo">
-            TODO
           </span>
       </h2>
       <!-- <span class="heading-group__label">Получите одобрение за 5 минут</span> -->
@@ -55,23 +54,24 @@
   </form>
 </template>
 <script setup lang="ts">
-import {numberFormat} from "~/helpers/filters";
-import {useModals, ModalOfferSelection_offerType} from "~/store/modals";
+import {numberFormat} from '~/helpers/filters';
+import {useModals, ModalOfferSelection_offerType} from '~/store/modals';
+import {useSettings} from '~/store/settings';
 
 const props = defineProps<{
   hasChose?: boolean
-}>()
+}>();
 
 const modalPayloadCredit = {
   open: true,
   component: 'offerSelection',
   title: 'Выберите автомобиль',
   subtitle: ''
-}
+};
 
-const modalOfferSelection_offer = computed<ModalOfferSelection_offerType>(() => useModals().modalOfferSelection_offer)
+const modalOfferSelection_offer = computed<ModalOfferSelection_offerType>(() => useModals().modalOfferSelection_offer);
 
 const submitForm = () => {
 
-}
+};
 </script>
