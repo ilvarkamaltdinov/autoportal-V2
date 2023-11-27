@@ -32,17 +32,18 @@
   <!--              </client-only>-->
 </template>
 <script setup lang="ts">
-import MiniCardDesktopSmall from '~/components/MiniCard/DesktopSmall.vue'
-import {OffersTypeData, OffersTypeRequest, OfferType} from "~/app/types/offers";
+import MiniCardDesktopSmall from '~/components/MiniCard/DesktopSmall.vue';
+import {OffersTypeData, OffersTypeRequest, OfferType} from '~/app/types/offers';
+import {offers as offersGql} from '~/apollo/queries/offer/offers';
 
 import {VueEternalLoading, LoadAction} from '@ts-pro/vue-eternal-loading';
-import {useModals} from "~/store/modals";
-import {request} from '~/helpers/request'
+import {useModals} from '~/store/modals';
+import {request} from '~/helpers/request';
 
-const loading = ref<boolean>(true)
-const current_page = ref(1)
-const last_page = ref(1)
-const offers = ref<OfferType[]>([])
+const loading = ref<boolean>(true);
+const current_page = ref(1);
+const last_page = ref(1);
+const offers = ref<OfferType[]>([]);
 
 let variables = computed<OffersTypeRequest>(() => {
   return {
@@ -53,20 +54,21 @@ let variables = computed<OffersTypeRequest>(() => {
     limit: 4,
     page: current_page.value,
     dateFormat: 'j F Y года.',
-  }
-})
+  };
+});
 
 
 const getOffers = async () => {
-  const {pending, data} = await request<OffersTypeData, OffersTypeRequest>(offersGql, variables.value)
-  offers.value.push(...data.value?.offers.data)
-  last_page.value = data.value?.offers.last_page
-}
+  const {pending, data} = await request<OffersTypeData, OffersTypeRequest>(offersGql, variables.value);
+  console.log(data, variables);
+  offers.value.push(...data.value?.offers.data);
+  last_page.value = data.value?.offers.last_page;
+};
 
 async function load({loaded}: LoadAction) {
-  await getOffers()
-  current_page.value += 1
-  loaded()
+  await getOffers();
+  current_page.value += 1;
+  loaded();
 }
 
 </script>

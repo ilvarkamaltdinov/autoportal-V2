@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {OfferQuery} from '~/types/graphql';
 import {computed, useNuxtApp} from '#imports';
+import Slider from '@vueform/slider';
 
 type FormCreditCalculatorProps = {
   offer: OfferQuery['offer'];
@@ -79,15 +80,30 @@ watch([() => props.offer, () => percent], () => {
 
 <template>
   <fieldset class="form__fieldset">
-    <Slider v-model="periodValue"
+    <div class="form__block form__block--range range">
+      <label class="form__range-wrap">
+        <span class="form__range-name">Срок кредитования, мес.:</span>
+        <span class="form__range-value">{{ periodValue }}</span>
+      </label>
+    <Slider v-model="periodValue" class="range-period"
                   :text="installment ? 'Период рассрочки:' :'Срок кредитования, мес.:'"
-                  :values="params.rangePeriodValues"
+                  :options="params.rangePeriodValues"
                   :period="currentPeriod"
                   @changePeriod="changePeriod"/>
-    <range-payment :sum="currentPaymentSum"
-                   :value="String(paymentValue) + '%'"
-                   :values="params.rangePaymentValues"
-                   @changePayment="changePayment"/>
+    </div>
+    <div class="form__block form__block--range range">
+      <label class="form__range-wrap">
+        <span class="form__range-name">Первоначальный взнос:</span>
+        <!--TODO в будущем переписать toCurrency и исправить этот костыль -->
+        <span class="form__range-value" v-if="currentPaymentSum"> {{ currentPaymentSum }}</span>
+        <span class="form__range-value" v-else> 0 ₽</span>
+      </label>
+      <Slider
+          class="range-payment"
+          :options="params.rangePaymentValues"
+          @input="changePayment">
+      </Slider>
+    </div>
     <div class="form__total">
       <div class="form__total-label">Ваш платеж:</div>
       <div class="form__total-payment">

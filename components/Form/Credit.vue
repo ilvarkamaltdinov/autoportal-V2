@@ -76,28 +76,32 @@ const modalPayloadCredit = {
 
 const modalOfferSelection_offer = computed<ModalOfferSelection_offerType>(() => useModals().modalOfferSelection_offer);
 const creditParams = ref({
-  rangePeriodValues: [
-    '2',
-    '6',
-    '12',
-    '24',
-    '36',
-    '48',
-    '60',
-    '72',
-    '84'
-  ],
-  rangePaymentValues: [
-    '0%',
-    '10%',
-    '20%',
-    '30%',
-    '40%',
-    '50%',
-    '60%',
-    '70%',
-    '80%'
-  ],
+  rangePeriodValues: {
+    snap: true,
+    range: {
+      'min': 2,
+      '19%': 6,
+      '35%': 12,
+      '52%': 24,
+      '68%': 36,
+      '85%': 48,
+      'max': 60,
+    }
+  },
+  rangePaymentValues: {
+    snap: true,
+    range: {
+      'min': 2,
+      '12.5%': 6,
+      '25%': 12,
+      '37.5%': 24,
+      '50%': 36,
+      '62,.5%': 48,
+      '74.5%': 60,
+      '87%': 72,
+      'max': 84
+    }
+  },
   period: 84,
   payment: 0,
 });

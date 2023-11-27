@@ -81,17 +81,17 @@
       <!--      <catalog-item-price :category-enum="offer.category_enum" :is-stock="offer.is_stock" :vin="offer.vin"-->
       <!--                          :price="offer.price" :isNew="isNew" :price-old="offer.price_old"/>-->
     </div>
-    <!--    <div class="catalog__tech"-->
-    <!--         :class="{'catalog__tech&#45;&#45;no-buttons':!hasButtons}">-->
-    <!--      <rating-car v-tippy="{-->
-    <!--				content:`<div class='tippy__text'>Рейтинг автомобиля</div>`,-->
-    <!--				animation:'scale',-->
-    <!--				arrow: true,-->
-    <!--			}"-->
-    <!--                  @click="ratingClick"-->
-    <!--                  :rating="offer.rating"/>-->
-    <!--      <catalog-item-tech-list :offer="offer"/>-->
-    <!--    </div>-->
+        <div class="catalog__tech"
+             :class="{'catalog__tech--no-buttons':!hasButtons}">
+          <Rating v-tippy="{
+    				content:`<div class='tippy__text'>Рейтинг автомобиля</div>`,
+    				animation:'scale',
+    				arrow: true,
+    			}"
+                      @click="ratingClick"
+                      :rating="offer.rating"/>
+          <catalog-item-tech-list :offer="offer"/>
+        </div>
     <!--    <catalog-item-buttons-->
     <!--        :is-form="isForm"-->
     <!--        :choose="choose"-->
@@ -100,8 +100,8 @@
   </article>
 </template>
 <script setup lang="ts">
-import {OfferType} from "~/app/types/offers";
-import {creditPrice, engineVolume, numberFormat} from "~/helpers/filters";
+import {OfferType} from '~/app/types/offers';
+import {creditPrice, engineVolume, numberFormat} from '~/helpers/filters';
 
 const props = defineProps<{
   isForm?: boolean,
@@ -109,38 +109,38 @@ const props = defineProps<{
   hasButtons?: boolean,
   slide?: boolean,
   offer: OfferType
-}>()
+}>();
 
-const activeTmb = ref<number>(0)
-const class_name = ref('load')
-const isLoaded = false
-const limit = ref(7)
-const forceCoverPhoto = ref<string>('')
+const activeTmb = ref<number>(0);
+const class_name = ref('load');
+const isLoaded = false;
+const limit = ref(7);
+const forceCoverPhoto = ref<string>('');
 
-const placeholderUrl = computed(() => props.offer.images[0].small_webp)
-const photos = computed(() => props.offer.images)
+const placeholderUrl = computed(() => props.offer.images[0].small_webp);
+const photos = computed(() => props.offer.images);
 const coverSrc = computed(() => {
   return forceCoverPhoto.value
-      ? forceCoverPhoto.value
-      : photos.value.length > 0
-          ? photos.value[0].small_webp
-          : placeholderUrl.value;
-})
+    ? forceCoverPhoto.value
+    : photos.value.length > 0
+      ? photos.value[0].small_webp
+      : placeholderUrl.value;
+});
 
 const onImgLoad = () => {
   class_name.value = 'loaded';
-}
+};
 const mouseOver = (photo: string, index: number) => {
-  activeTmb.value = index
+  activeTmb.value = index;
   if (forceCoverPhoto.value !== '') {
     class_name.value = 'load';
   }
   forceCoverPhoto.value = photo;
-}
+};
 const mouseLeave = () => {
-  activeTmb.value = 0
+  activeTmb.value = 0;
   forceCoverPhoto.value = '';
   class_name.value = 'loaded';
-}
+};
 
 </script>
