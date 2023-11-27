@@ -1,32 +1,32 @@
-import {numberFormat} from "~/helpers/filters";
+import {numberFormat} from '~/helpers/filters';
 
 export const calculate = (price: number | undefined, payment: number, period: number) => {
-    if (price) {
-        let creditProc: number = 4.9;
-        let car_price: number = price;
-        let creditTime: number = period;
-        let firstPay: number = payment;
-        let total: number = 0;
-        let i: number = creditProc / 12 / 100;
-        let n: number = creditTime;
-        let S: number
-        if (firstPay !== 0) {
-            S = car_price - (car_price * firstPay) / 100;
-        } else {
-            S = car_price;
-        }
-        let K: number = 0;
-        if (car_price) {
-            K = (i * Math.pow(1 + i, n)) / (Math.pow(1 + i, n) - 1);
-            total = Math.round(K * S);
-            return numberFormat(total)
-        } else {
-            return '-'
-        }
+  if (price) {
+    const creditProc: number = 4.9;
+    const car_price: number = price;
+    const creditTime: number = period;
+    const firstPay: number = payment;
+    let total: number = 0;
+    const i: number = creditProc / 12 / 100;
+    const n: number = creditTime;
+    let S: number;
+    if (firstPay !== 0) {
+      S = car_price - (car_price * firstPay) / 100;
     } else {
-        return '-'
+      S = car_price;
     }
-}
+    let K: number = 0;
+    if (car_price) {
+      K = (i * Math.pow(1 + i, n)) / (Math.pow(1 + i, n) - 1);
+      total = Math.round(K * S);
+      return numberFormat(total);
+    } else {
+      return '-';
+    }
+  } else {
+    return '-';
+  }
+};
 
 
 // if (props.offer) {

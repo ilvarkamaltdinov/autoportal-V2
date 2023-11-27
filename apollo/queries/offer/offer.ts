@@ -1,4 +1,4 @@
-import {OfferPage} from "~/apollo/fragments/offer/offerPage";
+import {OfferPage} from '~/apollo/fragments/offer/offerPage';
 
 export const offer = gql`
     query offer($site_id: Int!, $mark_slug: String, $folder_slug: String!, $external_id: Int!, $dateFormat: String) {

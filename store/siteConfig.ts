@@ -1,8 +1,8 @@
-import {defineStore} from 'pinia'
-import {request} from "~/helpers/request";
-import {MarkType} from "~/app/types/marks";
-import {SiteConfigRequest, SiteConfigType} from "~/app/types/siteConfig";
-import {siteConfigGql} from "~/apollo/queries/siteConfig";
+import {defineStore} from 'pinia';
+import {request} from '~/helpers/request';
+import {MarkType} from '~/app/types/marks';
+import {SiteConfigRequest, SiteConfigType} from '~/app/types/siteConfig';
+import {siteConfigGql} from '~/apollo/queries/siteConfig';
 
 interface SettingSite {
     counter_ym: string,
@@ -30,23 +30,23 @@ interface SettingSite {
 }
 
 export const useSiteConfig = defineStore('siteConfig', {
-    state: () => ({
-        settings: <SettingSite>{},
-        marks: <MarkType[]>[],
-        isNight: <boolean>false,
-    }),
+  state: () => ({
+    settings: <SettingSite>{},
+    marks: <MarkType[]>[],
+    isNight: <boolean>false,
+  }),
 
-    actions: {
-        async setIsNight(payload: boolean) {
-            this.isNight = payload
-        },
-        async getSiteConfig() {
-            try {
-                const {data} = await request<SiteConfigType, SiteConfigRequest>(siteConfigGql, {category: 'used'})
-                this.marks = data.value?.markFolderGeneration
-            } catch (error) {
-                console.log(error)
-            }
-        }
+  actions: {
+    async setIsNight(payload: boolean) {
+      this.isNight = payload;
+    },
+    async getSiteConfig() {
+      try {
+        const {data} = await request<SiteConfigType, SiteConfigRequest>(siteConfigGql, {category: 'used'});
+        this.marks = data.value?.markFolderGeneration;
+      } catch (error) {
+        console.log(error);
+      }
     }
-})
+  }
+});

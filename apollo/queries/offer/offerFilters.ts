@@ -1,4 +1,4 @@
-import {OfferFilterValues} from "~/apollo/fragments/filters/offerFilterValues";
+import {OfferFilterValues} from '~/apollo/fragments/filters/offerFilterValues';
 
 export const offerFilters = gql`
     query offerFilters(

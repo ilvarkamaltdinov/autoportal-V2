@@ -1,4 +1,4 @@
-import {StoryContent} from "~/apollo/fragments/story/storyContent";
+import {StoryContent} from '~/apollo/fragments/story/storyContent';
 
 export const storyContents = gql`
     query storyContents(

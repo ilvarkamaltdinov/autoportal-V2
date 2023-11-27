@@ -1,4 +1,4 @@
-import {DealerImage} from "~/apollo/fragments/image/dealerImage";
+import {DealerImage} from '~/apollo/fragments/image/dealerImage';
 
 export const DealerList = gql`
     fragment DealerList on Dealer {

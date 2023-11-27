@@ -1,4 +1,4 @@
-import {GenerationType} from "~/apollo/fragments/generation/generationType";
+import {GenerationType} from '~/apollo/fragments/generation/generationType';
 
 export const generations = gql`
     query generations($site_id: Int!, $folder_id: Int, $mark_slug: String, $category: String,  $folder_slug: String) {

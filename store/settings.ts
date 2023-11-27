@@ -1,6 +1,6 @@
-import {defineStore} from 'pinia'
-import {settingsGql, settingType} from "~/apollo/queries/settings";
-import {request} from "~/helpers/request";
+import {defineStore} from 'pinia';
+import {settingsGql, settingType} from '~/apollo/queries/settings';
+import {request} from '~/helpers/request';
 
 interface SettingSite {
     counter_ym: string,
@@ -17,20 +17,20 @@ interface SettingSite {
 }
 
 export const useSettings = defineStore('settings', {
-    state: () => ({
-        settings: <SettingSite>{}
-    }),
-    actions: {
-        async getSettings() {
-            try {
-                const {data} = await request<settingType>(settingsGql, undefined, true)
-                data.value?.siteSettings.settings.map(setting => {
-                    // @ts-ignore
-                    this.settings[setting.key] = setting.value
-                })
-            } catch (error) {
-                console.log(error)
-            }
-        }
+  state: () => ({
+    settings: <SettingSite>{}
+  }),
+  actions: {
+    async getSettings() {
+      try {
+        const {data} = await request<settingType>(settingsGql, undefined, true);
+        data.value?.siteSettings.settings.map(setting => {
+          // @ts-ignore
+          this.settings[setting.key] = setting.value;
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
-})
+  }
+});

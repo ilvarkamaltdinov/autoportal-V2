@@ -1,4 +1,4 @@
-import {BankListType} from "~/apollo/fragments/bank/bankListType";
+import {BankListType} from '~/apollo/fragments/bank/bankListType';
 
 export const banks = gql`
     query banks($site_id: Int!) {

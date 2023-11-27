@@ -1,4 +1,4 @@
-import {OfferPagination} from "~/apollo/fragments/offer/offerPagination";
+import {OfferPagination} from '~/apollo/fragments/offer/offerPagination';
 
 export const offers = gql`
     query offers(

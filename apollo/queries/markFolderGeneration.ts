@@ -1,4 +1,4 @@
-import {GenerationType} from "~/apollo/fragments/generation/generationType";
+import {GenerationType} from '~/apollo/fragments/generation/generationType';
 
 export const markFolderGeneration = gql`
     query markFolderGeneration($site_id: Int! $category: String) {

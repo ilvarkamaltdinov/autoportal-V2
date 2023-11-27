@@ -4,7 +4,7 @@
       <h1 class="visually-hidden">pageTitle</h1>
       <div class="page-main__promo grid__col-8">
         <section class="page-main__slider-index slider-index grid__col-8">
-          <SliderHome/>
+          <SliderHome />
         </section>
         <section class="page-main__stories stories" :class="{'stories--desktop grid__col-8':!isMobileOrTablet}">
           <h2 class="visually-hidden">Акции и спецпредложения</h2>
@@ -35,9 +35,9 @@
 </template>
 <script setup lang="ts">
 
-import SliderHome from "~/components/Slider/Home.vue";
-import Stories from "~/components/Stories";
-import FormCredit from "~/components/Form/Credit.vue";
+import SliderHome from '~/components/Slider/Home.vue';
+import Stories from '~/components/Stories';
+import FormCredit from '~/components/Form/Credit.vue';
 
 const {isMobileOrTablet} = useDevice();
 </script>

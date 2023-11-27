@@ -1,4 +1,4 @@
-import {DealerContact} from "~/apollo/fragments/dealer/dealerContact";
+import {DealerContact} from '~/apollo/fragments/dealer/dealerContact';
 
 export const dealersContact = gql`
     query dealersContact($site_id: Int!) {
