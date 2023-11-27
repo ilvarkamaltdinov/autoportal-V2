@@ -17,8 +17,7 @@
           class="form__field-wrap form__field-wrap--car ">
         <button class="form__field" @click.prevent="useModals().setModal(modalPayloadCredit)">
           {{ modalOfferSelection_offer ? modalOfferSelection_offer.name : 'Выбрать автомобиль' }}
-          <span v-if="modalOfferSelection_offer">, {{ numberFormat(modalOfferSelection_offer.price) }}
-                </span>
+          <span v-if="modalOfferSelection_offer">, {{ numberFormat(modalOfferSelection_offer.price) }}</span>
         </button>
         <nuxt-icon name="icon-form" class="form__car-icon"/>
       </label>

@@ -9,15 +9,15 @@ defineProps<StoriesItemProps>();
 
 <template>
   <li class="stories__item"
-      :class="{'swiper-slide': !$device.isMobile}"
+      :class="{'swiper-slide': $device.isMobile}"
       @click="$emit('click')">
     <div class="stories__figure">
       <PictureComponent classes="stories__img lazyload"
                          lazy
-                         :small="story.image?.xs.toString()"
-                         :small-webp="story.image?.xs_webp.toString()"
-                         :big="story.image?.tiny.toString()"
-                         :big-webp="story.image?.tiny_webp.toString()" />
+                         :small="story.image?.xs?.toString() as string"
+                         :small-webp="story?.image?.xs_webp?.toString() as string"
+                         :big="story.image?.tiny?.toString() as string"
+                         :big-webp="story.image?.tiny_webp?.toString() as string" />
     </div>
     <div class="stories__text">
       {{story.title}}
