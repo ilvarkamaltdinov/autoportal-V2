@@ -4,7 +4,7 @@ export default defineNuxtPlugin(async () => {
   const settings = useSettings();
   return {
     provide: {
-      settings: await settings.getSettings()
+      settings: await settings.getSettings(),
     }
   };
 });

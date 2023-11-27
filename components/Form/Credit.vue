@@ -25,41 +25,44 @@
     <div class="catalog form__catalog" v-if="$device.isMobile && (offer || currentCar)">
           <catalog-item-large-mobile-form :is-form="true" :offer="offer || currentCar"/>
         </div>
-        <form-credit-calculator v-if="calculator" @changePeriod="changePeriod" @changePayment="changePayment"
+        <FormCreditCalculator v-if="calculator"
                                 :params="creditParams" :offer="offer || currentCar"/>
-        <fieldset class="form__fieldset">
-          <label class="form__field-wrap" :class="nameClass">
-            <inputs-input placeholder="ФИО" @input="handlerInput('name')" v-model="form.name.value" @focus="onFocus"
-                          @focusout="onFocusOut" type="text"/>
-          </label>
-          <label class="form__field-wrap" :class="dateClass">
-            <inputs-input placeholder="Дата рождения" @input="handlerInput('date')"
-                          @dateMaskComplete="form.date.valid = true" @onincomplete="form.date.valid = null"
-                          v-model="form.date.value"
-                          @focus="onFocus" @focusout="onFocusOut" mask="date" type="tel"/>
-          </label>
-          <label class="form__field-wrap" :class="phoneClass">
-            <inputs-input placeholder="Телефон" @input="handlerInput('phone')" @phoneMaskComplete="form.phone.valid = true"
-                          @onincomplete="form.phone.valid = null" v-model="form.phone.value" @focus="onFocus"
-                          @focusout="onFocusOut"
-                          mask="phone" type="tel"/>
-          </label>
-          <checkbox-form :error="error === 'agreeRf'" @change="changeCheckbox($event, 'agreeRf')"
-                         label="Подтверждаю наличие гражданства РФ"/>
-          <checkbox-form :error="error === 'agree'" @change="changeCheckbox($event, 'agree')" label="Согласен на"
-                         link="обработку личных данных"/>
-        </fieldset>
-        <button-typical :loading="buttonDisabled" text="Оставить заявку" button-class="button--credit button--form"/>
+<!--        <fieldset class="form__fieldset">-->
+<!--          <label class="form__field-wrap" :class="nameClass">-->
+<!--            <inputs-input placeholder="ФИО" @input="handlerInput('name')" v-model="form.name.value" @focus="onFocus"-->
+<!--                          @focusout="onFocusOut" type="text"/>-->
+<!--          </label>-->
+<!--          <label class="form__field-wrap" :class="dateClass">-->
+<!--            <inputs-input placeholder="Дата рождения" @input="handlerInput('date')"-->
+<!--                          @dateMaskComplete="form.date.valid = true" @onincomplete="form.date.valid = null"-->
+<!--                          v-model="form.date.value"-->
+<!--                          @focus="onFocus" @focusout="onFocusOut" mask="date" type="tel"/>-->
+<!--          </label>-->
+<!--          <label class="form__field-wrap" :class="phoneClass">-->
+<!--            <inputs-input placeholder="Телефон" @input="handlerInput('phone')" @phoneMaskComplete="form.phone.valid = true"-->
+<!--                          @onincomplete="form.phone.valid = null" v-model="form.phone.value" @focus="onFocus"-->
+<!--                          @focusout="onFocusOut"-->
+<!--                          mask="phone" type="tel"/>-->
+<!--          </label>-->
+<!--          <checkbox-form :error="error === 'agreeRf'" @change="changeCheckbox($event, 'agreeRf')"-->
+<!--                         label="Подтверждаю наличие гражданства РФ"/>-->
+<!--          <checkbox-form :error="error === 'agree'" @change="changeCheckbox($event, 'agree')" label="Согласен на"-->
+<!--                         link="обработку личных данных"/>-->
+<!--        </fieldset>-->
+<!--        <button-typical :loading="buttonDisabled" text="Оставить заявку" button-class="button&#45;&#45;credit button&#45;&#45;form"/>-->
   </form>
 </template>
 <script setup lang="ts">
 import {numberFormat} from '~/helpers/filters';
 import {useModals, ModalOfferSelection_offerType} from '~/store/modals';
 import {OfferQuery} from '~/types/graphql';
+import {computed, ref} from '#imports';
+import FormCreditCalculator from '~/components/Form/form-components/FormCreditCalculator.vue';
 
 const props = defineProps<{
+  calculator: boolean;
   hasChose?: boolean;
-  offer: OfferQuery['offer']
+  offer: OfferQuery['offer'];
 }>();
 
 const currentCar = null;
@@ -72,6 +75,32 @@ const modalPayloadCredit = {
 };
 
 const modalOfferSelection_offer = computed<ModalOfferSelection_offerType>(() => useModals().modalOfferSelection_offer);
+const creditParams = ref({
+  rangePeriodValues: [
+    '2',
+    '6',
+    '12',
+    '24',
+    '36',
+    '48',
+    '60',
+    '72',
+    '84'
+  ],
+  rangePaymentValues: [
+    '0%',
+    '10%',
+    '20%',
+    '30%',
+    '40%',
+    '50%',
+    '60%',
+    '70%',
+    '80%'
+  ],
+  period: 84,
+  payment: 0,
+});
 
 const submitForm = () => {
 

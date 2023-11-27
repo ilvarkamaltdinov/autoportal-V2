@@ -15,6 +15,7 @@ interface SettingSite {
     legal_name: string
     legal_ogrn: string
     legal_address: string
+    credit_percent: string
 }
 
 export const useSettings = defineStore('settings', {

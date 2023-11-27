@@ -12,7 +12,7 @@
         </section>
       </div>
       <div class="page-main__credit-index grid__col-4">
-        <FormCredit has-chose/>
+        <FormCredit has-chose :calculator="true" />
       </div>
       <!--      <LazyHydrate when-visible>-->
       <!--        <catalog-list-index />-->
