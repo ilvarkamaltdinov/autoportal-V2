@@ -22,7 +22,7 @@
         <nuxt-icon name="icon-form" class="form__car-icon"/>
       </label>
     </fieldset>
-    <!--    <div class="catalog form__catalog" v-if="$device.isMobile && (offer || currentCar)">
+    <div class="catalog form__catalog" v-if="$device.isMobile && (offer || currentCar)">
           <catalog-item-large-mobile-form :is-form="true" :offer="offer || currentCar"/>
         </div>
         <form-credit-calculator v-if="calculator" @changePeriod="changePeriod" @changePayment="changePayment"
@@ -49,17 +49,20 @@
           <checkbox-form :error="error === 'agree'" @change="changeCheckbox($event, 'agree')" label="Согласен на"
                          link="обработку личных данных"/>
         </fieldset>
-        <button-typical :loading="buttonDisabled" text="Оставить заявку" button-class="button&#45;&#45;credit button&#45;&#45;form"/>-->
+        <button-typical :loading="buttonDisabled" text="Оставить заявку" button-class="button--credit button--form"/>
   </form>
 </template>
 <script setup lang="ts">
 import {numberFormat} from '~/helpers/filters';
 import {useModals, ModalOfferSelection_offerType} from '~/store/modals';
-import {useSettings} from '~/store/settings';
+import {OfferQuery} from '~/types/graphql';
 
 const props = defineProps<{
-  hasChose?: boolean
+  hasChose?: boolean;
+  offer: OfferQuery['offer']
 }>();
+
+const currentCar = null;
 
 const modalPayloadCredit = {
   open: true,
