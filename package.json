@@ -36,7 +36,8 @@
     "gulp-imagemin": "^8.0.0",
     "gulp-webp": "^4.0.1",
     "nuxt": "^3.5.3",
-    "nuxt-icon": "^0.4.0"
+    "nuxt-icon": "^0.4.0",
+    "utility-types": "^3.10.0"
   },
   "dependencies": {
     "@fancyapps/ui": "^5.0.17",

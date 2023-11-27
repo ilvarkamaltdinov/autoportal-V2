@@ -7,38 +7,25 @@
 </template>
 
 <script lang="ts" setup>
-import {OfferQuery} from '~/types/graphql';
+import {Offer} from '~/types/graphql';
 
 type RatingProps = {
-  rating: OfferQuery['offer']['rating']
+  rating: Offer['rating'];
 }
-
 const props = defineProps<RatingProps>();
+console.log(props.rating);
 
-const ratingText = computed(() => parseFloat(props.rating.value.rating_total).toFixed(1));
-
-// export default {
-//   props: {
-//     rating: Object
-//   },
-//   computed: {
-//     ratingText() {
-//       return parseFloat(this.rating.rating_total).toFixed(1);
-//     },
-//     ratingValue() {
-//       return this.rating.rating_total * 20;
-//     },
-//     ratingColor() {
-//       if (this.rating.rating_total >= 4) {
-//         return '#0DC268';
-//       }
-//       if (this.rating.rating_total >= 3 && this.rating.rating_total < 4) {
-//         return '#ED7B29';
-//       }
-//       if (this.rating.rating_total < 3) {
-//         return '#ED2939';
-//       }
-//     }
-//   }
-// };
+const ratingText = computed(() => props.rating?.rating_total!.toFixed(1));
+const ratingValue = computed(() => props.rating!.rating_total! * 20);
+const ratingColor = computed(() => {
+  if (props.rating!.rating_total! >= 4) {
+    return '#0DC268';
+  }
+  if (props.rating!.rating_total! >= 3 && props.rating!.rating_total! < 4) {
+    return '#ED7B29';
+  }
+  if (props.rating!.rating_total! < 3) {
+    return '#ED2939';
+  }
+});
 </script>
