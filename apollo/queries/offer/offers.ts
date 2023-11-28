@@ -8,11 +8,14 @@ export const offers = gql`
     $limit: Int,
     $category: String,
     $mark_slug_array: [String],
+        $mark_slug: String,
     $folder_slug_array: [String],
+        $folder_slug: String,
     $external_id_array: [Int],
     $sort: String,
     $except_external_id: Int,
     $generation_slug_array: [String],
+        $generation_slug: String,
     $engine_type_id_array: [Int],
     $body_type_id_array: [Int],
     $gearbox_id_array: [Int],
@@ -31,7 +34,9 @@ export const offers = gql`
         limit: $limit,
         site_id: $site_id,
         mark_slug_array: $mark_slug_array,
+        mark_slug: $mark_slug,
         folder_slug_array: $folder_slug_array,
+        folder_slug: $folder_slug,
         external_id_array: $external_id_array,
         sort: $sort,
         except_external_id:$except_external_id,
@@ -46,6 +51,7 @@ export const offers = gql`
         price_from: $price_from,
         price_to: $price_to,
         category: $category,
+        generation_slug: $generation_slug
         set: $set,
         url:$url
     ) {
