@@ -10,7 +10,7 @@
           {{ title }}
         </h1>
         <div class="not-found__block">
-          <picture-component
+          <PictureComponent
               classes="not-found__img lazyload"
               small="/img/favorites@1x.png"
               small-webp="/img/favorites@1x.webp"
@@ -44,6 +44,7 @@
 import {computed} from '#imports';
 import {request} from '~/helpers/request';
 import {offers} from '~/apollo/queries/offer/offers';
+import {useFavorites} from '~/store/favorites';
 
 const loading = ref(true);
 const likedOffers = ref([]);
@@ -57,25 +58,10 @@ const component = computed(() => {
 });
 
 onMounted(async () => {
-  if (process.client) {
-    if (localStorage.getItem('likes')) {
-      loading.value = true;
-      let external_id_array = localStorage.getItem('likes').split(',').map(i => Number(i));
-      try {
-        let response = await request(offers, {
-          limit: 0,
-          page: 1,
-          external_id_array
-        });
-        likedOffers.value = response.data.offers.data;
-        loading.value = false;
-      } catch (error) {
-        console.log(error);
-        // this.$nuxt.error({statusCode: 404});
-      }
-    } else {
-      loading.value = false;
-    }
+  if(process.client) {
+    loading.value = true;
+    const favoritesStore = useFavorites();
+    likedOffers.value = await favoritesStore.favoriteCars.then((favs) => { loading.value = false; return favs; });
   }
 });
 </script>

@@ -1,51 +1,53 @@
 <template>
 	<div class="catalog__buttons">
 		<div class="catalog__actions">
-			<ButtonAutoteka v-if="long && $route.params.category !=='europe' && !isNew"
-                       @click="autoteka(offer)"/>
+<!--			<ButtonAutoteka v-if="long && $route.params.category !=='europe' && !isNew"-->
+<!--                       @click="autoteka(offer)"/>-->
 			<ButtonFavorite :active="likesArray.some(id => id === String(offer.external_id))"
                        @click="like()"/>
 			<!--<button-compare v-if="long" />-->
-			<ButtonCall v-if="offer.dealer.phone" :phone="offer.dealer.phone"
-                   @click="call"/>
+<!--			<ButtonCall v-if="offer.dealer.phone" :phone="offer.dealer.phone"-->
+<!--                   @click="call"/>-->
 		</div>
-		<div v-if="long"
-         class="catalog__actions-main">
-			<ButtonTypical button-class="button--trade-in button--link"
-                      text="Trade-In"
-                      @click="tradeIn(offer)"/>
-			<ButtonTypical v-if="choose"
-                      :text="isEqual ? 'Выбрано' : 'Выбрать'"
-                      button-class="button--credit"
-                      @click="chooseClick(offer)"/>
-			<ButtonTypical v-else-if="$route.params.category==='europe'"
-                      button-class="button--credit"
-                      text="Рассчитать кредит"
-                      @click="credit()"/>
-			<ButtonTypical v-else
-                      button-class="button--credit"
-                      text="Купить в кредит"
-                      @click="credit()"/>
-		</div>
-		<div v-else>
-			<ButtonTypical v-if="choose"
-                      :class="{'button--credit-selected':isEqual }"
-                      :text="isEqual ? 'Выбран' : 'Выбрать'"
-                      button-class="button--credit"
-                      @click="chooseClick(offer)"/>
-			<ButtonTypical v-else-if="$route.params.category==='europe'"
-                      button-class="button--credit button--credit-europe"
-                      text="Рассчитать кредит"
-                      @click="credit()"/>
-			<ButtonTypical v-else
-                      button-class="button--credit"
-                      text="Купить в кредит"
-                      @click="credit()"/>
-		</div>
+<!--		<div v-if="long"-->
+<!--         class="catalog__actions-main">-->
+<!--			<ButtonTypical button-class="button&#45;&#45;trade-in button&#45;&#45;link"-->
+<!--                      text="Trade-In"-->
+<!--                      @click="tradeIn(offer)"/>-->
+<!--			<ButtonTypical v-if="choose"-->
+<!--                      :text="isEqual ? 'Выбрано' : 'Выбрать'"-->
+<!--                      button-class="button&#45;&#45;credit"-->
+<!--                      @click="chooseClick(offer)"/>-->
+<!--			<ButtonTypical v-else-if="$route.params.category==='europe'"-->
+<!--                      button-class="button&#45;&#45;credit"-->
+<!--                      text="Рассчитать кредит"-->
+<!--                      @click="credit()"/>-->
+<!--			<ButtonTypical v-else-->
+<!--                      button-class="button&#45;&#45;credit"-->
+<!--                      text="Купить в кредит"-->
+<!--                      @click="credit()"/>-->
+<!--		</div>-->
+<!--		<div v-else>-->
+<!--			<ButtonTypical v-if="choose"-->
+<!--                      :class="{'button&#45;&#45;credit-selected':isEqual }"-->
+<!--                      :text="isEqual ? 'Выбран' : 'Выбрать'"-->
+<!--                      button-class="button&#45;&#45;credit"-->
+<!--                      @click="chooseClick(offer)"/>-->
+<!--			<ButtonTypical v-else-if="$route.params.category==='europe'"-->
+<!--                      button-class="button&#45;&#45;credit button&#45;&#45;credit-europe"-->
+<!--                      text="Рассчитать кредит"-->
+<!--                      @click="credit()"/>-->
+<!--			<ButtonTypical v-else-->
+<!--                      button-class="button&#45;&#45;credit"-->
+<!--                      text="Купить в кредит"-->
+<!--                      @click="credit()"/>-->
+<!--		</div>-->
 	</div>
 </template>
 
-<script>
+<script setup lang="ts">
+
+
 // export default {
 //   computed: {
 //     ...mapGetters({
