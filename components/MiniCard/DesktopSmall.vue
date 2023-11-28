@@ -12,7 +12,7 @@
           <div v-for="(photo, index) in photos"
                v-show="index <= limit"
                :class="{'active':index === activeTmb}"
-               @mouseover="mouseOver(photo.small_webp, index)">
+               @mouseover="mouseOver(photo!.small_webp!, index)">
           </div>
         </div>
       </div>
@@ -26,8 +26,8 @@
         <h3 class="catalog__heading">
           <a @click.prevent="$emit('click')" class="catalog__title-link">
             <span class="catalog__title">
-                <span> {{ offer.mark.title }} {{ offer.folder.title }}</span>,
-                <span> {{ engineVolume(offer.engine_volume) }}</span>
+                <span> {{ offer!.mark!.title }} {{ offer!.folder!.title }}</span>,
+                <span> {{ engineVolume(offer!.engine_volume!) }}</span>
             </span>
             <span class="catalog__year">
                 {{ offer.year }}

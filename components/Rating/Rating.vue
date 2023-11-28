@@ -13,7 +13,6 @@ type RatingProps = {
   rating: Offer['rating'];
 }
 const props = defineProps<RatingProps>();
-console.log(props.rating);
 
 const ratingText = computed(() => props.rating?.rating_total!.toFixed(1));
 const ratingValue = computed(() => props.rating!.rating_total! * 20);

@@ -155,45 +155,45 @@
   </ModalsTemplate>
 </template>
 <script setup lang="ts">
-import ModalsTemplate from '~/components/Modals/Template.vue'
-import CatalogFilter from '~/components/Catalog/Filter.vue'
-import CatalogModal from '~/components/Catalog/Modal.vue'
-import {useModals} from "~/store/modals";
-import {useSiteConfig} from "~/store/siteConfig";
-import {filterMarksByLetter, getAlphabet, getPopularMarks} from "~/helpers/filterMarks";
-import {MarkType} from "~/app/types/marks";
-import {FolderType} from "~/app/types/folders";
-import {GenerationType} from "~/app/types/generations";
+import ModalsTemplate from '~/components/Modals/Template.vue';
+import CatalogFilter from '~/components/Catalog/Filter.vue';
+import CatalogModal from '~/components/Catalog/Modal.vue';
+import {useModals} from '~/store/modals';
+import {useSiteConfig} from '~/store/siteConfig';
+import {filterMarksByLetter, getAlphabet, getPopularMarks} from '~/helpers/filterMarks';
+import {MarkType} from '~/app/types/marks';
+import {FolderType} from '~/app/types/folders';
+import {GenerationType} from '~/app/types/generations';
 
 const {isMobile} = useDevice();
 
-const modalOfferSelection_mark = computed(() => useModals().modalOfferSelection_mark)
-const modalOfferSelection_folder = computed(() => useModals().modalOfferSelection_folder)
-const modalOfferSelection_generation = computed(() => useModals().modalOfferSelection_generation)
-const modalOfferSelection_offer = computed(() => useModals().modalOfferSelection_offer)
+const modalOfferSelection_mark = computed(() => useModals().modalOfferSelection_mark);
+const modalOfferSelection_folder = computed(() => useModals().modalOfferSelection_folder);
+const modalOfferSelection_generation = computed(() => useModals().modalOfferSelection_generation);
+const modalOfferSelection_offer = computed(() => useModals().modalOfferSelection_offer);
 
-const tabComponent = ref<string>('mark')
+const tabComponent = ref<string>('mark');
 
-const marks = useSiteConfig().marks
-const folders = computed<FolderType[] | undefined>(() => modalOfferSelection_mark.value?.folders)
-const generations = computed<GenerationType[] | undefined>(() => modalOfferSelection_folder.value?.generations)
+const marks = useSiteConfig().marks;
+const folders = computed<FolderType[] | undefined>(() => modalOfferSelection_mark.value?.folders);
+const generations = computed<GenerationType[] | undefined>(() => modalOfferSelection_folder.value?.generations);
 const tabClick = (tab: string) => {
-  tabComponent.value = tab
-}
+  tabComponent.value = tab;
+};
 
 const selectMark = (mark: MarkType) => {
-  useModals().setModalOfferSelection_mark(mark)
-  useModals().setModalOfferSelection_folder(null)
-  useModals().setModalOfferSelection_generation(null)
-  tabComponent.value = 'folder'
-}
+  useModals().setModalOfferSelection_mark(mark);
+  useModals().setModalOfferSelection_folder(null);
+  useModals().setModalOfferSelection_generation(null);
+  tabComponent.value = 'folder';
+};
 const selectFolder = (folder: FolderType) => {
-  useModals().setModalOfferSelection_folder(folder)
-  useModals().setModalOfferSelection_generation(null)
-  tabComponent.value = 'generation'
-}
+  useModals().setModalOfferSelection_folder(folder);
+  useModals().setModalOfferSelection_generation(null);
+  tabComponent.value = 'generation';
+};
 const selectGeneration = (generation: GenerationType) => {
-  useModals().setModalOfferSelection_generation(generation)
-  tabComponent.value = 'offer'
-}
+  useModals().setModalOfferSelection_generation(generation);
+  tabComponent.value = 'offer';
+};
 </script>

@@ -60,7 +60,6 @@ let variables = computed<OffersTypeRequest>(() => {
 
 const getOffers = async () => {
   const {pending, data} = await request<OffersTypeData, OffersTypeRequest>(offersGql, variables.value);
-  console.log(data, variables);
   offers.value.push(...data.value?.offers.data);
   last_page.value = data.value?.offers.last_page;
 };
