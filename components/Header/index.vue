@@ -48,7 +48,7 @@
         </nav>
         <ul class="page-header__buttons">
           <li class="page-header__buttons-item">
-            <nuxt-link to="/"
+            <nuxt-link to="/favorites"
                        class="page-header__buttons-link"
                        title="Избранное"
                        aria-label="Избранное">
@@ -106,13 +106,13 @@
   </header>
 </template>
 <script setup lang="ts">
-import {useHeader} from "~/store/header";
-import {useSiteConfig} from "~/store/siteConfig";
-import {getPopularMarks} from "~/helpers/filterMarks";
+import {useHeader} from '~/store/header';
+import {useSiteConfig} from '~/store/siteConfig';
+import {getPopularMarks} from '~/helpers/filterMarks';
 
-const menu = computed(() => useHeader().menu)
-const likes = computed(() => useHeader().likes)
-const menuList = useHeader().menuList
+const menu = computed(() => useHeader().menu);
+const likes = computed(() => useHeader().likes);
+const menuList = useHeader().menuList;
 
-const marks = useSiteConfig().marks
+const marks = useSiteConfig().marks;
 </script>
