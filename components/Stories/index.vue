@@ -36,13 +36,13 @@
   <button v-if="!$device.isMobileOrTablet"
           ref="prev"
           class="swiper-button swiper-button-prev">
-    <svg-icon class="swiper-button__icon"
+    <nuxt-icon class="swiper-button__icon"
               name="icon-arrow" />
   </button>
   <button v-if="!$device.isMobileOrTablet"
           ref="next"
           class="swiper-button swiper-button-next">
-    <svg-icon class="swiper-button__icon"
+    <nuxt-icon class="swiper-button__icon"
               name="icon-arrow" />
   </button>
 </template>

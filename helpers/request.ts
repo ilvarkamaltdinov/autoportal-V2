@@ -8,7 +8,6 @@ export const request = async <Response, Request = undefined>(query: DocumentNode
   };
   const params = {...assignVariables, ...variables};
   const removeEmptyParams = Object.fromEntries(Object.entries(params).filter(([_, v]) => v != null));
-  console.log(useAsyncQuery<Response>({query, variables: removeEmptyParams}));
   return isLazy ? useLazyAsyncQuery<Response>({
     query,
     variables: removeEmptyParams,
