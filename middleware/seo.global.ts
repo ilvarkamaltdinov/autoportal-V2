@@ -70,6 +70,9 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     ]
   });
 
+  const appconfig = useAppConfig();
+  appconfig.title = seoTagsResult.pageTitle;
+
   // if (this.offer) { todo set offer
   //   currentMeta.push({
   //     hid: 'og:image',

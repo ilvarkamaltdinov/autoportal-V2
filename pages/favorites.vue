@@ -7,7 +7,7 @@
       <section class="page-main__not-found not-found"
                v-if="likedOffers.length === 0 && !loading">
         <h1 class="heading heading--h1">
-          {{ 'a' }}
+          {{ title }}
         </h1>
         <div class="not-found__block">
           <picture-component
@@ -21,7 +21,7 @@
       <section v-else
                class="page-main__catalog catalog grid__col-12">
         <h1 class="heading heading--h1">
-          {{ 'pageTitle' }}
+          {{ title }}
         </h1>
         <div v-if="loading"
              class="catalog__list grid grid__col-12">
@@ -48,6 +48,8 @@ import {offers} from '~/apollo/queries/offer/offers';
 const loading = ref(true);
 const likedOffers = ref([]);
 const {isTablet, isMobile} = useDevice();
+
+const {title} = useAppConfig();
 
 const component = computed(() => {
   if (isTablet) {
