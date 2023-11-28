@@ -1,19 +1,18 @@
 import {defineNuxtRouteMiddleware} from '#imports';
 import {seoTags} from '~/apollo/queries/seoTags';
-import {bank} from '~/apollo/queries/bank/bank';
 import {request} from '~/helpers/request';
-import {SeoTag, SeoTagsQuery} from '~/types/graphql';
+import {SeoTag, SeoTagsQueryVariables} from '~/types/graphql';
 export default defineNuxtRouteMiddleware(async (to, from) => {
   async function fetchSeoTags() {
-    const seoQuery = await request<{ seoTag: SeoTag }, SeoTagsQuery>(seoTags, {
+    const seoQuery = await request<{ seoTag: SeoTag }, Omit<SeoTagsQueryVariables, 'site_id'>>(seoTags, {
       url: to.path === '/' ? '/home' : to.path
     });
     if (to.params.bank) {
-      try {
-        const response = await request(bank, route.params.bank);
-        // store.commit('banks/SET_BANK', response.data.bank); todo set bank
-      } catch (e) {
-      }
+      // try {
+      // const response = await request(bank, to.params.bank);
+      // store.commit('banks/SET_BANK', response.data.bank); todo set bank
+      // } catch (e) {
+      // }
     }
     return {
       description: seoQuery.data.value.seoTag.description,
