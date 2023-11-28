@@ -49,8 +49,6 @@ const loading = ref(true);
 const likedOffers = ref([]);
 const {isTablet, isMobile} = useDevice();
 
-const {title} = useAppConfig();
-
 const component = computed(() => {
   if (isTablet) {
     return 'catalog-item-large-mobile';
