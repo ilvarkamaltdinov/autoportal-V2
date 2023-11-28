@@ -1,7 +1,7 @@
 <template>
 	<div class="catalog__buttons">
 		<div class="catalog__actions">
-			<button-autoteka v-if="long && $route.params.category !=='europe' && !isNew"
+			<ButtonAutoteka v-if="long && $route.params.category !=='europe' && !isNew"
                        @click="autoteka(offer)"/>
 			<button-favorite :active="likesArray.some(id => id === String(offer.external_id))"
                        @click="like()"/>
@@ -48,7 +48,7 @@
 <script>
 import {mapActions, mapGetters, mapMutations} from 'vuex';
 import ButtonCompare from '@/components/button/button-compare';
-import ButtonAutoteka from '@/components/button/button-autoteka';
+import ButtonAutoteka from '~/components/button/ButtonAutoteka.vue';
 
 export default {
   components: {ButtonAutoteka, ButtonCompare},

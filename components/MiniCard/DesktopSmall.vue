@@ -91,17 +91,18 @@
                       :rating="offer.rating"/>
           <CatalogItemTechList :offer="offer"/>
         </div>
-<!--        <catalog-item-buttons-->
-<!--            :is-form="isForm"-->
-<!--            :choose="choose"-->
-<!--            v-if="hasButtons"-->
-<!--            :offer="offer"/>-->
+        <CatalogItemButtons
+            :is-form="isForm"
+            :choose="choose"
+            v-if="hasButtons"
+            :offer="offer"/>
   </article>
 </template>
 <script setup lang="ts">
 import {creditPrice, engineVolume, numberFormat} from '~/helpers/filters';
 import CatalogItemTechList from '~/components/Catalog/CatalogItem/CatalogItemComponents/CatalogItemTechList.vue';
 import {Offer} from '~/types/graphql';
+import CatalogItemButtons from '~/components/Catalog/CatalogItem/CatalogItemComponents/CatalogItemButtons.vue';
 
 type DesktopSmallProps = {
     isForm?: boolean,
