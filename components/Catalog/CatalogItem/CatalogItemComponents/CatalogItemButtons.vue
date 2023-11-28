@@ -4,7 +4,7 @@
 <!--			<ButtonAutoteka v-if="long && $route.params.category !=='europe' && !isNew"-->
 <!--                       @click="autoteka(offer)"/>-->
 			<ButtonFavorite :active="likesArray.some(id => id === String(offer.external_id))"
-                       @click="like()"/>
+                       @clickclack="like(offer)" />
 			<!--<button-compare v-if="long" />-->
 <!--			<ButtonCall v-if="offer.dealer.phone" :phone="offer.dealer.phone"-->
 <!--                   @click="call"/>-->
@@ -46,8 +46,19 @@
 </template>
 
 <script setup lang="ts">
+import {Offer} from '~/types/graphql';
+import {useFavorites} from '~/store/favorites';
 
+defineProps<{
+  offer: Offer
+}>();
 
+const favsStore = useFavorites();
+const likesArray = ref(await favsStore.favoriteCars);
+
+function like(offer: Offer){
+  favsStore.like(offer.external_id!.toString());
+}
 // export default {
 //   computed: {
 //     ...mapGetters({

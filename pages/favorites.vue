@@ -25,13 +25,13 @@
         </h1>
         <div v-if="loading"
              class="catalog__list grid grid__col-12">
-          <component v-for="i in 3"
-                     :key="i"
-                     :is="$device.isMobile ? 'skeleton-card-large': 'skeleton-card-small'" />
+<!--          <component v-for="i in 3"-->
+<!--                     :key="i"-->
+<!--                     :is="$device.isMobile ? 'skeleton-card-large': 'skeleton-card-small'" />-->
         </div>
         <div v-else
              class="catalog__list grid grid__col-12">
-          <component :is="component"
+          <DesktopSmall
                      v-for="offer in likedOffers"
                      :offer="offer"
                      :key="offer.id" />
@@ -45,18 +45,19 @@ import {computed} from '#imports';
 import {request} from '~/helpers/request';
 import {offers} from '~/apollo/queries/offer/offers';
 import {useFavorites} from '~/store/favorites';
+import {storeToRefs} from 'pinia';
+import DesktopSmall from '~/components/MiniCard/DesktopSmall.vue';
 
-const loading = ref(true);
-const likedOffers = ref([]);
+const loading = ref(false);
 const {isTablet, isMobile} = useDevice();
 
-const component = computed(() => {
-  if (isTablet) {
-    return 'catalog-item-large-mobile';
-  }
-  return isMobile ? 'catalog-item-large-mobile' : 'catalog-item-small-desktop';
-});
-
+// const component = computed(() => {
+//   if (isTablet) {
+//     return 'catalog-item-large-mobile';
+//   }
+//   return isMobile ? 'catalog-item-large-mobile' : 'catalog-item-small-desktop';
+// });
+const likedOffers = ref([]);
 onMounted(async () => {
   if(process.client) {
     loading.value = true;

@@ -23,7 +23,7 @@
       </label>
     </fieldset>
     <div class="catalog form__catalog" v-if="$device.isMobile && (offer || currentCar)">
-          <catalog-item-large-mobile-form :is-form="true" :offer="offer || currentCar"/>
+<!--          <catalog-item-large-mobile-form :is-form="true" :offer="offer || currentCar"/>-->
         </div>
         <FormCreditCalculator v-if="calculator"
                                 :params="creditParams" :offer="offer || currentCar"/>

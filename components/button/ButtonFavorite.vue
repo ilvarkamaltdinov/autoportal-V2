@@ -1,7 +1,7 @@
 <template>
   <button class="button button--action button--favorite"
           :class="{'button--favorite-active' : active}"
-          @click.prevent="$emit('click')"
+          @click.prevent="$emit('clickclack')"
           type="button"
           title="Добавить в избранное"
           aria-label="Добавить в избранное">
