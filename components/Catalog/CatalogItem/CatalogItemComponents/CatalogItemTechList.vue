@@ -27,9 +27,9 @@ import {Offer} from '~/types/graphql';
 import {computed} from '#imports';
 
 type CatalogTechListProps = {
-  isForm: boolean;
-  offer: Offer;
-  small: boolean;
+  isForm?: boolean;
+  offer: Offer | null;
+  small?: boolean;
 }
 const props = withDefaults(defineProps<CatalogTechListProps>(), {
   isForm: false,

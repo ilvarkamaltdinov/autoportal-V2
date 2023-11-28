@@ -44,8 +44,8 @@
         <!--        <div class="catalog__price-old">{{ numberFormat(offer.price_old) }}</div>-->
         <div class="catalog__credit-price">{{ creditPrice(offer.price) }} ₽ / мес. без взноса</div>
 
-        <div v-if="categoryEnum !== 'europe' && !hideStock">
-          <div class="stock stock--false" v-if="isStock && !isNew" v-tippy="{
+        <div v-if="offer!.category_enum !== 'europe' && !hideStock">
+          <div class="stock stock--false" v-if="offer.is_stock && !isNew" v-tippy="{
         content: `<div class='tippy__text'>Ввиду ограниченной площади автоцентра многие автомобили находятся на центральной стоянке. Доставка в автоцентр бесплатная в день обращения. Подробности уточняйте по телефону.</div>`,
         animation: 'scale',
         arrow: true,
@@ -67,7 +67,7 @@
             В наличии
           </div>
         </div>
-        <div v-else-if="categoryEnum === 'europe'">
+        <div v-else-if="offer!.category_enum === 'europe'">
           <div class="stock stock--true" v-tippy="{
         content: `<div class='tippy__text'>Доставим этот автомобиль из Европы за 14 дней.</div>`,
         animation: 'scale',
@@ -84,7 +84,6 @@
         <div class="catalog__tech"
              :class="{'catalog__tech--no-buttons':!hasButtons}">
           <Rating v-tippy="{
-    				content:`<div class='tippy__text'>Рейтинг автомобиля</div>`,
     				animation:'scale',
     				arrow: true,
     			}"
@@ -92,11 +91,11 @@
                       :rating="offer.rating"/>
           <CatalogItemTechList :offer="offer"/>
         </div>
-        <catalog-item-buttons
-            :is-form="isForm"
-            :choose="choose"
-            v-if="hasButtons"
-            :offer="offer"/>
+<!--        <catalog-item-buttons-->
+<!--            :is-form="isForm"-->
+<!--            :choose="choose"-->
+<!--            v-if="hasButtons"-->
+<!--            :offer="offer"/>-->
   </article>
 </template>
 <script setup lang="ts">
@@ -104,13 +103,22 @@ import {creditPrice, engineVolume, numberFormat} from '~/helpers/filters';
 import CatalogItemTechList from '~/components/Catalog/CatalogItem/CatalogItemComponents/CatalogItemTechList.vue';
 import {Offer} from '~/types/graphql';
 
-const props = defineProps<{
-  isForm?: boolean,
-  choose?: boolean,
-  hasButtons?: boolean,
-  slide?: boolean,
-  offer: Offer
-}>();
+type DesktopSmallProps = {
+    isForm?: boolean,
+    choose?: boolean,
+    hasButtons?: boolean,
+    slide?: boolean,
+    offer: Offer,
+    hideStock?: boolean,
+}
+
+const props = withDefaults(defineProps<DesktopSmallProps>(), {
+  hideStock: false,
+  hasButtons: true,
+  slide: false,
+  choose: false,
+  isForm: false
+});
 
 const activeTmb = ref<number>(0);
 const class_name = ref('load');
@@ -128,6 +136,10 @@ const coverSrc = computed(() => {
       : placeholderUrl.value;
 });
 
+const isNew = computed(() => {
+  return props.offer!.run! <= 100 && props.offer!.owner!.number <= 1;
+});
+
 const onImgLoad = () => {
   class_name.value = 'loaded';
 };
@@ -143,5 +155,9 @@ const mouseLeave = () => {
   forceCoverPhoto.value = '';
   class_name.value = 'loaded';
 };
+
+function ratingClick() {
+  console.log('click');
+}
 
 </script>
