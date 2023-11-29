@@ -17,18 +17,18 @@
 </template>
 
 <script setup lang="ts">
-import ModalsMakes from '~/components/Modals/Makes.vue'
-import ModalsMenu from '~/components/Modals/Menu.vue'
-import ModalsOfferSelection from '~/components/Modals/OfferSelection.vue'
+import ModalsMakes from '~/components/Modals/Makes.vue';
+import ModalsMenu from '~/components/Modals/Menu.vue';
+import ModalsOfferSelection from '~/components/Modals/OfferSelection.vue';
 
-import {useHeader} from "~/store/header";
-import {useModals} from "~/store/modals";
+import {useHeader} from '~/store/header';
+import {useModals} from '~/store/modals';
 
-const closeModal = () => useModals().closeModal()
+const closeModal = () => useModals().closeModal();
 
 //Всплывашки шапки
-const headerMarksModal = computed(() => useHeader().marks)
-const headerMenuModal = computed(() => useHeader().menu)
+const headerMarksModal = computed(() => useHeader().marks);
+const headerMenuModal = computed(() => useHeader().menu);
 //Основные модалки
-const modal = computed(() => useModals().modal)
+const modal = computed(() => useModals().modal);
 </script>

@@ -33,30 +33,30 @@
 
 <script>
 export default {
-	data() {
-		return {
-			isOpen: false,
-		}
-	},
-	props: {
-		value: [String, Number, Object],
-		options: Array,
-		title: String
-	},
-	computed: {
-		currentValue: {
-			get() {
-				return this.value?.name || this.value?.title || this.value || this.title
-			},
-			set() {
-				return this.value?.name || this.value?.title || this.value
-			}
-		}
-	},
-	methods: {
-		changeSelect() {
-			this.$emit('input', event.target.value)
-		}
-	}
-}
+  data() {
+    return {
+      isOpen: false,
+    };
+  },
+  props: {
+    value: [String, Number, Object],
+    options: Array,
+    title: String
+  },
+  computed: {
+    currentValue: {
+      get() {
+        return this.value?.name || this.value?.title || this.value || this.title;
+      },
+      set() {
+        return this.value?.name || this.value?.title || this.value;
+      }
+    }
+  },
+  methods: {
+    changeSelect() {
+      this.$emit('input', event.target.value);
+    }
+  }
+};
 </script>

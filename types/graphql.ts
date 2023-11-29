@@ -1335,7 +1335,7 @@ export type SettingsQueryVariables = Exact<{
 }>;
 
 
-export type SettingsQuery = { __typename?: 'Query', settings?: { __typename?: 'SiteSetting', id: number, settings?: Array<{ __typename?: 'KeyValue', key?: string | null, value?: string | null } | null> | null } | null };
+export type SettingsQuery = { __typename?: 'Query', settings?: { __typename?: 'SiteSetting', id: number, settings?: Array<{ __typename?: 'KeyValue', key: string, value?: string | null } | null> | null } | null };
 
 export type SiteConfigQueryVariables = Exact<{
   site_id?: InputMaybe<Scalars['Int']['input']>;

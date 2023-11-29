@@ -28,7 +28,7 @@ interface SettingSite {
     credit_max_percent: string
     counter_commercial_id: string
 }
-
+// todo this is kinda unused, remove
 export const useSiteConfig = defineStore('siteConfig', {
   state: () => ({
     settings: <SettingSite>{},

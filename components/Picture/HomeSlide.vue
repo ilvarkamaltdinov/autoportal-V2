@@ -22,5 +22,5 @@ const props = defineProps<{
   big: string
   bigWebp: string
   aos: string
-}>()
+}>();
 </script>

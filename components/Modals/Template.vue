@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import {ModalType, useModals} from "~/store/modals";
+import {ModalType, useModals} from '~/store/modals';
 
-const modal = computed<ModalType>(() => useModals().modal)
+const modal = computed<ModalType>(() => useModals().modal);
 </script>

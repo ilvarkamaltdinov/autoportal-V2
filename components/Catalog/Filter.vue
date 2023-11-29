@@ -52,15 +52,15 @@
 </template>
 
 <script setup lang="ts">
-import {SortType} from "~/app/types/sort";
+import {SortType} from '~/app/types/sort';
 
 const {isMobile, isDesktop} = useDevice();
 
 const viewList = [
   's',
   'l'
-]
-const view = ref<string>('s')
+];
+const view = ref<string>('s');
 const sortList: SortType[] = [
   {
     title: 'Сначала дешевле',
@@ -78,21 +78,21 @@ const sortList: SortType[] = [
     title: 'Минимальный пробег',
     value: 'price|asc'
   }
-]
+];
 
-const sort = ref<SortType>(sortList[0])
+const sort = ref<SortType>(sortList[0]);
 
 const selectSort = (selectedSort: SortType) => {
-  sort.value = selectedSort
-}
-const isOpen = ref<boolean>(false)
+  sort.value = selectedSort;
+};
+const isOpen = ref<boolean>(false);
 const currentIcon = computed(() => {
   if (sort.value.value.split('|')[1] === 'asc') {
-    return 'icon-sort'
+    return 'icon-sort';
   } else {
-    return 'icon-sort-alt'
+    return 'icon-sort-alt';
   }
   //TODO одинаковые иконки, на основном каро так же
-})
+});
 
 </script>
