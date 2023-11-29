@@ -16,6 +16,10 @@ html::after {
   }
 }
 
+html body #__nuxt .nuxt-icon.nuxt-icon--fill, .nuxt-icon.nuxt-icon--fill {
+  fill: auto !important;
+}
+
 body,
 h1,
 h2,

@@ -109,10 +109,20 @@
 import {useHeader} from '~/store/header';
 import {useSiteConfig} from '~/store/siteConfig';
 import {getPopularMarks} from '~/helpers/filterMarks';
+import {useFavorites} from '~/store/favorites';
+import {storeToRefs} from 'pinia';
 
 const menu = computed(() => useHeader().menu);
-const likes = computed(() => useHeader().likes);
+const likes = ref(0);
 const menuList = useHeader().menuList;
 
 const marks = useSiteConfig().marks;
+
+if(process.client) {
+  const favoritesStore = useFavorites();
+  const { favorites } = storeToRefs(favoritesStore);
+  watch(favorites, (value, oldValue, onCleanup) => {
+    likes.value = value.length;
+  }, {immediate: true});
+}
 </script>
