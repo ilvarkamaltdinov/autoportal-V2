@@ -44,6 +44,7 @@
 import {useFavorites} from '~/store/favorites';
 import {storeToRefs} from 'pinia';
 import MiniCardOffer from '~/components/MiniCard/Offer.vue';
+import {Offer} from '~/types/graphql';
 
 const loading = ref(false);
 
@@ -53,7 +54,7 @@ const loading = ref(false);
 //   }
 //   return isMobile ? 'catalog-item-large-mobile' : 'catalog-item-small-desktop';
 // });
-const favCars = ref([]);
+const favCars = ref<Offer[]>([]);
 if(process.client) {
   const favoritesStore = useFavorites();
   await favoritesStore.favoriteCars;
