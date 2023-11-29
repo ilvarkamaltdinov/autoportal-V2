@@ -1,6 +1,6 @@
 <template>
   <div class="catalog__list grid grid--catalog">
-    <MiniCardDesktopSmall :offer="offer" v-for="offer in offers"/>
+    <MiniCardDesktopSmall :choose="true" :offer="offer" v-for="offer in offers"/>
     <VueEternalLoading v-if="current_page <= last_page" :load="load">
       <template #loading>
         <div class="my-loading">

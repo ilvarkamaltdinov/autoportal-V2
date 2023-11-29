@@ -28,19 +28,17 @@
 <!--                      @click="credit()"/>-->
 <!--		</div>-->
 <!--		<div v-else>-->
-<!--			<ButtonTypical v-if="choose"-->
-<!--                      :class="{'button&#45;&#45;credit-selected':isEqual }"-->
-<!--                      :text="isEqual ? 'Выбран' : 'Выбрать'"-->
-<!--                      button-class="button&#45;&#45;credit"-->
-<!--                      @click="chooseClick(offer)"/>-->
-<!--			<ButtonTypical v-else-if="$route.params.category==='europe'"-->
-<!--                      button-class="button&#45;&#45;credit button&#45;&#45;credit-europe"-->
-<!--                      text="Рассчитать кредит"-->
-<!--                      @click="credit()"/>-->
-<!--			<ButtonTypical v-else-->
-<!--                      button-class="button&#45;&#45;credit"-->
-<!--                      text="Купить в кредит"-->
-<!--                      @click="credit()"/>-->
+			<ButtonTypical v-if="choose"
+                      button-class="button--credit"
+                      @click="chooseClick(offer)" text="Выбрать" />
+			<ButtonTypical v-else-if="$route.params.category==='europe'"
+                      button-class="button--credit button--credit-europe"
+                      text="Рассчитать кредит"
+                      @click="credit()"/>
+			<ButtonTypical v-else
+                      button-class="button--credit"
+                      text="Купить в кредит"
+                      @click="credit()"/>
 <!--		</div>-->
 	</div>
 </template>
@@ -51,10 +49,29 @@ import {useFavorites} from '~/store/favorites';
 import {storeToRefs} from 'pinia';
 import {useModals} from '~/store/modals';
 
-const props = defineProps<{
-  offer: Offer
-}>();
+const props = withDefaults(defineProps<{
+  offer: Offer,
+  isForm?: boolean,
+  long?: boolean,
+  choose?: boolean,
+}>(), {
+  isForm: false,
+  long: false,
+  choose: false,
+});
 
+// const isEqual = computed(() => {
+//   if (this.currentCar) {
+//     return this.currentCar.id === this.offer.id;
+//   } else {
+//     return false;
+//   }
+// });
+async function chooseClick(offer: Offer) {
+  // this.setCurrentCar(offer)
+  useModals().modalOfferSelection_offer = offer;
+  useModals().closeModal();
+}
 const favsStore = useFavorites();
 const {favorites} = storeToRefs(favsStore);
 
@@ -74,7 +91,7 @@ async function call() {
     modal_title: 'Остались вопросы? Перезвоним Вам!',
     modal_sub_title: props.offer.name
   };
-  useModals().modal;
+  // useModals().modal;
   // await this.openModal(payload);
 }
 // export default {
