@@ -3,7 +3,7 @@
 		<div class="catalog__actions">
 <!--			<ButtonAutoteka v-if="long && $route.params.category !=='europe' && !isNew"-->
 <!--                       @click="autoteka(offer)"/>-->
-			<ButtonFavorite :active="likesArray.some(id => String(id) === String(offer.external_id))"
+			<ButtonFavorite :active="isActive"
                        @clickclack="like(offer)" />
 			<!--<button-compare v-if="long" />-->
 <!--			<ButtonCall v-if="offer.dealer.phone" :phone="offer.dealer.phone"-->
@@ -48,14 +48,20 @@
 <script setup lang="ts">
 import {Offer} from '~/types/graphql';
 import {useFavorites} from '~/store/favorites';
+import {storeToRefs} from 'pinia';
 
-defineProps<{
+const props = defineProps<{
   offer: Offer
 }>();
 
 const favsStore = useFavorites();
-const likesArray = ref(await favsStore.favoriteCars);
+const {favorites} = storeToRefs(favsStore);
 
+const isActive = ref(favsStore.findFavorite(String(props.offer.external_id)));
+
+favsStore.$subscribe((mutation, state) => {
+  isActive.value = favsStore.findFavorite(String(props.offer!.external_id!));
+});
 function like(offer: Offer){
   favsStore.like(offer.external_id!.toString());
 }

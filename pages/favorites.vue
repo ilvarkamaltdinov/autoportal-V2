@@ -1,11 +1,12 @@
 <template>
+  <client-only>
   <main class="page-main">
     <div class="grid">
 <!--      <crumbs :crumbs="crumbs"/> todo add crumb-->
     </div>
     <div class="grid grid--container">
       <section class="page-main__not-found not-found"
-               v-if="likedOffers.length === 0 && !loading">
+               v-if="favoriteCarArray.length === 0 && !loading">
         <h1 class="heading heading--h1">
           {{ title }}
         </h1>
@@ -32,24 +33,21 @@
         <div v-else
              class="catalog__list grid grid__col-12">
           <DesktopSmall
-                     v-for="offer in likedOffers"
+                     v-for="offer in favoriteCarArray"
                      :offer="offer"
                      :key="offer.id" />
         </div>
       </section>
     </div>
   </main>
+  </client-only>
 </template>
 <script setup lang="ts">
-import {computed} from '#imports';
-import {request} from '~/helpers/request';
-import {offers} from '~/apollo/queries/offer/offers';
 import {useFavorites} from '~/store/favorites';
 import {storeToRefs} from 'pinia';
 import DesktopSmall from '~/components/MiniCard/DesktopSmall.vue';
 
 const loading = ref(false);
-const {isTablet, isMobile} = useDevice();
 
 // const component = computed(() => {
 //   if (isTablet) {
@@ -57,12 +55,14 @@ const {isTablet, isMobile} = useDevice();
 //   }
 //   return isMobile ? 'catalog-item-large-mobile' : 'catalog-item-small-desktop';
 // });
-const likedOffers = ref([]);
-onMounted(async () => {
-  if(process.client) {
-    loading.value = true;
-    const favoritesStore = useFavorites();
-    likedOffers.value = await favoritesStore.favoriteCars.then((favs) => { loading.value = false; return favs; });
-  }
-});
+const favoriteCarArray = ref([]);
+if(process.client) {
+  const favoritesStore = useFavorites();
+  await favoritesStore.favoriteCars;
+  favoritesStore.$subscribe((mutation, state) => {
+    if (state.favoriteCarArray?.data?.offers.data) {
+      favoriteCarArray.value = state.favoriteCarArray?.data?.offers.data;
+    }
+  });
+}
 </script>
