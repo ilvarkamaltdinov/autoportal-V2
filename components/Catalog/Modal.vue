@@ -1,6 +1,6 @@
 <template>
   <div class="catalog__list grid grid--catalog">
-    <MiniCardDesktopSmall :offer="offer" v-for="offer in offers"/>
+    <MiniCardOffer :offer="offer" v-for="offer in offers"/>
     <VueEternalLoading v-if="current_page <= last_page" :load="load">
       <template #loading>
         <div class="my-loading">
@@ -32,7 +32,7 @@
   <!--              </client-only>-->
 </template>
 <script setup lang="ts">
-import MiniCardDesktopSmall from '~/components/MiniCard/DesktopSmall.vue';
+import MiniCardOffer from '~/components/MiniCard/Offer.vue';
 import {OffersTypeData, OffersTypeRequest, OfferType} from '~/app/types/offers';
 import {offers as offersGql} from '~/apollo/queries/offer/offers';
 

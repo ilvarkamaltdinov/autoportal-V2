@@ -52,10 +52,10 @@
                        class="page-header__buttons-link"
                        title="Избранное"
                        aria-label="Избранное">
-              				<span v-if="likes > 0"
-                            class="page-header__favorites-count">
+              <span v-if="likes > 0"
+                    class="page-header__favorites-count">
                         {{ likes }}
-              				</span>
+              </span>
               <nuxt-icon
                   name="icon-favorites"/>
             </nuxt-link>
@@ -118,9 +118,9 @@ const menuList = useHeader().menuList;
 
 const marks = useSiteConfig().marks;
 
-if(process.client) {
+if (process.client) {
   const favoritesStore = useFavorites();
-  const { favorites } = storeToRefs(favoritesStore);
+  const {favorites} = storeToRefs(favoritesStore);
   watch(favorites, (value, oldValue, onCleanup) => {
     likes.value = value.length;
   }, {immediate: true});

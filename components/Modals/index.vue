@@ -5,7 +5,6 @@
   <transition name="menu">
     <ModalsMenu v-if="headerMenuModal"/>
   </transition>
-
   <transition name="overlay">
     <div v-if="modal.open"
          @click="closeModal()"

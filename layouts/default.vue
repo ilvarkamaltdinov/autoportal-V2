@@ -8,6 +8,6 @@
 </template>
 
 <script setup lang="ts">
-import Header from '~/components/Header'
-import Modals from '~/components/Modals'
+import Header from '~/components/Header';
+import Modals from '~/components/Modals';
 </script>

@@ -1,6 +1,7 @@
 export default defineAppConfig({
   title: 'Carro',
   nuxtIcon: {
-    class: ''
+    class: 'icon',
+    size: '24px'
   }
 });

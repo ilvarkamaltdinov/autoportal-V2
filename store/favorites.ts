@@ -13,20 +13,21 @@ export const useFavorites = defineStore('favorites', {
   },
 
   getters: {
-    async favoriteCars(): Promise<Offer[]>{
+    async favoriteCars(): Promise<Offer[]> {
       if (process.client) {
         if (localStorage.getItem('likes')) {
           try {
-            type OffersWrap = {
-              offers: { data: Offer[] }
-            }
-            const response = await request<OffersWrap, OffersQueryVariables>(offers, {
-              limit: 0,
-              page: 1,
-              external_id_array: this.favorites.map(i => Number(i))
-            });
-            this.favoriteCarArray = response;
-            return response;
+                        type OffersWrap = {
+                            offers: { data: Offer[] }
+                        }
+                        const response = await request<OffersWrap, OffersQueryVariables>(offers, {
+                          limit: 0,
+                          page: 1,
+                          external_id_array: this.favorites.map(i => Number(i))
+                        });
+                        console.log(response);
+                        this.favoriteCarArray = response;
+                        return response;
           } catch (error) {
             console.log(error);
             // this.$nuxt.error({statusCode: 404});
@@ -38,7 +39,7 @@ export const useFavorites = defineStore('favorites', {
   },
 
   actions: {
-    like(carId: string){
+    like(carId: string) {
       if (this.favorites.some(item => item === carId)) {
         this.favorites = this.favorites.filter(item => item !== carId);
       } else {
@@ -46,7 +47,7 @@ export const useFavorites = defineStore('favorites', {
       }
       localStorage.setItem('likes', this.favorites.toString());
     },
-    findFavorite(carId: string){
+    findFavorite(carId: string) {
       return this.favorites.some(item => item === carId);
     }
   }

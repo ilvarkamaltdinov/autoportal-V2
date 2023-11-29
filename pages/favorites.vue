@@ -1,8 +1,7 @@
 <template>
-  <client-only>
   <main class="page-main">
     <div class="grid">
-<!--      <crumbs :crumbs="crumbs"/> todo add crumb-->
+      <!--      <crumbs :crumbs="crumbs"/> todo add crumb-->
     </div>
     <div class="grid grid--container">
       <section class="page-main__not-found not-found"
@@ -26,26 +25,25 @@
         </h1>
         <div v-if="loading"
              class="catalog__list grid grid__col-12">
-<!--          <component v-for="i in 3"-->
-<!--                     :key="i"-->
-<!--                     :is="$device.isMobile ? 'skeleton-card-large': 'skeleton-card-small'" />-->
+          <!--          <component v-for="i in 3"-->
+          <!--                     :key="i"-->
+          <!--                     :is="$device.isMobile ? 'skeleton-card-large': 'skeleton-card-small'" />-->
         </div>
         <div v-else
              class="catalog__list grid grid__col-12">
-          <DesktopSmall
-                     v-for="offer in favCars"
-                     :offer="offer"
-                     :key="offer.id" />
+          <MiniCardOffer
+              v-for="offer in favCars"
+              :offer="offer"
+              :key="offer.id" />
         </div>
       </section>
     </div>
   </main>
-  </client-only>
 </template>
 <script setup lang="ts">
 import {useFavorites} from '~/store/favorites';
 import {storeToRefs} from 'pinia';
-import DesktopSmall from '~/components/MiniCard/DesktopSmall.vue';
+import MiniCardOffer from '~/components/MiniCard/Offer.vue';
 
 const loading = ref(false);
 

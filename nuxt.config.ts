@@ -39,9 +39,6 @@ export default defineNuxtConfig({
       ],
     }
   },
-  runtimeConfig: {
-    siteId: domains[0].siteId,
-  },
   css: [
     '@/assets/styles/index.scss',
     '@fancyapps/ui/dist/carousel/carousel.css',
@@ -67,6 +64,13 @@ export default defineNuxtConfig({
     // prefix: 'Swiper',
     // styleLang: 'css',
     // modules: ['navigation', 'pagination'], // all modules are imported by default
+  },
+  device: {
+    refreshOnResize: true
+  },
+  nuxtIcon: {
+    class: 'icon',
+    size: '24px'
   },
   apollo: {
     clients: {
