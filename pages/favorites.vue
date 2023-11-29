@@ -6,7 +6,7 @@
     </div>
     <div class="grid grid--container">
       <section class="page-main__not-found not-found"
-               v-if="favoriteCarArray.length === 0 && !loading">
+               v-if="favCars.length === 0 && !loading">
         <h1 class="heading heading--h1">
           {{ title }}
         </h1>
@@ -33,7 +33,7 @@
         <div v-else
              class="catalog__list grid grid__col-12">
           <DesktopSmall
-                     v-for="offer in favoriteCarArray"
+                     v-for="offer in favCars"
                      :offer="offer"
                      :key="offer.id" />
         </div>
@@ -55,13 +55,18 @@ const loading = ref(false);
 //   }
 //   return isMobile ? 'catalog-item-large-mobile' : 'catalog-item-small-desktop';
 // });
-const favoriteCarArray = ref([]);
+const favCars = ref([]);
 if(process.client) {
+  console.log('????');
   const favoritesStore = useFavorites();
   await favoritesStore.favoriteCars;
+  const {favoriteCarArray} = storeToRefs(favoritesStore);
+  if(favoriteCarArray.value?.data?.offers?.data) {
+    favCars.value = favoriteCarArray.value?.data?.offers?.data;
+  }
   favoritesStore.$subscribe((mutation, state) => {
     if (state.favoriteCarArray?.data?.offers.data) {
-      favoriteCarArray.value = state.favoriteCarArray?.data?.offers.data;
+      favCars.value = state.favoriteCarArray?.data?.offers.data;
     }
   });
 }
