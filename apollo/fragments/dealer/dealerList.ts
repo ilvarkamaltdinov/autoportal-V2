@@ -1,6 +1,7 @@
 import {DealerImage} from '~/apollo/fragments/image/dealerImage';
 
 export const DealerList = gql`
+    ${DealerImage}
     fragment DealerList on Dealer {
     id
     phone

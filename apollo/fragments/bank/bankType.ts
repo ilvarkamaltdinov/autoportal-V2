@@ -1,5 +1,7 @@
+import {SiteText} from '~/apollo/fragments/siteText/siteText';
 
 export const BankType = gql`
+    ${SiteText}
     fragment BankType on Bank {
     id
     name
