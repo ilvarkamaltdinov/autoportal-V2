@@ -32,6 +32,7 @@ export const useHeader = defineStore('header', {
 
   actions: {
     setMenu(payload: boolean) {
+      console.log(payload);
       this.menu = payload;
     },
     setLikes(payload: number) {
@@ -41,6 +42,7 @@ export const useHeader = defineStore('header', {
       this.filter = payload;
     },
     setMarks(payload: boolean) {
+      console.log(payload);
       this.marks = payload;
     }
   }

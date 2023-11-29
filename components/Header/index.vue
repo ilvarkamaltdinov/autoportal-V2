@@ -95,7 +95,7 @@
           </ul>
         </div>
         <button class="page-header__makes-more"
-                @click.prevent="useHeader().setMarks(!marks)"
+                @click.prevent="useHeader().setMarks(!isMarksShowing)"
                 :class="{'page-header__makes-more--active':marks}">
           Все марки
           <nuxt-icon class="page-header__makes-more-arrow"
@@ -103,6 +103,9 @@
         </button>
       </nav>
     </div>
+    <transition name="menu">
+      <Makes v-show="isMarksShowing" />
+    </transition>
   </header>
 </template>
 <script setup lang="ts">
@@ -111,7 +114,10 @@ import {useSiteConfig} from '~/store/siteConfig';
 import {getPopularMarks} from '~/helpers/filterMarks';
 import {useFavorites} from '~/store/favorites';
 import {storeToRefs} from 'pinia';
+import Makes from '~/components/Modals/Makes.vue';
 
+const headerStore = useHeader();
+const {marks: isMarksShowing} = storeToRefs(headerStore);
 const menu = computed(() => useHeader().menu);
 const likes = ref(0);
 const menuList = useHeader().menuList;
