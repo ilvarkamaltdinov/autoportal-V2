@@ -2,7 +2,7 @@ import type { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
   overwrite: true,
-  schema: 'https://api.atlas-probeg.ru/graphql',
+  schema: './graph/schema.graphql',
   documents: 'apollo/**/*.ts',
   generates: {
     'types/': {

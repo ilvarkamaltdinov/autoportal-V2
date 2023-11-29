@@ -493,7 +493,7 @@ type Query {
     "Определение объявление или фильтр"
     offerUrl(site_id: Int, url: String): OfferUnionType
     "Список объявлений"
-    offers(body_type_id: Int, body_type_id_array: [Int], category: String, drive_type_id: Int, drive_type_id_array: [Int], engine_type_id: Int, engine_type_id_array: [Int], except_external_id: Int, external_id_array: [Int], folder_id: Int, folder_slug: String, folder_slug_array: [String], gearbox_id: Int, gearbox_id_array: [Int], generation_id: Int, generation_slug: String, generation_slug_array: [String], limit: Int, mark_id: Int, mark_slug: String, mark_slug_array: [String], owner_id: Int, owner_id_array: [Int], page: Int, price_from: Int, price_to: Int, run_from: Int, run_to: Int, set: [String], site_id: Int, sort: String, url: String, year_from: Int, year_to: Int): OfferTypePagination
+    offers(body_type_id: Int, body_type_id_array: [Int], category: String, drive_type_id: Int, drive_type_id_array: [Int], engine_type_id: Int, engine_type_id_array: [Int], except_external_id: Int, external_id_array: [Int], folder_id: Int, folder_slug: String, folder_slug_array: [String], gearbox_id: Int, gearbox_id_array: [Int], generation_id: Int, generation_slug: String, generation_slug_array: [String], limit: Int, mark_id: Int, mark_slug: String, mark_slug_array: [String], owner_id: Int, owner_id_array: [Int], page: Int, price_from: Int, price_to: Int, run_from: Int, run_to: Int, set: String, site_id: Int, sort: String, url: String, year_from: Int, year_to: Int): OfferTypePagination
     "Список регионов"
     regions(site_id: Int): [Region]
     "SEO теги"
