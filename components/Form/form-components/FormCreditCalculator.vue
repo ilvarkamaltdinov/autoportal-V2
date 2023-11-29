@@ -36,8 +36,8 @@ function calculate() {
   if (props.offer) {
     let creditProc: number = props.installment ? 0.001 : percent.value;
     let car_price = props.offer.price;
-    let creditTime = periodValue;
-    let firstPay = paymentValue;
+    let creditTime = periodValue.value;
+    let firstPay = paymentValue.value;
 
     let A = 0;
     let i = creditProc / 12 / 100;

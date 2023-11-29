@@ -26,7 +26,7 @@
 <!--          <catalog-item-large-mobile-form :is-form="true" :offer="offer || currentCar"/>-->
         </div>
         <FormCreditCalculator v-if="calculator"
-                                :params="creditParams" :offer="offer || currentCar"/>
+                                :params="creditParams" :offer="offer || modalOfferSelection_offer"/>
 <!--        <fieldset class="form__fieldset">-->
 <!--          <label class="form__field-wrap" :class="nameClass">-->
 <!--            <inputs-input placeholder="ФИО" @input="handlerInput('name')" v-model="form.name.value" @focus="onFocus"-->
