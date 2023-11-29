@@ -57,7 +57,6 @@ const loading = ref(false);
 // });
 const favCars = ref([]);
 if(process.client) {
-  console.log('????');
   const favoritesStore = useFavorites();
   await favoritesStore.favoriteCars;
   const {favoriteCarArray} = storeToRefs(favoritesStore);
