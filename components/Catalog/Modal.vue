@@ -1,6 +1,6 @@
 <template>
   <div class="catalog__list grid grid--catalog">
-    <MiniCardOffer :offer="offer" v-for="offer in offers"/>
+    <MiniCardOffer :choose="true" :offer="offer" v-for="offer in offers"/>
     <VueEternalLoading v-if="current_page <= last_page" :load="load">
       <template #loading>
         <div class="my-loading">
@@ -33,19 +33,19 @@
 </template>
 <script setup lang="ts">
 import MiniCardOffer from '~/components/MiniCard/Offer.vue';
-import {OffersTypeData, OffersTypeRequest, OfferType} from '~/app/types/offers';
 import {offers as offersGql} from '~/apollo/queries/offer/offers';
 
 import {VueEternalLoading, LoadAction} from '@ts-pro/vue-eternal-loading';
 import {useModals} from '~/store/modals';
 import {request} from '~/helpers/request';
+import {Offer, OfferQuery, OffersQueryVariables} from '~/types/graphql';
 
 const loading = ref<boolean>(true);
 const current_page = ref(1);
 const last_page = ref(1);
-const offers = ref<OfferType[]>([]);
+const offers = ref<Offer[]>([]);
 
-let variables = computed<OffersTypeRequest>(() => {
+let variables = computed<OffersQueryVariables>(() => {
   return {
     category: 'cars',
     mark_slug: useModals().modalOfferSelection_mark?.slug,
@@ -59,7 +59,7 @@ let variables = computed<OffersTypeRequest>(() => {
 
 
 const getOffers = async () => {
-  const {pending, data} = await request<OffersTypeData, OffersTypeRequest>(offersGql, variables.value);
+  const {data} = await request<Offer[], OfferQuery>(offersGql, variables.value);
   offers.value.push(...data.value?.offers.data);
   last_page.value = data.value?.offers.last_page;
 };
