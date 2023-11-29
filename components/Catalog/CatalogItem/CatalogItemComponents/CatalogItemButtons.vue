@@ -6,8 +6,8 @@
 			<ButtonFavorite :active="isActive"
                        @clickclack="like(offer)" />
 			<!--<button-compare v-if="long" />-->
-<!--			<ButtonCall v-if="offer.dealer.phone" :phone="offer.dealer.phone"-->
-<!--                   @click="call"/>-->
+			<ButtonCall v-if="offer!.dealer!.phone" :phone="offer!.dealer!.phone"
+                   @click="call"/>
 		</div>
 <!--		<div v-if="long"-->
 <!--         class="catalog__actions-main">-->
@@ -49,6 +49,7 @@
 import {Offer} from '~/types/graphql';
 import {useFavorites} from '~/store/favorites';
 import {storeToRefs} from 'pinia';
+import {useModals} from '~/store/modals';
 
 const props = defineProps<{
   offer: Offer
@@ -64,6 +65,17 @@ favsStore.$subscribe((mutation, state) => {
 });
 function like(offer: Offer){
   favsStore.like(offer.external_id!.toString());
+}
+
+async function call() {
+  let payload = {
+    modal_data: props.offer,
+    modal_component: 'modal-callback',
+    modal_title: 'Остались вопросы? Перезвоним Вам!',
+    modal_sub_title: props.offer.name
+  };
+  useModals().modal;
+  // await this.openModal(payload);
 }
 // export default {
 //   computed: {
