@@ -42,7 +42,7 @@ export const useFavorites = defineStore('favorites', {
       if (this.favorites.some(item => item === carId)) {
         this.favorites = this.favorites.filter(item => item !== carId);
       } else {
-        this.favorites.push(carId);
+        this.favorites = [...this.favorites, carId];
       }
       localStorage.setItem('likes', this.favorites.toString());
     },
