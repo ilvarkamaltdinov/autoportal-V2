@@ -24,7 +24,7 @@ export const useMarks = defineStore('marks', {
   },
 
   actions: {
-    async getAllMarks() {
+    async getAllMarksFillPopular() {
       const {data} = await request<{marks: Mark[]}, MarksQueryVariables>(marks);
       this.allMarks = data.value.marks;
       this.popularMarks = this.popularMarksNames.map((name) => this.allMarks.find((mark) => mark.slug === name)) as Mark[];
