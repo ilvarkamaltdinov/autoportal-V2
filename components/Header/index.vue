@@ -96,7 +96,7 @@
         </div>
         <button class="page-header__makes-more"
                 @click.prevent="useHeader().setMarks(!isMarksShowing)"
-                :class="{'page-header__makes-more--active':marks}">
+                :class="{'page-header__makes-more--active':isMarksShowing}">
           Все марки
           <nuxt-icon class="page-header__makes-more-arrow"
                      name="icon-arrow"/>
