@@ -23,9 +23,7 @@
       <section class="page-main__blog blog grid">
         <Blog index/>
       </section>
-      <!--      <LazyHydrate when-visible>-->
-      <!--        <video-about />-->
-      <!--      </LazyHydrate>-->
+      <VideoAbout />
       <!--      <LazyHydrate when-visible>-->
       <!--        <text-main />-->
       <!--      </LazyHydrate>-->
@@ -40,6 +38,7 @@ import FormCredit from '~/components/Form/Credit.vue';
 import CatalogHome from '~/components/Catalog/Home.vue';
 import Sets from '~/components/Sets/index.vue';
 import Blog from '~/components/Blog/index.vue';
+import VideoAbout from '~/components/Video/About.vue';
 
 const {isMobileOrTablet} = useDevice();
 </script>

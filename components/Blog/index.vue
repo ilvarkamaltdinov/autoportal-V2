@@ -17,7 +17,7 @@
 </template>
 <script setup lang="ts">
 import {ArticleCategoryType, ArticleCategoryInputType} from '~/app/types/blog';
-import {request} from '~/helpers/request';
+import {request, requestArticleCategories} from '~/helpers/request';
 
 withDefaults(defineProps<{ index: boolean }>(), {
   index: false
@@ -30,10 +30,12 @@ let variables = computed<ArticleCategoryInputType>(() => {
 });
 
 async function getArticleCategory() {
-  const {data} = await request(variables.value);
+  const {data} = await requestArticleCategories(variables.value);
+  console.log(123, data);
 }
 
-const categories = ref<ArticleCategoryType[]>();
+//
+// const categories = ref<ArticleCategoryType[]>();
 
 getArticleCategory();
 

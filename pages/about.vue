@@ -1,7 +1,7 @@
 <template>
   <main class="page-main">
     <div class="grid">
-<!--      <crumbs :crumbs="crumbs" />-->
+      <!--      <crumbs :crumbs="crumbs" />-->
     </div>
     <div class="grid grid--container">
       <section class="page-main__about about grid">
@@ -11,9 +11,7 @@
               {{ title }}
               <span class="heading__promo"></span>
             </h1>
-            <span class="heading-group__label"
-            >Находим лучшие автомобили с 2015 года</span
-            >
+            <span class="heading-group__label">Находим лучшие автомобили с 2015 года</span>
           </div>
         </div>
         <div class="about__block grid__col-12 grid text">
@@ -89,12 +87,12 @@
           </div>
         </div>
       </section>
-      <VideoAbout />
+      <VideoAbout/>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
 
-import VideoAbout from '~/components/video/VideoAbout.vue';
+import VideoAbout from '~/components/Video/About.vue';
 </script>

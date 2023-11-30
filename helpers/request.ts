@@ -1,6 +1,7 @@
 import {DocumentNode} from 'graphql/language';
 import {useSiteDomain} from '#imports';
-import {OffersQueryVariables} from '~/types/graphql';
+import {ArticleCategoryInputType, ArticleCategoryType} from '~/app/types/blog';
+import {articleCategory} from '~/apollo/queries/blog/articleCategory';
 
 export const request = async <Response, Request = undefined>(query: DocumentNode, variables?: Request) => {
   const {siteId} = useSiteDomain();
@@ -29,7 +30,6 @@ export const postRequest = async <Response, Request = undefined>(query: Document
   return useMutation<Response>(query, {variables: removeEmptyParams, clientId});
 };
 
-
-export async function getOffersData(variables: OffersQueryVariables) {
-  return await request<OffersTypeData, OffersTypeRequest>(offersGql, variables.value);
-}
+export const requestArticleCategories = async (variables: ArticleCategoryInputType) => {
+  return await request<ArticleCategoryType, ArticleCategoryInputType>(articleCategory, variables);
+};
