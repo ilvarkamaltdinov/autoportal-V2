@@ -106,7 +106,14 @@
                      class="page-footer__cars-stock-number">{{ numberFormat(marksQuantity) }}
           </nuxt-link>
         </div>
-        <footer-marks/>
+        <ul class="page-footer__makes-logos">
+          <li class="page-footer__makes-item" v-for="make in footerMarks" :key="make.slug">
+            <nuxt-link :to="`/used/${make.slug}`" :title="make.title" class="page-footer__makes-link">
+              <nuxt-icon class="page-footer__makes-icon" :title="make.title"
+                        :name="`icon-${make.slug}`" />
+            </nuxt-link>
+          </li>
+        </ul>
       </div>
       <div class="page-footer__legal grid__col-12">
         <ul class="page-footer__legal-list">
@@ -231,4 +238,50 @@ const regions = computed(() => [
 ]);
 const marksStore = useMarks();
 const { marksQuantity } = storeToRefs(marksStore);
+const footerMarks = computed(() => [
+  {
+    slug: 'bmw',
+    title: 'BMW'
+  },
+  {
+    slug: 'mercedes-benz',
+    title: 'Mercedes-Benz'
+  },
+  {
+    slug: 'volkswagen',
+    title: 'Volkswagen'
+  },
+  {
+    slug: 'skoda',
+    title: 'Skoda'
+  },
+  {
+    slug: 'nissan',
+    title: 'Nissan'
+  },
+  {
+    slug: 'mazda',
+    title: 'Mazda'
+  },
+  {
+    slug: 'kia',
+    title: 'KIA'
+  },
+  {
+    slug: 'hyundai',
+    title: 'Hyundai'
+  },
+  {
+    slug: 'ford',
+    title: 'Ford'
+  },
+  {
+    slug: 'toyota',
+    title: 'Toyota'
+  },
+  {
+    slug: 'cadillac',
+    title: 'Cadillac'
+  }
+]);
 </script>
