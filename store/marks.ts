@@ -6,7 +6,8 @@ import {marks} from '~/apollo/queries/marks';
 type MarksState = {
   allMarks: Mark[];
   popularMarks: Mark[];
-  popularMarksNames: string[]
+  popularMarksNames: string[];
+  marksQuantity: number;
 };
 export const useMarks = defineStore('marks', {
   state: (): MarksState => {
@@ -15,7 +16,8 @@ export const useMarks = defineStore('marks', {
       popularMarksNames: [
         'audi', 'bmw', 'mercedes-benz', 'ford', 'hyundai', 'kia', 'toyota', 'volkswagen', 'nissan', 'skoda'
       ],
-      popularMarks: []
+      popularMarks: [],
+      marksQuantity: 0,
     };
   },
 
@@ -30,6 +32,9 @@ export const useMarks = defineStore('marks', {
       const {data} = await request<{marks: Mark[]}, MarksQueryVariables>(marks);
       this.allMarks = data.value.marks;
       this.popularMarks = this.popularMarksNames.map((name) => this.allMarks.find((mark) => mark.slug === name)) as Mark[];
+      this.allMarks.forEach((mark) => {
+        this.marksQuantity += mark!.offers_count!;
+      });
     }
   }
 });

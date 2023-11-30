@@ -21,7 +21,7 @@ export const useHeader = defineStore('header', {
       },
       {
         title: 'О портале',
-        link: '/',
+        link: '/about',
       }
     ],
     menu: <boolean>false,
