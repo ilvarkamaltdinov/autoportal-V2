@@ -13,6 +13,11 @@
   <transition name="modal">
     <ModalsOfferSelection v-if="modal.open && modal.component === 'offerSelection'"/>
   </transition>
+  <div class="stories__modal_wrapper-wrap">
+<!--    <div class="overlay"></div>-->
+    <div class="stories stories--modal" id="stories_modal">
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
