@@ -60,6 +60,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'nuxt-jsonld',
     '@nuxtjs/device',
+    '@nuxt/image'
   ],
   plugins: [
     '~/plugins/settings.ts',

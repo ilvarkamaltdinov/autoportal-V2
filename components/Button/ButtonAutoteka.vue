@@ -1,7 +1,7 @@
 <template>
   <button @click.prevent="$emit('click')" class="button button--action button--autoteka button--text"
           type="button">
-    <img src="~/assets/img/autoteka.svg"
+    <img src="/img/autoteka.svg"
          alt="Эмблема Автотеки — carro.ru"
          height="16"
          width="16"

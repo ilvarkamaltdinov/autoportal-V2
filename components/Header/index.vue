@@ -35,7 +35,7 @@
         </div>
         <nav class="main-nav page-header__nav page-header__nav--desktop">
           <ul class="main-nav__list site-list site-list--desktop">
-            <li class="site-list__item" v-for="item in menuList">
+            <li class="site-list__item" v-for="item in menuList" :key="item.link">
               <nuxt-link
                   :to="item.link"
                   :title="item.title"
@@ -86,7 +86,7 @@
         <!--        </nuxt-link>-->
         <div class="page-header__nav-wrap makes">
           <ul class="makes__list makes__list--header">
-            <li class="makes__item" v-for="mark in getPopularMarks(marks, 8)">
+            <li class="makes__item" v-for="mark in getPopularMarks(marks, 8)" :key="mark.id">
               <nuxt-link class="makes__link">
                 <div class="makes__title">{{ mark.title }}</div>
                 <div class="makes__count">{{ mark.offers_count }}</div>
@@ -104,7 +104,7 @@
       </nav>
     </div>
     <transition name="menu">
-      <Makes v-show="isMarksShowing" />
+      <MenuMarks v-show="isMarksShowing"/>
     </transition>
   </header>
 </template>
@@ -114,7 +114,7 @@ import {useSiteConfig} from '~/store/siteConfig';
 import {getPopularMarks} from '~/helpers/filterMarks';
 import {useFavorites} from '~/store/favorites';
 import {storeToRefs} from 'pinia';
-import Makes from '~/components/Modals/Makes.vue';
+import MenuMarks from '~/components/Modals/MenuMarks.vue';
 
 const headerStore = useHeader();
 const {marks: isMarksShowing} = storeToRefs(headerStore);

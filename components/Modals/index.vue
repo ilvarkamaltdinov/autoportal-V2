@@ -1,6 +1,6 @@
 <template>
   <transition name="menu">
-    <ModalsMakes v-if="headerMarksModal"/>
+    <ModalsMenuMarks v-if="headerMenuMarksModal"/>
   </transition>
   <transition name="menu">
     <ModalsMenu v-if="headerMenuModal"/>
@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import ModalsMakes from '~/components/Modals/Makes.vue';
+import ModalsMenuMarks from '~/components/Modals/MenuMarks.vue';
 import ModalsMenu from '~/components/Modals/Menu.vue';
 import ModalsOfferSelection from '~/components/Modals/OfferSelection.vue';
 
@@ -26,7 +26,7 @@ import {useModals} from '~/store/modals';
 const closeModal = () => useModals().closeModal();
 
 //Всплывашки шапки
-const headerMarksModal = computed(() => useHeader().marks);
+const headerMenuMarksModal = computed(() => useHeader().marks);
 const headerMenuModal = computed(() => useHeader().menu);
 //Основные модалки
 const modal = computed(() => useModals().modal);

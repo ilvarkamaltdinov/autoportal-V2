@@ -1,7 +1,4 @@
 import {defineStore} from 'pinia';
-import {MarkType} from '~/app/types/marks';
-import {FolderType} from '~/app/types/folders';
-import {GenerationType} from '~/app/types/generations';
 
 export type ModalType = {
     open: boolean
@@ -26,9 +23,9 @@ export const useModals = defineStore('modals', {
       subtitle: ''
     },
     //модалка выбора автомобиля
-    modalOfferSelection_mark: <MarkType | null>null,
-    modalOfferSelection_folder: <FolderType | null>null,
-    modalOfferSelection_generation: <GenerationType | null>null,
+    modalOfferSelection_mark: null,
+    modalOfferSelection_folder: null,
+    modalOfferSelection_generation: null,
     modalOfferSelection_offer: <ModalOfferSelection_offerType | null>null,
   }),
   actions: {
@@ -45,13 +42,13 @@ export const useModals = defineStore('modals', {
     },
 
     //модалка выбора автомобиля
-    setModalOfferSelection_mark(payload: MarkType | null) {
+    setModalOfferSelection_mark(payload: null) {
       this.modalOfferSelection_mark = payload;
     },
-    setModalOfferSelection_folder(payload: FolderType | null) {
+    setModalOfferSelection_folder(payload: null) {
       this.modalOfferSelection_folder = payload;
     },
-    setModalOfferSelection_generation(payload: GenerationType | null) {
+    setModalOfferSelection_generation(payload: null) {
       this.modalOfferSelection_generation = payload;
     },
   }
