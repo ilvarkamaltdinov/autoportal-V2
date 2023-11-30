@@ -20,7 +20,9 @@ export const useMarks = defineStore('marks', {
   },
 
   getters: {
+    sortedMarks() {
 
+    }
   },
 
   actions: {

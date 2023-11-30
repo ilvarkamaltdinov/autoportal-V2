@@ -8,8 +8,7 @@
   <button v-else
           class="button"
           :disabled="loading"
-          :class="buttonClass"
-          @click="$emit('click')">
+          :class="buttonClass">
     {{ text }}
     <nuxt-icon v-if="icon !== ''"
               :name="icon" />
