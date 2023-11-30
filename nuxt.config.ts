@@ -39,6 +39,12 @@ export default defineNuxtConfig({
       ],
     }
   },
+  build: {
+    transpile: ['tslib'],
+  },
+  routeRules: {
+    '/about': { prerender: true },
+  },
   css: [
     '@/assets/styles/index.scss',
     '@fancyapps/ui/dist/carousel/carousel.css',
@@ -59,7 +65,7 @@ export default defineNuxtConfig({
     '~/plugins/settings.ts',
   ],
   swiper: {
-    styleLang: null,
+    styleLang: 'css',
   },
   device: {
     refreshOnResize: true
