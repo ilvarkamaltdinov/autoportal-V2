@@ -25,7 +25,7 @@ export const useSettings = defineStore('settings', {
   actions: {
     async getSettings() {
       try {
-        const {data} = await request<SettingsQuery>(settings, undefined, true);
+        const {data} = await request<SettingsQuery>(settings, undefined);
         data.value.settings!.settings!.forEach((setting) => {
           if(setting && 'key' in setting && setting.key !== null) {
             //@ts-expect-error idk how to fix yet
