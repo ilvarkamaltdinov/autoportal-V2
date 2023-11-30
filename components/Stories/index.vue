@@ -28,7 +28,7 @@
               :space-between="16">
 
         <swiper-slide v-for="item in stories" :key="item.id" #default="{ isVisible }">
-          <StoriesItem :story="item" :class="{'swiper-slide-visible': isVisible}" />
+          <StoriesItem :story="item" :class="{'swiper-slide-visible': isVisible}" @click="openStories(item)"/>
         </swiper-slide>
       </swiper>
     </ul>
@@ -45,6 +45,11 @@
     <nuxt-icon class="swiper-button__icon"
               name="icon-arrow" />
   </button>
+  <ModalV2 ref="modal">
+    <template #default="{payload}">
+      <StoriesModal @close="$emit('close')" :stories="payload.story" />
+    </template>
+  </ModalV2>
 </template>
 <script setup lang="ts">
 import {request} from '~/helpers/request';
@@ -53,11 +58,23 @@ import {Story, StoriesQueryVariables} from '~/types/graphql';
 import StoriesItem from '~/components/Stories/StoriesItem.vue';
 import {Swiper, SwiperSlide} from 'swiper/vue';
 import {Autoplay, Navigation} from 'swiper/modules';
+import ModalV2 from '~/components/ModalsV2/ModalV2.vue';
+import StoriesModal from '~/components/Stories/StoriesModal.vue';
 
 const stories = ref<Story[]>([]);
 
 let {pending: loading, data: response} = await request<{stories: Story[]}, StoriesQueryVariables>(storiesQuery);
 stories.value = response.value.stories;
+const modal = ref(null);
+
+function openStories(story: Story) {
+  console.log(story);
+  (modal.value!.open({
+    payload: {
+      story: story.stories
+    }
+  }));
+}
 </script>
 
 
