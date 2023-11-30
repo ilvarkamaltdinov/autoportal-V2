@@ -59,11 +59,7 @@ export default defineNuxtConfig({
     '~/plugins/settings.ts',
   ],
   swiper: {
-    // Swiper options
-    //----------------------
-    // prefix: 'Swiper',
-    // styleLang: 'css',
-    // modules: ['navigation', 'pagination'], // all modules are imported by default
+    styleLang: null,
   },
   device: {
     refreshOnResize: true
