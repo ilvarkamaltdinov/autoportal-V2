@@ -4,6 +4,7 @@
     <slot>
     </slot>
     <Modals/>
+    <Footer />
   </div>
 </template>
 
