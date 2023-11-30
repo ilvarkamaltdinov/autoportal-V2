@@ -42,7 +42,6 @@ export const useHeader = defineStore('header', {
       this.filter = payload;
     },
     setMarks(payload: boolean) {
-      console.log(payload);
       this.marks = payload;
     }
   }

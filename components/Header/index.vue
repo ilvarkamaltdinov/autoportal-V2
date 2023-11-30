@@ -127,7 +127,7 @@ const marks = useSiteConfig().marks;
 if (process.client) {
   const favoritesStore = useFavorites();
   const {favorites} = storeToRefs(favoritesStore);
-  watch(favorites, (value, oldValue, onCleanup) => {
+  watch(favorites, (value) => {
     likes.value = value.length;
   }, {immediate: true});
 }
