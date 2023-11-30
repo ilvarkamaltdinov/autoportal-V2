@@ -65,10 +65,10 @@ const stories = ref<Story[]>([]);
 
 let {pending: loading, data: response} = await request<{stories: Story[]}, StoriesQueryVariables>(storiesQuery);
 stories.value = response.value.stories;
+
 const modal = ref(null);
 
 function openStories(story: Story) {
-  console.log(story);
   (modal.value!.open({
     payload: {
       story: story.stories

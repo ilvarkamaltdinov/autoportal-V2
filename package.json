@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "@fancyapps/ui": "^5.0.17",
+    "@nuxt/image": "^1.0.0",
     "@graphql-codegen/cli": "5.0.0",
     "@nuxtjs/google-fonts": "^3.0.0",
     "@pinia/nuxt": "^0.4.9",

@@ -1,4 +1,5 @@
 <template>
+  <h2 class="heading heading--h2">Автомобили в наличии</h2>
   <div class="catalog__list grid">
     <MiniCardOffer v-for="i in 3" :key="i"/>
     <!--    <swiper class="swiper swiper&#45;&#45;catalog">-->

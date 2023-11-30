@@ -45,11 +45,11 @@
 </template>
 <!--<script setup lang="ts">-->
 
-<!--withDefaults(defineProps<{-->
-<!--  forChoseModal: boolean,-->
-<!--}>(), {-->
-<!--  forChoseModal: false-->
-<!--});-->
+<!--// withDefaults(defineProps<{-->
+<!--//   forChoseModal: boolean,-->
+<!--// }>(), {-->
+<!--//   forChoseModal: false-->
+<!--// });-->
 <!--import {useMarks} from '~/store/marks';-->
 <!--import {storeToRefs} from 'pinia';-->
 

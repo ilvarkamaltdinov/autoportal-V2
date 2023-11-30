@@ -15,19 +15,14 @@
         <FormCredit has-chose :calculator="true" offer=""/>
       </div>
       <section class="page-main__catalog catalog grid__col-12 catalog--slider">
-        <h2 class="heading heading--h2">Автомобили в наличии</h2>
         <CatalogHome/>
       </section>
-      <!--      <LazyHydrate when-visible>-->
-      <!--        <catalog-list-index />-->
-      <!--      </LazyHydrate>-->
-      <!--      <LazyHydrate when-visible>-->
-      <!--        <featured />-->
-      <!--      </LazyHydrate>-->
-      <!--      <LazyHydrate when-visible-->
-      <!--                   v-if="showBlog">-->
-      <!--        <blog index />-->
-      <!--      </LazyHydrate>-->
+      <section class="page-main__featured featured grid__col-12">
+        <Sets/>
+      </section>
+      <section class="page-main__blog blog grid">
+        <Blog index/>
+      </section>
       <!--      <LazyHydrate when-visible>-->
       <!--        <video-about />-->
       <!--      </LazyHydrate>-->
@@ -43,6 +38,8 @@ import SliderHome from '~/components/Slider/Home.vue';
 import Stories from '~/components/Stories';
 import FormCredit from '~/components/Form/Credit.vue';
 import CatalogHome from '~/components/Catalog/Home.vue';
+import Sets from '~/components/Sets/index.vue';
+import Blog from '~/components/Blog/index.vue';
 
 const {isMobileOrTablet} = useDevice();
 </script>
