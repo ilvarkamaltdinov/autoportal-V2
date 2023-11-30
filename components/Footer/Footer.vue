@@ -28,7 +28,28 @@
                :href="`mailto:${$settings.email}`">{{ $settings.email }}
             </a>
           </div>
-          <footer-regions/>
+          <div class="page-footer__city-wrap"
+               tabindex="1"
+               @focusout="isRegionsOpen = false">
+            <div class="page-footer__city">
+              <div @click="isRegionsOpen = !isRegionsOpen">
+                <nuxt-icon class="page-footer__city-icon" name="icon-map" />
+                <span>{{ $settings.city }}</span>
+              </div>
+            </div>
+            <transition name="select">
+              <div class="select__list select__list--regions"
+                   v-show="isRegionsOpen">
+                <a class="select__item select__item-link"
+                   v-for="(item, index) in regions"
+                   :key="index"
+                   :title="item.name"
+                   :href="'https://' + item.link">{{ item.name }}
+                </a>
+              </div>
+            </transition>
+          </div>
+
           <div class="page-footer__credits">
             <div class="page-footer__contacts-item">© 2016 - {{ new Date().getFullYear() }} CARRO.RU</div>
           </div>
@@ -154,6 +175,57 @@
 </template>
 
 <script setup lang="ts">
+const isRegionsOpen = ref(false);
+const regions = computed(() => [
+  {
+    name: 'Москва',
+    link: 'carro.ru'
+  },
+  {
+    name: 'Санкт-Петербург',
+    link: 'spb.carro.ru'
+  },
+  {
+    name: 'Екатеринбург',
+    link: 'ekb.carro.ru'
+  },
+  {
+    name: 'Калуга',
+    link: 'kaluga.carro.ru'
+  },
+  {
+    name: 'Кемерово',
+    link: 'kem.carro.ru'
+  },
+  {
+    name: 'Красноярск',
+    link: 'krsk.carro.ru'
+  },
+  {
+    name: 'Новосибирск',
+    link: 'nsk.carro.ru'
+  },
+  {
+    name: 'Оренбург',
+    link: 'ornb.carro.ru'
+  },
+  {
+    name: 'Сургут',
+    link: 'surgut.carro.ru'
+  },
+  {
+    name: 'Тольятти',
+    link: 'tlt.carro.ru'
+  },
+  {
+    name: 'Тюмень',
+    link: 'tmn.carro.ru'
+  },
+  {
+    name: 'Иркутск',
+    link: 'irk.carro.ru'
+  },
+]);
 // import {mapActions, mapGetters} from 'vuex'
 // import filters from "@/mixins/filters";
 //
