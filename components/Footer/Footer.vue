@@ -103,7 +103,7 @@
         <div class="page-footer__cars-stock">
           Автомобилей в наличии:
           <nuxt-link to="/used"
-                     class="page-footer__cars-stock-number">{{ allMarksCount | numberFormat }}
+                     class="page-footer__cars-stock-number">{{ numberFormat(marksQuantity) }}
           </nuxt-link>
         </div>
         <footer-marks/>
@@ -175,6 +175,9 @@
 </template>
 
 <script setup lang="ts">
+import {useMarks} from '~/store/marks';
+import {storeToRefs} from 'pinia';
+
 const isRegionsOpen = ref(false);
 const regions = computed(() => [
   {
@@ -226,33 +229,6 @@ const regions = computed(() => [
     link: 'irk.carro.ru'
   },
 ]);
-// import {mapActions, mapGetters} from 'vuex'
-// import filters from "@/mixins/filters";
-//
-// export default {
-//   mixins: [filters],
-//   computed: {
-//     ...mapGetters({
-//       allMarksCount: 'marks/marks/allMarksCount',
-//       settings: 'settings/settings/settings',
-//       isMoscow: 'isMoscow',
-//       showBlog: 'showBlog',
-//       isNight: 'isNight'
-//     })
-//   },
-//   methods: {
-//     ...mapActions({
-//       openModal: 'modal/modal-main/openModal',
-//     }),
-//     callback() {
-//       let payload = {
-//         modal_data: {},
-//         modal_component: "modal-callback",
-//         modal_title: "Остались вопросы? Перезвоним Вам!",
-//         modal_sub_title: '',
-//       };
-//       this.openModal(payload);
-//     },
-//   }
-// }
+const marksStore = useMarks();
+const { marksQuantity } = storeToRefs(marksStore);
 </script>
