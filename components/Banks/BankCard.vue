@@ -3,11 +3,12 @@
     <nuxt-link :to="`/credit/${slug}`"
                class="featured__link">
       <div class="featured__about">
+        <slot name="extra-picture" />
         <h3 class="featured__title">
           <slot name="title" />
         </h3>
         <div class="featured__text">
-          <slot name="rate" />
+          <slot name="text" />
         </div>
       </div>
       <div class="featured__picture">

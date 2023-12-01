@@ -4,23 +4,12 @@
       <template #title>
         {{ bank.name }}
       </template>
-      <template #rate>
+      <template #text>
         от {{ bank.rate }} %
       </template>
       <template #image>
         <NuxtImg :src="`/img/featured/featured-${bank.image}@2x.png`" densities="1x 2x" format="webp"
                  class="featured__img lazyload" />
-      </template>
-    </BankCard>
-    <BankCard slug="credit" class="featured__item--sedan featured__item--tinkoff">
-      <template #title>
-        Мой тайтл
-      </template>
-      <template #rate>
-        5%
-      </template>
-      <template #image>
-
       </template>
     </BankCard>
   </ul>
