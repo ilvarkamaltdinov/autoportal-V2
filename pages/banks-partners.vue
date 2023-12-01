@@ -71,7 +71,7 @@
 <script setup lang="ts">
 import {useBanks} from '~/store/banks';
 import {storeToRefs} from 'pinia';
-import {Ref, UnwrapRef} from 'vue';
+import {UnwrapRef} from 'vue';
 
 const banksStore = useBanks();
 banksStore.fetchBanks();
