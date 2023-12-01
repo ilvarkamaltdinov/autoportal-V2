@@ -1,7 +1,9 @@
 import {DocumentNode} from 'graphql/language';
 import {useSiteDomain} from '#imports';
-import {ArticleCategoryInputType, ArticleCategoryType} from '~/app/types/blog';
-import {articleCategory} from '~/apollo/queries/blog/articleCategory';
+import {BlogCategoriesInputType, BlogCategoriesType} from '~/app/types/blog';
+import {blogCategoryGql} from '~/apollo/queries/blog/articleCategory';
+import {banksGql} from '~/apollo/queries/bank/banks';
+import {BanksData} from '~/app/types/banks';
 
 export const request = async <Response, Request = undefined>(query: DocumentNode, variables?: Request) => {
   const {siteId} = useSiteDomain();
@@ -30,6 +32,9 @@ export const postRequest = async <Response, Request = undefined>(query: Document
   return useMutation<Response>(query, {variables: removeEmptyParams, clientId});
 };
 
-export const requestArticleCategories = async (variables: ArticleCategoryInputType) => {
-  return await request<ArticleCategoryType, ArticleCategoryInputType>(articleCategory, variables);
+export const requestBlogCategories = async (variables: BlogCategoriesInputType) => {
+  return await request<BlogCategoriesType, BlogCategoriesInputType>(blogCategoryGql, variables);
+};
+export const requestBanks = async () => {
+  return await request<BanksData>(banksGql);
 };

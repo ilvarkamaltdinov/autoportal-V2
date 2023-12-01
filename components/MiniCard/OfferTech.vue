@@ -21,5 +21,5 @@
 </template>
 <script setup lang="ts">
 
-import {engineVolume, numberFormat} from '../../helpers/filters';
+import {engineVolume, numberFormat} from '~/helpers/filters';
 </script>

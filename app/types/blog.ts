@@ -1,7 +1,7 @@
-export type ArticleCategoryInputType = {
+export type BlogCategoriesInputType = {
     limit: number
 }
-export type ArticleCategoryType = {
+export type BlogCategoryType = {
     id: number
     slug: string
     page_title: string
@@ -19,4 +19,8 @@ export type ArticleCategoryType = {
             small_webp: string
         }
     }
+}
+
+export type BlogCategoriesType = {
+    articleCategory: BlogCategoryType[]
 }

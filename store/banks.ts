@@ -1,10 +1,10 @@
 import {defineStore} from 'pinia';
 import {request} from '~/helpers/request';
 import {Bank, BanksQueryVariables} from '~/types/graphql';
-import {banks as banksQuery} from '~/apollo/queries/bank/banks';
+import {banksGql as banksQuery} from '~/apollo/queries/bank/banks';
 
 type BanksState = {
-  banks: Bank[];
+    banks: Bank[];
 };
 export const useBanks = defineStore('banks', {
   state: (): BanksState => {
@@ -13,13 +13,11 @@ export const useBanks = defineStore('banks', {
     };
   },
 
-  getters: {
-    
-  },
+  getters: {},
 
   actions: {
     async fetchBanks() {
-      const { data : { value: { banks } } } = await request<{ banks: Bank[] }, BanksQueryVariables>(banksQuery, {});
+      const {data: {value: {banks}}} = await request<{ banks: Bank[] }, BanksQueryVariables>(banksQuery, {});
       this.banks = banks;
       return banks;
     },

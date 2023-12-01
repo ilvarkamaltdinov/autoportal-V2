@@ -1,4 +1,4 @@
-export const articleCategory = gql`query articleCategory($site_id: Int!, $limit: Int) {
+export const blogCategoryGql = gql`query articleCategory($site_id: Int!, $limit: Int) {
     articleCategory(site_id: $site_id) {
         id
         slug

@@ -28,27 +28,27 @@
                :href="`mailto:${$settings.email}`">{{ $settings.email }}
             </a>
           </div>
-          <div class="page-footer__city-wrap"
-               tabindex="1"
-               @focusout="isRegionsOpen = false">
-            <div class="page-footer__city">
-              <div @click="isRegionsOpen = !isRegionsOpen">
-                <nuxt-icon class="page-footer__city-icon" name="icon-map" />
-                <span>{{ $settings.city }}</span>
-              </div>
-            </div>
-            <transition name="select">
-              <div class="select__list select__list--regions"
-                   v-show="isRegionsOpen">
-                <a class="select__item select__item-link"
-                   v-for="(item, index) in regions"
-                   :key="index"
-                   :title="item.name"
-                   :href="'https://' + item.link">{{ item.name }}
-                </a>
-              </div>
-            </transition>
-          </div>
+<!--          <div class="page-footer__city-wrap"-->
+<!--               tabindex="1"-->
+<!--               @focusout="isRegionsOpen = false">-->
+<!--            <div class="page-footer__city">-->
+<!--              <div @click="isRegionsOpen = !isRegionsOpen">-->
+<!--                <nuxt-icon class="page-footer__city-icon" name="icon-map" />-->
+<!--                <span>{{ $settings.city }}</span>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <transition name="select">-->
+<!--              <div class="select__list select__list&#45;&#45;regions"-->
+<!--                   v-show="isRegionsOpen">-->
+<!--                <a class="select__item select__item-link"-->
+<!--                   v-for="(item, index) in regions"-->
+<!--                   :key="index"-->
+<!--                   :title="item.name"-->
+<!--                   :href="'https://' + item.link">{{ item.name }}-->
+<!--                </a>-->
+<!--              </div>-->
+<!--            </transition>-->
+<!--          </div>-->
 
           <div class="page-footer__credits">
             <div class="page-footer__contacts-item">© 2016 - {{ new Date().getFullYear() }} CARRO.RU</div>
@@ -57,64 +57,64 @@
       </div>
 
 
-      <div class="page-footer__links grid__col-12">
-        <ul class="page-footer__links-list">
-          <li class="page-footer__links-item">
-            <nuxt-link to="/about"
-                       class="page-footer__link">О портале
-            </nuxt-link>
-          </li>
-          <li class="page-footer__links-item"
-              v-if="true">
-            <nuxt-link to="/blog"
-                       class="page-footer__link">Блог
-            </nuxt-link>
-          </li>
-          <li class="page-footer__links-item">
-            <nuxt-link to="/contacts"
-                       class="page-footer__link">Контакты
-            </nuxt-link>
-          </li>
-          <li class="page-footer__links-item">
-            <nuxt-link to="/contact"
-                       class="page-footer__link">Автосалоны-партнеры
-            </nuxt-link>
-          </li>
-          <!--<li class="page-footer__links-item">-->
-          <!--	<a class="page-footer__link">-->
-          <!-- Вакансии-->
-          <!--	</a>-->
-          <!--</li>-->
-          <li class="page-footer__links-item">
-            <nuxt-link to="/privacy"
-                       class="page-footer__link">
-              Пользовательское соглашение
-            </nuxt-link>
-          </li>
-          <!--<li class="page-footer__links-item">-->
-          <!--	<nuxt-link to="/sitemap"-->
-          <!--	           class="page-footer__link">-->
-          <!--		Карта сайта-->
-          <!--	</nuxt-link>-->
-          <!--</li>-->
-        </ul>
-      </div>
-      <div class="page-footer__cars grid__col-12">
-        <div class="page-footer__cars-stock">
-          Автомобилей в наличии:
-          <nuxt-link to="/used"
-                     class="page-footer__cars-stock-number">{{ numberFormat(marksQuantity) }}
-          </nuxt-link>
-        </div>
-        <ul class="page-footer__makes-logos">
-          <li class="page-footer__makes-item" v-for="make in footerMarks" :key="make.slug">
-            <nuxt-link :to="`/used/${make.slug}`" :title="make.title" class="page-footer__makes-link">
-              <nuxt-icon class="page-footer__makes-icon" :title="make.title"
-                        :name="`icon-${make.slug}`" />
-            </nuxt-link>
-          </li>
-        </ul>
-      </div>
+<!--      <div class="page-footer__links grid__col-12">-->
+<!--        <ul class="page-footer__links-list">-->
+<!--          <li class="page-footer__links-item">-->
+<!--            <nuxt-link to="/about"-->
+<!--                       class="page-footer__link">О портале-->
+<!--            </nuxt-link>-->
+<!--          </li>-->
+<!--          <li class="page-footer__links-item"-->
+<!--              v-if="true">-->
+<!--            <nuxt-link to="/blog"-->
+<!--                       class="page-footer__link">Блог-->
+<!--            </nuxt-link>-->
+<!--          </li>-->
+<!--          <li class="page-footer__links-item">-->
+<!--            <nuxt-link to="/contacts"-->
+<!--                       class="page-footer__link">Контакты-->
+<!--            </nuxt-link>-->
+<!--          </li>-->
+<!--          <li class="page-footer__links-item">-->
+<!--            <nuxt-link to="/contact"-->
+<!--                       class="page-footer__link">Автосалоны-партнеры-->
+<!--            </nuxt-link>-->
+<!--          </li>-->
+<!--          &lt;!&ndash;<li class="page-footer__links-item">&ndash;&gt;-->
+<!--          &lt;!&ndash;	<a class="page-footer__link">&ndash;&gt;-->
+<!--          &lt;!&ndash; Вакансии&ndash;&gt;-->
+<!--          &lt;!&ndash;	</a>&ndash;&gt;-->
+<!--          &lt;!&ndash;</li>&ndash;&gt;-->
+<!--          <li class="page-footer__links-item">-->
+<!--            <nuxt-link to="/privacy"-->
+<!--                       class="page-footer__link">-->
+<!--              Пользовательское соглашение-->
+<!--            </nuxt-link>-->
+<!--          </li>-->
+<!--          &lt;!&ndash;<li class="page-footer__links-item">&ndash;&gt;-->
+<!--          &lt;!&ndash;	<nuxt-link to="/sitemap"&ndash;&gt;-->
+<!--          &lt;!&ndash;	           class="page-footer__link">&ndash;&gt;-->
+<!--          &lt;!&ndash;		Карта сайта&ndash;&gt;-->
+<!--          &lt;!&ndash;	</nuxt-link>&ndash;&gt;-->
+<!--          &lt;!&ndash;</li>&ndash;&gt;-->
+<!--        </ul>-->
+<!--      </div>-->
+<!--      <div class="page-footer__cars grid__col-12">-->
+      <!--        <div class="page-footer__cars-stock">-->
+      <!--          Автомобилей в наличии:-->
+      <!--          <nuxt-link to="/used"-->
+      <!--                     class="page-footer__cars-stock-number">{{ numberFormat(marksQuantity) }}-->
+      <!--          </nuxt-link>-->
+      <!--        </div>-->
+      <!--        <ul class="page-footer__makes-logos">-->
+      <!--          <li class="page-footer__makes-item" v-for="make in footerMarks" :key="make.slug">-->
+      <!--            <nuxt-link :to="`/used/${make.slug}`" :title="make.title" class="page-footer__makes-link">-->
+      <!--              <nuxt-icon class="page-footer__makes-icon" :title="make.title"-->
+      <!--                        :name="`icon-${make.slug}`" />-->
+      <!--            </nuxt-link>-->
+      <!--          </li>-->
+      <!--        </ul>-->
+      <!--      </div>-->
       <div class="page-footer__legal grid__col-12">
         <ul class="page-footer__legal-list">
           <li class="page-footer__legal-item">ООО «РИ-АДВАНС»</li>
@@ -163,8 +163,8 @@
         </p>
 
         <p class="page-footer__disclaimer-p">
-					<span>Обязательное страхование гражданской ответственности владельцев транспортных средств осуществляется АО
-					      «Тинькофф Страхование»
+					<span>
+            Обязательное страхование гражданской ответственности владельцев транспортных средств осуществляется АО «Тинькофф Страхование»
 					</span>
           <img class="page-footer__insurance-logo lazyload"
                alt="tinkoff"
@@ -239,50 +239,50 @@ const regions = computed(() => [
 const marksStore = useMarks();
 marksStore.getAllMarksFillPopular();
 const { marksQuantity } = storeToRefs(marksStore);
-const footerMarks = computed(() => [
-  {
-    slug: 'bmw',
-    title: 'BMW'
-  },
-  {
-    slug: 'mercedes-benz',
-    title: 'Mercedes-Benz'
-  },
-  {
-    slug: 'volkswagen',
-    title: 'Volkswagen'
-  },
-  {
-    slug: 'skoda',
-    title: 'Skoda'
-  },
-  {
-    slug: 'nissan',
-    title: 'Nissan'
-  },
-  {
-    slug: 'mazda',
-    title: 'Mazda'
-  },
-  {
-    slug: 'kia',
-    title: 'KIA'
-  },
-  {
-    slug: 'hyundai',
-    title: 'Hyundai'
-  },
-  {
-    slug: 'ford',
-    title: 'Ford'
-  },
-  {
-    slug: 'toyota',
-    title: 'Toyota'
-  },
-  {
-    slug: 'cadillac',
-    title: 'Cadillac'
-  }
-]);
+// const footerMarks = computed(() => [
+//   {
+//     slug: 'bmw',
+//     title: 'BMW'
+//   },
+//   {
+//     slug: 'mercedes-benz',
+//     title: 'Mercedes-Benz'
+//   },
+//   {
+//     slug: 'volkswagen',
+//     title: 'Volkswagen'
+//   },
+//   {
+//     slug: 'skoda',
+//     title: 'Skoda'
+//   },
+//   {
+//     slug: 'nissan',
+//     title: 'Nissan'
+//   },
+//   {
+//     slug: 'mazda',
+//     title: 'Mazda'
+//   },
+//   {
+//     slug: 'kia',
+//     title: 'KIA'
+//   },
+//   {
+//     slug: 'hyundai',
+//     title: 'Hyundai'
+//   },
+//   {
+//     slug: 'ford',
+//     title: 'Ford'
+//   },
+//   {
+//     slug: 'toyota',
+//     title: 'Toyota'
+//   },
+//   {
+//     slug: 'cadillac',
+//     title: 'Cadillac'
+//   }
+// ]);
 </script>

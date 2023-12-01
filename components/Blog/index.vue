@@ -8,35 +8,32 @@
       <span class="heading-group__label">Лучшее из мира автомобилей</span>
     </div>
   </div>
-  <!--  <blog-category :list="category.articles"-->
-  <!--                 :index="index"-->
-  <!--                 :title="category.page_title"-->
-  <!--                 :url="category.url"-->
-  <!--                 v-for="category in categories"-->
-  <!--                 :key="category.id"/>-->
+  <BlogCategory v-for="category in (index ? blogCategories[0] : blogCategories)"
+                :category="category"
+                :index="index"
+                :key="category.id"/>
 </template>
 <script setup lang="ts">
-import {ArticleCategoryType, ArticleCategoryInputType} from '~/app/types/blog';
-import {request, requestArticleCategories} from '~/helpers/request';
+import BlogCategory from '~/components/Blog/Category.vue';
+import {BlogCategoriesInputType, BlogCategoryType} from '~/app/types/blog';
+import {requestBlogCategories} from '~/helpers/request';
 
-withDefaults(defineProps<{ index: boolean }>(), {
-  index: false
-});
+defineProps<{
+  index: boolean;
+}>();
 
-let variables = computed<ArticleCategoryInputType>(() => {
+const blogCategories = ref<BlogCategoryType[]>();
+let variables = computed<BlogCategoriesInputType>(() => {
   return {
     limit: 10
   };
 });
 
-async function getArticleCategory() {
-  const {data} = await requestArticleCategories(variables.value);
-  console.log(123, data);
+async function getBlogCategories() {
+  const {data} = await requestBlogCategories(variables.value);
+  blogCategories.value = data.value?.articleCategory;
 }
 
-//
-// const categories = ref<ArticleCategoryType[]>();
-
-getArticleCategory();
+getBlogCategories();
 
 </script>
