@@ -139,7 +139,7 @@ const navList = computed<NavListType[]>(() => {
         },
         {
           name: 'Отзывы',
-          link: '/',
+          link: '/reviews-dealers',
           show: true
         },
         {
