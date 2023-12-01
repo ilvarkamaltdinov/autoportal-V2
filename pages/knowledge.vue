@@ -357,5 +357,4 @@ const faqItems = ref(
     }
   ]
 );
-
 </script>
