@@ -39,8 +39,6 @@ import CatalogHome from '~/components/Catalog/Home.vue';
 import Sets from '~/components/Sets/index.vue';
 import Blog from '~/components/Blog/index.vue';
 import VideoAbout from '~/components/Video/About.vue';
-import BankCard from '~/components/Banks/BankCard.vue';
-import Template from '~/components/Modals/Template.vue';
 
 const {isMobileOrTablet} = useDevice();
 </script>
