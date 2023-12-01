@@ -45,6 +45,7 @@ export default defineNuxtConfig({
     '/banks-partners': { prerender: true },
     '/contact': { prerender: true },
     '/knowledge': { prerender: true },
+    '/reviews-dealers': { prerender: true },
   },
   css: [
     '@/assets/styles/index.scss',

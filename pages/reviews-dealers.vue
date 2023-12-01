@@ -37,36 +37,8 @@
 
           <ul v-if="reviews.length"
               class="featured__list grid grid--featured featured__reviews">
-            <template v-for="video in reviews">
-              <li class="featured__item featured__item--review "
-                  :class="{'featured__item--review-active':videoShow === video.id}"
-                  @click="clickVideo(video.id)"
-                  v-if="video.status.privacyStatus !== 'private'"
-                  :key="video.id">
-                <iframe v-if="videoShow === video.id "
-                        class="featured__review-player"
-                        width="100%"
-                        height="100%"
-                        :src="`https://www.youtube.com/embed/${video.contentDetails.videoId}?autoplay=1`"
-                        frameborder="0"
-                        allow="encrypted-media"
-                        allowfullscreen />
-                <div v-if="videoShow !== video.id"
-                     class="featured__link">
-                  <div class="featured__about">
-                    <h3 class="featured__title">{{ video.snippet.title }}</h3>
-                  </div>
-                  <div class="featured__review-picture">
-                    <img v-if="video.snippet.thumbnails.high" class="featured__review-img lazyload"
-                         :data-src="video.snippet.thumbnails.high.url"
-                         :alt="video.snippet.title" />
-                  </div>
-                </div>
-                <svg-icon v-if="videoShow !== video.id"
-                          class="featured__play-icon"
-                          name="icon-play" />
-              </li>
-            </template>
+            <VideoReview v-for="video in reviews" @click="selectVideo(video.id)"
+                         :video="video" :showing-video="showingVideo" :key="video.id" />
           </ul>
 
           <div v-else
@@ -78,9 +50,7 @@
             </ul>
           </div>
 
-          <button v-if="showMore"
-                          @click="getMore"
-                          class="button button--link button--more">
+          <button v-if="showMore" @click="getMore" class="button button--link button--more">
             Показать больше
           </button>
         </div>
@@ -90,34 +60,34 @@
 </template>
 
 <script setup lang="ts">
-import {dealers as dealersQuery} from '~/apollo/queries/dealer/dealerReviews';
-import {Dealer, DealersQueryVariables} from '~/types/graphql';
-import {request} from '~/helpers/request';
-import Template from '~/components/Modals/Template.vue';
+import {Dealer} from '~/types/graphql';
+import {requestDealers} from '~/helpers/request';
+import VideoReview from '~/components/Reviews/VideoReview.vue';
 
 const activeTab = ref(0);
 const dealers = ref<Dealer[]>([]);
-const reviews = ref([]);
-const videoShow = ref(null);
-const nextPageToken = ref(null);
+const reviews = ref<unknown[]>([]);
+const showingVideo = ref<string | null>(null);
+const nextPageToken = ref<string | null>(null);
 const showMore = ref(true);
-const response = await request< { dealers: Dealer[] }, DealersQueryVariables >(dealersQuery);
+const response = await requestDealers();
+
 onMounted(async () => {
   try {
     dealers.value = response.data.value.dealers.filter(item => item.youtube_playlist_review);
-    await getPlaylist(nextPageToken.value, dealers.value[0].youtube_playlist_review);
+    await getPlaylist(nextPageToken.value, dealers.value[0].youtube_playlist_review!);
   } catch (error){
     console.log(error);
   }
 });
 
-function getReviews(dealer, index) {
+function getReviews(dealer: Dealer, index: number) {
   reviews.value = [];
   showMore.value = true;
   activeTab.value = index;
-  getPlaylist(null, dealer.youtube_playlist_review);
+  getPlaylist(null, dealer.youtube_playlist_review!);
 }
-async function getPlaylist(pageToken, playlistId) {
+async function getPlaylist(pageToken: string | null, playlistId: string) {
   const params = {
     'playlistId': playlistId,
     'orderby': 'date',
@@ -129,10 +99,8 @@ async function getPlaylist(pageToken, playlistId) {
   };
   try {
     const url = new URL('https://www.googleapis.com/youtube/v3/playlistItems');
-    Object.entries(params).forEach(([k, v]) => v ? url.searchParams.append(k, v): null);
-    let response = await fetch(url.toString(), {
-      method: 'GET',
-    });
+    Object.entries(params).forEach(([k, v]) => v ? url.searchParams.append(k, v.toString()): null);
+    const response = await fetch(url.toString());
     const responseData = await response.json();
     nextPageToken.value = responseData.nextPageToken ? responseData.nextPageToken : showMore.value = false;
     reviews.value.push(...responseData.items);
@@ -141,83 +109,11 @@ async function getPlaylist(pageToken, playlistId) {
   }
 }
 
-function clickVideo(id: string) {
-  videoShow.value = id;
+function selectVideo(id: string) {
+  showingVideo.value = id;
 }
-
 const activeToken = computed(() => dealers.value[activeTab.value].youtube_playlist_review);
-
 function getMore() {
-  getPlaylist(nextPageToken.value, activeToken.value);
+  getPlaylist(nextPageToken.value, activeToken.value!);
 }
-// import {mapActions, mapGetters} from 'vuex';
-// import dealerReviews from '@/apollo/queries/dealer/dealerReviews';
-//
-// export default {
-//   data() {
-//     return {
-//       dealers: [],
-//       activeTab: 0,
-//       reviews: [],
-//       videoShow: null,
-//       nextPageToken: null,
-//       showMore: true
-//     };
-//   },
-//   props: {
-//     pageTitle: String
-//   },
-//   async mounted() {
-//     try {
-//       let response = await this.request({query: dealerReviews});
-//       this.dealers = response.data.dealers.filter(item => item.youtube_playlist_review);
-//       await this.getPlaylist(this.nextPageToken, this.dealers[0].youtube_playlist_review);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   },
-//
-//   computed: {
-//     activeToken() {
-//       return this.dealers[this.activeTab].youtube_playlist_review;
-//     }
-//   },
-//   methods: {
-//     ...mapActions({
-//       request: 'request'
-//     }),
-//     getReviews(dealer, index) {
-//       this.reviews = [];
-//       this.showMore = true;
-//       this.activeTab = index;
-//       this.getPlaylist(this.pageToken, dealer.youtube_playlist_review);
-//     },
-//     async getPlaylist(pageToken, playlistId) {
-//       let params = {
-//         'playlistId': playlistId,
-//         'orderby': 'date',
-//         'mine': true,
-//         'maxResults': 9,
-//         'key': 'AIzaSyBw7M2CPzyAtwX1ct9XQk5akiouCUQ9CJU',
-//         'part': 'snippet,status,contentDetails',
-//         'pageToken': pageToken
-//       };
-//       try {
-//         let response = await this.$axios.get('https://www.googleapis.com/youtube/v3/playlistItems', {
-//           params: params
-//         });
-//         this.nextPageToken = response.data.nextPageToken ? response.data.nextPageToken : this.showMore = false;
-//         this.reviews.push(...response.data.items);
-//       } catch (error) {
-//         console.log(error);
-//       }
-//     },
-//     getMore() {
-//       this.getPlaylist(this.nextPageToken, this.activeToken);
-//     },
-//     clickVideo(id) {
-//       this.videoShow = id;
-//     }
-//   }
-// };
 </script>

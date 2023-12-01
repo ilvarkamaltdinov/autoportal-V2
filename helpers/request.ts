@@ -4,6 +4,8 @@ import {BlogCategoriesInputType, BlogCategoriesType} from '~/app/types/blog';
 import {blogCategoryGql} from '~/apollo/queries/blog/articleCategory';
 import {banksGql} from '~/apollo/queries/bank/banks';
 import {BanksData} from '~/app/types/banks';
+import {Dealer, DealersQueryVariables} from '~/types/graphql';
+import {dealers as dealersQuery} from '~/apollo/queries/dealer/dealerReviews';
 
 export const request = async <Response, Request = undefined>(query: DocumentNode, variables?: Omit<Request, 'site_id'>) => {
   const {siteId} = useSiteDomain();
@@ -38,3 +40,5 @@ export const requestBlogCategories = async (variables: BlogCategoriesInputType) 
 export const requestBanks = async () => {
   return await request<BanksData>(banksGql);
 };
+
+export const requestDealers = async () => (await request< { dealers: Dealer[] }, DealersQueryVariables >(dealersQuery));
