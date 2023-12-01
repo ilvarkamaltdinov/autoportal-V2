@@ -1,8 +1,6 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 import {domains} from './app/variables';
 
 export default defineNuxtConfig({
-  // @ts-ignore
   app: {
     head: {
       meta: [
@@ -44,6 +42,7 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/about': { prerender: true },
+    '/banks-partners': { prerender: true },
   },
   css: [
     '@/assets/styles/index.scss',
