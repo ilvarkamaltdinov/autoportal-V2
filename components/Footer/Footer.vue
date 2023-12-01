@@ -237,6 +237,7 @@ const regions = computed(() => [
   },
 ]);
 const marksStore = useMarks();
+marksStore.getAllMarksFillPopular();
 const { marksQuantity } = storeToRefs(marksStore);
 const footerMarks = computed(() => [
   {

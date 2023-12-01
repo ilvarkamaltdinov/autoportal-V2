@@ -173,11 +173,11 @@ const navList = computed<NavListType[]>(() => {
       links: [
         {
           name: 'Банки-партнеры',
-          link: '/',
+          link: '/banks-partners',
           show: true
         }
       ],
     },
-  ]
-})
+  ];
+});
 </script>
