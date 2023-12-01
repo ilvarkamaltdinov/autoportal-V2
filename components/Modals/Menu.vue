@@ -149,7 +149,7 @@ const navList = computed<NavListType[]>(() => {
         },
         {
           name: 'Помощь',
-          link: '/',
+          link: '/knowledge',
           show: true
         },
       ],
