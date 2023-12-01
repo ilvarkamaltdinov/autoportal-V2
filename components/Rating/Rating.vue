@@ -7,24 +7,35 @@
 </template>
 
 <script lang="ts" setup>
-import {Offer} from '~/types/graphql';
-
 type RatingProps = {
-  rating: Offer['rating'];
+  rating: number;
+  max: number
 }
 const props = defineProps<RatingProps>();
 
-const ratingText = computed(() => props.rating?.rating_total!.toFixed(1));
-const ratingValue = computed(() => props.rating!.rating_total! * 20);
+const ratingText = computed(() => props.rating.toFixed(1));
+const ratingValue = computed(() => props.max === 100 ? props.rating : props.rating * 20);
 const ratingColor = computed(() => {
-  if (props.rating!.rating_total! >= 4) {
-    return '#0DC268';
-  }
-  if (props.rating!.rating_total! >= 3 && props.rating!.rating_total! < 4) {
-    return '#ED7B29';
-  }
-  if (props.rating!.rating_total! < 3) {
-    return '#ED2939';
+  if (props.max === 100) {
+    if (props.rating >= 70) {
+      return '#0DC268';
+    }
+    if (props.rating >= 50 && props.rating < 70) {
+      return '#ED7B29';
+    }
+    if (props.rating < 50) {
+      return '#ED2939';
+    }
+  } else {
+    if (props.rating >= 4) {
+      return '#0DC268';
+    }
+    if (props.rating >= 3 && props.rating < 4) {
+      return '#ED7B29';
+    }
+    if (props.rating < 3) {
+      return '#ED2939';
+    }
   }
 });
 </script>

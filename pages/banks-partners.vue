@@ -38,11 +38,11 @@
                 <img class="banks__img"
                      :src="bank.image!"
                      alt="" />
-<!--                <rating v-tippy="{-->
-<!--							content:`<div class='tippy__text'>Рейтинг банка</div>`,-->
-<!--							animation:'scale',-->
-<!--							arrow: true,-->
-<!--					}" bank :max="100" :rating="bank.rating" />-->
+                <Rating v-tippy="{
+                  content:`<div class='tippy__text'>Рейтинг банка</div>`,
+                  animation:'scale',
+                  arrow: true,
+                  }" bank :max="100" :rating="bank.rating!" />
               </div>
               <ul class="banks__info">
                 <li class="banks__info-item">Заявок в месяц
