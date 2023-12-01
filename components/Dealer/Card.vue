@@ -37,14 +37,16 @@
           <li class="features__item">{{ dealer.schedule }}</li>
         </ul>
       </div>
-<!--      <button-typical v-if="dealer.slug === $route.params.dealer"-->
-<!--                      @click="showMore(dealer.slug)"-->
-<!--                      text="Подробнее о дилере"-->
-<!--                      class="button&#45;&#45;show"/>-->
-<!--      <button-typical v-else-->
-<!--                      :link="`/contact/${dealer.slug}`"-->
-<!--                      text="Подробнее о дилере"-->
-<!--                      class="button&#45;&#45;show"/>-->
+      <button v-if="dealer.slug === $route.params.dealer"
+                      @click="showMore(dealer.slug)"
+                      class="button--show">
+        Подробнее о дилере
+      </button>
+      <nuxt-link v-else
+                      :href="`/contact/${dealer.slug}`"
+                      class="button--show">
+        Подробнее о дилере
+      </nuxt-link>
       <a v-if="dealer.site"
          class="button button--show button--show-link"
          :href="`${dealer.site}`"
