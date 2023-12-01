@@ -2,7 +2,7 @@ import {DocumentNode} from 'graphql/language';
 import {useSiteDomain} from '#imports';
 import {BlogCategoriesInputType, BlogCategoriesType} from '~/app/types/blog';
 import {blogCategoryGql} from '~/apollo/queries/blog/articleCategory';
-import {banksGql} from '~/apollo/queries/bank/banks';
+import {banks} from '~/apollo/queries/bank/banks';
 import {BanksData} from '~/app/types/banks';
 import {Dealer, DealersQueryVariables} from '~/types/graphql';
 import {dealers as dealersQuery} from '~/apollo/queries/dealer/dealerReviews';
@@ -38,7 +38,7 @@ export const requestBlogCategories = async (variables: BlogCategoriesInputType) 
   return await request<BlogCategoriesType, BlogCategoriesInputType>(blogCategoryGql, variables);
 };
 export const requestBanks = async () => {
-  return await request<BanksData>(banksGql);
+  return await request<BanksData>(banks);
 };
 
 export const requestDealers = async () => (await request< { dealers: Dealer[] }, DealersQueryVariables >(dealersQuery));

@@ -20,7 +20,3 @@ export type BlogCategoryType = {
         }
     }
 }
-
-export type BlogCategoriesType = {
-    articleCategory: BlogCategoryType[]
-}
