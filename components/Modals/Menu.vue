@@ -48,6 +48,7 @@
 
           </li>
         </ul>
+        <Social />
       </nav>
     </div>
   </section>
@@ -148,7 +149,7 @@ const navList = computed<NavListType[]>(() => {
         },
         {
           name: 'Помощь',
-          link: '/',
+          link: '/knowledge',
           show: true
         },
       ],
@@ -158,7 +159,7 @@ const navList = computed<NavListType[]>(() => {
       links: [
         {
           name: 'Автосалоны-партнеры',
-          link: '/',
+          link: '/contact',
           show: true
         },
         {

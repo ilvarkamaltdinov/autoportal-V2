@@ -5,7 +5,7 @@ import {blogCategoryGql} from '~/apollo/queries/blog/articleCategory';
 import {banksGql} from '~/apollo/queries/bank/banks';
 import {BanksData} from '~/app/types/banks';
 
-export const request = async <Response, Request = undefined>(query: DocumentNode, variables?: Request) => {
+export const request = async <Response, Request = undefined>(query: DocumentNode, variables?: Omit<Request, 'site_id'>) => {
   const {siteId} = useSiteDomain();
   const assignVariables = {
     site_id: siteId
