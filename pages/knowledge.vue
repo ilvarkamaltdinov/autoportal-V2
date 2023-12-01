@@ -58,8 +58,6 @@
 <script setup lang="ts">
 import NavItem from '~/components/Knowledge/NavItem.vue';
 import QuestionBlock from '~/components/Knowledge/QuestionBlock.vue';
-import {defineCustomElement} from 'vue';
-import Template from '~/components/Modals/Template.vue';
 
 
 const navItems = computed(() => [
@@ -93,7 +91,7 @@ const navItems = computed(() => [
   },
 ]);
 
-const faqItems = computed(() => (
+const faqItems = ref(
   [
     {
       slug: 'general',
@@ -358,6 +356,6 @@ const faqItems = computed(() => (
       ]
     }
   ]
-));
+);
 
 </script>

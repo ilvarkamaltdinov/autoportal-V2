@@ -54,7 +54,6 @@
 import BankCard from '~/components/Banks/BankCard.vue';
 import {requestBanks} from '~/helpers/request';
 import {Bank, featuredBank} from '~/app/types/banks';
-import Template from '~/components/Modals/Template.vue';
 
 const route = useRoute();
 const banks = ref<Bank[]>();
