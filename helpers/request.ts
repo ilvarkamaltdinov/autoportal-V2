@@ -3,7 +3,7 @@ import {useSiteDomain} from '#imports';
 import {ArticleCategoryInputType, ArticleCategoryType} from '~/app/types/blog';
 import {articleCategory} from '~/apollo/queries/blog/articleCategory';
 
-export const request = async <Response, Request = undefined>(query: DocumentNode, variables?: Request) => {
+export const request = async <Response, Request = undefined>(query: DocumentNode, variables?: Omit<Request, 'site_id'>) => {
   const {siteId} = useSiteDomain();
   const assignVariables = {
     site_id: siteId
