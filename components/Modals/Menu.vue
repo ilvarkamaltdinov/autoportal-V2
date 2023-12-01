@@ -134,7 +134,7 @@ const navList = computed<NavListType[]>(() => {
         },
         {
           name: 'Блог',
-          link: '/',
+          link: '/blog',
           show: true
         },
         {
