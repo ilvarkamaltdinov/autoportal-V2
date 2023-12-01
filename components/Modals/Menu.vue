@@ -48,6 +48,7 @@
 
           </li>
         </ul>
+        <Social />
       </nav>
     </div>
   </section>
