@@ -116,34 +116,4 @@ const featuredBanks = computed(() => featuredBanksNames.value.map((slug) => {
     pictureNumber: featuredBanksExtraData.value[slug].numberOfPicture
   };
 }));
-// import banks from '@/apollo/queries/bank/banks';
-//
-// export default {
-//   props: {
-//     pageTitle: String
-//   },
-//   computed: {
-//     ...mapGetters({
-//       banks: 'banks/banks',
-//       tinkoff: 'banks/tinkoff',
-//       sberbank: 'banks/sberbank',
-//       raiffeisen: 'banks/raiffeisen',
-//       alfa: 'banks/alfa',
-//       sovkombank: 'banks/sovkombank',
-//       vtb: 'banks/vtb',
-//     })
-//   },
-//   methods: {
-//     ...mapMutations({
-//       setBanks: 'banks/SET_BANKS'
-//     }),
-//     ...mapActions({
-//       request: 'filters/filters/request',
-//     }),
-//   },
-//   async fetch() {
-//     let response = await this.request({query: banks, variables: {}});
-//     await this.setBanks(response.data.banks);
-//   }
-// };
 </script>
