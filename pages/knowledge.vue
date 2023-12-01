@@ -38,10 +38,9 @@
                          @click="question.active = !question.active"
                          :key="question.question">
                       <dt class="faq__question">{{ question.question }}</dt>
-                      <VueSlideToggle :open="question.active"
-                                      :duration="500">
+                      <div class="faq__question--toggler" :class="{ 'faq__question--toggler-closed': !question.active }">
                         <dd class="faq__answer">{{ question.answer }}</dd>
-                      </VueSlideToggle>
+                      </div>
                       <NuxtIcon class="faq__close"
                                 name="icon-close-s" />
                     </div>
