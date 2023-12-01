@@ -11,7 +11,7 @@
             <span class="heading-group__label">Подайте заявку на автокредит в любой банк</span>
           </div>
         </div>
-        <Banks/>
+        <Banks />
       </section>
     </div>
   </main>
