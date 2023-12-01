@@ -12,94 +12,18 @@
           </div>
         </div>
         <ul class="featured__list grid__col-12 grid grid--featured featured__banks">
-          <li v-if="tinkoff"
-              class="featured__item featured__item--sedan featured__item--tinkoff">
-            <nuxt-link :to="`/credit/${tinkoff.slug}`"
+          <li v-for="({ bank, extraClass, pictureNumber }) in featuredBanks" :key="bank!.id"
+              class="featured__item" :class="extraClass">
+            <nuxt-link :to="`/credit/${bank!.slug}`"
                        class="featured__link">
               <div class="featured__about">
-                <h3 class="featured__title">{{ tinkoff.name }}</h3>
-                <div class="featured__text">от {{ tinkoff.rate }} %</div>
+                <h3 class="featured__title">{{ bank!.name }}</h3>
+                <div class="featured__text">от {{ bank!.rate }} %</div>
               </div>
               <div class="featured__picture">
                 <div class="glass featured__glass featured__glass--small"></div>
                 <div class="glass featured__glass featured__glass--big"></div>
-                <featured-img img="7" />
-              </div>
-            </nuxt-link>
-          </li>
-          <li v-if="sovkombank"
-              class="featured__item featured__item--family featured__item--sovcom">
-            <nuxt-link :to="`/credit/${sovkombank.slug}`"
-                       class="featured__link">
-              <div class="featured__about">
-                <h3 class="featured__title">{{ sovkombank.name }}</h3>
-                <div class="featured__text">от {{ sovkombank.rate }} %</div>
-              </div>
-              <div class="featured__picture">
-                <div class="glass featured__glass featured__glass--small"></div>
-                <div class="glass featured__glass featured__glass--big"></div>
-                <featured-img img="8" />
-              </div>
-            </nuxt-link>
-          </li>
-          <li v-if="vtb"
-              class="featured__item featured__item--women featured__item--vtb">
-            <nuxt-link :to="`/credit/${vtb.slug}`"
-                       class="featured__link">
-              <div class="featured__about">
-                <h3 class="featured__title">{{ vtb.name }}</h3>
-                <div class="featured__text">от {{ vtb.rate }} %</div>
-              </div>
-              <div class="featured__picture">
-                <div class="glass featured__glass featured__glass--small"></div>
-                <div class="glass featured__glass featured__glass--big"></div>
-                <featured-img img="9" />
-              </div>
-            </nuxt-link>
-          </li>
-          <li v-if="sberbank"
-              class="featured__item featured__item--business featured__item--sber">
-            <nuxt-link :to="`/credit/${sberbank.slug}`"
-                       class="featured__link"
-                       href="">
-              <div class="featured__about">
-                <h3 class="featured__title">{{ sberbank.name }}</h3>
-                <div class="featured__text">от {{ sberbank.rate }} %</div>
-              </div>
-              <div class="featured__picture">
-                <div class="glass featured__glass featured__glass--small"></div>
-                <div class="glass featured__glass featured__glass--big"></div>
-                <featured-img img="10" />
-              </div>
-            </nuxt-link>
-          </li>
-          <li v-if="alfa"
-              class="featured__item featured__item--allroad featured__item--alfa">
-            <nuxt-link :to="`/credit/${alfa.slug}`"
-                       class="featured__link">
-              <div class="featured__about">
-                <h3 class="featured__title">{{ alfa.name }}</h3>
-                <div class="featured__text">от {{ alfa.rate }} %</div>
-              </div>
-              <div class="featured__picture">
-                <div class="glass featured__glass featured__glass--small"></div>
-                <div class="glass featured__glass featured__glass--big"></div>
-                <featured-img img="11" />
-              </div>
-            </nuxt-link>
-          </li>
-          <li v-if="raiffeisen"
-              class="featured__item featured__item--taxi featured__item--reif">
-            <nuxt-link :to="`/credit/${raiffeisen.slug}`"
-                       class="featured__link">
-              <div class="featured__about">
-                <h3 class="featured__title">{{ raiffeisen.name }}</h3>
-                <div class="featured__text">от {{ raiffeisen.rate }}%</div>
-              </div>
-              <div class="featured__picture">
-                <div class="glass featured__glass featured__glass--small"></div>
-                <div class="glass featured__glass featured__glass--big"></div>
-                <featured-img img="12" />
+                <nuxt-img :src="`/img/featured/featured-${pictureNumber}@2x.png`" densities="1x 2x" format="webp" class="featured__img lazyload" />
               </div>
             </nuxt-link>
           </li>
@@ -112,7 +36,7 @@
                 :key="bank.id">
               <div class="banks__main">
                 <img class="banks__img"
-                     :src="bank.image"
+                     :src="bank.image!"
                      alt="" />
 <!--                <rating v-tippy="{-->
 <!--							content:`<div class='tippy__text'>Рейтинг банка</div>`,-->
@@ -147,11 +71,51 @@
 <script setup lang="ts">
 import {useBanks} from '~/store/banks';
 import {storeToRefs} from 'pinia';
+import {Ref, UnwrapRef} from 'vue';
 
 const banksStore = useBanks();
 banksStore.fetchBanks();
 const { banks } = storeToRefs(banksStore);
-console.log(banks.value);
+
+const featuredBanksNames = computed(() => ['tinkoff-bank', 'sberbank', 'raiffeisen-bank', 'alfa-bank', 'sovkombank', 'vtb'] as const);
+type Bank = {
+  [key in UnwrapRef<typeof featuredBanksNames>[number]]: { class: string, numberOfPicture: number }
+}
+const featuredBanksExtraData = computed((): Bank => ({
+  'tinkoff-bank': {
+    class: 'featured__item--sedan featured__item--tinkoff',
+    numberOfPicture: 7
+  },
+  'sovkombank': {
+    class: 'featured__item--family featured__item--sovcom',
+    numberOfPicture: 8,
+  },
+  'vtb': {
+    class: 'featured__item--women featured__item--vtb',
+    numberOfPicture: 9,
+  },
+  'sberbank': {
+    class: 'featured__item--business featured__item--sber',
+    numberOfPicture: 10,
+  },
+  'alfa-bank': {
+    class: 'featured__item--allroad featured__item--alfa',
+    numberOfPicture: 11,
+  },
+  'raiffeisen-bank': {
+    class: 'featured__item--taxi featured__item--reif',
+    numberOfPicture: 12,
+  },
+}));
+const featuredBanks = computed(() => featuredBanksNames.value.map((slug) => {
+  const bankBySlug = banksStore.getBySlug(slug);
+  featuredBanksExtraData.value;
+  return {
+    bank: bankBySlug,
+    extraClass: featuredBanksExtraData.value[slug].class,
+    pictureNumber: featuredBanksExtraData.value[slug].numberOfPicture
+  };
+}));
 // import banks from '@/apollo/queries/bank/banks';
 //
 // export default {

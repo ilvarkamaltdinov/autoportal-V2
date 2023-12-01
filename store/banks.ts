@@ -22,6 +22,9 @@ export const useBanks = defineStore('banks', {
       const { data : { value: { banks } } } = await request<{ banks: Bank[] }, BanksQueryVariables>(banksQuery, {});
       this.banks = banks;
       return banks;
+    },
+    getBySlug(slug: string) {
+      return this.banks.find((bank) => bank.slug === slug);
     }
   }
 });
