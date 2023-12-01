@@ -43,6 +43,7 @@ export default defineNuxtConfig({
   routeRules: {
     '/about': { prerender: true },
     '/banks-partners': { prerender: true },
+    '/contact': { prerender: true },
   },
   css: [
     '@/assets/styles/index.scss',

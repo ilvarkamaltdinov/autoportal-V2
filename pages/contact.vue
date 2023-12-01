@@ -4,7 +4,6 @@
 <!--      <crumbs :crumbs="crumbs" />-->
     </div>
     <div class="grid grid--container">
-      <template>
         <section class="page-main__dealers dealers grid">
           <div class="heading-group heading-group--h1">
             <div class="heading-group__wrap">
@@ -15,76 +14,18 @@
               <span class="heading-group__label">Партнеры carro</span>
             </div>
           </div>
-          <div class="dealers__item grid__col-12"
-               v-for="dealer in dealers"
-               :key="dealer.id">
-            <div class="dealers__features features">
-              <div class="heading-group">
-                <div class="heading-group__wrap">
-                  <h2 class="heading heading--h2">{{ dealer.title }}</h2>
-                  <span class="heading-group__label">{{ dealer.short_description }}</span>
-                </div>
-                <rating v-tippy="{
-							content:`<div class='tippy__text'>Рейтинг дилера</div>`,
-							animation:'scale',
-							arrow: true,
-					}"
-                        :rating="dealer.rating"
-                        :max="5"/>
-              </div>
-              <div class="features__group">
-                <h3 class="heading heading--h3">Адрес:</h3>
-                <ul class="features__list">
-                  <li class="features__item">{{ dealer.address }}</li>
-                  <li v-if="dealer.metro"
-                      class="features__item">м. {{ dealer.metro }}
-                  </li>
-                </ul>
-              </div>
-              <div class="features__group" v-if="dealer.phone">
-                <h3 class="heading heading--h3">Телефон:</h3>
-                <ul class="features__list">
-                  <li class="features__item">
-                    <a :href="`tel:${ dealer.phone.replace(/[^+\d]/g, '')}`"> {{ dealer.phone }}</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="features__group">
-                <h3 class="heading heading--h3">Режим работы:</h3>
-                <ul class="features__list">
-                  <li class="features__item">{{ dealer.schedule }}</li>
-                </ul>
-              </div>
-              <button-typical v-if="dealer.slug === $route.params.dealer"
-                              @click="showMore(dealer.slug)"
-                              text="Подробнее о дилере"
-                              class="button--show"/>
-              <button-typical v-else
-                              :link="`/contact/${dealer.slug}`"
-                              text="Подробнее о дилере"
-                              class="button--show"/>
-              <a v-if="dealer.site"
-                 class="button button--show button--show-link"
-                 :href="`${dealer.site}`"
-                 target="_blank">Сайт автоцентра
-              </a>
-            </div>
-            <div class="dealers__item-img-wrap">
-              <picture-component
-                  v-if="dealer.images[0]"
-                  classes="dealers__item-img lazyload"
-                  :small="dealer.images[0].small | replaceApiUrl(api)"
-                  :small-webp="dealer.images[0].small_webp | replaceApiUrl(api)"
-                  :big="dealer.images[0].medium | replaceApiUrl(api)"
-                  :big-webp="dealer.images[0].medium_webp | replaceApiUrl(api)"/>
-            </div>
-          </div>
+          <Card v-for="dealer in dealers" :key="dealer.id" :dealer="dealer" />
         </section>
-      </template>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
+import {useDealers} from '~/store/dealers';
+import {storeToRefs} from 'pinia';
+import Card from '~/components/Dealer/Card.vue';
 
+const dealersStore = useDealers();
+dealersStore.fetchDealers();
+const {dealers} = storeToRefs(dealersStore);
 </script>

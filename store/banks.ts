@@ -15,7 +15,7 @@ export const useBanks = defineStore('banks', {
 
   actions: {
     async fetchBanks() {
-      const { data : { value: { banks } } } = await request<{ banks: Bank[] }, BanksQueryVariables>(banksQuery, {});
+      const { data : { value: { banks } } } = await request<{ banks: BanksState['banks'] }, BanksQueryVariables>(banksQuery, {});
       this.banks = banks;
       return banks;
     },

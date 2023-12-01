@@ -158,7 +158,7 @@ const navList = computed<NavListType[]>(() => {
       links: [
         {
           name: 'Автосалоны-партнеры',
-          link: '/',
+          link: '/contact',
           show: true
         },
         {
