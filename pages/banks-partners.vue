@@ -109,7 +109,6 @@ const featuredBanksExtraData = computed((): Bank => ({
 }));
 const featuredBanks = computed(() => featuredBanksNames.value.map((slug) => {
   const bankBySlug = banksStore.getBySlug(slug);
-  featuredBanksExtraData.value;
   return {
     bank: bankBySlug,
     extraClass: featuredBanksExtraData.value[slug].class,
