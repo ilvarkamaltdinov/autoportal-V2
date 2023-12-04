@@ -1,6 +1,17 @@
 <template>
   <ul class="featured__list grid__col-12 grid grid--featured featured__banks">
-    <BankCard v-for="(bank, key) in featuredBanks" :key="key" :bank="bank"/>
+    <BankCard v-for="(bank, key) in featuredBanks" :key="key" :class="bank!.extraClass" :slug="bank.bank!.slug!">
+      <template #title>
+        {{ bank.bank!.name! }}
+      </template>
+      <template #text>
+        от {{ bank.bank!.rate! }} %
+      </template>
+      <template #image>
+        <NuxtImg :src="`/img/featured/featured-${bank.pictureNumber}@2x.png`" densities="1x 2x" format="webp"
+                 class="featured__img lazyload" />
+      </template>
+    </BankCard>
   </ul>
   <section class="banks grid__col-12">
     <h2 class="heading heading--h2">Рейтинг банков</h2>
@@ -40,64 +51,51 @@
 </template>
 
 <script setup lang="ts">
+import {useBanks} from '~/store/banks';
+import {storeToRefs} from 'pinia';
+import {UnwrapRef} from 'vue';
 import BankCard from '~/components/Banks/BankCard.vue';
-import {requestBanks} from '~/helpers/request';
-import {Bank, featuredBank} from '~/app/types/banks';
 
-const route = useRoute();
-const banks = ref<Bank[]>();
+const banksStore = useBanks();
+banksStore.fetchBanks();
+const { banks } = storeToRefs(banksStore);
 
-async function getBanks() {
-  const {data} = await requestBanks();
-  banks.value = data.value.banks;
+const featuredBanksNames = computed(() => ['tinkoff-bank', 'sberbank', 'raiffeisen-bank', 'alfa-bank', 'sovkombank', 'vtb'] as const);
+type Bank = {
+  [key in UnwrapRef<typeof featuredBanksNames>[number]]: { class: string, numberOfPicture: number }
 }
-
-
-const featuredBanksLocal = [
-  {
-    slug: 'tinkoff-bank',
+const featuredBanksExtraData = computed((): Bank => ({
+  'tinkoff-bank': {
     class: 'featured__item--sedan featured__item--tinkoff',
-    image: '7'
+    numberOfPicture: 7
   },
-  {
-    slug: 'sovkombank',
+  'sovkombank': {
     class: 'featured__item--family featured__item--sovcom',
-    image: '8'
+    numberOfPicture: 8,
   },
-  {
-    slug: 'vtb',
+  'vtb': {
     class: 'featured__item--women featured__item--vtb',
-    image: '9'
+    numberOfPicture: 9,
   },
-  {
-    slug: 'sberbank',
+  'sberbank': {
     class: 'featured__item--business featured__item--sber',
-    image: '10'
+    numberOfPicture: 10,
   },
-  {
-    slug: 'alfa-bank',
+  'alfa-bank': {
     class: 'featured__item--allroad featured__item--alfa',
-    image: '11'
+    numberOfPicture: 11,
   },
-  {
-    slug: 'raiffeisen-bank',
+  'raiffeisen-bank': {
     class: 'featured__item--taxi featured__item--reif',
-    image: '12'
-  }
-];
-
-const featuredBanks = computed(() => {
-  return featuredBanksLocal.map((featuredBank: featuredBank) => {
-
-    let bank = {...banks.value?.find(bank => bank.slug === featuredBank.slug)};
-    if (bank) {
-      return {...bank, ...featuredBank};
-    }
-  });
-});
-
-watch(route, async () => {
-  await getBanks();
-}, {immediate: true});
-
+    numberOfPicture: 12,
+  },
+}));
+const featuredBanks = computed(() => featuredBanksNames.value.map((slug) => {
+  const bankBySlug = banksStore.getBySlug(slug);
+  return {
+    bank: bankBySlug,
+    extraClass: featuredBanksExtraData.value[slug].class,
+    pictureNumber: featuredBanksExtraData.value[slug].numberOfPicture
+  };
+}));
 </script>
