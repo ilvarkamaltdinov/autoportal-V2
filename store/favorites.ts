@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia';
 import {request} from '~/helpers/request';
-import {offers} from '~/apollo/queries/offer/offers';
+import {offersGql} from '~/apollo/queries/offer/offers';
 import {Offer, OffersQueryVariables} from '~/types/graphql';
 import {_AsyncData} from '#app/composables/asyncData';
 import {UnwrapRef} from 'vue';
@@ -22,7 +22,7 @@ export const useFavorites = defineStore('favorites', {
       if (process.client) {
         if (localStorage.getItem('likes')) {
           try {
-            const response = await request<OffersWrap, OffersQueryVariables>(offers, {
+            const response = await request<OffersWrap, OffersQueryVariables>(offersGql, {
               limit: 0,
               page: 1,
               external_id_array: this.favorites.map(i => Number(i))

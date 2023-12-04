@@ -1,7 +1,7 @@
 <template>
   <h2 class="heading heading--h2">Автомобили в наличии</h2>
   <div class="catalog__list grid">
-    <MiniCardOffer v-for="i in 3" :key="i"/>
+    <CatalogItem v-for="i in 3" :key="i" class="grid__col-4"/>
     <!--    <swiper class="swiper swiper&#45;&#45;catalog">-->
     <!--&lt;!&ndash;      <swiper-slide v-for="offer in offers" :key="offer.id">&ndash;&gt;-->
     <!--&lt;!&ndash;        <MiniCardOffer :offer="offer"/>&ndash;&gt;-->
@@ -29,30 +29,32 @@
   </div>
 </template>
 <script setup lang="ts">
-// import {Swiper, SwiperSlide} from 'swiper/vue';
-// import {Offer, OffersQueryVariables, OfferTypePagination} from '~/types/graphql';
-// import {request} from '~/helpers/request';
-// import {offers as offersGql} from '~/apollo/queries/offer/offers';
+import CatalogItem from '~/components/Catalog/Item/index.vue';
 
-// const offerPagination = ref<OfferTypePagination>();
-// const offers = ref<Offer[]>([]);
-// let variables = computed<OffersQueryVariables>(() => {
+// import {requestCatalogOffers} from '~/helpers/request';
+// import {OfferCatalog, OffersCatalogInputType} from '~/app/types/offers';
+
+const route = useRoute();
+// const offersData = ref<OfferCatalog[]>();
+// let variables = computed<OffersCatalogInputType>(() => {
 //   return {
-//     category: 'cars',
 //     page: 0,
 //     limit: 10,
 //     dateFormat: 'j F Y года.'
 //   };
 // });
 
-// async function getOffers() {
-//   const {data} = await request<OfferTypePagination, OffersQueryVariables>(offersGql, variables.value);
-//   console.log(data.value?.offers.data);
-//   // offerPagination.value = data.value;
-//   // offers.value = data.value.data
-// }
-//
-// getOffers();
+async function getOffers() {
+  // const {data} = await requestCatalogOffers(variables.value);
+  // console.log(data.value);
+  // offerPagination.value = data.value;
+  // offers.value = data.value.data
+}
+
+
+watch(route, async () => {
+  await getOffers();
+}, {immediate: true});
 
 
 </script>

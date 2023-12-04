@@ -1,29 +1,29 @@
 <template>
   <main class="page-main">
     <div class="grid grid--container">
-      <h1 class="visually-hidden">pageTitle</h1>
-      <div class="page-main__promo grid__col-8">
-        <section class="page-main__slider-index slider-index grid__col-8">
-          <SliderHome/>
-        </section>
-        <section class="page-main__stories stories" :class="{'stories--desktop grid__col-8':!isMobileOrTablet}">
-          <h2 class="visually-hidden">Акции и спецпредложения</h2>
-          <Stories/>
-        </section>
-      </div>
-      <div class="page-main__credit-index grid__col-4">
-        <FormCredit has-chose :calculator="true" offer=""/>
-      </div>
+      <!--      <h1 class="visually-hidden">pageTitle</h1>-->
+      <!--      <div class="page-main__promo grid__col-8">-->
+      <!--        <section class="page-main__slider-index slider-index grid__col-8">-->
+      <!--          <SliderHome/>-->
+      <!--        </section>-->
+      <!--        <section class="page-main__stories stories" :class="{'stories&#45;&#45;desktop grid__col-8':!isMobileOrTablet}">-->
+      <!--          <h2 class="visually-hidden">Акции и спецпредложения</h2>-->
+      <!--          <Stories/>-->
+      <!--        </section>-->
+      <!--      </div>-->
+      <!--      <div class="page-main__credit-index grid__col-4">-->
+      <!--        <FormCredit has-chose :calculator="true" offer=""/>-->
+      <!--      </div>-->
       <section class="page-main__catalog catalog grid__col-12 catalog--slider">
         <CatalogHome/>
       </section>
-      <section class="page-main__featured featured grid__col-12">
-        <Sets/>
-      </section>
-      <section class="page-main__blog blog grid">
-        <Blog index/>
-      </section>
-      <VideoAbout />
+      <!--      <section class="page-main__featured featured grid__col-12">-->
+      <!--        <Sets/>-->
+      <!--      </section>-->
+      <!--      <section class="page-main__blog blog grid">-->
+      <!--        <Blog is-index/>-->
+      <!--      </section>-->
+      <!--      <VideoAbout />-->
       <!--      <LazyHydrate when-visible>-->
       <!--        <text-main />-->
       <!--      </LazyHydrate>-->
@@ -40,5 +40,4 @@ import Sets from '~/components/Sets/index.vue';
 import Blog from '~/components/Blog/index.vue';
 import VideoAbout from '~/components/Video/About.vue';
 
-const {isMobileOrTablet} = useDevice();
 </script>

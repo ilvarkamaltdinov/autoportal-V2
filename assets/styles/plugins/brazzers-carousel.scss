@@ -51,6 +51,10 @@
   -webkit-transition: all 0.25s ease;
   -o-transition: all 0.25s ease;
   transition: all 0.25s ease;
+
+  &:hover {
+    border-color: $colorPrimary;
+  }
 }
 
 .tmb-wrap-table div.active {
@@ -60,6 +64,7 @@
 .tmb-wrap-table div:first-child:last-child {
   border-color: transparent;
 }
+
 @media (min-width: $tablet-width) {
   .brazzers-daddy.catalog__car-img img {
     max-height: 186px;

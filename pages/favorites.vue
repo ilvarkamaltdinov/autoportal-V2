@@ -15,7 +15,7 @@
               small="/img/favorites@1x.png"
               small-webp="/img/favorites@1x.webp"
               big="/img/favorites@2x.png"
-              big-webp="/img/favorites@2x.webp" />
+              big-webp="/img/favorites@2x.webp"/>
         </div>
       </section>
       <section v-else
@@ -31,10 +31,10 @@
         </div>
         <div v-else
              class="catalog__list grid grid__col-12">
-          <MiniCardOffer
+          <CatalogItem
               v-for="offer in favCars"
               :offer="offer"
-              :key="offer.id" />
+              :key="offer.id"/>
         </div>
       </section>
     </div>
@@ -43,7 +43,7 @@
 <script setup lang="ts">
 import {useFavorites} from '~/store/favorites';
 import {storeToRefs} from 'pinia';
-import MiniCardOffer from '~/components/MiniCard/Offer.vue';
+import CatalogItem from '~/components/Catalog/Item/index.vue';
 import {Offer} from '~/types/graphql';
 
 const loading = ref(false);
@@ -55,11 +55,11 @@ const loading = ref(false);
 //   return isMobile ? 'catalog-item-large-mobile' : 'catalog-item-small-desktop';
 // });
 const favCars = ref<Offer[]>([]);
-if(process.client) {
+if (process.client) {
   const favoritesStore = useFavorites();
   await favoritesStore.favoriteCars;
   const {favoriteCarArray} = storeToRefs(favoritesStore);
-  if(favoriteCarArray.value?.data?.offers?.data) {
+  if (favoriteCarArray.value?.data?.offers?.data) {
     favCars.value = favoriteCarArray.value?.data?.offers?.data;
   }
   favoritesStore.$subscribe((mutation, state) => {

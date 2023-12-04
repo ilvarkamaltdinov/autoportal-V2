@@ -10,8 +10,8 @@
   position: relative;
 }
 
-.button--favorite-active {
-  fill: $colorPrimary;
+.button--favorite-active svg {
+  color: $colorPrimary;
 }
 
 .button--credit {

@@ -1,6 +1,6 @@
 <template>
   <div class="catalog__list grid grid--catalog">
-    <MiniCardOffer :choose="true" :offer="offer" v-for="offer in offers" :key="offer.id"/>
+    <CatalogItem v-for="i in 10" :key="i"/>
     <VueEternalLoading v-if="current_page <= last_page" :load="load">
       <template #loading>
         <div class="my-loading">
@@ -32,8 +32,8 @@
   <!--              </client-only>-->
 </template>
 <script setup lang="ts">
-import MiniCardOffer from '~/components/MiniCard/Offer.vue';
-import {offers as offersGql} from '~/apollo/queries/offer/offers';
+import CatalogItem from '~/components/Catalog/Item/index.vue';
+import {offersGql} from '~/apollo/queries/offer/offers';
 
 import {VueEternalLoading, LoadAction} from '@ts-pro/vue-eternal-loading';
 import {useModals} from '~/store/modals';

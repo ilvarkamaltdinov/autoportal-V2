@@ -1,6 +1,6 @@
 import {OfferPagination} from '~/apollo/fragments/offer/offerPagination';
 
-export const offers = gql`
+export const offersGql = gql`
     ${OfferPagination}
     query offers(
         $site_id: Int,
@@ -26,8 +26,7 @@ export const offers = gql`
         $price_from: Int,
         $price_to: Int,
         $set: String,
-        $url: String,
-        $dateFormat: String
+        $url: String
     ) {
         offers(
             page: $page,
@@ -52,7 +51,7 @@ export const offers = gql`
             price_to: $price_to,
             category: $category,
             generation_slug: $generation_slug
-            set: $set,
+            set: [$set],
             url:$url
         ) {
             ... OfferPagination
