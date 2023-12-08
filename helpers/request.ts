@@ -44,3 +44,6 @@ export const requestBanks = async () => {
 export const requestCatalogOffers = async (variables: OffersCatalogInputType) => {
   return await request<OfferCatalogData, OffersCatalogInputType>(offersGql, variables);
 };
+
+
+// export const requestDealers = async () => (await request<{ dealers: Dealer[] }, DealersQueryVariables>(dealersQuery));

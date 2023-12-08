@@ -1,7 +1,7 @@
 import {defineStore} from 'pinia';
 import {request} from '~/helpers/request';
 import {Bank, BanksQueryVariables} from '~/types/graphql';
-import {banks as banksQuery} from '~/apollo/queries/bank/banks';
+import {banksGql as banksQuery} from '~/apollo/queries/bank/banks';
 
 type BanksState = {
     banks: Bank[];

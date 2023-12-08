@@ -31,24 +31,23 @@
 <script setup lang="ts">
 import CatalogItem from '~/components/Catalog/Item/index.vue';
 
-// import {requestCatalogOffers} from '~/helpers/request';
-// import {OfferCatalog, OffersCatalogInputType} from '~/app/types/offers';
+import {requestCatalogOffers} from '~/helpers/request';
+import {OfferCatalog, OffersCatalogInputType} from '~/app/types/offers';
 
 const route = useRoute();
-// const offersData = ref<OfferCatalog[]>();
-// let variables = computed<OffersCatalogInputType>(() => {
-//   return {
-//     page: 0,
-//     limit: 10,
-//     dateFormat: 'j F Y года.'
-//   };
-// });
+const offers = ref<OfferCatalog[]>();
+let variables = computed<OffersCatalogInputType>(() => {
+  return {
+    page: 0,
+    limit: 10,
+    dateFormat: 'j F Y года.'
+  };
+});
 
 async function getOffers() {
-  // const {data} = await requestCatalogOffers(variables.value);
-  // console.log(data.value);
-  // offerPagination.value = data.value;
-  // offers.value = data.value.data
+  const {data} = await requestCatalogOffers(variables.value);
+  console.log(data.value);
+  // offers.value = data.value.data;
 }
 
 
