@@ -12,12 +12,12 @@
     <template v-for="(article) in (isIndex ? blogCategories![0] : blogCategories) as ArticleCategory[]" :key="article.id">
       <h2 class="heading heading--h2" v-if="!isIndex">{{ article.page_title }}</h2>
       <ul class="blog__list">
-        <BlogArticle v-for="(item, index) in article.articles" :key="item!.id" :to="item!.url!" :class="getArticleClass(index)">
+        <BlogArticle v-for="(item, index) in article.articles" :key="item.id" :to="item.url" :class="getArticleClass(index)">
           <template #title>
-            {{ item!.page_title }}
+            {{ item.page_title }}
           </template>
           <template #image>
-            <NuxtImg class="blog__img lazyload" :src="item!.image_preview!.small_webp!"/>
+            <NuxtImg class="blog__img lazyload" :src="item.image_preview.small_webp"/>
           </template>
         </BlogArticle>
       </ul>
@@ -28,9 +28,8 @@
 </template>
 <script setup lang="ts">
 import BlogArticle from '~/components/Blog/Article.vue';
-import {BlogCategoriesInputType} from '~/app/types/blog';
 import {requestBlogCategories} from '~/helpers/request';
-import {ArticleCategory} from '~/types/graphql';
+import {ArticleCategory, ArticlesPaginateQueryVariables} from '~/types/graphql';
 
 const route = useRoute();
 defineProps<{
@@ -38,7 +37,7 @@ defineProps<{
 }>();
 
 const blogCategories = ref<ArticleCategory[]>();
-let variables = computed<BlogCategoriesInputType>(() => {
+let variables = computed<ArticlesPaginateQueryVariables>(() => {
   return {
     limit: 7
   };
