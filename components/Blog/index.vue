@@ -12,7 +12,7 @@
     <template v-for="(article) in (isIndex ? blogCategories[0] : blogCategories)" :key="article.id">
       <h2 class="heading heading--h2" v-if="!isIndex">{{ article.page_title }}</h2>
       <ul class="blog__list">
-        <BlogArticle v-for="item in article.articles" :key="item.id" :to="item.url">
+        <BlogArticle v-for="(item, index) in article.articles" :key="item.id" :to="item.url" :class="getArticleClass(index)">
           <template #title>
             {{ item.page_title }}
           </template>
@@ -23,7 +23,7 @@
             {{ item.views }}
           </template>
           <template #image>
-            <NuxtImg class="blog__img lazyload" :src="item.image_preview.small_webp" />
+            <NuxtImg class="blog__img lazyload" :src="item.image_preview.small_webp"/>
           </template>
         </BlogArticle>
       </ul>
@@ -48,10 +48,12 @@ let variables = computed<BlogCategoriesInputType>(() => {
     limit: 7
   };
 });
-let articleClasses = {
-  '0': 'blog__item--vertical',
-  '3': 'blog__item--horizontal',
-};
+function getArticleClass (index: number) {
+  return {
+    '0': 'blog__item--vertical',
+    '3': 'blog__item--horizontal',
+  }[index];
+}
 
 async function getBlogCategories() {
   const {data} = await requestBlogCategories(variables.value);
