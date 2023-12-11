@@ -9,34 +9,35 @@
     </div>
   </div>
   <div class="blog__wrap grid__col-12">
-    <template v-for="(article) in (isIndex ? blogCategories[0] : blogCategories)" :key="article.id">
+    <template v-for="(article) in (isIndex ? blogCategories![0] : blogCategories) as ArticleCategory[]" :key="article.id">
       <h2 class="heading heading--h2" v-if="!isIndex">{{ article.page_title }}</h2>
       <ul class="blog__list">
-        <BlogArticle v-for="(item, index) in article.articles" :key="item.id" :to="item.url" :class="getArticleClass(index)">
+        <BlogArticle v-for="(item, index) in article.articles" :key="item!.id" :to="item!.url!" :class="getArticleClass(index)">
           <template #title>
-            {{ item.page_title }}
+            {{ item!.page_title }}
           </template>
           <template #image>
-            <NuxtImg class="blog__img lazyload" :src="item.image_preview.small_webp"/>
+            <NuxtImg class="blog__img lazyload" :src="item!.image_preview!.small_webp!"/>
           </template>
         </BlogArticle>
       </ul>
-      <nuxt-link :to="article.url" class="button button--link button--more">Показать больше</nuxt-link>
+      <nuxt-link :to="article.url!" class="button button--link button--more">Показать больше</nuxt-link>
     </template>
   </div>
 
 </template>
 <script setup lang="ts">
 import BlogArticle from '~/components/Blog/Article.vue';
-import {BlogCategoriesInputType, BlogCategoryType} from '~/app/types/blog';
+import {BlogCategoriesInputType} from '~/app/types/blog';
 import {requestBlogCategories} from '~/helpers/request';
+import {ArticleCategory} from '~/types/graphql';
 
 const route = useRoute();
 defineProps<{
   isIndex: boolean;
 }>();
 
-const blogCategories = ref<BlogCategoryType[]>();
+const blogCategories = ref<ArticleCategory[]>();
 let variables = computed<BlogCategoriesInputType>(() => {
   return {
     limit: 7
@@ -51,7 +52,6 @@ function getArticleClass (index: number) {
 
 async function getBlogCategories() {
   const {data} = await requestBlogCategories(variables.value);
-  console.log(data);
   blogCategories.value = data.value?.articleCategory;
 }
 
