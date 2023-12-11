@@ -6,6 +6,8 @@ import {banksGql} from '~/apollo/queries/bank/banks';
 import {BanksData} from '~/app/types/banks';
 import {OfferCatalogData, OffersCatalogInputType} from '~/app/types/offers';
 import {offersGql} from '~/apollo/queries/offer/offers';
+import {Dealer, DealersQueryVariables} from '~/types/graphql';
+import {dealers} from '~/apollo/queries/dealer/dealers';
 
 export const request = async <Response, Request = undefined>(query: DocumentNode, variables?: Omit<Request, 'site_id'>) => {
   const {siteId} = useSiteDomain();
@@ -46,4 +48,4 @@ export const requestCatalogOffers = async (variables: OffersCatalogInputType) =>
 };
 
 
-// export const requestDealers = async () => (await request<{ dealers: Dealer[] }, DealersQueryVariables>(dealersQuery));
+export const requestDealers = async () => (await request<{ dealers: Dealer[] }, DealersQueryVariables>(dealers));
