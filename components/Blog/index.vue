@@ -8,16 +8,27 @@
       <span class="heading-group__label">Лучшее из мира автомобилей</span>
     </div>
   </div>
-  <div class="blog__wrap grid__col-12" >
-    <h2 class="heading heading--h2" v-if="!isIndex">{{ title }}</h2>
-    <ul class="blog__list">
-      <BlogArticle v-for="(article, key) in (isIndex ? blogCategories[0] : blogCategories).articles"
-                   :class="articleClasses[key]"
-                   :article="article"
-                   :is-index="isIndex"
-                   :key="article.id"/>
-    </ul>
-    <nuxt-link :to="blogCategories[0].url" class="button button--link button--more">Показать больше</nuxt-link>
+  <div class="blog__wrap grid__col-12">
+    <template v-for="(article) in (isIndex ? blogCategories[0] : blogCategories)" :key="article.id">
+      <h2 class="heading heading--h2" v-if="!isIndex">{{ article.page_title }}</h2>
+      <ul class="blog__list">
+        <BlogArticle v-for="item in article.articles" :key="item.id" :to="item.url">
+          <template #title>
+            {{ item.page_title }}
+          </template>
+          <template #date>
+            {{ item.createdAt }}
+          </template>
+          <template #views>
+            {{ item.views }}
+          </template>
+          <template #image>
+            <NuxtImg class="blog__img lazyload" :src="item.image_preview.small_webp" />
+          </template>
+        </BlogArticle>
+      </ul>
+      <nuxt-link :to="blogCategories[0].url" class="button button--link button--more">Показать больше</nuxt-link>
+    </template>
   </div>
 
 </template>
@@ -44,6 +55,7 @@ let articleClasses = {
 
 async function getBlogCategories() {
   const {data} = await requestBlogCategories(variables.value);
+  console.log(data);
   blogCategories.value = data.value?.articleCategory;
 }
 
