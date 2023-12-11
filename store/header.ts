@@ -2,28 +2,6 @@ import {defineStore} from 'pinia';
 
 export const useHeader = defineStore('header', {
   state: () => ({
-    menuList: [
-      {
-        title: 'Рассрочка',
-        link: '/',
-      },
-      {
-        title: 'Автокредит',
-        link: '/',
-      },
-      {
-        title: 'Trade-In',
-        link: '/',
-      },
-      {
-        title: 'В наличии',
-        link: '/',
-      },
-      {
-        title: 'О портале',
-        link: '/about',
-      }
-    ],
     menu: <boolean>false,
     likes: <number>12,
     filter: <boolean>false,

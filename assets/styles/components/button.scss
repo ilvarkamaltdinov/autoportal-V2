@@ -108,7 +108,6 @@
 .button--option {
   color: $colorLink;
   background-color: $colorBgButton;
-  width: 100%;
   margin-top: 16px;
   height: 48px;
   width: 48px;
@@ -219,6 +218,7 @@
 
 .button--action .button__icon {
   width: 19px !important;
+  min-width: 19px !important;
   color: $colorText;
 }
 
