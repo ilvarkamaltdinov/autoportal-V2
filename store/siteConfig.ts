@@ -1,7 +1,7 @@
 import {defineStore} from 'pinia';
 import {request} from '~/helpers/request';
-import {MarkType} from '~/app/types/marks';
-import {SiteConfigRequest, SiteConfigType} from '~/app/types/siteConfig';
+import {Mark} from '~/app/types/marks';
+import {SiteConfigType} from '~/app/types/config';
 import {siteConfigGql} from '~/apollo/queries/siteConfig';
 
 interface SettingSite {
@@ -28,11 +28,12 @@ interface SettingSite {
     credit_max_percent: string
     counter_commercial_id: string
 }
+
 // todo this is kinda unused, remove
 export const useSiteConfig = defineStore('siteConfig', {
   state: () => ({
     settings: <SettingSite>{},
-    marks: <MarkType[]>[],
+    marks: <Mark[]>[],
     isNight: <boolean>false,
   }),
 
@@ -42,7 +43,7 @@ export const useSiteConfig = defineStore('siteConfig', {
     },
     async getSiteConfig() {
       try {
-        const {data} = await request<SiteConfigType, SiteConfigRequest>(siteConfigGql, {category: 'used'});
+        const {data} = await request<SiteConfigType>(siteConfigGql, {category: 'used'});
         this.marks = data.value?.markFolderGeneration;
       } catch (error) {
         console.log(error);

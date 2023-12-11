@@ -1,5 +1,7 @@
 <template>
-  <article class="catalog__item catalog__item--vertical ">
+  <article class="catalog__item catalog__item--vertical "
+           :class="{'grid__col-4':grid}"
+  >
     <CatalogItemImage/>
     <CatalogItemInfo/>
     <CatalogItemTech/>
@@ -11,4 +13,8 @@ import CatalogItemImage from '~/components/Catalog/Item/Image.vue';
 import CatalogItemInfo from '~/components/Catalog/Item/Info.vue';
 import CatalogItemTech from '~/components/Catalog/Item/Tech.vue';
 import CatalogItemButtons from '~/components/Catalog/Item/Buttons.vue';
+
+defineProps<{
+  grid?: boolean
+}>();
 </script>

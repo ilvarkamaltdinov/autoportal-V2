@@ -116,11 +116,36 @@ import {useFavorites} from '~/store/favorites';
 import {storeToRefs} from 'pinia';
 import MenuMarks from '~/components/Modals/MenuMarks.vue';
 
+
+const menuList = computed(() => {
+  return [
+    {
+      title: 'Рассрочка',
+      link: '/',
+    },
+    {
+      title: 'Автокредит',
+      link: '/',
+    },
+    {
+      title: 'Trade-In',
+      link: '/',
+    },
+    {
+      title: 'В наличии',
+      link: '/used',
+    },
+    {
+      title: 'О портале',
+      link: '/about',
+    }
+  ];
+});
+
 const headerStore = useHeader();
 const {marks: isMarksShowing} = storeToRefs(headerStore);
 const menu = computed(() => useHeader().menu);
 const likes = ref(0);
-const menuList = useHeader().menuList;
 
 const marks = useSiteConfig().marks;
 
