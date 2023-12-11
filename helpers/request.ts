@@ -1,6 +1,5 @@
 import {DocumentNode} from 'graphql/language';
 import {useSiteDomain} from '#imports';
-import {BlogCategoriesInputType, BlogCategoriesType} from '~/app/types/blog';
 import {blogCategoryGql} from '~/apollo/queries/blog/articleCategory';
 import {banksGql} from '~/apollo/queries/bank/banks';
 import {BanksData} from '~/app/types/banks';
