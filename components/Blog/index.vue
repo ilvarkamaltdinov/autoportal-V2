@@ -16,18 +16,12 @@
           <template #title>
             {{ item.page_title }}
           </template>
-          <template #date>
-            {{ item.createdAt }}
-          </template>
-          <template #views>
-            {{ item.views }}
-          </template>
           <template #image>
             <NuxtImg class="blog__img lazyload" :src="item.image_preview.small_webp"/>
           </template>
         </BlogArticle>
       </ul>
-      <nuxt-link :to="blogCategories[0].url" class="button button--link button--more">Показать больше</nuxt-link>
+      <nuxt-link :to="article.url" class="button button--link button--more">Показать больше</nuxt-link>
     </template>
   </div>
 
