@@ -1,11 +1,12 @@
 import {DocumentNode} from 'graphql/language';
 import {useSiteDomain} from '#imports';
-import {BlogCategoriesInputType, BlogCategoriesType} from '~/app/types/blog';
 import {blogCategoryGql} from '~/apollo/queries/blog/articleCategory';
 import {banksGql} from '~/apollo/queries/bank/banks';
 import {BanksData} from '~/app/types/banks';
 import {OfferCatalogData, OffersCatalogInputType} from '~/app/types/offers';
 import {offersGql} from '~/apollo/queries/offer/offers';
+import {ArticleCategory, ArticlesPaginateQueryVariables, Dealer, DealersQueryVariables} from '~/types/graphql';
+import {dealers} from '~/apollo/queries/dealer/dealers';
 
 export const request = async <Response, Request = undefined>(query: DocumentNode, variables?: Omit<Request, 'site_id'>) => {
   const {siteId} = useSiteDomain();
@@ -34,8 +35,8 @@ export const postRequest = async <Response, Request = undefined>(query: Document
   return useMutation<Response>(query, {variables: removeEmptyParams, clientId});
 };
 
-export const requestBlogCategories = async (variables: BlogCategoriesInputType) => {
-  return await request<BlogCategoriesType, BlogCategoriesInputType>(blogCategoryGql, variables);
+export const requestBlogCategories = async (variables: ArticlesPaginateQueryVariables) => {
+  return await request<{articleCategory: ArticleCategory[]}, ArticlesPaginateQueryVariables>(blogCategoryGql, variables);
 };
 export const requestBanks = async () => {
   return await request<BanksData>(banksGql);
@@ -46,4 +47,4 @@ export const requestCatalogOffers = async (variables: OffersCatalogInputType) =>
 };
 
 
-// export const requestDealers = async () => (await request<{ dealers: Dealer[] }, DealersQueryVariables>(dealersQuery));
+export const requestDealers = async () => (await request<{ dealers: Dealer[] }, DealersQueryVariables>(dealers));

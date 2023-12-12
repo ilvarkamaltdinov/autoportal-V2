@@ -8,39 +8,46 @@
       <span class="heading-group__label">Лучшее из мира автомобилей</span>
     </div>
   </div>
-  <div class="blog__wrap grid__col-12" >
-    <h2 class="heading heading--h2" v-if="!isIndex">{{ title }}</h2>
-    <ul class="blog__list">
-      <BlogArticle v-for="(article, key) in (isIndex ? blogCategories[0] : blogCategories).articles"
-                   :class="articleClasses[key]"
-                   :article="article"
-                   :is-index="isIndex"
-                   :key="article.id"/>
-    </ul>
-    <nuxt-link :to="blogCategories[0].url" class="button button--link button--more">Показать больше</nuxt-link>
+  <div class="blog__wrap grid__col-12">
+    <template v-for="(article) in (isIndex ? blogCategories![0] : blogCategories) as ArticleCategory[]" :key="article.id">
+      <h2 class="heading heading--h2" v-if="!isIndex">{{ article.page_title }}</h2>
+      <ul class="blog__list">
+        <BlogArticle v-for="(item, index) in article.articles" :key="item.id" :to="item.url" :class="getArticleClass(index)">
+          <template #title>
+            {{ item.page_title }}
+          </template>
+          <template #image>
+            <NuxtImg class="blog__img lazyload" :src="item.image_preview.small_webp"/>
+          </template>
+        </BlogArticle>
+      </ul>
+      <nuxt-link :to="article.url!" class="button button--link button--more">Показать больше</nuxt-link>
+    </template>
   </div>
 
 </template>
 <script setup lang="ts">
 import BlogArticle from '~/components/Blog/Article.vue';
-import {BlogCategoriesInputType, BlogCategoryType} from '~/app/types/blog';
 import {requestBlogCategories} from '~/helpers/request';
+import {ArticleCategory, ArticlesPaginateQueryVariables} from '~/types/graphql';
 
 const route = useRoute();
 defineProps<{
   isIndex: boolean;
 }>();
 
-const blogCategories = ref<BlogCategoryType[]>();
-let variables = computed<BlogCategoriesInputType>(() => {
+const blogCategories = ref<ArticleCategory[]>();
+let variables = computed<ArticlesPaginateQueryVariables>(() => {
   return {
     limit: 7
   };
 });
-let articleClasses = {
-  '0': 'blog__item--vertical',
-  '3': 'blog__item--horizontal',
-};
+function getArticleClass (index: number) {
+  return {
+    '0': 'blog__item--vertical',
+    '3': 'blog__item--horizontal',
+  }[index];
+}
 
 async function getBlogCategories() {
   const {data} = await requestBlogCategories(variables.value);
