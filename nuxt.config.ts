@@ -46,6 +46,7 @@ export default defineNuxtConfig({
     '/contact': { prerender: true },
     '/knowledge': { prerender: true },
     '/reviews-dealers': { prerender: true },
+    '/news': { prerender: true },
   },
   css: [
     '@/assets/styles/index.scss',
