@@ -1,92 +1,113 @@
 <template>
-	<main class="page-main">
-		<div class="grid">
-			<crumbs :crumbs="crumbs" />
-		</div>
-		<div class="grid grid--container">
-			<blog-category-page title="Рейтинги"/>
-		</div>
-	</main>
+  <main class="page-main">
+    <div class="grid grid--container">
+      <section class="page-main__blog blog grid">
+        <div class="heading-group heading-group--h1">
+          <div class="heading-group__wrap">
+            <h1 class="heading heading--h1">
+              {{ title }}
+              <span class="heading__promo"></span>
+            </h1>
+            <span v-if="!index" class="heading-group__label">Лучшее из мира автомобилей</span>
+          </div>
+        </div>
+        <div v-if="index" class="blog__wrap grid__col-12">
+          <ul class="blog__list">
+            <li class="blog__item"
+                v-for="item in list"
+                :key="item.id">
+              <nuxt-link :to="item.url"
+                         class="blog__link">
+                <div class="blog__item-info">
+                  <div class="blog__date">{{ item.createdAt }}</div>
+                  <div class="blog__views">
+                    {{ item.views }}
+                    <!--                    {{-->
+                    <!--                      // declension({-->
+                    <!--                      //   count: Number(item.views),-->
+                    <!--                      //   one: "просмотр",-->
+                    <!--                      //   few: "просмотра",-->
+                    <!--                      //   many: "просмотров",-->
+                    <!--                      // })-->
+                    <!--                    }}-->
+                  </div>
+                </div>
+                <div class="blog__item-text">
+                  <h3 class="blog__item-title">{{ item.page_title }}</h3>
+                </div>
+                <picture-component v-if="item.image_preview"
+                                   classes="blog__img lazyload"
+                                   :small="item.image_preview.thumb"
+                                   :small-webp="item.image_preview.thumb_webp"
+                                   :big="item.image_preview.small"
+                                   :big-webp="item.image_preview.small_webp"/>
+              </nuxt-link>
+            </li>
+          </ul>
+        </div>
+        <div v-else class="blog__wrap grid__col-12">
+          <ul class="blog__list">
+            <li class="blog__item"
+                v-for="item in list"
+                :key="item.id">
+              <nuxt-link :to="item.url"
+                         class="blog__link">
+                <div class="blog__item-info">
+                  <div class="blog__date">{{ item.createdAt }}</div>
+                  <div class="blog__views">
+                    {{ item.views }}
+                    <!--                    {{-->
+                    <!--                      // declension({-->
+                    <!--                      //   count: Number(item.views),-->
+                    <!--                      //   one: "просмотр",-->
+                    <!--                      //   few: "просмотра",-->
+                    <!--                      //   many: "просмотров",-->
+                    <!--                      // })-->
+                    <!--                    }}-->
+                  </div>
+                </div>
+                <div class="blog__item-text">
+                  <h3 class="blog__item-title">{{ item.page_title }}</h3>
+                </div>
+                <NuxtImg class="blog__img" :src="item.image_preview?.small"/>
+              </nuxt-link>
+            </li>
+          </ul>
+          <InfiniteLoading @infinite="getArticles" />
+        </div>
+      </section>
+    </div>
+  </main>
 </template>
 
-<script>
-import jsonld from "@/mixins/jsonld";
+<script setup lang="ts">
+withDefaults(defineProps<{
+  isIndex: boolean
+}>(), {
+  isIndex: false,
+});
 
-export default {
-	mixins: [jsonld],
-	data() {
-		return {
-			crumbs: [
-				{
-					title: 'Главная',
-					link: '/',
-					active: false
-				},
-				{
-					title: 'Блог',
-					link: '/blog',
-					active: false
-				},
-				{
-					title: 'Рейтинги',
-					link: '/blog/ratings',
-					active: true
-				}
-			]
-		}
-	},
-	mounted() {
-		setTimeout(function () {window.scrollTo(0, -100);}, 1);
-	},
-	validate(ctx) {
-		return ctx.store.getters.showBlog
-	},
-	head() {
-		let title = 'Рейтинги — CARRO'
-		let description_title = 'Рейтинги — CARRO'
-		let description_text = ' Портал проверенных автомобилей с пробегом CARRO.RU,  весь спектр услуг, Трейд ИН, выкуп, автокредитование. Выгодные цены, еженедельные скидки и подарки, спешите!'
-		let description = description_title ? (description_title + '.' + description_text) : description_text
-		return {
-			title: title,
-			link: [
-				{
-					rel: 'canonical',
-					href: 'https://' + this.domain + this.$route.path
-				}
-			],
-			meta: [
-				{
-					hid: 'desctiption',
-					name: 'description',
-					content: description
-				},
-				{
-					hid: 'og:type',
-					property: 'og:type',
-					content: 'website',
-				},
-				{
-					hid: 'og:url',
-					property: 'og:url',
-					content: 'https://' + this.domain + this.$route.path,
-				},
-				{
-					hid: 'og:title',
-					property: 'og:title',
-					content: title
-				},
-				{
-					hid: 'og:description',
-					property: 'og:description',
-					content: description
-				},
-				{
-					hid: 'og:image',
-					property: 'og:image',
-					content: 'https://' + this.domain + '/carro.png'
-				},
-			]
-		}
-	}
+// по сути дублирование /news TODO REFACTOR
+import {articlesPaginate} from '~/apollo/queries/blog/articlesPaginate';
+import {request} from '~/helpers/request';
+import {Article, ArticlesPaginateQueryVariables} from '~/types/graphql';
+import {useRoute} from '#imports';
+
+const page = ref(1);
+const limit = ref(20);
+const list = ref<Article[]>([]);
+
+const {path} = useRoute();
+
+async function getArticles() {
+  const response = await request<{ articlesPaginate: { data: Article[] } }, ArticlesPaginateQueryVariables>(articlesPaginate, {
+    category_url: path,
+    limit: limit.value,
+    page: page.value,
+  });
+  if (response.data.value.articlesPaginate.data.length) {
+    page.value += 1;
+    list.value.push(...response.data.value.articlesPaginate.data);
+  }
 }
 </script>

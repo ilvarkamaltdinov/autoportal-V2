@@ -86,6 +86,12 @@ import {request} from '~/helpers/request';
 import {Article, ArticlesPaginateQueryVariables} from '~/types/graphql';
 import {useRoute} from '#imports';
 
+withDefaults(defineProps<{
+  isIndex: boolean
+}>(), {
+  isIndex: false,
+});
+
 const page = ref(1);
 const limit = ref(20);
 const list = ref<Article[]>([]);
@@ -103,13 +109,4 @@ async function getArticles() {
     list.value.push(...response.data.value.articlesPaginate.data);
   }
 }
-
-await getArticles();
-
-withDefaults(defineProps<{
-  isIndex: boolean
-}>(), {
-  isIndex: false,
-});
-
 </script>
