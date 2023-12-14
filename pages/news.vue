@@ -73,9 +73,7 @@
               </nuxt-link>
             </li>
           </ul>
-          <InfiniteLoading @infinite="getArticles"
-                           :throttle-limit="2500">
-          </InfiniteLoading>
+          <InfiniteLoading @infinite="getArticles" />
         </div>
       </section>
     </div>
