@@ -1,11 +1,11 @@
 <template>
   <main class="page-main">
     <div class="grid ">
-      <!--      <crumbs :crumbs="crumbs"/>-->
+      <Crumbs/>
     </div>
     <div class="grid grid--container">
       <section class="page-main__catalog catalog grid catalog--used">
-        <Benefits type="credit"/>
+        <Benefits type="credit" class="benefits--catalog"/>
         <div class="heading-group heading-group--catalog heading-group--h1 grid__col-12">
           <div class="heading-group__wrap">
             <h1 class="heading heading--h1">pageTitle</h1>
@@ -33,4 +33,5 @@ import ListMarks from '~/components/List/Marks.vue';
 import Benefits from '~/components/Benefits/index.vue';
 import FiltersFilter from '~/components/Filters/Filter.vue';
 import FiltersSort from '~/components/Filters/Sort.vue';
+import Crumbs from '~/components/Crumbs/index.vue';
 </script>
