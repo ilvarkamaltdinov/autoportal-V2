@@ -22,14 +22,14 @@
                   <div class="blog__date">{{ item.createdAt }}</div>
                   <div class="blog__views">
                     {{ item.views }}
-<!--                    {{-->
-<!--                      // declension({-->
-<!--                      //   count: Number(item.views),-->
-<!--                      //   one: "просмотр",-->
-<!--                      //   few: "просмотра",-->
-<!--                      //   many: "просмотров",-->
-<!--                      // })-->
-<!--                    }}-->
+                    <!--                    {{-->
+                    <!--                      // declension({-->
+                    <!--                      //   count: Number(item.views),-->
+                    <!--                      //   one: "просмотр",-->
+                    <!--                      //   few: "просмотра",-->
+                    <!--                      //   many: "просмотров",-->
+                    <!--                      // })-->
+                    <!--                    }}-->
                   </div>
                 </div>
                 <div class="blog__item-text">
@@ -56,31 +56,26 @@
                   <div class="blog__date">{{ item.createdAt }}</div>
                   <div class="blog__views">
                     {{ item.views }}
-<!--                    {{-->
-<!--                      // declension({-->
-<!--                      //   count: Number(item.views),-->
-<!--                      //   one: "просмотр",-->
-<!--                      //   few: "просмотра",-->
-<!--                      //   many: "просмотров",-->
-<!--                      // })-->
-<!--                    }}-->
+                    <!--                    {{-->
+                    <!--                      // declension({-->
+                    <!--                      //   count: Number(item.views),-->
+                    <!--                      //   one: "просмотр",-->
+                    <!--                      //   few: "просмотра",-->
+                    <!--                      //   many: "просмотров",-->
+                    <!--                      // })-->
+                    <!--                    }}-->
                   </div>
                 </div>
                 <div class="blog__item-text">
                   <h3 class="blog__item-title">{{ item.page_title }}</h3>
                 </div>
-                <NuxtImg class="blog__img" :src="item.image_preview?.small" />
+                <NuxtImg class="blog__img" :src="item.image_preview?.small"/>
               </nuxt-link>
             </li>
           </ul>
-          <!--          <client-only>-->
-          <!--            <infinite-loading @infinite="getArticles"-->
-          <!--                              :throttle-limit="2500">-->
-          <!--              &lt;!&ndash;<div slot="spinner"></div>&ndash;&gt;-->
-          <!--              <div slot="no-more"></div>-->
-          <!--              <div slot="no-results"></div>-->
-          <!--            </infinite-loading>-->
-          <!--          </client-only>-->
+          <InfiniteLoading @infinite="getArticles"
+                           :throttle-limit="2500">
+          </InfiniteLoading>
         </div>
       </section>
     </div>
@@ -100,20 +95,15 @@ const list = ref<Article[]>([]);
 const {path} = useRoute();
 
 async function getArticles() {
-  const response = await request<{ articlesPaginate: Article[] }, ArticlesPaginateQueryVariables>(articlesPaginate, {
+  const response = await request<{ articlesPaginate: { data: Article[] } }, ArticlesPaginateQueryVariables>(articlesPaginate, {
     category_url: path,
     limit: limit.value,
     page: page.value,
   });
-  console.log(response.data.value.articlesPaginate.data);
-  list.value.push(...response.data.value.articlesPaginate.data);
-  // if (response.data.articlesPaginate.data.length) {
-  //   this.page += 1;
-  //   this.list.push(...response.data.articlesPaginate.data);
-  //   $state.loaded();
-  // } else {
-  //   $state.complete();
-  // }
+  if (response.data.value.articlesPaginate.data.length) {
+    page.value += 1;
+    list.value.push(...response.data.value.articlesPaginate.data);
+  }
 }
 
 await getArticles();
