@@ -54,7 +54,7 @@
   </section>
 </template>
 <script setup lang="ts">
-const {isMobile, isDesktop} = useDevice();
+const { isMobile, isDesktop } = useDevice();
 
 type NavListType = {
   title: string
@@ -129,7 +129,7 @@ const navList = computed<NavListType[]>(() => {
       links: [
         {
           name: 'Контакты',
-          link: '/',
+          link: '/contacts',
           show: true
         },
         {
