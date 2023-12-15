@@ -2,7 +2,7 @@
   <button @click.prevent="$emit('click')" class="button button--action button--autoteka button--text"
           type="button">
     <img src="/img/autoteka.svg"
-         alt="Эмблема Автотеки — carro.ru"
+         :alt="`мблема Автотеки — ${$settings.dealer_anchor}`"
          height="16"
          width="16"
          class="button__icon">

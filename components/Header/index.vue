@@ -18,14 +18,14 @@
             <div class="page-header__logo-img-wrap">
               <img
                   src="/img/logo-part-1.svg"
-                  alt="Портал проверенных автомобилей с пробегом — carro.ru"
+                  :alt="`Портал проверенных автомобилей с пробегом — ${$settings.dealer_anchor}`"
                   height="24"
                   width="24"
                   class="page-header__logo-circle"
               />
               <img
                   src="/img/logo-part-2.svg"
-                  alt="Портал проверенных автомобилей с пробегом — carro.ru"
+                  :alt="`Портал проверенных автомобилей с пробегом — ${$settings.dealer_anchor}}`"
                   height="13"
                   width="79"
                   class="page-header__logo-letters"
@@ -109,11 +109,11 @@
   </header>
 </template>
 <script setup lang="ts">
-import {useHeader} from '~/store/header';
-import {useSiteConfig} from '~/store/siteConfig';
-import {getPopularMarks} from '~/helpers/filterMarks';
-import {useFavorites} from '~/store/favorites';
-import {storeToRefs} from 'pinia';
+import { useHeader } from '~/store/header';
+import { useSiteConfig } from '~/store/siteConfig';
+import { getPopularMarks } from '~/helpers/filterMarks';
+import { useFavorites } from '~/store/favorites';
+import { storeToRefs } from 'pinia';
 import MenuMarks from '~/components/Modals/MenuMarks.vue';
 
 
@@ -143,7 +143,7 @@ const menuList = computed(() => {
 });
 
 const headerStore = useHeader();
-const {marks: isMarksShowing} = storeToRefs(headerStore);
+const { marks: isMarksShowing } = storeToRefs(headerStore);
 const menu = computed(() => useHeader().menu);
 const likes = ref(0);
 
@@ -151,9 +151,9 @@ const marks = useSiteConfig().marks;
 
 if (process.client) {
   const favoritesStore = useFavorites();
-  const {favorites} = storeToRefs(favoritesStore);
+  const { favorites } = storeToRefs(favoritesStore);
   watch(favorites, (value) => {
     likes.value = value.length;
-  }, {immediate: true});
+  }, { immediate: true });
 }
 </script>

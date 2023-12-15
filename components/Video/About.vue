@@ -1,6 +1,6 @@
 <template>
   <section class="page-main__video video grid__col-12">
-    <h2 class="visually-hidden">Видео о портале carro.ru</h2>
+    <h2 class="visually-hidden">Видео о портале {{ $settings.dealer_anchor }}</h2>
     <div class="video__block"
          id="about-video">
       <button v-if="!isVideo" class="video__play"
@@ -37,7 +37,7 @@
                alt="" />
         </picture>
       </div>
-      <p class="video__text">Узнай, почему на carro.ru лучшие цены в России!</p>
+      <p class="video__text">Узнай, почему на {{ $settings.dealer_anchor }} лучшие цены в России!</p>
     </div>
   </section>
 </template>

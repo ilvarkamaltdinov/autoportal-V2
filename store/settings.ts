@@ -4,18 +4,20 @@ import { request } from '~/helpers/request';
 import { SettingsQuery } from '~/types/graphql';
 
 interface SettingSite {
-    counter_ym: string,
-    counter_vk: string,
-    contact_phone: string
-    contact_coordinates: string
-    contact_address: string
-    contact_schedule: string
-    legal_inn: string
-    legal_kpp: string
-    legal_name: string
-    legal_ogrn: string
-    legal_address: string
-    credit_percent: string
+  counter_ym: string,
+  counter_vk: string,
+  contact_phone: string
+  contact_coordinates: string
+  contact_address: string
+  contact_schedule: string
+  legal_inn: string
+  legal_kpp: string
+  legal_name: string
+  legal_ogrn: string
+  legal_address: string
+  credit_percent: string
+  dealer_title: string
+  dealer_anchor: string
 }
 
 export const useSettings = defineStore('settings', {
@@ -27,7 +29,7 @@ export const useSettings = defineStore('settings', {
       try {
         const { data } = await request<SettingsQuery>(settings, undefined);
         data.value.settings!.settings!.forEach((setting) => {
-          if(setting && 'key' in setting && setting.key !== null) {
+          if (setting && 'key' in setting && setting.key !== null) {
             //@ts-expect-error idk how to fix yet
             this.settings[setting!.key as keyof SettingSite] = setting!.value;
           }

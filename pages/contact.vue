@@ -11,7 +11,7 @@
               {{ title }}
               <span class="heading__promo"></span>
             </h1>
-            <span class="heading-group__label">Партнеры carro</span>
+            <span class="heading-group__label">Партнеры {{ $settings.dealer_title }}</span>
           </div>
         </div>
         <Card v-for="dealer in dealers" :key="dealer.id" :dealer="dealer">

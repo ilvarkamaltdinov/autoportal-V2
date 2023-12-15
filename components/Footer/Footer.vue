@@ -51,7 +51,7 @@
           </div>
 
           <div class="page-footer__credits">
-            <div class="page-footer__contacts-item">© 2016 - {{ new Date().getFullYear() }} CARRO.RU</div>
+            <div class="page-footer__contacts-item">© 2016 - {{ new Date().getFullYear() }} {{ $settings.dealer_anchor }}</div>
           </div>
         </div>
       </div>
@@ -136,7 +136,7 @@
           кредитной
           программы. Минимальный срок погашения от 61 дня, максимальный - 84 месяца. При этом любые дополнительные
           комиссии
-          автопорталом CARRO не взимаются.
+          автопорталом {{ $settings.dealer_title }} не взимаются.
         </p>
 
         <p class="page-footer__disclaimer-p">
@@ -182,8 +182,8 @@
 </template>
 
 <script setup lang="ts">
-import {useMarks} from '~/store/marks';
-import {storeToRefs} from 'pinia';
+import { useMarks } from '~/store/marks';
+import { storeToRefs } from 'pinia';
 
 const isRegionsOpen = ref(false);
 const regions = computed(() => [

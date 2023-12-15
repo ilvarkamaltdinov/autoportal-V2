@@ -85,8 +85,8 @@
 
 <script setup lang="ts">
 import PictureHomeSlide from '~/components/Picture/HomeSlide.vue';
-import {Swiper, SwiperSlide} from 'swiper/vue';
-import {Autoplay, Pagination, Navigation} from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -97,6 +97,8 @@ type SlideType = {
   link?: string
   telegram?: boolean
 }
+
+const { $settings } = useNuxtApp();
 const slides = computed<SlideType[]>(() => {
   return [
     {
@@ -126,13 +128,13 @@ const slides = computed<SlideType[]>(() => {
     {
       id: 2,
       heading: 'Автокредит ВТБ',
-      content: 'Лучшие условия для клиентов carro.ru',
+      content: `Лучшие условия для клиентов ${$settings!.dealer_anchor}`,
       link: '/',
     },
     {
       id: 3,
       heading: 'Рассрочка от Сбера и Сетелем',
-      content: 'Лучшие условия для клиентов carro.ru',
+      content: `Лучшие условия для клиентов ${$settings!.dealer_anchor}`,
       link: '/',
     },
     {
