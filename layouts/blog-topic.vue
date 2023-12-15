@@ -13,36 +13,7 @@
               <span v-if="!isIndex" class="heading-group__label">Лучшее из мира автомобилей</span>
             </div>
           </div>
-          <div v-if="isIndex" class="blog__wrap grid__col-12">
-            <ul class="blog__list">
-              <li class="blog__item"
-                  v-for="item in list"
-                  :key="item.id">
-                <nuxt-link :to="item.url"
-                           class="blog__link">
-                  <div class="blog__item-info">
-                    <div class="blog__date">{{ item.createdAt }}</div>
-                    <div class="blog__views">
-                      {{ item.views }}
-                      <!--                    {{-->
-                      <!--                      // declension({-->
-                      <!--                      //   count: Number(item.views),-->
-                      <!--                      //   one: "просмотр",-->
-                      <!--                      //   few: "просмотра",-->
-                      <!--                      //   many: "просмотров",-->
-                      <!--                      // })-->
-                      <!--                    }}-->
-                    </div>
-                  </div>
-                  <div class="blog__item-text">
-                    <h3 class="blog__item-title">{{ item.page_title }}</h3>
-                  </div>
-                  <NuxtImg v-if="item.image_preview" class="blog__img" :src="item.image_preview.small" format="webp"/>
-                </nuxt-link>
-              </li>
-            </ul>
-          </div>
-          <div v-else class="blog__wrap grid__col-12">
+          <div class="blog__wrap grid__col-12">
             <ul class="blog__list">
               <Article v-for="item in list"
                        :key="item.id"
