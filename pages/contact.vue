@@ -34,8 +34,11 @@
             <div class="features__group" v-for="feature in contactItems(dealer)" :key="feature.title">
               <h3 class="heading heading--h3">{{ feature.title }}</h3>
               <ul class="features__list">
-                <li class="features__item" v-for="item in feature.items" :key="item">
-                  {{ item }}
+                <li class="features__item" v-for="item in feature.items" :key="item.content">
+                  <template v-if="item.isLink">
+                    <a :href="item!.href" target="_blank">{{ item.content }}</a>
+                  </template>
+                  {{ item.content }}
                 </li>
               </ul>
             </div>
@@ -51,8 +54,9 @@
             </nuxt-link>
             <a v-if="dealer.site"
                class="button button--show button--show-link"
-               :href="`${dealer.site}`"
-               target="_blank">Сайт автоцентра
+               :href="dealer.site"
+               target="_blank">
+              Сайт автоцентра
             </a>
           </template>
           <template #image>
@@ -81,25 +85,38 @@ const dealersStore = useDealers();
 dealersStore.fetchDealers();
 const { dealers } = storeToRefs(dealersStore);
 
-//todo add <a> to redirect to dealer
+//todo add modal to dealer
 const contactItems = (dealer: Dealer) => [
   {
     title: 'Адрес',
     items: [
-      dealer.address,
-      dealer.metro,
+      {
+        isLink: false,
+        content: dealer.address
+      },
+      {
+        isLink: false,
+        content: `м. ${dealer.metro}`
+      },
     ]
   },
   {
     title: 'Телефон',
     items: [
-      dealer.phone
+      {
+        isLink: true,
+        content: dealer.phone,
+        href: dealer.phone.replace(/[^+\d]/g, '')
+      }
     ]
   },
   {
     title: 'Режим работы',
     items: [
-      dealer.schedule
+      {
+        isLink: false,
+        content: dealer.schedule
+      }
     ]
   },
 ];
