@@ -3,10 +3,10 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 export type Maybe<T> = Required<T> // хак для TS чтобы не писать ! везде
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
-export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]: never };
+export type Incremental<T> = T | { [P in keyof T]: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string; }
@@ -17,98 +17,98 @@ export type Scalars = {
 };
 
 export type Article = {
-  __typename?: 'Article';
-  body?: Maybe<Scalars['String']['output']>;
-  category?: Maybe<ArticleCategory>;
+  __typename: 'Article';
+  body: Maybe<Scalars['String']['output']>;
+  category: Maybe<ArticleCategory>;
   /** Format output date */
-  createdAt?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
+  createdAt: Maybe<Scalars['String']['output']>;
+  description: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
-  image?: Maybe<ArticleImageItem>;
-  image_preview?: Maybe<ArticleImagePreview>;
-  image_slide?: Maybe<Array<Maybe<ArticleImageSlide>>>;
-  long_title?: Maybe<Scalars['String']['output']>;
-  page_title?: Maybe<Scalars['String']['output']>;
+  image: Maybe<ArticleImageItem>;
+  image_preview: Maybe<ArticleImagePreview>;
+  image_slide: Maybe<Array<Maybe<ArticleImageSlide>>>;
+  long_title: Maybe<Scalars['String']['output']>;
+  page_title: Maybe<Scalars['String']['output']>;
   /** Format output date */
-  publishedAt?: Maybe<Scalars['String']['output']>;
-  short_description?: Maybe<Scalars['String']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
+  publishedAt: Maybe<Scalars['String']['output']>;
+  short_description: Maybe<Scalars['String']['output']>;
+  slug: Maybe<Scalars['String']['output']>;
   /** Format output date */
-  updatedAt?: Maybe<Scalars['String']['output']>;
-  url?: Maybe<Scalars['String']['output']>;
-  video_youtube?: Maybe<Scalars['String']['output']>;
-  views?: Maybe<Scalars['String']['output']>;
+  updatedAt: Maybe<Scalars['String']['output']>;
+  url: Maybe<Scalars['String']['output']>;
+  video_youtube: Maybe<Scalars['String']['output']>;
+  views: Maybe<Scalars['String']['output']>;
 };
 
 
 export type ArticleCreatedAtArgs = {
-  format?: InputMaybe<Scalars['String']['input']>;
-  relative?: InputMaybe<Scalars['Boolean']['input']>;
-  sub_day?: InputMaybe<Scalars['Boolean']['input']>;
+  format: InputMaybe<Scalars['String']['input']>;
+  relative: InputMaybe<Scalars['Boolean']['input']>;
+  sub_day: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 export type ArticlePublishedAtArgs = {
-  format?: InputMaybe<Scalars['String']['input']>;
-  relative?: InputMaybe<Scalars['Boolean']['input']>;
-  sub_day?: InputMaybe<Scalars['Boolean']['input']>;
+  format: InputMaybe<Scalars['String']['input']>;
+  relative: InputMaybe<Scalars['Boolean']['input']>;
+  sub_day: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 export type ArticleUpdatedAtArgs = {
-  format?: InputMaybe<Scalars['String']['input']>;
-  relative?: InputMaybe<Scalars['Boolean']['input']>;
-  sub_day?: InputMaybe<Scalars['Boolean']['input']>;
+  format: InputMaybe<Scalars['String']['input']>;
+  relative: InputMaybe<Scalars['Boolean']['input']>;
+  sub_day: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type ArticleCategory = {
-  __typename?: 'ArticleCategory';
-  articles?: Maybe<Array<Maybe<Article>>>;
-  description?: Maybe<Scalars['String']['output']>;
+  __typename: 'ArticleCategory';
+  articles: Maybe<Array<Maybe<Article>>>;
+  description: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
-  long_title?: Maybe<Scalars['String']['output']>;
-  page_title?: Maybe<Scalars['String']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  url?: Maybe<Scalars['String']['output']>;
+  long_title: Maybe<Scalars['String']['output']>;
+  page_title: Maybe<Scalars['String']['output']>;
+  slug: Maybe<Scalars['String']['output']>;
+  url: Maybe<Scalars['String']['output']>;
 };
 
 
 export type ArticleCategoryArticlesArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type ArticleImageItem = {
-  __typename?: 'ArticleImageItem';
-  large?: Maybe<Scalars['String']['output']>;
-  large_webp?: Maybe<Scalars['String']['output']>;
-  medium?: Maybe<Scalars['String']['output']>;
-  medium_webp?: Maybe<Scalars['String']['output']>;
-  src?: Maybe<Scalars['String']['output']>;
+  __typename: 'ArticleImageItem';
+  large: Maybe<Scalars['String']['output']>;
+  large_webp: Maybe<Scalars['String']['output']>;
+  medium: Maybe<Scalars['String']['output']>;
+  medium_webp: Maybe<Scalars['String']['output']>;
+  src: Maybe<Scalars['String']['output']>;
 };
 
 export type ArticleImagePreview = {
-  __typename?: 'ArticleImagePreview';
-  small?: Maybe<Scalars['String']['output']>;
-  small_webp?: Maybe<Scalars['String']['output']>;
-  src?: Maybe<Scalars['String']['output']>;
-  thumb?: Maybe<Scalars['String']['output']>;
-  thumb_webp?: Maybe<Scalars['String']['output']>;
+  __typename: 'ArticleImagePreview';
+  small: Maybe<Scalars['String']['output']>;
+  small_webp: Maybe<Scalars['String']['output']>;
+  src: Maybe<Scalars['String']['output']>;
+  thumb: Maybe<Scalars['String']['output']>;
+  thumb_webp: Maybe<Scalars['String']['output']>;
 };
 
 export type ArticleImageSlide = {
-  __typename?: 'ArticleImageSlide';
-  src?: Maybe<Scalars['String']['output']>;
-  thumb?: Maybe<Scalars['String']['output']>;
+  __typename: 'ArticleImageSlide';
+  src: Maybe<Scalars['String']['output']>;
+  thumb: Maybe<Scalars['String']['output']>;
 };
 
 export type ArticlesPaginate = {
-  __typename?: 'ArticlesPaginate';
+  __typename: 'ArticlesPaginate';
   /** Current page of the cursor */
   current_page: Scalars['Int']['output'];
   /** List of items on the current page */
-  data?: Maybe<Array<Maybe<Article>>>;
+  data: Maybe<Array<Maybe<Article>>>;
   /** Number of the first item returned */
-  from?: Maybe<Scalars['Int']['output']>;
+  from: Maybe<Scalars['Int']['output']>;
   /** Determines if cursor has more pages after the current page */
   has_more_pages: Scalars['Boolean']['output'];
   /** The last page (number of pages) */
@@ -116,433 +116,433 @@ export type ArticlesPaginate = {
   /** Number of items returned per page */
   per_page: Scalars['Int']['output'];
   /** Number of the last item returned */
-  to?: Maybe<Scalars['Int']['output']>;
+  to: Maybe<Scalars['Int']['output']>;
   /** Number of total items selected by the query */
   total: Scalars['Int']['output'];
 };
 
 export type Bank = {
-  __typename?: 'Bank';
-  approval?: Maybe<Scalars['Int']['output']>;
+  __typename: 'Bank';
+  approval: Maybe<Scalars['Int']['output']>;
   id: Scalars['Int']['output'];
-  image?: Maybe<Scalars['String']['output']>;
-  image_car?: Maybe<BankImageCar>;
-  license_file?: Maybe<Scalars['String']['output']>;
-  license_title?: Maybe<Scalars['String']['output']>;
+  image: Maybe<Scalars['String']['output']>;
+  image_car: Maybe<BankImageCar>;
+  license_file: Maybe<Scalars['String']['output']>;
+  license_title: Maybe<Scalars['String']['output']>;
   name: Scalars['String']['output'];
-  rate?: Maybe<Scalars['Float']['output']>;
-  rating?: Maybe<Scalars['Float']['output']>;
-  request?: Maybe<Scalars['Int']['output']>;
-  site_text?: Maybe<SiteText>;
+  rate: Maybe<Scalars['Float']['output']>;
+  rating: Maybe<Scalars['Float']['output']>;
+  request: Maybe<Scalars['Int']['output']>;
+  site_text: Maybe<SiteText>;
   slug: Scalars['String']['output'];
-  title?: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 export type BankImageCar = {
-  __typename?: 'BankImageCar';
-  small?: Maybe<Scalars['String']['output']>;
-  small_webp?: Maybe<Scalars['String']['output']>;
-  src?: Maybe<Scalars['String']['output']>;
-  thumb?: Maybe<Scalars['String']['output']>;
-  thumb_webp?: Maybe<Scalars['String']['output']>;
+  __typename: 'BankImageCar';
+  small: Maybe<Scalars['String']['output']>;
+  small_webp: Maybe<Scalars['String']['output']>;
+  src: Maybe<Scalars['String']['output']>;
+  thumb: Maybe<Scalars['String']['output']>;
+  thumb_webp: Maybe<Scalars['String']['output']>;
 };
 
 export type BodyType = {
-  __typename?: 'BodyType';
+  __typename: 'BodyType';
   id: Scalars['Int']['output'];
-  name?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 export type BodyTypeField = {
-  __typename?: 'BodyTypeField';
-  id?: Maybe<Scalars['Int']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  __typename: 'BodyTypeField';
+  id: Maybe<Scalars['Int']['output']>;
+  slug: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 export type ChosenFieldType = {
-  __typename?: 'ChosenFieldType';
-  bodyType?: Maybe<Array<Maybe<BodyTypeField>>>;
-  driveType?: Maybe<Array<Maybe<DriveTypeField>>>;
-  engineType?: Maybe<Array<Maybe<EngineTypeField>>>;
-  folder?: Maybe<Array<Maybe<FolderField>>>;
-  gearbox?: Maybe<Array<Maybe<GearboxField>>>;
-  generation?: Maybe<Array<Maybe<GenerationField>>>;
-  mark?: Maybe<Array<Maybe<MarkField>>>;
-  owner?: Maybe<Array<Maybe<OwnerField>>>;
-  priceFrom?: Maybe<Scalars['Int']['output']>;
-  priceTo?: Maybe<Scalars['Int']['output']>;
-  runFrom?: Maybe<Scalars['Int']['output']>;
-  runTo?: Maybe<Scalars['Int']['output']>;
-  yearFrom?: Maybe<Scalars['Int']['output']>;
-  yearTo?: Maybe<Scalars['Int']['output']>;
+  __typename: 'ChosenFieldType';
+  bodyType: Maybe<Array<Maybe<BodyTypeField>>>;
+  driveType: Maybe<Array<Maybe<DriveTypeField>>>;
+  engineType: Maybe<Array<Maybe<EngineTypeField>>>;
+  folder: Maybe<Array<Maybe<FolderField>>>;
+  gearbox: Maybe<Array<Maybe<GearboxField>>>;
+  generation: Maybe<Array<Maybe<GenerationField>>>;
+  mark: Maybe<Array<Maybe<MarkField>>>;
+  owner: Maybe<Array<Maybe<OwnerField>>>;
+  priceFrom: Maybe<Scalars['Int']['output']>;
+  priceTo: Maybe<Scalars['Int']['output']>;
+  runFrom: Maybe<Scalars['Int']['output']>;
+  runTo: Maybe<Scalars['Int']['output']>;
+  yearFrom: Maybe<Scalars['Int']['output']>;
+  yearTo: Maybe<Scalars['Int']['output']>;
 };
 
 export type Color = {
-  __typename?: 'Color';
+  __typename: 'Color';
   id: Scalars['Int']['output'];
-  name?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 export type Complectation = {
-  __typename?: 'Complectation';
+  __typename: 'Complectation';
   id: Scalars['Int']['output'];
-  name?: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
 };
 
 export type Dealer = {
-  __typename?: 'Dealer';
-  address?: Maybe<Scalars['String']['output']>;
-  city?: Maybe<Scalars['String']['output']>;
-  coordinates?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
+  __typename: 'Dealer';
+  address: Maybe<Scalars['String']['output']>;
+  city: Maybe<Scalars['String']['output']>;
+  coordinates: Maybe<Scalars['String']['output']>;
+  description: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
-  image_logo?: Maybe<Scalars['String']['output']>;
-  images?: Maybe<Array<Maybe<DealerImage>>>;
-  metro?: Maybe<Scalars['String']['output']>;
-  phone?: Maybe<Scalars['String']['output']>;
-  rating?: Maybe<Scalars['Float']['output']>;
-  schedule?: Maybe<Scalars['String']['output']>;
-  short_description?: Maybe<Scalars['String']['output']>;
-  site?: Maybe<Scalars['String']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-  youtube_playlist_review?: Maybe<Scalars['String']['output']>;
+  image_logo: Maybe<Scalars['String']['output']>;
+  images: Maybe<Array<Maybe<DealerImage>>>;
+  metro: Maybe<Scalars['String']['output']>;
+  phone: Maybe<Scalars['String']['output']>;
+  rating: Maybe<Scalars['Float']['output']>;
+  schedule: Maybe<Scalars['String']['output']>;
+  short_description: Maybe<Scalars['String']['output']>;
+  site: Maybe<Scalars['String']['output']>;
+  slug: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
+  youtube_playlist_review: Maybe<Scalars['String']['output']>;
 };
 
 export type DealerImage = {
-  __typename?: 'DealerImage';
-  medium?: Maybe<Scalars['String']['output']>;
-  medium_webp?: Maybe<Scalars['String']['output']>;
-  small?: Maybe<Scalars['String']['output']>;
-  small_webp?: Maybe<Scalars['String']['output']>;
-  src?: Maybe<Scalars['String']['output']>;
+  __typename: 'DealerImage';
+  medium: Maybe<Scalars['String']['output']>;
+  medium_webp: Maybe<Scalars['String']['output']>;
+  small: Maybe<Scalars['String']['output']>;
+  small_webp: Maybe<Scalars['String']['output']>;
+  src: Maybe<Scalars['String']['output']>;
 };
 
 export type DriveType = {
-  __typename?: 'DriveType';
+  __typename: 'DriveType';
   id: Scalars['Int']['output'];
-  name?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 export type DriveTypeField = {
-  __typename?: 'DriveTypeField';
-  id?: Maybe<Scalars['Int']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  __typename: 'DriveTypeField';
+  id: Maybe<Scalars['Int']['output']>;
+  slug: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 export type EngineType = {
-  __typename?: 'EngineType';
+  __typename: 'EngineType';
   id: Scalars['Int']['output'];
-  name?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 export type EngineTypeField = {
-  __typename?: 'EngineTypeField';
-  id?: Maybe<Scalars['Int']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  __typename: 'EngineTypeField';
+  id: Maybe<Scalars['Int']['output']>;
+  slug: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 /** Order object */
 export type Feedback = {
-  __typename?: 'Feedback';
+  __typename: 'Feedback';
   /** The id of the Order */
-  id?: Maybe<Scalars['Int']['output']>;
+  id: Maybe<Scalars['Int']['output']>;
 };
 
 export type Folder = {
-  __typename?: 'Folder';
+  __typename: 'Folder';
   /** Идентификатор */
   id: Scalars['Int']['output'];
   /** Кол-во объявлений */
-  offers_count?: Maybe<Scalars['Int']['output']>;
+  offers_count: Maybe<Scalars['Int']['output']>;
   /** Алиас */
   slug: Scalars['String']['output'];
   /** Наименование */
   title: Scalars['String']['output'];
   /** Наименование на русском */
-  title_rus?: Maybe<Scalars['String']['output']>;
+  title_rus: Maybe<Scalars['String']['output']>;
 };
 
 export type FolderField = {
-  __typename?: 'FolderField';
-  id?: Maybe<Scalars['Int']['output']>;
-  mark_id?: Maybe<Scalars['Int']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  __typename: 'FolderField';
+  id: Maybe<Scalars['Int']['output']>;
+  mark_id: Maybe<Scalars['Int']['output']>;
+  slug: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 export type FolderGeneration = {
-  __typename?: 'FolderGeneration';
-  generations?: Maybe<Array<Maybe<Generation>>>;
+  __typename: 'FolderGeneration';
+  generations: Maybe<Array<Maybe<Generation>>>;
   /** Идентификатор */
   id: Scalars['Int']['output'];
   /** Кол-во объявлений */
-  offers_count?: Maybe<Scalars['Int']['output']>;
+  offers_count: Maybe<Scalars['Int']['output']>;
   /** Алиас */
   slug: Scalars['String']['output'];
   /** Наименование */
   title: Scalars['String']['output'];
   /** Наименование на русском */
-  title_rus?: Maybe<Scalars['String']['output']>;
+  title_rus: Maybe<Scalars['String']['output']>;
 };
 
 export type Gearbox = {
-  __typename?: 'Gearbox';
+  __typename: 'Gearbox';
   id: Scalars['Int']['output'];
-  name?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-  title_short?: Maybe<Scalars['String']['output']>;
-  title_short_rus?: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
+  title_short: Maybe<Scalars['String']['output']>;
+  title_short_rus: Maybe<Scalars['String']['output']>;
 };
 
 export type GearboxField = {
-  __typename?: 'GearboxField';
-  id?: Maybe<Scalars['Int']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-  title_short?: Maybe<Scalars['String']['output']>;
-  title_short_rus?: Maybe<Scalars['String']['output']>;
+  __typename: 'GearboxField';
+  id: Maybe<Scalars['Int']['output']>;
+  slug: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
+  title_short: Maybe<Scalars['String']['output']>;
+  title_short_rus: Maybe<Scalars['String']['output']>;
 };
 
 export type Generation = {
-  __typename?: 'Generation';
-  id?: Maybe<Scalars['Int']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
+  __typename: 'Generation';
+  id: Maybe<Scalars['Int']['output']>;
+  name: Maybe<Scalars['String']['output']>;
   /** The count of generations */
-  offers_count?: Maybe<Scalars['Int']['output']>;
+  offers_count: Maybe<Scalars['Int']['output']>;
   slug: Scalars['String']['output'];
-  year_begin?: Maybe<Scalars['Int']['output']>;
-  year_end?: Maybe<Scalars['Int']['output']>;
+  year_begin: Maybe<Scalars['Int']['output']>;
+  year_end: Maybe<Scalars['Int']['output']>;
 };
 
 export type GenerationField = {
-  __typename?: 'GenerationField';
-  id?: Maybe<Scalars['Int']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  __typename: 'GenerationField';
+  id: Maybe<Scalars['Int']['output']>;
+  slug: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 export type KeyValue = {
-  __typename?: 'KeyValue';
-  key?: Maybe<Scalars['String']['output']>;
-  value?: Maybe<Scalars['String']['output']>;
+  __typename: 'KeyValue';
+  key: Maybe<Scalars['String']['output']>;
+  value: Maybe<Scalars['String']['output']>;
 };
 
 export type Mark = {
-  __typename?: 'Mark';
+  __typename: 'Mark';
   /** Идентификатор */
   id: Scalars['Int']['output'];
   /** Кол-во объявлений */
-  offers_count?: Maybe<Scalars['Int']['output']>;
+  offers_count: Maybe<Scalars['Int']['output']>;
   /** Сортировка марки */
-  order_column?: Maybe<Scalars['Int']['output']>;
+  order_column: Maybe<Scalars['Int']['output']>;
   /** Алиас */
   slug: Scalars['String']['output'];
   /** Наименование */
   title: Scalars['String']['output'];
   /** Наименование на русском */
-  title_rus?: Maybe<Scalars['String']['output']>;
+  title_rus: Maybe<Scalars['String']['output']>;
 };
 
 export type MarkField = {
-  __typename?: 'MarkField';
-  id?: Maybe<Scalars['Int']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  __typename: 'MarkField';
+  id: Maybe<Scalars['Int']['output']>;
+  slug: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 export type MarkFolder = {
-  __typename?: 'MarkFolder';
-  folders?: Maybe<Array<Maybe<FolderGeneration>>>;
+  __typename: 'MarkFolder';
+  folders: Maybe<Array<Maybe<FolderGeneration>>>;
   /** Идентификатор */
   id: Scalars['Int']['output'];
   /** Кол-во объявлений */
-  offers_count?: Maybe<Scalars['Int']['output']>;
+  offers_count: Maybe<Scalars['Int']['output']>;
   /** Алиас */
   slug: Scalars['String']['output'];
   /** Наименование */
   title: Scalars['String']['output'];
   /** Наименование на русском */
-  title_rus?: Maybe<Scalars['String']['output']>;
+  title_rus: Maybe<Scalars['String']['output']>;
 };
 
 export type Modification = {
-  __typename?: 'Modification';
-  bodyType?: Maybe<Array<Maybe<TitleName>>>;
-  generation?: Maybe<Array<Maybe<Generation>>>;
+  __typename: 'Modification';
+  bodyType: Maybe<Array<Maybe<TitleName>>>;
+  generation: Maybe<Array<Maybe<Generation>>>;
   id: Scalars['Int']['output'];
-  name?: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
 };
 
 export type Mutation = {
-  __typename?: 'Mutation';
-  feedback?: Maybe<Feedback>;
+  __typename: 'Mutation';
+  feedback: Maybe<Feedback>;
 };
 
 
 export type MutationFeedbackArgs = {
-  bank_title?: InputMaybe<Scalars['String']['input']>;
-  client_age?: InputMaybe<Scalars['String']['input']>;
-  client_name?: InputMaybe<Scalars['String']['input']>;
+  bank_title: InputMaybe<Scalars['String']['input']>;
+  client_age: InputMaybe<Scalars['String']['input']>;
+  client_name: InputMaybe<Scalars['String']['input']>;
   client_phone: Scalars['String']['input'];
-  client_region?: InputMaybe<Scalars['String']['input']>;
-  client_session?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_body_type?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_engine?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_gearbox?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_mark?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_model?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_owners?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_price?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_run?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_year?: InputMaybe<Scalars['String']['input']>;
-  comment?: InputMaybe<Scalars['String']['input']>;
-  credit_initial_fee?: InputMaybe<Scalars['String']['input']>;
-  credit_period?: InputMaybe<Scalars['String']['input']>;
-  external_id?: InputMaybe<Scalars['Int']['input']>;
-  external_unique_id?: InputMaybe<Scalars['String']['input']>;
-  offer_price?: InputMaybe<Scalars['String']['input']>;
-  offer_title?: InputMaybe<Scalars['String']['input']>;
+  client_region: InputMaybe<Scalars['String']['input']>;
+  client_session: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_body_type: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_engine: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_gearbox: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_mark: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_model: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_owners: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_price: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_run: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_year: InputMaybe<Scalars['String']['input']>;
+  comment: InputMaybe<Scalars['String']['input']>;
+  credit_initial_fee: InputMaybe<Scalars['String']['input']>;
+  credit_period: InputMaybe<Scalars['String']['input']>;
+  external_id: InputMaybe<Scalars['Int']['input']>;
+  external_unique_id: InputMaybe<Scalars['String']['input']>;
+  offer_price: InputMaybe<Scalars['String']['input']>;
+  offer_title: InputMaybe<Scalars['String']['input']>;
   site_id: Scalars['Int']['input'];
   type: Scalars['String']['input'];
-  utm_campaign?: InputMaybe<Scalars['String']['input']>;
-  utm_content?: InputMaybe<Scalars['String']['input']>;
-  utm_medium?: InputMaybe<Scalars['String']['input']>;
-  utm_source?: InputMaybe<Scalars['String']['input']>;
-  utm_term?: InputMaybe<Scalars['String']['input']>;
+  utm_campaign: InputMaybe<Scalars['String']['input']>;
+  utm_content: InputMaybe<Scalars['String']['input']>;
+  utm_medium: InputMaybe<Scalars['String']['input']>;
+  utm_source: InputMaybe<Scalars['String']['input']>;
+  utm_term: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Offer = {
-  __typename?: 'Offer';
+  __typename: 'Offer';
   /** Кузов */
-  bodyType?: Maybe<BodyType>;
+  bodyType: Maybe<BodyType>;
   /** Категория */
-  category_enum?: Maybe<Scalars['String']['output']>;
+  category_enum: Maybe<Scalars['String']['output']>;
   /** Цвет */
-  color?: Maybe<Color>;
+  color: Maybe<Color>;
   /** Название комплектации */
-  complectation?: Maybe<Complectation>;
+  complectation: Maybe<Complectation>;
   /** Format output date */
-  createdAt?: Maybe<Scalars['String']['output']>;
+  createdAt: Maybe<Scalars['String']['output']>;
   /** Автосалон */
-  dealer?: Maybe<Dealer>;
+  dealer: Maybe<Dealer>;
   /** Текстовое описание для сайта */
-  description?: Maybe<Scalars['String']['output']>;
+  description: Maybe<Scalars['String']['output']>;
   /** Привод */
-  driveType?: Maybe<DriveType>;
+  driveType: Maybe<DriveType>;
   /** Двигатель */
-  engineType?: Maybe<EngineType>;
+  engineType: Maybe<EngineType>;
   /** Мощность двигателя */
-  engine_power?: Maybe<Scalars['Int']['output']>;
+  engine_power: Maybe<Scalars['Int']['output']>;
   /** Объем двигателя */
-  engine_volume?: Maybe<Scalars['Float']['output']>;
+  engine_volume: Maybe<Scalars['Float']['output']>;
   /** Сгруппированные дополнительные характеристики */
-  equipment_groups?: Maybe<Array<Maybe<TitleValues>>>;
+  equipment_groups: Maybe<Array<Maybe<TitleValues>>>;
   /** Внешний идентификатор */
-  external_id?: Maybe<Scalars['Int']['output']>;
+  external_id: Maybe<Scalars['Int']['output']>;
   /** Внешний уникальный идентификатор */
-  external_unique_id?: Maybe<Scalars['String']['output']>;
+  external_unique_id: Maybe<Scalars['String']['output']>;
   /** Модель */
-  folder?: Maybe<Folder>;
+  folder: Maybe<Folder>;
   /** КПП */
-  gearbox?: Maybe<Gearbox>;
+  gearbox: Maybe<Gearbox>;
   /** Поколение */
-  generation?: Maybe<Generation>;
+  generation: Maybe<Generation>;
   /** Идентификатор */
   id: Scalars['Int']['output'];
   /** Изображения */
-  images?: Maybe<Array<Maybe<OfferImage>>>;
+  images: Maybe<Array<Maybe<OfferImage>>>;
   /** Активное объявление */
-  is_active?: Maybe<Scalars['Boolean']['output']>;
+  is_active: Maybe<Scalars['Boolean']['output']>;
   /** На складе */
-  is_stock?: Maybe<Scalars['Boolean']['output']>;
+  is_stock: Maybe<Scalars['Boolean']['output']>;
   /** Марка */
-  mark?: Maybe<Mark>;
+  mark: Maybe<Mark>;
   /** Модификация */
-  modification?: Maybe<Modification>;
+  modification: Maybe<Modification>;
   name: Scalars['String']['output'];
   /** Владельцы */
-  owner?: Maybe<Owner>;
+  owner: Maybe<Owner>;
   /** Цена, руб */
   price: Scalars['Int']['output'];
   /** Старая цена, руб */
-  price_old?: Maybe<Scalars['Int']['output']>;
+  price_old: Maybe<Scalars['Int']['output']>;
   /** Рейтинг */
-  rating?: Maybe<Rating>;
+  rating: Maybe<Rating>;
   /** Пробег, км */
-  run?: Maybe<Scalars['Int']['output']>;
+  run: Maybe<Scalars['Int']['output']>;
   /** Format output date */
-  updatedAt?: Maybe<Scalars['String']['output']>;
+  updatedAt: Maybe<Scalars['String']['output']>;
   /** Ссылка на видео */
-  video?: Maybe<Scalars['String']['output']>;
+  video: Maybe<Scalars['String']['output']>;
   /** VIN-номер */
-  vin?: Maybe<Scalars['String']['output']>;
+  vin: Maybe<Scalars['String']['output']>;
   /** Руль */
-  wheel?: Maybe<Wheel>;
+  wheel: Maybe<Wheel>;
   /** Год */
-  year?: Maybe<Scalars['Int']['output']>;
+  year: Maybe<Scalars['Int']['output']>;
 };
 
 
 export type OfferCreatedAtArgs = {
-  format?: InputMaybe<Scalars['String']['input']>;
-  relative?: InputMaybe<Scalars['Boolean']['input']>;
-  sub_day?: InputMaybe<Scalars['Boolean']['input']>;
+  format: InputMaybe<Scalars['String']['input']>;
+  relative: InputMaybe<Scalars['Boolean']['input']>;
+  sub_day: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 export type OfferUpdatedAtArgs = {
-  format?: InputMaybe<Scalars['String']['input']>;
-  relative?: InputMaybe<Scalars['Boolean']['input']>;
-  sub_day?: InputMaybe<Scalars['Boolean']['input']>;
+  format: InputMaybe<Scalars['String']['input']>;
+  relative: InputMaybe<Scalars['Boolean']['input']>;
+  sub_day: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type OfferFilterValues = {
-  __typename?: 'OfferFilterValues';
-  bodyType?: Maybe<Array<Maybe<BodyTypeField>>>;
-  chosen?: Maybe<ChosenFieldType>;
-  driveType?: Maybe<Array<Maybe<DriveTypeField>>>;
-  engineType?: Maybe<Array<Maybe<EngineTypeField>>>;
-  folder?: Maybe<Array<Maybe<FolderField>>>;
-  gearbox?: Maybe<Array<Maybe<GearboxField>>>;
-  generation?: Maybe<Array<Maybe<GenerationField>>>;
-  mark?: Maybe<Array<Maybe<MarkField>>>;
-  owner?: Maybe<Array<Maybe<OwnerField>>>;
-  price?: Maybe<Array<Maybe<Scalars['Int']['output']>>>;
-  run?: Maybe<Array<Maybe<Scalars['Int']['output']>>>;
-  year?: Maybe<Array<Maybe<Scalars['Int']['output']>>>;
+  __typename: 'OfferFilterValues';
+  bodyType: Maybe<Array<Maybe<BodyTypeField>>>;
+  chosen: Maybe<ChosenFieldType>;
+  driveType: Maybe<Array<Maybe<DriveTypeField>>>;
+  engineType: Maybe<Array<Maybe<EngineTypeField>>>;
+  folder: Maybe<Array<Maybe<FolderField>>>;
+  gearbox: Maybe<Array<Maybe<GearboxField>>>;
+  generation: Maybe<Array<Maybe<GenerationField>>>;
+  mark: Maybe<Array<Maybe<MarkField>>>;
+  owner: Maybe<Array<Maybe<OwnerField>>>;
+  price: Maybe<Array<Maybe<Scalars['Int']['output']>>>;
+  run: Maybe<Array<Maybe<Scalars['Int']['output']>>>;
+  year: Maybe<Array<Maybe<Scalars['Int']['output']>>>;
 };
 
 export type OfferImage = {
-  __typename?: 'OfferImage';
-  medium?: Maybe<Scalars['String']['output']>;
-  medium_webp?: Maybe<Scalars['String']['output']>;
-  original?: Maybe<Scalars['String']['output']>;
-  small?: Maybe<Scalars['String']['output']>;
-  small_webp?: Maybe<Scalars['String']['output']>;
+  __typename: 'OfferImage';
+  medium: Maybe<Scalars['String']['output']>;
+  medium_webp: Maybe<Scalars['String']['output']>;
+  original: Maybe<Scalars['String']['output']>;
+  small: Maybe<Scalars['String']['output']>;
+  small_webp: Maybe<Scalars['String']['output']>;
   /** @deprecated Используйте medium */
-  src?: Maybe<Scalars['String']['output']>;
+  src: Maybe<Scalars['String']['output']>;
   /** @deprecated Используйте small */
-  thumb?: Maybe<Scalars['String']['output']>;
-  tiny?: Maybe<Scalars['String']['output']>;
-  tiny_webp?: Maybe<Scalars['String']['output']>;
+  thumb: Maybe<Scalars['String']['output']>;
+  tiny: Maybe<Scalars['String']['output']>;
+  tiny_webp: Maybe<Scalars['String']['output']>;
 };
 
 export type OfferTypePagination = {
-  __typename?: 'OfferTypePagination';
+  __typename: 'OfferTypePagination';
   /** Current page of the cursor */
   current_page: Scalars['Int']['output'];
   /** List of items on the current page */
-  data?: Maybe<Array<Maybe<Offer>>>;
+  data: Maybe<Array<Maybe<Offer>>>;
   /** Number of the first item returned */
-  from?: Maybe<Scalars['Int']['output']>;
+  from: Maybe<Scalars['Int']['output']>;
   /** Determines if cursor has more pages after the current page */
   has_more_pages: Scalars['Boolean']['output'];
   /** The last page (number of pages) */
@@ -550,7 +550,7 @@ export type OfferTypePagination = {
   /** Number of items returned per page */
   per_page: Scalars['Int']['output'];
   /** Number of the last item returned */
-  to?: Maybe<Scalars['Int']['output']>;
+  to: Maybe<Scalars['Int']['output']>;
   /** Number of total items selected by the query */
   total: Scalars['Int']['output'];
 };
@@ -558,592 +558,592 @@ export type OfferTypePagination = {
 export type OfferUnionType = OfferUrlFilterPaginationType | OfferUrlType;
 
 export type OfferUrlFilterPaginationType = {
-  __typename?: 'OfferUrlFilterPaginationType';
-  body_type_id_array?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  category?: Maybe<Scalars['String']['output']>;
-  engine_type_id_array?: Maybe<Array<Maybe<Scalars['Int']['output']>>>;
-  folder_slug_array?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  generation_slug_array?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  mark_slug_array?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  year_from?: Maybe<Scalars['Int']['output']>;
+  __typename: 'OfferUrlFilterPaginationType';
+  body_type_id_array: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  category: Maybe<Scalars['String']['output']>;
+  engine_type_id_array: Maybe<Array<Maybe<Scalars['Int']['output']>>>;
+  folder_slug_array: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  generation_slug_array: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  mark_slug_array: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  year_from: Maybe<Scalars['Int']['output']>;
 };
 
 export type OfferUrlType = {
-  __typename?: 'OfferUrlType';
-  external_id?: Maybe<Scalars['Int']['output']>;
-  folder_slug?: Maybe<Scalars['String']['output']>;
-  mark_slug?: Maybe<Scalars['String']['output']>;
+  __typename: 'OfferUrlType';
+  external_id: Maybe<Scalars['Int']['output']>;
+  folder_slug: Maybe<Scalars['String']['output']>;
+  mark_slug: Maybe<Scalars['String']['output']>;
 };
 
 export type Owner = {
-  __typename?: 'Owner';
+  __typename: 'Owner';
   id: Scalars['Int']['output'];
-  name?: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
   number: Scalars['Int']['output'];
-  title?: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 export type OwnerField = {
-  __typename?: 'OwnerField';
-  id?: Maybe<Scalars['Int']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  __typename: 'OwnerField';
+  id: Maybe<Scalars['Int']['output']>;
+  slug: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 export type Query = {
-  __typename?: 'Query';
+  __typename: 'Query';
   /** Статья */
-  article?: Maybe<Article>;
+  article: Maybe<Article>;
   /** Категории статей */
-  articleCategory?: Maybe<Array<Maybe<ArticleCategory>>>;
+  articleCategory: Maybe<Array<Maybe<ArticleCategory>>>;
   /** Список статей */
-  articlesPaginate?: Maybe<ArticlesPaginate>;
+  articlesPaginate: Maybe<ArticlesPaginate>;
   /** Банк */
-  bank?: Maybe<Bank>;
+  bank: Maybe<Bank>;
   /** Список банков */
-  banks?: Maybe<Array<Maybe<Bank>>>;
+  banks: Maybe<Array<Maybe<Bank>>>;
   /** Автосалон */
-  dealer?: Maybe<Dealer>;
+  dealer: Maybe<Dealer>;
   /** Список автосалонов */
-  dealers?: Maybe<Array<Maybe<Dealer>>>;
+  dealers: Maybe<Array<Maybe<Dealer>>>;
   /** Список моделей */
-  folders?: Maybe<Array<Maybe<Folder>>>;
+  folders: Maybe<Array<Maybe<Folder>>>;
   /** Список поколений */
-  generations?: Maybe<Array<Maybe<Generation>>>;
+  generations: Maybe<Array<Maybe<Generation>>>;
   /** Список марок */
-  markFolderGeneration?: Maybe<Array<Maybe<MarkFolder>>>;
+  markFolderGeneration: Maybe<Array<Maybe<MarkFolder>>>;
   /** Список марок */
-  marks?: Maybe<Array<Maybe<Mark>>>;
+  marks: Maybe<Array<Maybe<Mark>>>;
   /** Объявление */
-  offer?: Maybe<Offer>;
+  offer: Maybe<Offer>;
   /** Фильтр объявлений */
-  offerFilters?: Maybe<OfferFilterValues>;
+  offerFilters: Maybe<OfferFilterValues>;
   /** Определение объявление или фильтр */
-  offerUrl?: Maybe<OfferUnionType>;
+  offerUrl: Maybe<OfferUnionType>;
   /** Список объявлений */
-  offers?: Maybe<OfferTypePagination>;
+  offers: Maybe<OfferTypePagination>;
   /** Список регионов */
-  regions?: Maybe<Array<Maybe<Region>>>;
+  regions: Maybe<Array<Maybe<Region>>>;
   /** SEO теги */
-  seoTag?: Maybe<SeoTag>;
+  seoTag: Maybe<SeoTag>;
   /** Настройки сайта */
-  settings?: Maybe<SiteSetting>;
+  settings: Maybe<SiteSetting>;
   /** Список баннеров */
-  slides?: Maybe<Array<Maybe<Slide>>>;
+  slides: Maybe<Array<Maybe<Slide>>>;
   /** Список категорий услуг сервиса */
-  stationCategory?: Maybe<Array<Maybe<StationCategory>>>;
+  stationCategory: Maybe<Array<Maybe<StationCategory>>>;
   /** Список историй */
-  stories?: Maybe<Array<Maybe<Story>>>;
+  stories: Maybe<Array<Maybe<Story>>>;
   /** Список содержимого историй */
-  storyContents?: Maybe<Array<Maybe<StoryContent>>>;
+  storyContents: Maybe<Array<Maybe<StoryContent>>>;
 };
 
 
 export type QueryArticleArgs = {
-  site_id?: InputMaybe<Scalars['Int']['input']>;
-  url?: InputMaybe<Scalars['String']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
+  url: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type QueryArticleCategoryArgs = {
-  site_id?: InputMaybe<Scalars['Int']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
 };
 
 
 export type QueryArticlesPaginateArgs = {
-  category_url?: InputMaybe<Scalars['String']['input']>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  site_id?: InputMaybe<Scalars['Int']['input']>;
+  category_url: InputMaybe<Scalars['String']['input']>;
+  limit: InputMaybe<Scalars['Int']['input']>;
+  page: InputMaybe<Scalars['Int']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
 };
 
 
 export type QueryBankArgs = {
-  site_id?: InputMaybe<Scalars['Int']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
+  slug: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type QueryBanksArgs = {
-  site_id?: InputMaybe<Scalars['Int']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
 };
 
 
 export type QueryDealerArgs = {
-  site_id?: InputMaybe<Scalars['Int']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
+  slug: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type QueryDealersArgs = {
-  site_id?: InputMaybe<Scalars['Int']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
 };
 
 
 export type QueryFoldersArgs = {
-  category?: InputMaybe<Scalars['String']['input']>;
-  mark_id?: InputMaybe<Scalars['Int']['input']>;
-  mark_slug?: InputMaybe<Scalars['String']['input']>;
-  site_id?: InputMaybe<Scalars['Int']['input']>;
+  category: InputMaybe<Scalars['String']['input']>;
+  mark_id: InputMaybe<Scalars['Int']['input']>;
+  mark_slug: InputMaybe<Scalars['String']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
 };
 
 
 export type QueryGenerationsArgs = {
-  category?: InputMaybe<Scalars['String']['input']>;
-  folder_id?: InputMaybe<Scalars['Int']['input']>;
-  folder_slug?: InputMaybe<Scalars['String']['input']>;
-  mark_slug?: InputMaybe<Scalars['String']['input']>;
-  site_id?: InputMaybe<Scalars['Int']['input']>;
+  category: InputMaybe<Scalars['String']['input']>;
+  folder_id: InputMaybe<Scalars['Int']['input']>;
+  folder_slug: InputMaybe<Scalars['String']['input']>;
+  mark_slug: InputMaybe<Scalars['String']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
 };
 
 
 export type QueryMarkFolderGenerationArgs = {
-  category?: InputMaybe<Scalars['String']['input']>;
-  site_id?: InputMaybe<Scalars['Int']['input']>;
+  category: InputMaybe<Scalars['String']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
 };
 
 
 export type QueryMarksArgs = {
-  category?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  site_id?: InputMaybe<Scalars['Int']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
+  category: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['ID']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
+  slug: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type QueryOfferArgs = {
-  external_id?: InputMaybe<Scalars['Int']['input']>;
-  folder_slug?: InputMaybe<Scalars['String']['input']>;
-  generation_slug?: InputMaybe<Scalars['String']['input']>;
-  mark_slug?: InputMaybe<Scalars['String']['input']>;
-  site_id?: InputMaybe<Scalars['Int']['input']>;
+  external_id: InputMaybe<Scalars['Int']['input']>;
+  folder_slug: InputMaybe<Scalars['String']['input']>;
+  generation_slug: InputMaybe<Scalars['String']['input']>;
+  mark_slug: InputMaybe<Scalars['String']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
 };
 
 
 export type QueryOfferFiltersArgs = {
-  body_type_id?: InputMaybe<Scalars['Int']['input']>;
-  body_type_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  category?: InputMaybe<Scalars['String']['input']>;
-  drive_type_id?: InputMaybe<Scalars['Int']['input']>;
-  drive_type_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  engine_type_id?: InputMaybe<Scalars['Int']['input']>;
-  engine_type_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  except_external_id?: InputMaybe<Scalars['Int']['input']>;
-  external_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  folder_id?: InputMaybe<Scalars['Int']['input']>;
-  folder_slug?: InputMaybe<Scalars['String']['input']>;
-  folder_slug_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  gearbox_id?: InputMaybe<Scalars['Int']['input']>;
-  gearbox_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  generation_id?: InputMaybe<Scalars['Int']['input']>;
-  generation_slug?: InputMaybe<Scalars['String']['input']>;
-  generation_slug_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  mark_id?: InputMaybe<Scalars['Int']['input']>;
-  mark_slug?: InputMaybe<Scalars['String']['input']>;
-  mark_slug_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  owner_id?: InputMaybe<Scalars['Int']['input']>;
-  owner_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  price_from?: InputMaybe<Scalars['Int']['input']>;
-  price_to?: InputMaybe<Scalars['Int']['input']>;
-  run_from?: InputMaybe<Scalars['Int']['input']>;
-  run_to?: InputMaybe<Scalars['Int']['input']>;
-  set?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  site_id?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  url?: InputMaybe<Scalars['String']['input']>;
-  year_from?: InputMaybe<Scalars['Int']['input']>;
-  year_to?: InputMaybe<Scalars['Int']['input']>;
+  body_type_id: InputMaybe<Scalars['Int']['input']>;
+  body_type_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  category: InputMaybe<Scalars['String']['input']>;
+  drive_type_id: InputMaybe<Scalars['Int']['input']>;
+  drive_type_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  engine_type_id: InputMaybe<Scalars['Int']['input']>;
+  engine_type_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  except_external_id: InputMaybe<Scalars['Int']['input']>;
+  external_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  folder_id: InputMaybe<Scalars['Int']['input']>;
+  folder_slug: InputMaybe<Scalars['String']['input']>;
+  folder_slug_array: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  gearbox_id: InputMaybe<Scalars['Int']['input']>;
+  gearbox_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  generation_id: InputMaybe<Scalars['Int']['input']>;
+  generation_slug: InputMaybe<Scalars['String']['input']>;
+  generation_slug_array: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit: InputMaybe<Scalars['Int']['input']>;
+  mark_id: InputMaybe<Scalars['Int']['input']>;
+  mark_slug: InputMaybe<Scalars['String']['input']>;
+  mark_slug_array: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  owner_id: InputMaybe<Scalars['Int']['input']>;
+  owner_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  page: InputMaybe<Scalars['Int']['input']>;
+  price_from: InputMaybe<Scalars['Int']['input']>;
+  price_to: InputMaybe<Scalars['Int']['input']>;
+  run_from: InputMaybe<Scalars['Int']['input']>;
+  run_to: InputMaybe<Scalars['Int']['input']>;
+  set: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
+  sort: InputMaybe<Scalars['String']['input']>;
+  url: InputMaybe<Scalars['String']['input']>;
+  year_from: InputMaybe<Scalars['Int']['input']>;
+  year_to: InputMaybe<Scalars['Int']['input']>;
 };
 
 
 export type QueryOfferUrlArgs = {
-  site_id?: InputMaybe<Scalars['Int']['input']>;
-  url?: InputMaybe<Scalars['String']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
+  url: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type QueryOffersArgs = {
-  body_type_id?: InputMaybe<Scalars['Int']['input']>;
-  body_type_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  category?: InputMaybe<Scalars['String']['input']>;
-  drive_type_id?: InputMaybe<Scalars['Int']['input']>;
-  drive_type_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  engine_type_id?: InputMaybe<Scalars['Int']['input']>;
-  engine_type_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  except_external_id?: InputMaybe<Scalars['Int']['input']>;
-  external_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  folder_id?: InputMaybe<Scalars['Int']['input']>;
-  folder_slug?: InputMaybe<Scalars['String']['input']>;
-  folder_slug_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  gearbox_id?: InputMaybe<Scalars['Int']['input']>;
-  gearbox_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  generation_id?: InputMaybe<Scalars['Int']['input']>;
-  generation_slug?: InputMaybe<Scalars['String']['input']>;
-  generation_slug_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  mark_id?: InputMaybe<Scalars['Int']['input']>;
-  mark_slug?: InputMaybe<Scalars['String']['input']>;
-  mark_slug_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  owner_id?: InputMaybe<Scalars['Int']['input']>;
-  owner_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  price_from?: InputMaybe<Scalars['Int']['input']>;
-  price_to?: InputMaybe<Scalars['Int']['input']>;
-  run_from?: InputMaybe<Scalars['Int']['input']>;
-  run_to?: InputMaybe<Scalars['Int']['input']>;
-  set?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  site_id?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  url?: InputMaybe<Scalars['String']['input']>;
-  year_from?: InputMaybe<Scalars['Int']['input']>;
-  year_to?: InputMaybe<Scalars['Int']['input']>;
+  body_type_id: InputMaybe<Scalars['Int']['input']>;
+  body_type_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  category: InputMaybe<Scalars['String']['input']>;
+  drive_type_id: InputMaybe<Scalars['Int']['input']>;
+  drive_type_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  engine_type_id: InputMaybe<Scalars['Int']['input']>;
+  engine_type_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  except_external_id: InputMaybe<Scalars['Int']['input']>;
+  external_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  folder_id: InputMaybe<Scalars['Int']['input']>;
+  folder_slug: InputMaybe<Scalars['String']['input']>;
+  folder_slug_array: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  gearbox_id: InputMaybe<Scalars['Int']['input']>;
+  gearbox_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  generation_id: InputMaybe<Scalars['Int']['input']>;
+  generation_slug: InputMaybe<Scalars['String']['input']>;
+  generation_slug_array: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit: InputMaybe<Scalars['Int']['input']>;
+  mark_id: InputMaybe<Scalars['Int']['input']>;
+  mark_slug: InputMaybe<Scalars['String']['input']>;
+  mark_slug_array: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  owner_id: InputMaybe<Scalars['Int']['input']>;
+  owner_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  page: InputMaybe<Scalars['Int']['input']>;
+  price_from: InputMaybe<Scalars['Int']['input']>;
+  price_to: InputMaybe<Scalars['Int']['input']>;
+  run_from: InputMaybe<Scalars['Int']['input']>;
+  run_to: InputMaybe<Scalars['Int']['input']>;
+  set: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
+  sort: InputMaybe<Scalars['String']['input']>;
+  url: InputMaybe<Scalars['String']['input']>;
+  year_from: InputMaybe<Scalars['Int']['input']>;
+  year_to: InputMaybe<Scalars['Int']['input']>;
 };
 
 
 export type QueryRegionsArgs = {
-  site_id?: InputMaybe<Scalars['Int']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
 };
 
 
 export type QuerySeoTagArgs = {
-  site_id?: InputMaybe<Scalars['Int']['input']>;
-  url?: InputMaybe<Scalars['String']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
+  url: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type QuerySettingsArgs = {
-  site_id?: InputMaybe<Scalars['Int']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
 };
 
 
 export type QuerySlidesArgs = {
-  site_id?: InputMaybe<Scalars['Int']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
 };
 
 
 export type QueryStationCategoryArgs = {
-  site_id?: InputMaybe<Scalars['Int']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
 };
 
 
 export type QueryStoriesArgs = {
-  site_id?: InputMaybe<Scalars['Int']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
 };
 
 
 export type QueryStoryContentsArgs = {
-  site_id?: InputMaybe<Scalars['Int']['input']>;
-  story_id?: InputMaybe<Scalars['Int']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
+  story_id: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type Rating = {
-  __typename?: 'Rating';
-  rating_body?: Maybe<Scalars['Float']['output']>;
-  rating_interior?: Maybe<Scalars['Float']['output']>;
-  rating_technical?: Maybe<Scalars['Float']['output']>;
-  rating_total?: Maybe<Scalars['Float']['output']>;
+  __typename: 'Rating';
+  rating_body: Maybe<Scalars['Float']['output']>;
+  rating_interior: Maybe<Scalars['Float']['output']>;
+  rating_technical: Maybe<Scalars['Float']['output']>;
+  rating_total: Maybe<Scalars['Float']['output']>;
 };
 
 export type Region = {
-  __typename?: 'Region';
-  id?: Maybe<Scalars['Int']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  __typename: 'Region';
+  id: Maybe<Scalars['Int']['output']>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 export type SeoTag = {
-  __typename?: 'SeoTag';
-  crumbs?: Maybe<Array<Maybe<SeoTagCrumbs>>>;
+  __typename: 'SeoTag';
+  crumbs: Maybe<Array<Maybe<SeoTagCrumbs>>>;
   /** The description of the seo tags */
-  description?: Maybe<Scalars['String']['output']>;
+  description: Maybe<Scalars['String']['output']>;
   /** The title of the seo tags */
-  page_title?: Maybe<Scalars['String']['output']>;
-  site_text?: Maybe<SiteText>;
+  page_title: Maybe<Scalars['String']['output']>;
+  site_text: Maybe<SiteText>;
   /** The title of the seo tags */
-  title?: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 export type SeoTagCrumbs = {
-  __typename?: 'SeoTagCrumbs';
-  link?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  __typename: 'SeoTagCrumbs';
+  link: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 export type SiteSetting = {
-  __typename?: 'SiteSetting';
+  __typename: 'SiteSetting';
   id: Scalars['Int']['output'];
-  settings?: Maybe<Array<Maybe<KeyValue>>>;
+  settings: Maybe<Array<Maybe<KeyValue>>>;
 };
 
 export type SiteText = {
-  __typename?: 'SiteText';
-  body?: Maybe<Scalars['String']['output']>;
+  __typename: 'SiteText';
+  body: Maybe<Scalars['String']['output']>;
 };
 
 export type Slide = {
-  __typename?: 'Slide';
-  body?: Maybe<Scalars['String']['output']>;
+  __typename: 'Slide';
+  body: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
-  image?: Maybe<SlideImageItemType>;
-  image_element?: Maybe<SlideImageElementItemType>;
-  link?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  image: Maybe<SlideImageItemType>;
+  image_element: Maybe<SlideImageElementItemType>;
+  link: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 export type SlideImageElementItemType = {
-  __typename?: 'SlideImageElementItemType';
-  small?: Maybe<Scalars['String']['output']>;
-  small_webp?: Maybe<Scalars['String']['output']>;
-  src?: Maybe<Scalars['String']['output']>;
-  thumb?: Maybe<Scalars['String']['output']>;
-  thumb_webp?: Maybe<Scalars['String']['output']>;
+  __typename: 'SlideImageElementItemType';
+  small: Maybe<Scalars['String']['output']>;
+  small_webp: Maybe<Scalars['String']['output']>;
+  src: Maybe<Scalars['String']['output']>;
+  thumb: Maybe<Scalars['String']['output']>;
+  thumb_webp: Maybe<Scalars['String']['output']>;
 };
 
 export type SlideImageItemType = {
-  __typename?: 'SlideImageItemType';
-  slide_1x?: Maybe<Scalars['String']['output']>;
-  slide_1x_webp?: Maybe<Scalars['String']['output']>;
-  slide_2x?: Maybe<Scalars['String']['output']>;
-  slide_2x_webp?: Maybe<Scalars['String']['output']>;
-  src?: Maybe<Scalars['String']['output']>;
+  __typename: 'SlideImageItemType';
+  slide_1x: Maybe<Scalars['String']['output']>;
+  slide_1x_webp: Maybe<Scalars['String']['output']>;
+  slide_2x: Maybe<Scalars['String']['output']>;
+  slide_2x_webp: Maybe<Scalars['String']['output']>;
+  src: Maybe<Scalars['String']['output']>;
 };
 
 export type Station = {
-  __typename?: 'Station';
+  __typename: 'Station';
   id: Scalars['Int']['output'];
-  image?: Maybe<StationImage>;
-  price?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  image: Maybe<StationImage>;
+  price: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 export type StationCategory = {
-  __typename?: 'StationCategory';
+  __typename: 'StationCategory';
   id: Scalars['Int']['output'];
-  stations?: Maybe<Array<Maybe<Station>>>;
-  title?: Maybe<Scalars['String']['output']>;
+  stations: Maybe<Array<Maybe<Station>>>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 export type StationImage = {
-  __typename?: 'StationImage';
-  large?: Maybe<Scalars['String']['output']>;
-  large_webp?: Maybe<Scalars['String']['output']>;
-  medium?: Maybe<Scalars['String']['output']>;
-  medium_webp?: Maybe<Scalars['String']['output']>;
-  src?: Maybe<Scalars['String']['output']>;
+  __typename: 'StationImage';
+  large: Maybe<Scalars['String']['output']>;
+  large_webp: Maybe<Scalars['String']['output']>;
+  medium: Maybe<Scalars['String']['output']>;
+  medium_webp: Maybe<Scalars['String']['output']>;
+  src: Maybe<Scalars['String']['output']>;
 };
 
 export type Story = {
-  __typename?: 'Story';
+  __typename: 'Story';
   id: Scalars['Int']['output'];
-  image?: Maybe<StoryImage>;
-  stories?: Maybe<Array<Maybe<StoryContent>>>;
-  title?: Maybe<Scalars['String']['output']>;
+  image: Maybe<StoryImage>;
+  stories: Maybe<Array<Maybe<StoryContent>>>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 export type StoryContent = {
-  __typename?: 'StoryContent';
-  body?: Maybe<Scalars['String']['output']>;
-  button_color?: Maybe<Scalars['String']['output']>;
-  button_link?: Maybe<Scalars['String']['output']>;
-  button_title?: Maybe<Scalars['String']['output']>;
+  __typename: 'StoryContent';
+  body: Maybe<Scalars['String']['output']>;
+  button_color: Maybe<Scalars['String']['output']>;
+  button_link: Maybe<Scalars['String']['output']>;
+  button_title: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
-  image?: Maybe<StoryImageContent>;
-  title?: Maybe<Scalars['String']['output']>;
+  image: Maybe<StoryImageContent>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 export type StoryImage = {
-  __typename?: 'StoryImage';
-  src?: Maybe<Scalars['String']['output']>;
-  thumb?: Maybe<Scalars['String']['output']>;
-  thumb_webp?: Maybe<Scalars['String']['output']>;
-  tiny?: Maybe<Scalars['String']['output']>;
-  tiny_webp?: Maybe<Scalars['String']['output']>;
-  xs?: Maybe<Scalars['String']['output']>;
-  xs_webp?: Maybe<Scalars['String']['output']>;
+  __typename: 'StoryImage';
+  src: Maybe<Scalars['String']['output']>;
+  thumb: Maybe<Scalars['String']['output']>;
+  thumb_webp: Maybe<Scalars['String']['output']>;
+  tiny: Maybe<Scalars['String']['output']>;
+  tiny_webp: Maybe<Scalars['String']['output']>;
+  xs: Maybe<Scalars['String']['output']>;
+  xs_webp: Maybe<Scalars['String']['output']>;
 };
 
 export type StoryImageContent = {
-  __typename?: 'StoryImageContent';
-  medium?: Maybe<Scalars['String']['output']>;
-  medium_webp?: Maybe<Scalars['String']['output']>;
-  small?: Maybe<Scalars['String']['output']>;
-  small_webp?: Maybe<Scalars['String']['output']>;
-  src?: Maybe<Scalars['String']['output']>;
+  __typename: 'StoryImageContent';
+  medium: Maybe<Scalars['String']['output']>;
+  medium_webp: Maybe<Scalars['String']['output']>;
+  small: Maybe<Scalars['String']['output']>;
+  small_webp: Maybe<Scalars['String']['output']>;
+  src: Maybe<Scalars['String']['output']>;
 };
 
 export type TitleName = {
-  __typename?: 'TitleName';
+  __typename: 'TitleName';
   id: Scalars['Int']['output'];
-  name?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
 export type TitleValues = {
-  __typename?: 'TitleValues';
-  title?: Maybe<Scalars['String']['output']>;
-  values?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  __typename: 'TitleValues';
+  title: Maybe<Scalars['String']['output']>;
+  values: Maybe<Array<Maybe<Scalars['String']['output']>>>;
 };
 
 export type Wheel = {
-  __typename?: 'Wheel';
+  __typename: 'Wheel';
   id: Scalars['Int']['output'];
-  name?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
+  title: Maybe<Scalars['String']['output']>;
 };
 
-export type BankListTypeFragment = { __typename?: 'Bank', id: number, name: string, slug: string, request?: number | null, approval?: number | null, rating?: number | null, rate?: number | null, image?: string | null };
+export type BankListTypeFragment = { __typename: 'Bank', id: number, name: string, slug: string, request: number | null, approval: number | null, rating: number | null, rate: number | null, image: string | null };
 
-export type BankTypeFragment = { __typename?: 'Bank', id: number, name: string, slug: string, rate?: number | null, title?: string | null, image?: string | null, image_car?: { __typename?: 'BankImageCar', thumb?: string | null, small?: string | null, thumb_webp?: string | null, small_webp?: string | null } | null, site_text?: { __typename?: 'SiteText', body?: string | null } | null };
+export type BankTypeFragment = { __typename: 'Bank', id: number, name: string, slug: string, rate: number | null, title: string | null, image: string | null, image_car: { __typename: 'BankImageCar', thumb: string | null, small: string | null, thumb_webp: string | null, small_webp: string | null } | null, site_text: { __typename: 'SiteText', body: string | null } | null };
 
-export type DealerContactFragment = { __typename?: 'Dealer', id: number, slug?: string | null, address?: string | null };
+export type DealerContactFragment = { __typename: 'Dealer', id: number, slug: string | null, address: string | null };
 
-export type DealerListFragment = { __typename?: 'Dealer', id: number, phone?: string | null, title?: string | null, metro?: string | null, short_description?: string | null, youtube_playlist_review?: string | null, slug?: string | null, address?: string | null, rating?: number | null, schedule?: string | null, site?: string | null, images?: Array<{ __typename?: 'DealerImage', small?: string | null, medium?: string | null, small_webp?: string | null, medium_webp?: string | null } | null> | null };
+export type DealerListFragment = { __typename: 'Dealer', id: number, phone: string | null, title: string | null, metro: string | null, short_description: string | null, youtube_playlist_review: string | null, slug: string | null, address: string | null, rating: number | null, schedule: string | null, site: string | null, images: Array<{ __typename: 'DealerImage', small: string | null, medium: string | null, small_webp: string | null, medium_webp: string | null } | null> | null };
 
-export type DealerPageFragment = { __typename?: 'Dealer', id: number, slug?: string | null, title?: string | null, city?: string | null, address?: string | null, metro?: string | null, schedule?: string | null, phone?: string | null, coordinates?: string | null, site?: string | null, rating?: number | null, short_description?: string | null, description?: string | null, image_logo?: string | null, images?: Array<{ __typename?: 'DealerImage', small?: string | null, medium?: string | null, small_webp?: string | null, medium_webp?: string | null } | null> | null };
+export type DealerPageFragment = { __typename: 'Dealer', id: number, slug: string | null, title: string | null, city: string | null, address: string | null, metro: string | null, schedule: string | null, phone: string | null, coordinates: string | null, site: string | null, rating: number | null, short_description: string | null, description: string | null, image_logo: string | null, images: Array<{ __typename: 'DealerImage', small: string | null, medium: string | null, small_webp: string | null, medium_webp: string | null } | null> | null };
 
-export type DealerReviewListFragment = { __typename?: 'Dealer', id: number, title?: string | null, youtube_playlist_review?: string | null };
+export type DealerReviewListFragment = { __typename: 'Dealer', id: number, title: string | null, youtube_playlist_review: string | null };
 
-export type OfferFilterValuesFragment = { __typename?: 'OfferFilterValues', year?: Array<number | null> | null, price?: Array<number | null> | null, mark?: Array<{ __typename?: 'MarkField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, folder?: Array<{ __typename?: 'FolderField', title?: string | null, id?: number | null, slug?: string | null, mark_id?: number | null } | null> | null, generation?: Array<{ __typename?: 'GenerationField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, gearbox?: Array<{ __typename?: 'GearboxField', title?: string | null, title_short_rus?: string | null, id?: number | null, slug?: string | null } | null> | null, engineType?: Array<{ __typename?: 'EngineTypeField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, driveType?: Array<{ __typename?: 'DriveTypeField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, bodyType?: Array<{ __typename?: 'BodyTypeField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, chosen?: { __typename?: 'ChosenFieldType', yearFrom?: number | null, yearTo?: number | null, priceFrom?: number | null, priceTo?: number | null, mark?: Array<{ __typename?: 'MarkField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, folder?: Array<{ __typename?: 'FolderField', title?: string | null, id?: number | null, slug?: string | null, mark_id?: number | null } | null> | null, generation?: Array<{ __typename?: 'GenerationField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, gearbox?: Array<{ __typename?: 'GearboxField', title?: string | null, title_short_rus?: string | null, id?: number | null, slug?: string | null } | null> | null, engineType?: Array<{ __typename?: 'EngineTypeField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, driveType?: Array<{ __typename?: 'DriveTypeField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, bodyType?: Array<{ __typename?: 'BodyTypeField', title?: string | null, id?: number | null, slug?: string | null } | null> | null } | null };
+export type OfferFilterValuesFragment = { __typename: 'OfferFilterValues', year: Array<number | null> | null, price: Array<number | null> | null, mark: Array<{ __typename: 'MarkField', title: string | null, id: number | null, slug: string | null } | null> | null, folder: Array<{ __typename: 'FolderField', title: string | null, id: number | null, slug: string | null, mark_id: number | null } | null> | null, generation: Array<{ __typename: 'GenerationField', title: string | null, id: number | null, slug: string | null } | null> | null, gearbox: Array<{ __typename: 'GearboxField', title: string | null, title_short_rus: string | null, id: number | null, slug: string | null } | null> | null, engineType: Array<{ __typename: 'EngineTypeField', title: string | null, id: number | null, slug: string | null } | null> | null, driveType: Array<{ __typename: 'DriveTypeField', title: string | null, id: number | null, slug: string | null } | null> | null, bodyType: Array<{ __typename: 'BodyTypeField', title: string | null, id: number | null, slug: string | null } | null> | null, chosen: { __typename: 'ChosenFieldType', yearFrom: number | null, yearTo: number | null, priceFrom: number | null, priceTo: number | null, mark: Array<{ __typename: 'MarkField', title: string | null, id: number | null, slug: string | null } | null> | null, folder: Array<{ __typename: 'FolderField', title: string | null, id: number | null, slug: string | null, mark_id: number | null } | null> | null, generation: Array<{ __typename: 'GenerationField', title: string | null, id: number | null, slug: string | null } | null> | null, gearbox: Array<{ __typename: 'GearboxField', title: string | null, title_short_rus: string | null, id: number | null, slug: string | null } | null> | null, engineType: Array<{ __typename: 'EngineTypeField', title: string | null, id: number | null, slug: string | null } | null> | null, driveType: Array<{ __typename: 'DriveTypeField', title: string | null, id: number | null, slug: string | null } | null> | null, bodyType: Array<{ __typename: 'BodyTypeField', title: string | null, id: number | null, slug: string | null } | null> | null } | null };
 
-export type OnlyFilterValuesFragment = { __typename?: 'OfferFilterValues', mark?: Array<{ __typename?: 'MarkField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, folder?: Array<{ __typename?: 'FolderField', title?: string | null, id?: number | null, slug?: string | null, mark_id?: number | null } | null> | null, generation?: Array<{ __typename?: 'GenerationField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, chosen?: { __typename?: 'ChosenFieldType', yearFrom?: number | null, yearTo?: number | null, priceFrom?: number | null, priceTo?: number | null, mark?: Array<{ __typename?: 'MarkField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, folder?: Array<{ __typename?: 'FolderField', title?: string | null, id?: number | null, slug?: string | null, mark_id?: number | null } | null> | null, generation?: Array<{ __typename?: 'GenerationField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, gearbox?: Array<{ __typename?: 'GearboxField', title?: string | null, title_short_rus?: string | null, id?: number | null, slug?: string | null } | null> | null, engineType?: Array<{ __typename?: 'EngineTypeField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, driveType?: Array<{ __typename?: 'DriveTypeField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, bodyType?: Array<{ __typename?: 'BodyTypeField', title?: string | null, id?: number | null, slug?: string | null } | null> | null } | null };
+export type OnlyFilterValuesFragment = { __typename: 'OfferFilterValues', mark: Array<{ __typename: 'MarkField', title: string | null, id: number | null, slug: string | null } | null> | null, folder: Array<{ __typename: 'FolderField', title: string | null, id: number | null, slug: string | null, mark_id: number | null } | null> | null, generation: Array<{ __typename: 'GenerationField', title: string | null, id: number | null, slug: string | null } | null> | null, chosen: { __typename: 'ChosenFieldType', yearFrom: number | null, yearTo: number | null, priceFrom: number | null, priceTo: number | null, mark: Array<{ __typename: 'MarkField', title: string | null, id: number | null, slug: string | null } | null> | null, folder: Array<{ __typename: 'FolderField', title: string | null, id: number | null, slug: string | null, mark_id: number | null } | null> | null, generation: Array<{ __typename: 'GenerationField', title: string | null, id: number | null, slug: string | null } | null> | null, gearbox: Array<{ __typename: 'GearboxField', title: string | null, title_short_rus: string | null, id: number | null, slug: string | null } | null> | null, engineType: Array<{ __typename: 'EngineTypeField', title: string | null, id: number | null, slug: string | null } | null> | null, driveType: Array<{ __typename: 'DriveTypeField', title: string | null, id: number | null, slug: string | null } | null> | null, bodyType: Array<{ __typename: 'BodyTypeField', title: string | null, id: number | null, slug: string | null } | null> | null } | null };
 
-export type BodyTypeFieldTypeFragment = { __typename?: 'BodyTypeField', title?: string | null, id?: number | null, slug?: string | null };
+export type BodyTypeFieldTypeFragment = { __typename: 'BodyTypeField', title: string | null, id: number | null, slug: string | null };
 
-export type ChosenFieldTypeFragment = { __typename?: 'ChosenFieldType', yearFrom?: number | null, yearTo?: number | null, priceFrom?: number | null, priceTo?: number | null, mark?: Array<{ __typename?: 'MarkField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, folder?: Array<{ __typename?: 'FolderField', title?: string | null, id?: number | null, slug?: string | null, mark_id?: number | null } | null> | null, generation?: Array<{ __typename?: 'GenerationField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, gearbox?: Array<{ __typename?: 'GearboxField', title?: string | null, title_short_rus?: string | null, id?: number | null, slug?: string | null } | null> | null, engineType?: Array<{ __typename?: 'EngineTypeField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, driveType?: Array<{ __typename?: 'DriveTypeField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, bodyType?: Array<{ __typename?: 'BodyTypeField', title?: string | null, id?: number | null, slug?: string | null } | null> | null };
+export type ChosenFieldTypeFragment = { __typename: 'ChosenFieldType', yearFrom: number | null, yearTo: number | null, priceFrom: number | null, priceTo: number | null, mark: Array<{ __typename: 'MarkField', title: string | null, id: number | null, slug: string | null } | null> | null, folder: Array<{ __typename: 'FolderField', title: string | null, id: number | null, slug: string | null, mark_id: number | null } | null> | null, generation: Array<{ __typename: 'GenerationField', title: string | null, id: number | null, slug: string | null } | null> | null, gearbox: Array<{ __typename: 'GearboxField', title: string | null, title_short_rus: string | null, id: number | null, slug: string | null } | null> | null, engineType: Array<{ __typename: 'EngineTypeField', title: string | null, id: number | null, slug: string | null } | null> | null, driveType: Array<{ __typename: 'DriveTypeField', title: string | null, id: number | null, slug: string | null } | null> | null, bodyType: Array<{ __typename: 'BodyTypeField', title: string | null, id: number | null, slug: string | null } | null> | null };
 
-export type DriveTypeFieldTypeFragment = { __typename?: 'DriveTypeField', title?: string | null, id?: number | null, slug?: string | null };
+export type DriveTypeFieldTypeFragment = { __typename: 'DriveTypeField', title: string | null, id: number | null, slug: string | null };
 
-export type EngineTypeFieldTypeFragment = { __typename?: 'EngineTypeField', title?: string | null, id?: number | null, slug?: string | null };
+export type EngineTypeFieldTypeFragment = { __typename: 'EngineTypeField', title: string | null, id: number | null, slug: string | null };
 
-export type FolderFieldTypeFragment = { __typename?: 'FolderField', title?: string | null, id?: number | null, slug?: string | null, mark_id?: number | null };
+export type FolderFieldTypeFragment = { __typename: 'FolderField', title: string | null, id: number | null, slug: string | null, mark_id: number | null };
 
-export type GearboxFieldTypeFragment = { __typename?: 'GearboxField', title?: string | null, title_short_rus?: string | null, id?: number | null, slug?: string | null };
+export type GearboxFieldTypeFragment = { __typename: 'GearboxField', title: string | null, title_short_rus: string | null, id: number | null, slug: string | null };
 
-export type GenerationFieldTypeFragment = { __typename?: 'GenerationField', title?: string | null, id?: number | null, slug?: string | null };
+export type GenerationFieldTypeFragment = { __typename: 'GenerationField', title: string | null, id: number | null, slug: string | null };
 
-export type MarkFieldTypeFragment = { __typename?: 'MarkField', title?: string | null, id?: number | null, slug?: string | null };
+export type MarkFieldTypeFragment = { __typename: 'MarkField', title: string | null, id: number | null, slug: string | null };
 
-export type OwnerFieldTypeFragment = { __typename?: 'OwnerField', title?: string | null, id?: number | null, slug?: string | null };
+export type OwnerFieldTypeFragment = { __typename: 'OwnerField', title: string | null, id: number | null, slug: string | null };
 
-export type GenerationTypeFragment = { __typename?: 'Generation', id?: number | null, name?: string | null, year_begin?: number | null, year_end?: number | null, slug: string, offers_count?: number | null };
+export type GenerationTypeFragment = { __typename: 'Generation', id: number | null, name: string | null, year_begin: number | null, year_end: number | null, slug: string, offers_count: number | null };
 
-export type DealerImageFragment = { __typename?: 'DealerImage', small?: string | null, medium?: string | null, small_webp?: string | null, medium_webp?: string | null };
+export type DealerImageFragment = { __typename: 'DealerImage', small: string | null, medium: string | null, small_webp: string | null, medium_webp: string | null };
 
-export type OfferPageFragment = { __typename?: 'Offer', id: number, is_active?: boolean | null, is_stock?: boolean | null, external_id?: number | null, name: string, category_enum?: string | null, price: number, price_old?: number | null, run?: number | null, vin?: string | null, year?: number | null, description?: string | null, createdAt?: string | null, engine_power?: number | null, engine_volume?: number | null, rating?: { __typename?: 'Rating', rating_total?: number | null, rating_body?: number | null, rating_interior?: number | null, rating_technical?: number | null } | null, modification?: { __typename?: 'Modification', id: number, name?: string | null } | null, complectation?: { __typename?: 'Complectation', id: number, name?: string | null } | null, color?: { __typename?: 'Color', id: number, title?: string | null, name?: string | null } | null, images?: Array<{ __typename?: 'OfferImage', original?: string | null, small_webp?: string | null, small?: string | null, medium_webp?: string | null, medium?: string | null } | null> | null, mark?: { __typename?: 'Mark', id: number, slug: string, title: string } | null, folder?: { __typename?: 'Folder', id: number, slug: string, title: string } | null, owner?: { __typename?: 'Owner', id: number, title?: string | null, number: number } | null, driveType?: { __typename?: 'DriveType', id: number, title?: string | null, name?: string | null } | null, bodyType?: { __typename?: 'BodyType', id: number, title?: string | null, name?: string | null } | null, gearbox?: { __typename?: 'Gearbox', id: number, title?: string | null, title_short_rus?: string | null, name?: string | null } | null, engineType?: { __typename?: 'EngineType', id: number, title?: string | null, name?: string | null } | null, generation?: { __typename?: 'Generation', id?: number | null, slug: string, name?: string | null } | null, equipment_groups?: Array<{ __typename?: 'TitleValues', title?: string | null, values?: Array<string | null> | null } | null> | null, dealer?: { __typename?: 'Dealer', id: number, slug?: string | null, title?: string | null, address?: string | null, city?: string | null, metro?: string | null, schedule?: string | null, phone?: string | null, rating?: number | null, image_logo?: string | null } | null };
+export type OfferPageFragment = { __typename: 'Offer', id: number, is_active: boolean | null, is_stock: boolean | null, external_id: number | null, name: string, category_enum: string | null, price: number, price_old: number | null, run: number | null, vin: string | null, year: number | null, description: string | null, createdAt: string | null, engine_power: number | null, engine_volume: number | null, rating: { __typename: 'Rating', rating_total: number | null, rating_body: number | null, rating_interior: number | null, rating_technical: number | null } | null, modification: { __typename: 'Modification', id: number, name: string | null } | null, complectation: { __typename: 'Complectation', id: number, name: string | null } | null, color: { __typename: 'Color', id: number, title: string | null, name: string | null } | null, images: Array<{ __typename: 'OfferImage', original: string | null, small_webp: string | null, small: string | null, medium_webp: string | null, medium: string | null } | null> | null, mark: { __typename: 'Mark', id: number, slug: string, title: string } | null, folder: { __typename: 'Folder', id: number, slug: string, title: string } | null, owner: { __typename: 'Owner', id: number, title: string | null, number: number } | null, driveType: { __typename: 'DriveType', id: number, title: string | null, name: string | null } | null, bodyType: { __typename: 'BodyType', id: number, title: string | null, name: string | null } | null, gearbox: { __typename: 'Gearbox', id: number, title: string | null, title_short_rus: string | null, name: string | null } | null, engineType: { __typename: 'EngineType', id: number, title: string | null, name: string | null } | null, generation: { __typename: 'Generation', id: number | null, slug: string, name: string | null } | null, equipment_groups: Array<{ __typename: 'TitleValues', title: string | null, values: Array<string | null> | null } | null> | null, dealer: { __typename: 'Dealer', id: number, slug: string | null, title: string | null, address: string | null, city: string | null, metro: string | null, schedule: string | null, phone: string | null, rating: number | null, image_logo: string | null } | null };
 
-export type OfferPaginationFragment = { __typename?: 'OfferTypePagination', last_page: number, current_page: number, total: number, has_more_pages: boolean, data?: Array<{ __typename?: 'Offer', id: number, external_id?: number | null, is_stock?: boolean | null, external_unique_id?: string | null, name: string, category_enum?: string | null, price: number, price_old?: number | null, run?: number | null, vin?: string | null, year?: number | null, createdAt?: string | null, engine_power?: number | null, engine_volume?: number | null, color?: { __typename?: 'Color', id: number, title?: string | null, name?: string | null } | null, rating?: { __typename?: 'Rating', rating_total?: number | null, rating_body?: number | null, rating_interior?: number | null, rating_technical?: number | null } | null, mark?: { __typename?: 'Mark', id: number, slug: string, title: string } | null, folder?: { __typename?: 'Folder', id: number, slug: string, title: string } | null, images?: Array<{ __typename?: 'OfferImage', small_webp?: string | null } | null> | null, owner?: { __typename?: 'Owner', id: number, title?: string | null, number: number } | null, driveType?: { __typename?: 'DriveType', id: number, title?: string | null, name?: string | null } | null, bodyType?: { __typename?: 'BodyType', id: number, title?: string | null, name?: string | null } | null, gearbox?: { __typename?: 'Gearbox', id: number, title?: string | null, title_short_rus?: string | null, name?: string | null } | null, engineType?: { __typename?: 'EngineType', id: number, title?: string | null, name?: string | null } | null, generation?: { __typename?: 'Generation', id?: number | null, slug: string, name?: string | null } | null, dealer?: { __typename?: 'Dealer', id: number, phone?: string | null, slug?: string | null, title?: string | null, image_logo?: string | null } | null } | null> | null };
+export type OfferPaginationFragment = { __typename: 'OfferTypePagination', last_page: number, current_page: number, total: number, has_more_pages: boolean, data: Array<{ __typename: 'Offer', id: number, external_id: number | null, is_stock: boolean | null, external_unique_id: string | null, name: string, category_enum: string | null, price: number, price_old: number | null, run: number | null, vin: string | null, year: number | null, createdAt: string | null, engine_power: number | null, engine_volume: number | null, color: { __typename: 'Color', id: number, title: string | null, name: string | null } | null, rating: { __typename: 'Rating', rating_total: number | null, rating_body: number | null, rating_interior: number | null, rating_technical: number | null } | null, mark: { __typename: 'Mark', id: number, slug: string, title: string } | null, folder: { __typename: 'Folder', id: number, slug: string, title: string } | null, images: Array<{ __typename: 'OfferImage', small_webp: string | null } | null> | null, owner: { __typename: 'Owner', id: number, title: string | null, number: number } | null, driveType: { __typename: 'DriveType', id: number, title: string | null, name: string | null } | null, bodyType: { __typename: 'BodyType', id: number, title: string | null, name: string | null } | null, gearbox: { __typename: 'Gearbox', id: number, title: string | null, title_short_rus: string | null, name: string | null } | null, engineType: { __typename: 'EngineType', id: number, title: string | null, name: string | null } | null, generation: { __typename: 'Generation', id: number | null, slug: string, name: string | null } | null, dealer: { __typename: 'Dealer', id: number, phone: string | null, slug: string | null, title: string | null, image_logo: string | null } | null } | null> | null };
 
-export type BodyTypeTypeFragment = { __typename?: 'BodyType', id: number, title?: string | null, name?: string | null };
+export type BodyTypeTypeFragment = { __typename: 'BodyType', id: number, title: string | null, name: string | null };
 
-export type ColorTypeFragment = { __typename?: 'Color', id: number, title?: string | null, name?: string | null };
+export type ColorTypeFragment = { __typename: 'Color', id: number, title: string | null, name: string | null };
 
-export type ComplectationTypeFragment = { __typename?: 'Complectation', id: number, name?: string | null };
+export type ComplectationTypeFragment = { __typename: 'Complectation', id: number, name: string | null };
 
-export type DealerMiniTypeFragment = { __typename?: 'Dealer', id: number, phone?: string | null, slug?: string | null, title?: string | null, image_logo?: string | null };
+export type DealerMiniTypeFragment = { __typename: 'Dealer', id: number, phone: string | null, slug: string | null, title: string | null, image_logo: string | null };
 
-export type DealerTypeFragment = { __typename?: 'Dealer', id: number, slug?: string | null, title?: string | null, address?: string | null, city?: string | null, metro?: string | null, schedule?: string | null, phone?: string | null, rating?: number | null, image_logo?: string | null };
+export type DealerTypeFragment = { __typename: 'Dealer', id: number, slug: string | null, title: string | null, address: string | null, city: string | null, metro: string | null, schedule: string | null, phone: string | null, rating: number | null, image_logo: string | null };
 
-export type DriveTypeTypeFragment = { __typename?: 'DriveType', id: number, title?: string | null, name?: string | null };
+export type DriveTypeTypeFragment = { __typename: 'DriveType', id: number, title: string | null, name: string | null };
 
-export type EngineTypeTypeFragment = { __typename?: 'EngineType', id: number, title?: string | null, name?: string | null };
+export type EngineTypeTypeFragment = { __typename: 'EngineType', id: number, title: string | null, name: string | null };
 
-export type EquipmentTypeFragment = { __typename?: 'TitleValues', title?: string | null, values?: Array<string | null> | null };
+export type EquipmentTypeFragment = { __typename: 'TitleValues', title: string | null, values: Array<string | null> | null };
 
-export type FolderTypeFragment = { __typename?: 'Folder', id: number, slug: string, title: string };
+export type FolderTypeFragment = { __typename: 'Folder', id: number, slug: string, title: string };
 
-export type GearboxTypeFragment = { __typename?: 'Gearbox', id: number, title?: string | null, title_short_rus?: string | null, name?: string | null };
+export type GearboxTypeFragment = { __typename: 'Gearbox', id: number, title: string | null, title_short_rus: string | null, name: string | null };
 
-export type GenerationOfferTypeFragment = { __typename?: 'Generation', id?: number | null, slug: string, name?: string | null };
+export type GenerationOfferTypeFragment = { __typename: 'Generation', id: number | null, slug: string, name: string | null };
 
-export type ImageAllTypeFragment = { __typename?: 'OfferImage', original?: string | null, small_webp?: string | null, small?: string | null, medium_webp?: string | null, medium?: string | null };
+export type ImageAllTypeFragment = { __typename: 'OfferImage', original: string | null, small_webp: string | null, small: string | null, medium_webp: string | null, medium: string | null };
 
-export type ImageThumbTypeFragment = { __typename?: 'OfferImage', thumb?: string | null, original?: string | null };
+export type ImageThumbTypeFragment = { __typename: 'OfferImage', thumb: string | null, original: string | null };
 
-export type MarkTypeFragment = { __typename?: 'Mark', id: number, slug: string, title: string };
+export type MarkTypeFragment = { __typename: 'Mark', id: number, slug: string, title: string };
 
-export type ModificationTypeFragment = { __typename?: 'Modification', id: number, name?: string | null };
+export type ModificationTypeFragment = { __typename: 'Modification', id: number, name: string | null };
 
-export type OwnerTypeFragment = { __typename?: 'Owner', id: number, title?: string | null, number: number };
+export type OwnerTypeFragment = { __typename: 'Owner', id: number, title: string | null, number: number };
 
-export type WheelTypeFragment = { __typename?: 'Wheel', id: number, name?: string | null };
+export type WheelTypeFragment = { __typename: 'Wheel', id: number, name: string | null };
 
-export type SeoTagFragment = { __typename?: 'SeoTag', page_title?: string | null, title?: string | null, description?: string | null, crumbs?: Array<{ __typename?: 'SeoTagCrumbs', title?: string | null, link?: string | null } | null> | null, site_text?: { __typename?: 'SiteText', body?: string | null } | null };
+export type SeoTagFragment = { __typename: 'SeoTag', page_title: string | null, title: string | null, description: string | null, crumbs: Array<{ __typename: 'SeoTagCrumbs', title: string | null, link: string | null } | null> | null, site_text: { __typename: 'SiteText', body: string | null } | null };
 
-export type SeoTagCrumbsFragment = { __typename?: 'SeoTagCrumbs', title?: string | null, link?: string | null };
+export type SeoTagCrumbsFragment = { __typename: 'SeoTagCrumbs', title: string | null, link: string | null };
 
-export type SiteTextFragment = { __typename?: 'SiteText', body?: string | null };
+export type SiteTextFragment = { __typename: 'SiteText', body: string | null };
 
-export type StoryFragment = { __typename?: 'Story', id: number, title?: string | null, stories?: Array<{ __typename?: 'StoryContent', id: number, body?: string | null, title?: string | null, button_link?: string | null, image?: { __typename?: 'StoryImageContent', medium?: string | null, medium_webp?: string | null, small?: string | null, small_webp?: string | null, src?: string | null } | null } | null> | null, image?: { __typename?: 'StoryImage', tiny?: string | null, tiny_webp?: string | null, xs?: string | null, xs_webp?: string | null } | null };
+export type StoryFragment = { __typename: 'Story', id: number, title: string | null, stories: Array<{ __typename: 'StoryContent', id: number, body: string | null, title: string | null, button_link: string | null, image: { __typename: 'StoryImageContent', medium: string | null, medium_webp: string | null, small: string | null, small_webp: string | null, src: string | null } | null } | null> | null, image: { __typename: 'StoryImage', tiny: string | null, tiny_webp: string | null, xs: string | null, xs_webp: string | null } | null };
 
-export type StoryContentFragment = { __typename?: 'StoryContent', id: number, title?: string | null, body?: string | null, button_title?: string | null, button_link?: string | null, button_color?: string | null, image?: { __typename?: 'StoryImageContent', small?: string | null, small_webp?: string | null, medium?: string | null, medium_webp?: string | null } | null };
+export type StoryContentFragment = { __typename: 'StoryContent', id: number, title: string | null, body: string | null, button_title: string | null, button_link: string | null, button_color: string | null, image: { __typename: 'StoryImageContent', small: string | null, small_webp: string | null, medium: string | null, medium_webp: string | null } | null };
 
-export type OfferUrlFragment = { __typename?: 'OfferUrlType', mark_slug?: string | null, folder_slug?: string | null, external_id?: number | null };
+export type OfferUrlFragment = { __typename: 'OfferUrlType', mark_slug: string | null, folder_slug: string | null, external_id: number | null };
 
-export type OfferUrlFilterPaginationFragment = { __typename?: 'OfferUrlFilterPaginationType', mark_slug_array?: Array<string | null> | null, folder_slug_array?: Array<string | null> | null, generation_slug_array?: Array<string | null> | null, year_from?: number | null, engine_type_id_array?: Array<number | null> | null, body_type_id_array?: Array<string | null> | null, category?: string | null };
+export type OfferUrlFilterPaginationFragment = { __typename: 'OfferUrlFilterPaginationType', mark_slug_array: Array<string | null> | null, folder_slug_array: Array<string | null> | null, generation_slug_array: Array<string | null> | null, year_from: number | null, engine_type_id_array: Array<number | null> | null, body_type_id_array: Array<string | null> | null, category: string | null };
 
 export type FeedbackMutationVariables = Exact<{
-  external_id?: InputMaybe<Scalars['Int']['input']>;
+  external_id: InputMaybe<Scalars['Int']['input']>;
   site_id: Scalars['Int']['input'];
   type: Scalars['String']['input'];
-  client_name?: InputMaybe<Scalars['String']['input']>;
+  client_name: InputMaybe<Scalars['String']['input']>;
   client_phone: Scalars['String']['input'];
-  client_age?: InputMaybe<Scalars['String']['input']>;
-  client_region?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_mark?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_model?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_run?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_year?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_body_type?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_price?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_owners?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_gearbox?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_engine?: InputMaybe<Scalars['String']['input']>;
-  credit_initial_fee?: InputMaybe<Scalars['String']['input']>;
-  credit_period?: InputMaybe<Scalars['String']['input']>;
-  utm_source?: InputMaybe<Scalars['String']['input']>;
-  utm_content?: InputMaybe<Scalars['String']['input']>;
-  utm_medium?: InputMaybe<Scalars['String']['input']>;
-  utm_campaign?: InputMaybe<Scalars['String']['input']>;
-  utm_term?: InputMaybe<Scalars['String']['input']>;
-  offer_title?: InputMaybe<Scalars['String']['input']>;
-  offer_price?: InputMaybe<Scalars['String']['input']>;
-  comment?: InputMaybe<Scalars['String']['input']>;
+  client_age: InputMaybe<Scalars['String']['input']>;
+  client_region: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_mark: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_model: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_run: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_year: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_body_type: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_price: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_owners: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_gearbox: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_engine: InputMaybe<Scalars['String']['input']>;
+  credit_initial_fee: InputMaybe<Scalars['String']['input']>;
+  credit_period: InputMaybe<Scalars['String']['input']>;
+  utm_source: InputMaybe<Scalars['String']['input']>;
+  utm_content: InputMaybe<Scalars['String']['input']>;
+  utm_medium: InputMaybe<Scalars['String']['input']>;
+  utm_campaign: InputMaybe<Scalars['String']['input']>;
+  utm_term: InputMaybe<Scalars['String']['input']>;
+  offer_title: InputMaybe<Scalars['String']['input']>;
+  offer_price: InputMaybe<Scalars['String']['input']>;
+  comment: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type FeedbackMutation = { __typename?: 'Mutation', feedback?: { __typename?: 'Feedback', id?: number | null } | null };
+export type FeedbackMutation = { __typename: 'Mutation', feedback: { __typename: 'Feedback', id: number | null } | null };
 
 export type SendFeedbackMutationVariables = Exact<{
   site_id: Scalars['Int']['input'];
   type_enum: Scalars['String']['input'];
-  client_name?: InputMaybe<Scalars['String']['input']>;
+  client_name: InputMaybe<Scalars['String']['input']>;
   client_phone: Scalars['String']['input'];
-  client_age?: InputMaybe<Scalars['String']['input']>;
-  client_region?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_mark?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_model?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_run?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_year?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_body_type?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_price?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_owners?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_gearbox?: InputMaybe<Scalars['String']['input']>;
-  client_vehicle_engine?: InputMaybe<Scalars['String']['input']>;
-  credit_initial_fee?: InputMaybe<Scalars['String']['input']>;
-  credit_period?: InputMaybe<Scalars['String']['input']>;
-  utm_source?: InputMaybe<Scalars['String']['input']>;
-  utm_content?: InputMaybe<Scalars['String']['input']>;
-  utm_medium?: InputMaybe<Scalars['String']['input']>;
-  utm_campaign?: InputMaybe<Scalars['String']['input']>;
-  utm_term?: InputMaybe<Scalars['String']['input']>;
-  offer_title?: InputMaybe<Scalars['String']['input']>;
-  offer_price?: InputMaybe<Scalars['String']['input']>;
-  comment?: InputMaybe<Scalars['String']['input']>;
+  client_age: InputMaybe<Scalars['String']['input']>;
+  client_region: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_mark: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_model: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_run: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_year: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_body_type: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_price: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_owners: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_gearbox: InputMaybe<Scalars['String']['input']>;
+  client_vehicle_engine: InputMaybe<Scalars['String']['input']>;
+  credit_initial_fee: InputMaybe<Scalars['String']['input']>;
+  credit_period: InputMaybe<Scalars['String']['input']>;
+  utm_source: InputMaybe<Scalars['String']['input']>;
+  utm_content: InputMaybe<Scalars['String']['input']>;
+  utm_medium: InputMaybe<Scalars['String']['input']>;
+  utm_campaign: InputMaybe<Scalars['String']['input']>;
+  utm_term: InputMaybe<Scalars['String']['input']>;
+  offer_title: InputMaybe<Scalars['String']['input']>;
+  offer_price: InputMaybe<Scalars['String']['input']>;
+  comment: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type SendFeedbackMutation = { __typename?: 'Mutation', feedback?: { __typename?: 'Feedback', id?: number | null } | null };
+export type SendFeedbackMutation = { __typename: 'Mutation', feedback: { __typename: 'Feedback', id: number | null } | null };
 
 export type BankQueryVariables = Exact<{
   site_id: Scalars['Int']['input'];
@@ -1151,40 +1151,40 @@ export type BankQueryVariables = Exact<{
 }>;
 
 
-export type BankQuery = { __typename?: 'Query', bank?: { __typename?: 'Bank', id: number, name: string, slug: string, rate?: number | null, title?: string | null, image?: string | null, image_car?: { __typename?: 'BankImageCar', thumb?: string | null, small?: string | null, thumb_webp?: string | null, small_webp?: string | null } | null, site_text?: { __typename?: 'SiteText', body?: string | null } | null } | null };
+export type BankQuery = { __typename: 'Query', bank: { __typename: 'Bank', id: number, name: string, slug: string, rate: number | null, title: string | null, image: string | null, image_car: { __typename: 'BankImageCar', thumb: string | null, small: string | null, thumb_webp: string | null, small_webp: string | null } | null, site_text: { __typename: 'SiteText', body: string | null } | null } | null };
 
 export type BanksQueryVariables = Exact<{
   site_id: Scalars['Int']['input'];
 }>;
 
 
-export type BanksQuery = { __typename?: 'Query', banks?: Array<{ __typename?: 'Bank', id: number, name: string, slug: string, request?: number | null, approval?: number | null, rating?: number | null, rate?: number | null, image?: string | null } | null> | null };
+export type BanksQuery = { __typename: 'Query', banks: Array<{ __typename: 'Bank', id: number, name: string, slug: string, request: number | null, approval: number | null, rating: number | null, rate: number | null, image: string | null } | null> | null };
 
 export type ArticleQueryVariables = Exact<{
   site_id: Scalars['Int']['input'];
-  url?: InputMaybe<Scalars['String']['input']>;
+  url: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type ArticleQuery = { __typename?: 'Query', article?: { __typename?: 'Article', id: number, slug?: string | null, page_title?: string | null, long_title?: string | null, short_description?: string | null, description?: string | null, url?: string | null, views?: string | null, video_youtube?: string | null, body?: string | null, createdAt?: string | null, image_preview?: { __typename?: 'ArticleImagePreview', thumb?: string | null } | null, image_slide?: Array<{ __typename?: 'ArticleImageSlide', src?: string | null } | null> | null, image?: { __typename?: 'ArticleImageItem', medium?: string | null, large?: string | null, medium_webp?: string | null, large_webp?: string | null, src?: string | null } | null } | null };
+export type ArticleQuery = { __typename: 'Query', article: { __typename: 'Article', id: number, slug: string | null, page_title: string | null, long_title: string | null, short_description: string | null, description: string | null, url: string | null, views: string | null, video_youtube: string | null, body: string | null, createdAt: string | null, image_preview: { __typename: 'ArticleImagePreview', thumb: string | null } | null, image_slide: Array<{ __typename: 'ArticleImageSlide', src: string | null } | null> | null, image: { __typename: 'ArticleImageItem', medium: string | null, large: string | null, medium_webp: string | null, large_webp: string | null, src: string | null } | null } | null };
 
 export type ArticleCategoryQueryVariables = Exact<{
   site_id: Scalars['Int']['input'];
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 
-export type ArticleCategoryQuery = { __typename?: 'Query', articleCategory?: Array<{ __typename?: 'ArticleCategory', id: number, slug?: string | null, page_title?: string | null, url?: string | null, articles?: Array<{ __typename?: 'Article', id: number, page_title?: string | null, views?: string | null, url?: string | null, createdAt?: string | null, image_preview?: { __typename?: 'ArticleImagePreview', thumb?: string | null, small?: string | null, thumb_webp?: string | null, small_webp?: string | null } | null } | null> | null } | null> | null };
+export type ArticleCategoryQuery = { __typename: 'Query', articleCategory: Array<{ __typename: 'ArticleCategory', id: number, slug: string | null, page_title: string | null, url: string | null, articles: Array<{ __typename: 'Article', id: number, page_title: string | null, views: string | null, url: string | null, createdAt: string | null, image_preview: { __typename: 'ArticleImagePreview', thumb: string | null, small: string | null, thumb_webp: string | null, small_webp: string | null } | null } | null> | null } | null> | null };
 
 export type ArticlesPaginateQueryVariables = Exact<{
-  site_id?: InputMaybe<Scalars['Int']['input']>;
-  category_url?: InputMaybe<Scalars['String']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
+  category_url: InputMaybe<Scalars['String']['input']>;
+  page: InputMaybe<Scalars['Int']['input']>;
+  limit: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 
-export type ArticlesPaginateQuery = { __typename?: 'Query', articlesPaginate?: { __typename?: 'ArticlesPaginate', last_page: number, data?: Array<{ __typename?: 'Article', id: number, page_title?: string | null, views?: string | null, url?: string | null, createdAt?: string | null, image_preview?: { __typename?: 'ArticleImagePreview', thumb?: string | null, small?: string | null, thumb_webp?: string | null, small_webp?: string | null } | null } | null> | null } | null };
+export type ArticlesPaginateQuery = { __typename: 'Query', articlesPaginate: { __typename: 'ArticlesPaginate', last_page: number, data: Array<{ __typename: 'Article', id: number, page_title: string | null, views: string | null, url: string | null, createdAt: string | null, image_preview: { __typename: 'ArticleImagePreview', thumb: string | null, small: string | null, thumb_webp: string | null, small_webp: string | null } | null } | null> | null } | null };
 
 export type DealerQueryVariables = Exact<{
   site_id: Scalars['Int']['input'];
@@ -1192,217 +1192,217 @@ export type DealerQueryVariables = Exact<{
 }>;
 
 
-export type DealerQuery = { __typename?: 'Query', dealer?: { __typename?: 'Dealer', id: number, slug?: string | null, title?: string | null, city?: string | null, address?: string | null, metro?: string | null, schedule?: string | null, phone?: string | null, coordinates?: string | null, site?: string | null, rating?: number | null, short_description?: string | null, description?: string | null, image_logo?: string | null, images?: Array<{ __typename?: 'DealerImage', small?: string | null, medium?: string | null, small_webp?: string | null, medium_webp?: string | null } | null> | null } | null };
+export type DealerQuery = { __typename: 'Query', dealer: { __typename: 'Dealer', id: number, slug: string | null, title: string | null, city: string | null, address: string | null, metro: string | null, schedule: string | null, phone: string | null, coordinates: string | null, site: string | null, rating: number | null, short_description: string | null, description: string | null, image_logo: string | null, images: Array<{ __typename: 'DealerImage', small: string | null, medium: string | null, small_webp: string | null, medium_webp: string | null } | null> | null } | null };
 
 export type DealersReviewsQueryVariables = Exact<{
   site_id: Scalars['Int']['input'];
 }>;
 
 
-export type DealersReviewsQuery = { __typename?: 'Query', dealers?: Array<{ __typename?: 'Dealer', id: number, title?: string | null, youtube_playlist_review?: string | null } | null> | null };
+export type DealersReviewsQuery = { __typename: 'Query', dealers: Array<{ __typename: 'Dealer', id: number, title: string | null, youtube_playlist_review: string | null } | null> | null };
 
 export type DealersQueryVariables = Exact<{
   site_id: Scalars['Int']['input'];
 }>;
 
 
-export type DealersQuery = { __typename?: 'Query', dealers?: Array<{ __typename?: 'Dealer', id: number, phone?: string | null, title?: string | null, metro?: string | null, short_description?: string | null, youtube_playlist_review?: string | null, slug?: string | null, address?: string | null, rating?: number | null, schedule?: string | null, site?: string | null, images?: Array<{ __typename?: 'DealerImage', small?: string | null, medium?: string | null, small_webp?: string | null, medium_webp?: string | null } | null> | null } | null> | null };
+export type DealersQuery = { __typename: 'Query', dealers: Array<{ __typename: 'Dealer', id: number, phone: string | null, title: string | null, metro: string | null, short_description: string | null, youtube_playlist_review: string | null, slug: string | null, address: string | null, rating: number | null, schedule: string | null, site: string | null, images: Array<{ __typename: 'DealerImage', small: string | null, medium: string | null, small_webp: string | null, medium_webp: string | null } | null> | null } | null> | null };
 
 export type DealersContactQueryVariables = Exact<{
   site_id: Scalars['Int']['input'];
 }>;
 
 
-export type DealersContactQuery = { __typename?: 'Query', dealers?: Array<{ __typename?: 'Dealer', id: number, slug?: string | null, address?: string | null } | null> | null };
+export type DealersContactQuery = { __typename: 'Query', dealers: Array<{ __typename: 'Dealer', id: number, slug: string | null, address: string | null } | null> | null };
 
 export type FiltersCountQueryVariables = Exact<{
   site_id: Scalars['Int']['input'];
   page: Scalars['Int']['input'];
   limit: Scalars['Int']['input'];
-  mark_slug_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
-  folder_slug_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  generation_slug?: InputMaybe<Scalars['String']['input']>;
-  gearbox_id?: InputMaybe<Scalars['Int']['input']>;
-  body_type_id?: InputMaybe<Scalars['Int']['input']>;
-  drive_type_id?: InputMaybe<Scalars['Int']['input']>;
-  owner_id?: InputMaybe<Scalars['Int']['input']>;
-  year_from?: InputMaybe<Scalars['Int']['input']>;
-  year_to?: InputMaybe<Scalars['Int']['input']>;
+  mark_slug_array: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
+  folder_slug_array: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
+  sort: InputMaybe<Scalars['String']['input']>;
+  generation_slug: InputMaybe<Scalars['String']['input']>;
+  gearbox_id: InputMaybe<Scalars['Int']['input']>;
+  body_type_id: InputMaybe<Scalars['Int']['input']>;
+  drive_type_id: InputMaybe<Scalars['Int']['input']>;
+  owner_id: InputMaybe<Scalars['Int']['input']>;
+  year_from: InputMaybe<Scalars['Int']['input']>;
+  year_to: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 
-export type FiltersCountQuery = { __typename?: 'Query', offers?: { __typename?: 'OfferTypePagination', total: number } | null };
+export type FiltersCountQuery = { __typename: 'Query', offers: { __typename: 'OfferTypePagination', total: number } | null };
 
 export type FoldersQueryVariables = Exact<{
   site_id: Scalars['Int']['input'];
-  mark_id?: InputMaybe<Scalars['Int']['input']>;
-  mark_slug?: InputMaybe<Scalars['String']['input']>;
-  category?: InputMaybe<Scalars['String']['input']>;
+  mark_id: InputMaybe<Scalars['Int']['input']>;
+  mark_slug: InputMaybe<Scalars['String']['input']>;
+  category: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type FoldersQuery = { __typename?: 'Query', folders?: Array<{ __typename?: 'Folder', id: number, title: string, title_rus?: string | null, slug: string, offers_count?: number | null } | null> | null };
+export type FoldersQuery = { __typename: 'Query', folders: Array<{ __typename: 'Folder', id: number, title: string, title_rus: string | null, slug: string, offers_count: number | null } | null> | null };
 
 export type GenerationsQueryVariables = Exact<{
   site_id: Scalars['Int']['input'];
-  folder_id?: InputMaybe<Scalars['Int']['input']>;
-  mark_slug?: InputMaybe<Scalars['String']['input']>;
-  category?: InputMaybe<Scalars['String']['input']>;
-  folder_slug?: InputMaybe<Scalars['String']['input']>;
+  folder_id: InputMaybe<Scalars['Int']['input']>;
+  mark_slug: InputMaybe<Scalars['String']['input']>;
+  category: InputMaybe<Scalars['String']['input']>;
+  folder_slug: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type GenerationsQuery = { __typename?: 'Query', generations?: Array<{ __typename?: 'Generation', id?: number | null, name?: string | null, year_begin?: number | null, year_end?: number | null, slug: string, offers_count?: number | null } | null> | null };
+export type GenerationsQuery = { __typename: 'Query', generations: Array<{ __typename: 'Generation', id: number | null, name: string | null, year_begin: number | null, year_end: number | null, slug: string, offers_count: number | null } | null> | null };
 
 export type MarkFolderGenerationQueryVariables = Exact<{
   site_id: Scalars['Int']['input'];
-  category?: InputMaybe<Scalars['String']['input']>;
+  category: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type MarkFolderGenerationQuery = { __typename?: 'Query', markFolderGeneration?: Array<{ __typename?: 'MarkFolder', id: number, title: string, slug: string, offers_count?: number | null, folders?: Array<{ __typename?: 'FolderGeneration', id: number, title: string, slug: string, offers_count?: number | null, generations?: Array<{ __typename?: 'Generation', id?: number | null, name?: string | null, year_begin?: number | null, year_end?: number | null, slug: string, offers_count?: number | null } | null> | null } | null> | null } | null> | null };
+export type MarkFolderGenerationQuery = { __typename: 'Query', markFolderGeneration: Array<{ __typename: 'MarkFolder', id: number, title: string, slug: string, offers_count: number | null, folders: Array<{ __typename: 'FolderGeneration', id: number, title: string, slug: string, offers_count: number | null, generations: Array<{ __typename: 'Generation', id: number | null, name: string | null, year_begin: number | null, year_end: number | null, slug: string, offers_count: number | null } | null> | null } | null> | null } | null> | null };
 
 export type MarksQueryVariables = Exact<{
   site_id: Scalars['Int']['input'];
-  category?: InputMaybe<Scalars['String']['input']>;
+  category: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type MarksQuery = { __typename?: 'Query', marks?: Array<{ __typename?: 'Mark', id: number, title: string, slug: string, offers_count?: number | null } | null> | null };
+export type MarksQuery = { __typename: 'Query', marks: Array<{ __typename: 'Mark', id: number, title: string, slug: string, offers_count: number | null } | null> | null };
 
 export type OfferQueryVariables = Exact<{
   site_id: Scalars['Int']['input'];
-  mark_slug?: InputMaybe<Scalars['String']['input']>;
+  mark_slug: InputMaybe<Scalars['String']['input']>;
   folder_slug: Scalars['String']['input'];
   external_id: Scalars['Int']['input'];
-  dateFormat?: InputMaybe<Scalars['String']['input']>;
+  dateFormat: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type OfferQuery = { __typename?: 'Query', offer?: { __typename?: 'Offer', id: number, is_active?: boolean | null, is_stock?: boolean | null, external_id?: number | null, name: string, category_enum?: string | null, price: number, price_old?: number | null, run?: number | null, vin?: string | null, year?: number | null, description?: string | null, createdAt?: string | null, engine_power?: number | null, engine_volume?: number | null, rating?: { __typename?: 'Rating', rating_total?: number | null, rating_body?: number | null, rating_interior?: number | null, rating_technical?: number | null } | null, modification?: { __typename?: 'Modification', id: number, name?: string | null } | null, complectation?: { __typename?: 'Complectation', id: number, name?: string | null } | null, color?: { __typename?: 'Color', id: number, title?: string | null, name?: string | null } | null, images?: Array<{ __typename?: 'OfferImage', original?: string | null, small_webp?: string | null, small?: string | null, medium_webp?: string | null, medium?: string | null } | null> | null, mark?: { __typename?: 'Mark', id: number, slug: string, title: string } | null, folder?: { __typename?: 'Folder', id: number, slug: string, title: string } | null, owner?: { __typename?: 'Owner', id: number, title?: string | null, number: number } | null, driveType?: { __typename?: 'DriveType', id: number, title?: string | null, name?: string | null } | null, bodyType?: { __typename?: 'BodyType', id: number, title?: string | null, name?: string | null } | null, gearbox?: { __typename?: 'Gearbox', id: number, title?: string | null, title_short_rus?: string | null, name?: string | null } | null, engineType?: { __typename?: 'EngineType', id: number, title?: string | null, name?: string | null } | null, generation?: { __typename?: 'Generation', id?: number | null, slug: string, name?: string | null } | null, equipment_groups?: Array<{ __typename?: 'TitleValues', title?: string | null, values?: Array<string | null> | null } | null> | null, dealer?: { __typename?: 'Dealer', id: number, slug?: string | null, title?: string | null, address?: string | null, city?: string | null, metro?: string | null, schedule?: string | null, phone?: string | null, rating?: number | null, image_logo?: string | null } | null } | null };
+export type OfferQuery = { __typename: 'Query', offer: { __typename: 'Offer', id: number, is_active: boolean | null, is_stock: boolean | null, external_id: number | null, name: string, category_enum: string | null, price: number, price_old: number | null, run: number | null, vin: string | null, year: number | null, description: string | null, createdAt: string | null, engine_power: number | null, engine_volume: number | null, rating: { __typename: 'Rating', rating_total: number | null, rating_body: number | null, rating_interior: number | null, rating_technical: number | null } | null, modification: { __typename: 'Modification', id: number, name: string | null } | null, complectation: { __typename: 'Complectation', id: number, name: string | null } | null, color: { __typename: 'Color', id: number, title: string | null, name: string | null } | null, images: Array<{ __typename: 'OfferImage', original: string | null, small_webp: string | null, small: string | null, medium_webp: string | null, medium: string | null } | null> | null, mark: { __typename: 'Mark', id: number, slug: string, title: string } | null, folder: { __typename: 'Folder', id: number, slug: string, title: string } | null, owner: { __typename: 'Owner', id: number, title: string | null, number: number } | null, driveType: { __typename: 'DriveType', id: number, title: string | null, name: string | null } | null, bodyType: { __typename: 'BodyType', id: number, title: string | null, name: string | null } | null, gearbox: { __typename: 'Gearbox', id: number, title: string | null, title_short_rus: string | null, name: string | null } | null, engineType: { __typename: 'EngineType', id: number, title: string | null, name: string | null } | null, generation: { __typename: 'Generation', id: number | null, slug: string, name: string | null } | null, equipment_groups: Array<{ __typename: 'TitleValues', title: string | null, values: Array<string | null> | null } | null> | null, dealer: { __typename: 'Dealer', id: number, slug: string | null, title: string | null, address: string | null, city: string | null, metro: string | null, schedule: string | null, phone: string | null, rating: number | null, image_logo: string | null } | null } | null };
 
 export type OfferFiltersQueryVariables = Exact<{
-  site_id?: InputMaybe<Scalars['Int']['input']>;
-  category?: InputMaybe<Scalars['String']['input']>;
-  mark_slug_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
-  folder_slug_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
-  generation_slug_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
-  engine_type_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  body_type_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  gearbox_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  drive_type_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  owner_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  year_from?: InputMaybe<Scalars['Int']['input']>;
-  year_to?: InputMaybe<Scalars['Int']['input']>;
-  price_from?: InputMaybe<Scalars['Int']['input']>;
-  price_to?: InputMaybe<Scalars['Int']['input']>;
-  url?: InputMaybe<Scalars['String']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
+  category: InputMaybe<Scalars['String']['input']>;
+  mark_slug_array: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
+  folder_slug_array: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
+  generation_slug_array: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
+  engine_type_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  body_type_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  gearbox_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  drive_type_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  owner_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  year_from: InputMaybe<Scalars['Int']['input']>;
+  year_to: InputMaybe<Scalars['Int']['input']>;
+  price_from: InputMaybe<Scalars['Int']['input']>;
+  price_to: InputMaybe<Scalars['Int']['input']>;
+  url: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type OfferFiltersQuery = { __typename?: 'Query', offerFilters?: { __typename?: 'OfferFilterValues', year?: Array<number | null> | null, price?: Array<number | null> | null, mark?: Array<{ __typename?: 'MarkField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, folder?: Array<{ __typename?: 'FolderField', title?: string | null, id?: number | null, slug?: string | null, mark_id?: number | null } | null> | null, generation?: Array<{ __typename?: 'GenerationField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, gearbox?: Array<{ __typename?: 'GearboxField', title?: string | null, title_short_rus?: string | null, id?: number | null, slug?: string | null } | null> | null, engineType?: Array<{ __typename?: 'EngineTypeField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, driveType?: Array<{ __typename?: 'DriveTypeField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, bodyType?: Array<{ __typename?: 'BodyTypeField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, chosen?: { __typename?: 'ChosenFieldType', yearFrom?: number | null, yearTo?: number | null, priceFrom?: number | null, priceTo?: number | null, mark?: Array<{ __typename?: 'MarkField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, folder?: Array<{ __typename?: 'FolderField', title?: string | null, id?: number | null, slug?: string | null, mark_id?: number | null } | null> | null, generation?: Array<{ __typename?: 'GenerationField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, gearbox?: Array<{ __typename?: 'GearboxField', title?: string | null, title_short_rus?: string | null, id?: number | null, slug?: string | null } | null> | null, engineType?: Array<{ __typename?: 'EngineTypeField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, driveType?: Array<{ __typename?: 'DriveTypeField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, bodyType?: Array<{ __typename?: 'BodyTypeField', title?: string | null, id?: number | null, slug?: string | null } | null> | null } | null } | null };
+export type OfferFiltersQuery = { __typename: 'Query', offerFilters: { __typename: 'OfferFilterValues', year: Array<number | null> | null, price: Array<number | null> | null, mark: Array<{ __typename: 'MarkField', title: string | null, id: number | null, slug: string | null } | null> | null, folder: Array<{ __typename: 'FolderField', title: string | null, id: number | null, slug: string | null, mark_id: number | null } | null> | null, generation: Array<{ __typename: 'GenerationField', title: string | null, id: number | null, slug: string | null } | null> | null, gearbox: Array<{ __typename: 'GearboxField', title: string | null, title_short_rus: string | null, id: number | null, slug: string | null } | null> | null, engineType: Array<{ __typename: 'EngineTypeField', title: string | null, id: number | null, slug: string | null } | null> | null, driveType: Array<{ __typename: 'DriveTypeField', title: string | null, id: number | null, slug: string | null } | null> | null, bodyType: Array<{ __typename: 'BodyTypeField', title: string | null, id: number | null, slug: string | null } | null> | null, chosen: { __typename: 'ChosenFieldType', yearFrom: number | null, yearTo: number | null, priceFrom: number | null, priceTo: number | null, mark: Array<{ __typename: 'MarkField', title: string | null, id: number | null, slug: string | null } | null> | null, folder: Array<{ __typename: 'FolderField', title: string | null, id: number | null, slug: string | null, mark_id: number | null } | null> | null, generation: Array<{ __typename: 'GenerationField', title: string | null, id: number | null, slug: string | null } | null> | null, gearbox: Array<{ __typename: 'GearboxField', title: string | null, title_short_rus: string | null, id: number | null, slug: string | null } | null> | null, engineType: Array<{ __typename: 'EngineTypeField', title: string | null, id: number | null, slug: string | null } | null> | null, driveType: Array<{ __typename: 'DriveTypeField', title: string | null, id: number | null, slug: string | null } | null> | null, bodyType: Array<{ __typename: 'BodyTypeField', title: string | null, id: number | null, slug: string | null } | null> | null } | null } | null };
 
 export type OfferUrlQueryVariables = Exact<{
-  site_id?: InputMaybe<Scalars['Int']['input']>;
-  url?: InputMaybe<Scalars['String']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
+  url: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type OfferUrlQuery = { __typename?: 'Query', offerUrl?: { __typename: 'OfferUrlFilterPaginationType', mark_slug_array?: Array<string | null> | null, folder_slug_array?: Array<string | null> | null, generation_slug_array?: Array<string | null> | null, year_from?: number | null, engine_type_id_array?: Array<number | null> | null, body_type_id_array?: Array<string | null> | null, category?: string | null } | { __typename: 'OfferUrlType', mark_slug?: string | null, folder_slug?: string | null, external_id?: number | null } | null };
+export type OfferUrlQuery = { __typename: 'Query', offerUrl: { __typename: 'OfferUrlFilterPaginationType', mark_slug_array: Array<string | null> | null, folder_slug_array: Array<string | null> | null, generation_slug_array: Array<string | null> | null, year_from: number | null, engine_type_id_array: Array<number | null> | null, body_type_id_array: Array<string | null> | null, category: string | null } | { __typename: 'OfferUrlType', mark_slug: string | null, folder_slug: string | null, external_id: number | null } | null };
 
 export type OffersQueryVariables = Exact<{
-  site_id?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  category?: InputMaybe<Scalars['String']['input']>;
-  mark_slug_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
-  mark_slug?: InputMaybe<Scalars['String']['input']>;
-  folder_slug_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
-  folder_slug?: InputMaybe<Scalars['String']['input']>;
-  external_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  except_external_id?: InputMaybe<Scalars['Int']['input']>;
-  generation_slug_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
-  generation_slug?: InputMaybe<Scalars['String']['input']>;
-  engine_type_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  body_type_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  gearbox_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  drive_type_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  owner_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  year_from?: InputMaybe<Scalars['Int']['input']>;
-  year_to?: InputMaybe<Scalars['Int']['input']>;
-  price_from?: InputMaybe<Scalars['Int']['input']>;
-  price_to?: InputMaybe<Scalars['Int']['input']>;
-  set?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
-  url?: InputMaybe<Scalars['String']['input']>;
-  dateFormat?: InputMaybe<Scalars['String']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
+  page: InputMaybe<Scalars['Int']['input']>;
+  limit: InputMaybe<Scalars['Int']['input']>;
+  category: InputMaybe<Scalars['String']['input']>;
+  mark_slug_array: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
+  mark_slug: InputMaybe<Scalars['String']['input']>;
+  folder_slug_array: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
+  folder_slug: InputMaybe<Scalars['String']['input']>;
+  external_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  sort: InputMaybe<Scalars['String']['input']>;
+  except_external_id: InputMaybe<Scalars['Int']['input']>;
+  generation_slug_array: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
+  generation_slug: InputMaybe<Scalars['String']['input']>;
+  engine_type_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  body_type_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  gearbox_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  drive_type_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  owner_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  year_from: InputMaybe<Scalars['Int']['input']>;
+  year_to: InputMaybe<Scalars['Int']['input']>;
+  price_from: InputMaybe<Scalars['Int']['input']>;
+  price_to: InputMaybe<Scalars['Int']['input']>;
+  set: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
+  url: InputMaybe<Scalars['String']['input']>;
+  dateFormat: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type OffersQuery = { __typename?: 'Query', offers?: { __typename?: 'OfferTypePagination', last_page: number, current_page: number, total: number, has_more_pages: boolean, data?: Array<{ __typename?: 'Offer', id: number, external_id?: number | null, is_stock?: boolean | null, external_unique_id?: string | null, name: string, category_enum?: string | null, price: number, price_old?: number | null, run?: number | null, vin?: string | null, year?: number | null, createdAt?: string | null, engine_power?: number | null, engine_volume?: number | null, color?: { __typename?: 'Color', id: number, title?: string | null, name?: string | null } | null, rating?: { __typename?: 'Rating', rating_total?: number | null, rating_body?: number | null, rating_interior?: number | null, rating_technical?: number | null } | null, mark?: { __typename?: 'Mark', id: number, slug: string, title: string } | null, folder?: { __typename?: 'Folder', id: number, slug: string, title: string } | null, images?: Array<{ __typename?: 'OfferImage', small_webp?: string | null } | null> | null, owner?: { __typename?: 'Owner', id: number, title?: string | null, number: number } | null, driveType?: { __typename?: 'DriveType', id: number, title?: string | null, name?: string | null } | null, bodyType?: { __typename?: 'BodyType', id: number, title?: string | null, name?: string | null } | null, gearbox?: { __typename?: 'Gearbox', id: number, title?: string | null, title_short_rus?: string | null, name?: string | null } | null, engineType?: { __typename?: 'EngineType', id: number, title?: string | null, name?: string | null } | null, generation?: { __typename?: 'Generation', id?: number | null, slug: string, name?: string | null } | null, dealer?: { __typename?: 'Dealer', id: number, phone?: string | null, slug?: string | null, title?: string | null, image_logo?: string | null } | null } | null> | null } | null };
+export type OffersQuery = { __typename: 'Query', offers: { __typename: 'OfferTypePagination', last_page: number, current_page: number, total: number, has_more_pages: boolean, data: Array<{ __typename: 'Offer', id: number, external_id: number | null, is_stock: boolean | null, external_unique_id: string | null, name: string, category_enum: string | null, price: number, price_old: number | null, run: number | null, vin: string | null, year: number | null, createdAt: string | null, engine_power: number | null, engine_volume: number | null, color: { __typename: 'Color', id: number, title: string | null, name: string | null } | null, rating: { __typename: 'Rating', rating_total: number | null, rating_body: number | null, rating_interior: number | null, rating_technical: number | null } | null, mark: { __typename: 'Mark', id: number, slug: string, title: string } | null, folder: { __typename: 'Folder', id: number, slug: string, title: string } | null, images: Array<{ __typename: 'OfferImage', small_webp: string | null } | null> | null, owner: { __typename: 'Owner', id: number, title: string | null, number: number } | null, driveType: { __typename: 'DriveType', id: number, title: string | null, name: string | null } | null, bodyType: { __typename: 'BodyType', id: number, title: string | null, name: string | null } | null, gearbox: { __typename: 'Gearbox', id: number, title: string | null, title_short_rus: string | null, name: string | null } | null, engineType: { __typename: 'EngineType', id: number, title: string | null, name: string | null } | null, generation: { __typename: 'Generation', id: number | null, slug: string, name: string | null } | null, dealer: { __typename: 'Dealer', id: number, phone: string | null, slug: string | null, title: string | null, image_logo: string | null } | null } | null> | null } | null };
 
 export type OffersCatalogQueryVariables = Exact<{
-  site_id?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  category?: InputMaybe<Scalars['String']['input']>;
-  mark_slug_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
-  mark_slug?: InputMaybe<Scalars['String']['input']>;
-  folder_slug_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
-  folder_slug?: InputMaybe<Scalars['String']['input']>;
-  external_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  except_external_id?: InputMaybe<Scalars['Int']['input']>;
-  generation_slug_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
-  generation_slug?: InputMaybe<Scalars['String']['input']>;
-  engine_type_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  body_type_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  gearbox_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  drive_type_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  owner_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  year_from?: InputMaybe<Scalars['Int']['input']>;
-  year_to?: InputMaybe<Scalars['Int']['input']>;
-  price_from?: InputMaybe<Scalars['Int']['input']>;
-  price_to?: InputMaybe<Scalars['Int']['input']>;
-  set?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
-  url?: InputMaybe<Scalars['String']['input']>;
-  dateFormat?: InputMaybe<Scalars['String']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
+  page: InputMaybe<Scalars['Int']['input']>;
+  limit: InputMaybe<Scalars['Int']['input']>;
+  category: InputMaybe<Scalars['String']['input']>;
+  mark_slug_array: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
+  mark_slug: InputMaybe<Scalars['String']['input']>;
+  folder_slug_array: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
+  folder_slug: InputMaybe<Scalars['String']['input']>;
+  external_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  sort: InputMaybe<Scalars['String']['input']>;
+  except_external_id: InputMaybe<Scalars['Int']['input']>;
+  generation_slug_array: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
+  generation_slug: InputMaybe<Scalars['String']['input']>;
+  engine_type_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  body_type_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  gearbox_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  drive_type_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  owner_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  year_from: InputMaybe<Scalars['Int']['input']>;
+  year_to: InputMaybe<Scalars['Int']['input']>;
+  price_from: InputMaybe<Scalars['Int']['input']>;
+  price_to: InputMaybe<Scalars['Int']['input']>;
+  set: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
+  url: InputMaybe<Scalars['String']['input']>;
+  dateFormat: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type OffersCatalogQuery = { __typename?: 'Query', offers?: { __typename?: 'OfferTypePagination', last_page: number, current_page: number, total: number, has_more_pages: boolean, data?: Array<{ __typename?: 'Offer', id: number, external_id?: number | null, is_stock?: boolean | null, name: string, category_enum?: string | null, price: number, run?: number | null, year?: number | null, engine_power?: number | null, engine_volume?: number | null, mark?: { __typename?: 'Mark', id: number, slug: string, title: string } | null, folder?: { __typename?: 'Folder', id: number, slug: string, title: string } | null, images?: Array<{ __typename?: 'OfferImage', small_webp?: string | null } | null> | null, owner?: { __typename?: 'Owner', id: number, title?: string | null, number: number } | null, driveType?: { __typename?: 'DriveType', id: number, title?: string | null, name?: string | null } | null, bodyType?: { __typename?: 'BodyType', id: number, title?: string | null, name?: string | null } | null, gearbox?: { __typename?: 'Gearbox', id: number, title?: string | null, title_short_rus?: string | null, name?: string | null } | null, engineType?: { __typename?: 'EngineType', id: number, title?: string | null, name?: string | null } | null, generation?: { __typename?: 'Generation', id?: number | null, slug: string, name?: string | null } | null, dealer?: { __typename?: 'Dealer', id: number, phone?: string | null, slug?: string | null, title?: string | null, image_logo?: string | null } | null } | null> | null } | null };
+export type OffersCatalogQuery = { __typename: 'Query', offers: { __typename: 'OfferTypePagination', last_page: number, current_page: number, total: number, has_more_pages: boolean, data: Array<{ __typename: 'Offer', id: number, external_id: number | null, is_stock: boolean | null, name: string, category_enum: string | null, price: number, run: number | null, year: number | null, engine_power: number | null, engine_volume: number | null, mark: { __typename: 'Mark', id: number, slug: string, title: string } | null, folder: { __typename: 'Folder', id: number, slug: string, title: string } | null, images: Array<{ __typename: 'OfferImage', small_webp: string | null } | null> | null, owner: { __typename: 'Owner', id: number, title: string | null, number: number } | null, driveType: { __typename: 'DriveType', id: number, title: string | null, name: string | null } | null, bodyType: { __typename: 'BodyType', id: number, title: string | null, name: string | null } | null, gearbox: { __typename: 'Gearbox', id: number, title: string | null, title_short_rus: string | null, name: string | null } | null, engineType: { __typename: 'EngineType', id: number, title: string | null, name: string | null } | null, generation: { __typename: 'Generation', id: number | null, slug: string, name: string | null } | null, dealer: { __typename: 'Dealer', id: number, phone: string | null, slug: string | null, title: string | null, image_logo: string | null } | null } | null> | null } | null };
 
 export type OfferOnlyFiltersQueryVariables = Exact<{
-  site_id?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  category?: InputMaybe<Scalars['String']['input']>;
-  mark_slug_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
-  folder_slug_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  generation_slug_array?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
-  engine_type_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  body_type_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  gearbox_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  drive_type_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  owner_id_array?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
-  year_from?: InputMaybe<Scalars['Int']['input']>;
-  year_to?: InputMaybe<Scalars['Int']['input']>;
-  price_from?: InputMaybe<Scalars['Int']['input']>;
-  price_to?: InputMaybe<Scalars['Int']['input']>;
-  url?: InputMaybe<Scalars['String']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
+  page: InputMaybe<Scalars['Int']['input']>;
+  limit: InputMaybe<Scalars['Int']['input']>;
+  category: InputMaybe<Scalars['String']['input']>;
+  mark_slug_array: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
+  folder_slug_array: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
+  sort: InputMaybe<Scalars['String']['input']>;
+  generation_slug_array: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
+  engine_type_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  body_type_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  gearbox_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  drive_type_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  owner_id_array: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>>;
+  year_from: InputMaybe<Scalars['Int']['input']>;
+  year_to: InputMaybe<Scalars['Int']['input']>;
+  price_from: InputMaybe<Scalars['Int']['input']>;
+  price_to: InputMaybe<Scalars['Int']['input']>;
+  url: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type OfferOnlyFiltersQuery = { __typename?: 'Query', offerFilters?: { __typename?: 'OfferFilterValues', mark?: Array<{ __typename?: 'MarkField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, folder?: Array<{ __typename?: 'FolderField', title?: string | null, id?: number | null, slug?: string | null, mark_id?: number | null } | null> | null, generation?: Array<{ __typename?: 'GenerationField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, chosen?: { __typename?: 'ChosenFieldType', yearFrom?: number | null, yearTo?: number | null, priceFrom?: number | null, priceTo?: number | null, mark?: Array<{ __typename?: 'MarkField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, folder?: Array<{ __typename?: 'FolderField', title?: string | null, id?: number | null, slug?: string | null, mark_id?: number | null } | null> | null, generation?: Array<{ __typename?: 'GenerationField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, gearbox?: Array<{ __typename?: 'GearboxField', title?: string | null, title_short_rus?: string | null, id?: number | null, slug?: string | null } | null> | null, engineType?: Array<{ __typename?: 'EngineTypeField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, driveType?: Array<{ __typename?: 'DriveTypeField', title?: string | null, id?: number | null, slug?: string | null } | null> | null, bodyType?: Array<{ __typename?: 'BodyTypeField', title?: string | null, id?: number | null, slug?: string | null } | null> | null } | null } | null };
+export type OfferOnlyFiltersQuery = { __typename: 'Query', offerFilters: { __typename: 'OfferFilterValues', mark: Array<{ __typename: 'MarkField', title: string | null, id: number | null, slug: string | null } | null> | null, folder: Array<{ __typename: 'FolderField', title: string | null, id: number | null, slug: string | null, mark_id: number | null } | null> | null, generation: Array<{ __typename: 'GenerationField', title: string | null, id: number | null, slug: string | null } | null> | null, chosen: { __typename: 'ChosenFieldType', yearFrom: number | null, yearTo: number | null, priceFrom: number | null, priceTo: number | null, mark: Array<{ __typename: 'MarkField', title: string | null, id: number | null, slug: string | null } | null> | null, folder: Array<{ __typename: 'FolderField', title: string | null, id: number | null, slug: string | null, mark_id: number | null } | null> | null, generation: Array<{ __typename: 'GenerationField', title: string | null, id: number | null, slug: string | null } | null> | null, gearbox: Array<{ __typename: 'GearboxField', title: string | null, title_short_rus: string | null, id: number | null, slug: string | null } | null> | null, engineType: Array<{ __typename: 'EngineTypeField', title: string | null, id: number | null, slug: string | null } | null> | null, driveType: Array<{ __typename: 'DriveTypeField', title: string | null, id: number | null, slug: string | null } | null> | null, bodyType: Array<{ __typename: 'BodyTypeField', title: string | null, id: number | null, slug: string | null } | null> | null } | null } | null };
 
 export type RegionsQueryVariables = Exact<{
   site_id: Scalars['Int']['input'];
 }>;
 
 
-export type RegionsQuery = { __typename?: 'Query', regions?: Array<{ __typename?: 'Region', id?: number | null, title?: string | null } | null> | null };
+export type RegionsQuery = { __typename: 'Query', regions: Array<{ __typename: 'Region', id: number | null, title: string | null } | null> | null };
 
 export type SeoTagsQueryVariables = Exact<{
   site_id: Scalars['Int']['input'];
@@ -1410,51 +1410,51 @@ export type SeoTagsQueryVariables = Exact<{
 }>;
 
 
-export type SeoTagsQuery = { __typename?: 'Query', seoTag?: { __typename?: 'SeoTag', page_title?: string | null, title?: string | null, description?: string | null, crumbs?: Array<{ __typename?: 'SeoTagCrumbs', title?: string | null, link?: string | null } | null> | null, site_text?: { __typename?: 'SiteText', body?: string | null } | null } | null };
+export type SeoTagsQuery = { __typename: 'Query', seoTag: { __typename: 'SeoTag', page_title: string | null, title: string | null, description: string | null, crumbs: Array<{ __typename: 'SeoTagCrumbs', title: string | null, link: string | null } | null> | null, site_text: { __typename: 'SiteText', body: string | null } | null } | null };
 
 export type SettingsQueryVariables = Exact<{
   site_id: Scalars['Int']['input'];
 }>;
 
 
-export type SettingsQuery = { __typename?: 'Query', settings?: { __typename?: 'SiteSetting', id: number, settings?: Array<{ __typename?: 'KeyValue', key?: string | null, value?: string | null } | null> | null } | null };
+export type SettingsQuery = { __typename: 'Query', settings: { __typename: 'SiteSetting', id: number, settings: Array<{ __typename: 'KeyValue', key: string | null, value: string | null } | null> | null } | null };
 
 export type SiteConfigQueryVariables = Exact<{
-  site_id?: InputMaybe<Scalars['Int']['input']>;
-  category?: InputMaybe<Scalars['String']['input']>;
+  site_id: InputMaybe<Scalars['Int']['input']>;
+  category: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type SiteConfigQuery = { __typename?: 'Query', settings?: { __typename?: 'SiteSetting', id: number, settings?: Array<{ __typename?: 'KeyValue', key?: string | null, value?: string | null } | null> | null } | null, markFolderGeneration?: Array<{ __typename?: 'MarkFolder', id: number, title: string, title_rus?: string | null, slug: string, offers_count?: number | null, folders?: Array<{ __typename?: 'FolderGeneration', id: number, title: string, title_rus?: string | null, slug: string, offers_count?: number | null, generations?: Array<{ __typename?: 'Generation', id?: number | null, name?: string | null, slug: string, year_begin?: number | null, year_end?: number | null, offers_count?: number | null } | null> | null } | null> | null } | null> | null };
+export type SiteConfigQuery = { __typename: 'Query', settings: { __typename: 'SiteSetting', id: number, settings: Array<{ __typename: 'KeyValue', key: string | null, value: string | null } | null> | null } | null, markFolderGeneration: Array<{ __typename: 'MarkFolder', id: number, title: string, title_rus: string | null, slug: string, offers_count: number | null, folders: Array<{ __typename: 'FolderGeneration', id: number, title: string, title_rus: string | null, slug: string, offers_count: number | null, generations: Array<{ __typename: 'Generation', id: number | null, name: string | null, slug: string, year_begin: number | null, year_end: number | null, offers_count: number | null } | null> | null } | null> | null } | null> | null };
 
 export type SlidesQueryVariables = Exact<{
   site_id: Scalars['Int']['input'];
 }>;
 
 
-export type SlidesQuery = { __typename?: 'Query', slides?: Array<{ __typename?: 'Slide', id: number, title?: string | null, body?: string | null, link?: string | null, image?: { __typename?: 'SlideImageItemType', slide_1x?: string | null, slide_2x?: string | null, slide_1x_webp?: string | null, slide_2x_webp?: string | null, src?: string | null } | null, image_element?: { __typename?: 'SlideImageElementItemType', thumb?: string | null, small?: string | null, thumb_webp?: string | null, small_webp?: string | null, src?: string | null } | null } | null> | null };
+export type SlidesQuery = { __typename: 'Query', slides: Array<{ __typename: 'Slide', id: number, title: string | null, body: string | null, link: string | null, image: { __typename: 'SlideImageItemType', slide_1x: string | null, slide_2x: string | null, slide_1x_webp: string | null, slide_2x_webp: string | null, src: string | null } | null, image_element: { __typename: 'SlideImageElementItemType', thumb: string | null, small: string | null, thumb_webp: string | null, small_webp: string | null, src: string | null } | null } | null> | null };
 
 export type StationCategoryQueryVariables = Exact<{
   site_id: Scalars['Int']['input'];
 }>;
 
 
-export type StationCategoryQuery = { __typename?: 'Query', stationCategory?: Array<{ __typename?: 'StationCategory', id: number, title?: string | null, stations?: Array<{ __typename?: 'Station', id: number, title?: string | null, price?: string | null, image?: { __typename?: 'StationImage', medium?: string | null, large?: string | null, medium_webp?: string | null, large_webp?: string | null } | null } | null> | null } | null> | null };
+export type StationCategoryQuery = { __typename: 'Query', stationCategory: Array<{ __typename: 'StationCategory', id: number, title: string | null, stations: Array<{ __typename: 'Station', id: number, title: string | null, price: string | null, image: { __typename: 'StationImage', medium: string | null, large: string | null, medium_webp: string | null, large_webp: string | null } | null } | null> | null } | null> | null };
 
 export type StoriesQueryVariables = Exact<{
   site_id: Scalars['Int']['input'];
 }>;
 
 
-export type StoriesQuery = { __typename?: 'Query', stories?: Array<{ __typename?: 'Story', id: number, title?: string | null, stories?: Array<{ __typename?: 'StoryContent', id: number, body?: string | null, title?: string | null, button_link?: string | null, image?: { __typename?: 'StoryImageContent', medium?: string | null, medium_webp?: string | null, small?: string | null, small_webp?: string | null, src?: string | null } | null } | null> | null, image?: { __typename?: 'StoryImage', tiny?: string | null, tiny_webp?: string | null, xs?: string | null, xs_webp?: string | null } | null } | null> | null };
+export type StoriesQuery = { __typename: 'Query', stories: Array<{ __typename: 'Story', id: number, title: string | null, stories: Array<{ __typename: 'StoryContent', id: number, body: string | null, title: string | null, button_link: string | null, image: { __typename: 'StoryImageContent', medium: string | null, medium_webp: string | null, small: string | null, small_webp: string | null, src: string | null } | null } | null> | null, image: { __typename: 'StoryImage', tiny: string | null, tiny_webp: string | null, xs: string | null, xs_webp: string | null } | null } | null> | null };
 
 export type StoryContentsQueryVariables = Exact<{
   site_id: Scalars['Int']['input'];
-  story_id?: InputMaybe<Scalars['Int']['input']>;
+  story_id: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 
-export type StoryContentsQuery = { __typename?: 'Query', storyContents?: Array<{ __typename?: 'StoryContent', id: number, title?: string | null, body?: string | null, button_title?: string | null, button_link?: string | null, button_color?: string | null, image?: { __typename?: 'StoryImageContent', small?: string | null, small_webp?: string | null, medium?: string | null, medium_webp?: string | null } | null } | null> | null };
+export type StoryContentsQuery = { __typename: 'Query', storyContents: Array<{ __typename: 'StoryContent', id: number, title: string | null, body: string | null, button_title: string | null, button_link: string | null, button_color: string | null, image: { __typename: 'StoryImageContent', small: string | null, small_webp: string | null, medium: string | null, medium_webp: string | null } | null } | null> | null };
 
 export const BankListTypeFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BankListType"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Bank"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"request"}},{"kind":"Field","name":{"kind":"Name","value":"approval"}},{"kind":"Field","name":{"kind":"Name","value":"rating"}},{"kind":"Field","name":{"kind":"Name","value":"rate"}},{"kind":"Field","name":{"kind":"Name","value":"image"}}]}}]} as unknown as DocumentNode<BankListTypeFragment, unknown>;
 export const SiteTextFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SiteText"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SiteText"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"body"}}]}}]} as unknown as DocumentNode<SiteTextFragment, unknown>;
