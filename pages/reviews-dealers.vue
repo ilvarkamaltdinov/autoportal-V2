@@ -60,21 +60,22 @@
 </template>
 
 <script setup lang="ts">
-import {Dealer} from '~/types/graphql';
-import {requestDealers} from '~/helpers/request';
+import { Dealer } from '~/types/graphql';
 import VideoReview from '~/components/Reviews/VideoReview.vue';
+import { useDealers } from '~/store/dealers';
+import { storeToRefs } from 'pinia';
 
 const activeTab = ref(0);
-const dealers = ref<Dealer[]>([]);
+const dealersStore = useDealers();
+const { dealers } = storeToRefs(dealersStore);
 const reviews = ref<unknown[]>([]);
 const showingVideo = ref<string | null>(null);
 const nextPageToken = ref<string | null>(null);
 const showMore = ref(true);
-const response = await requestDealers();
 
 onMounted(async () => {
   try {
-    dealers.value = response.data.value.dealers.filter(item => item.youtube_playlist_review);
+    dealers.value = dealers.value.filter(item => item.youtube_playlist_review);
     await getPlaylist(nextPageToken.value, dealers.value[0].youtube_playlist_review!);
   } catch (error){
     console.log(error);

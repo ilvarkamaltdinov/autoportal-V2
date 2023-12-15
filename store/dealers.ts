@@ -15,6 +15,7 @@ export const useDealers = defineStore('dealers', {
 
   actions: {
     async fetchDealers() {
+      if(this.dealers.length > 0) return this.dealers;
       const { data : { value: { dealers } } } = await request<{ dealers: DealerState['dealers'] }, DealersQueryVariables>(dealersQuery, {});
       this.dealers = dealers;
       return dealers;

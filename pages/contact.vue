@@ -14,7 +14,7 @@
             <span class="heading-group__label">Партнеры {{ $settings.dealer_title }}</span>
           </div>
         </div>
-        <Card v-for="dealer in dealers" :key="dealer.id" :dealer="dealer">
+        <Card v-for="dealer in dealers" :key="dealer.id" :dealer="dealer" class="grid__col-12">
           <template #header>
             {{ dealer.title }}
           </template>

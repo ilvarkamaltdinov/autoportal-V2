@@ -164,7 +164,7 @@ const navList = computed<NavListType[]>(() => {
         },
         {
           name: 'Предложения',
-          link: '',
+          link: '/best-moscow-autosalon',
           show: true
         }
       ],
