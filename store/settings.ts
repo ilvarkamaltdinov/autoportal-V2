@@ -1,7 +1,7 @@
-import {defineStore} from 'pinia';
-import {settings} from '~/apollo/queries/settings';
-import {request} from '~/helpers/request';
-import {SettingsQuery} from '~/types/graphql';
+import { defineStore } from 'pinia';
+import { settings } from '~/apollo/queries/settings';
+import { request } from '~/helpers/request';
+import { SettingsQuery } from '~/types/graphql';
 
 interface SettingSite {
     counter_ym: string,
@@ -25,7 +25,7 @@ export const useSettings = defineStore('settings', {
   actions: {
     async getSettings() {
       try {
-        const {data} = await request<SettingsQuery>(settings, undefined);
+        const { data } = await request<SettingsQuery>(settings, undefined);
         data.value.settings!.settings!.forEach((setting) => {
           if(setting && 'key' in setting && setting.key !== null) {
             //@ts-expect-error idk how to fix yet

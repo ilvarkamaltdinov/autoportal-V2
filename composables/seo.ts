@@ -1,9 +1,9 @@
 import Twig from 'twig';
-import {engineVolume, numberFormat} from '~/helpers/filters';
-import {SeoTagType} from '~/apollo/queries/seoTag';
-import {useSeoTags} from '~/store/seoTag';
-import {jsonLd} from '~/composables/jsonLd';
-import {mainDomain} from '~/app/variables';
+import { engineVolume, numberFormat } from '~/helpers/filters';
+import { SeoTagType } from '~/apollo/queries/seoTag';
+import { useSeoTags } from '~/store/seoTag';
+import { jsonLd } from '~/composables/jsonLd';
+import { mainDomain } from '~/app/variables';
 
 Twig.extendFilter('engineVolume', function (value) {
   return engineVolume(value);
@@ -15,12 +15,12 @@ Twig.extendFilter('numberFormat', function (value) {
 
 const getSeoTag = (slug: string, params?: any): SeoTagType => {
   const seoTemplate = useSeoTags().seoTag.find(item => item.slug === slug);
-  const seoTitle = Twig.twig({data: seoTemplate?.title});
-  const seoH1 = Twig.twig({data: seoTemplate?.h1});
-  const seoDescription = Twig.twig({data: seoTemplate?.description});
+  const seoTitle = Twig.twig({ data: seoTemplate?.title });
+  const seoH1 = Twig.twig({ data: seoTemplate?.h1 });
+  const seoDescription = Twig.twig({ data: seoTemplate?.description });
   const seoCrumbs = seoTemplate?.crumbs?.map(item => {
-    const seoCrumbLink = Twig.twig({data: item.link});
-    const seoCrumbTitle = Twig.twig({data: item.title});
+    const seoCrumbLink = Twig.twig({ data: item.link });
+    const seoCrumbTitle = Twig.twig({ data: item.title });
     return {
       link: seoCrumbLink.render(params),
       title: seoCrumbTitle.render(params)
@@ -41,12 +41,12 @@ export const renderSeoTemplate = (slug: string, params?: any, ogImage?: string):
   const route = useRoute();
   const seoTags = getSeoTag(slug, params);
   const headMeta = [
-    {name: 'description', content: seoTags.description},
-    {property: 'og:title', content: seoTags.title},
-    {property: 'og:description', content: seoTags.description},
-    {property: 'og:type', content: 'website'},
-    {property: 'og:url', content: `${mainDomain.link}${route.fullPath}`},
-    {property: 'og:locale', content: 'ru_RU'}
+    { name: 'description', content: seoTags.description },
+    { property: 'og:title', content: seoTags.title },
+    { property: 'og:description', content: seoTags.description },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: `${mainDomain.link}${route.fullPath}` },
+    { property: 'og:locale', content: 'ru_RU' }
   ];
   if (!ogImage) {
     ogImage = mainDomain.link + '/preview.png';

@@ -1,5 +1,5 @@
-import {OfferUrlFilterPagination} from '~/apollo/fragments/union/offerUrlFilterPagination';
-import {OfferUrl} from '~/apollo/fragments/union/offerUrl';
+import { OfferUrlFilterPagination } from '~/apollo/fragments/union/offerUrlFilterPagination';
+import { OfferUrl } from '~/apollo/fragments/union/offerUrl';
 
 export const offerUrl = gql`
     ${OfferUrl}

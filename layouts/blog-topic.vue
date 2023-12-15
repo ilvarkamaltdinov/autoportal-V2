@@ -71,10 +71,10 @@
 
 <script setup lang="ts">
 import Article from '~/components/Blog/Article.vue';
-import {articlesPaginate} from '~/apollo/queries/blog/articlesPaginate';
-import {request} from '~/helpers/request';
-import {Article as TArticle, ArticlesPaginateQueryVariables} from '~/types/graphql';
-import {useRoute} from '#imports';
+import { articlesPaginate } from '~/apollo/queries/blog/articlesPaginate';
+import { request } from '~/helpers/request';
+import { Article as TArticle, ArticlesPaginateQueryVariables } from '~/types/graphql';
+import { useRoute } from '#imports';
 
 withDefaults(defineProps<{
   isIndex: boolean
@@ -86,7 +86,7 @@ const page = ref(1);
 const limit = ref(20);
 const list = ref<TArticle[]>([]);
 
-const {path} = useRoute();
+const { path } = useRoute();
 
 async function getArticles() {
   const response = await request<{

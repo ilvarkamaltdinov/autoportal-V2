@@ -1,5 +1,5 @@
-import {DocumentNode} from 'graphql/language';
-import {SiteText} from '~/apollo/fragments/siteText/siteText';
+import { DocumentNode } from 'graphql/language';
+import { SiteText } from '~/apollo/fragments/siteText/siteText';
 export const bank: DocumentNode = gql`
     ${SiteText}
     query bank($site_id: Int!, $slug: String!) {

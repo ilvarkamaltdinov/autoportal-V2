@@ -1,4 +1,4 @@
-import {numberFormat} from '~/helpers/filters';
+import { numberFormat } from '~/helpers/filters';
 
 export const calculate = (price: number | undefined, payment: number, period: number) => {
   if (price) {

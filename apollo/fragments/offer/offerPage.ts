@@ -1,16 +1,16 @@
-import {ComplectationType} from '~/apollo/fragments/offer/types/complectationType';
-import {EngineTypeType} from '~/apollo/fragments/offer/types/engineTypeType';
-import {DriveTypeType} from '~/apollo/fragments/offer/types/driveTypeType';
-import {ColorType} from '~/apollo/fragments/offer/types/colorType';
-import {ImageAllType} from '~/apollo/fragments/offer/types/imageAllType';
-import {MarkType} from '~/apollo/fragments/offer/types/markType';
-import {FolderType} from '~/apollo/fragments/offer/types/folderType';
-import {OwnerType} from '~/apollo/fragments/offer/types/ownerType';
-import {BodyTypeType} from '~/apollo/fragments/offer/types/bodyTypeType';
-import {GearboxType} from '~/apollo/fragments/offer/types/gearboxType';
-import {EquipmentType} from '~/apollo/fragments/offer/types/equipmentType';
-import {GenerationOfferType} from '~/apollo/fragments/offer/types/generationOfferType';
-import {DealerType} from '~/apollo/fragments/offer/types/dealerType';
+import { ComplectationType } from '~/apollo/fragments/offer/types/complectationType';
+import { EngineTypeType } from '~/apollo/fragments/offer/types/engineTypeType';
+import { DriveTypeType } from '~/apollo/fragments/offer/types/driveTypeType';
+import { ColorType } from '~/apollo/fragments/offer/types/colorType';
+import { ImageAllType } from '~/apollo/fragments/offer/types/imageAllType';
+import { MarkType } from '~/apollo/fragments/offer/types/markType';
+import { FolderType } from '~/apollo/fragments/offer/types/folderType';
+import { OwnerType } from '~/apollo/fragments/offer/types/ownerType';
+import { BodyTypeType } from '~/apollo/fragments/offer/types/bodyTypeType';
+import { GearboxType } from '~/apollo/fragments/offer/types/gearboxType';
+import { EquipmentType } from '~/apollo/fragments/offer/types/equipmentType';
+import { GenerationOfferType } from '~/apollo/fragments/offer/types/generationOfferType';
+import { DealerType } from '~/apollo/fragments/offer/types/dealerType';
 
 export const OfferPage = gql`
     ${ComplectationType}

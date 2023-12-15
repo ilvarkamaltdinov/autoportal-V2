@@ -1,7 +1,7 @@
-import {defineStore} from 'pinia';
-import {request} from '~/helpers/request';
-import {Mark, MarksQueryVariables} from '~/types/graphql';
-import {marks} from '~/apollo/queries/marks';
+import { defineStore } from 'pinia';
+import { request } from '~/helpers/request';
+import { Mark, MarksQueryVariables } from '~/types/graphql';
+import { marks } from '~/apollo/queries/marks';
 
 type MarksState = {
   allMarks: Mark[];
@@ -32,7 +32,7 @@ export const useMarks = defineStore('marks', {
       if(this.allMarks.length) {
         return;
       }
-      const {data} = await request<{marks: Mark[]}, MarksQueryVariables>(marks);
+      const { data } = await request<{marks: Mark[]}, MarksQueryVariables>(marks);
       this.allMarks = data.value.marks;
       this.popularMarks = this.popularMarksNames.map((name) => this.allMarks.find((mark) => mark.slug === name)) as Mark[];
       this.allMarks.forEach((mark) => {

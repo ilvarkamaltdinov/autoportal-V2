@@ -1,4 +1,4 @@
-import {Crumb} from '~/app/types/crumbs';
+import { Crumb } from '~/app/types/crumbs';
 
 export type SeoTagType = {
     slug?: string

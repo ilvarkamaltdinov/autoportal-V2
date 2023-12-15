@@ -1,7 +1,7 @@
-import {ChosenFieldType} from '~/apollo/fragments/filters/types/chosenFieldType';
-import {GenerationFieldType} from '~/apollo/fragments/filters/types/generationFieldType';
-import {FolderFieldType} from '~/apollo/fragments/filters/types/folderFieldType';
-import {MarkFieldType} from '~/apollo/fragments/filters/types/markFieldType';
+import { ChosenFieldType } from '~/apollo/fragments/filters/types/chosenFieldType';
+import { GenerationFieldType } from '~/apollo/fragments/filters/types/generationFieldType';
+import { FolderFieldType } from '~/apollo/fragments/filters/types/folderFieldType';
+import { MarkFieldType } from '~/apollo/fragments/filters/types/markFieldType';
 
 export const OnlyFilterValues = gql`
     ${MarkFieldType}

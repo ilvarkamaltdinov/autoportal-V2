@@ -1,13 +1,13 @@
-import {ColorType} from '~/apollo/fragments/offer/types/colorType';
-import {DealerMiniType} from '~/apollo/fragments/offer/types/dealerMiniType';
-import {GenerationOfferType} from '~/apollo/fragments/offer/types/generationOfferType';
-import {EngineTypeType} from '~/apollo/fragments/offer/types/engineTypeType';
-import {MarkType} from '~/apollo/fragments/offer/types/markType';
-import {FolderType} from '~/apollo/fragments/offer/types/folderType';
-import {OwnerType} from '~/apollo/fragments/offer/types/ownerType';
-import {DriveTypeType} from '~/apollo/fragments/offer/types/driveTypeType';
-import {BodyTypeType} from '~/apollo/fragments/offer/types/bodyTypeType';
-import {GearboxType} from '~/apollo/fragments/offer/types/gearboxType';
+import { ColorType } from '~/apollo/fragments/offer/types/colorType';
+import { DealerMiniType } from '~/apollo/fragments/offer/types/dealerMiniType';
+import { GenerationOfferType } from '~/apollo/fragments/offer/types/generationOfferType';
+import { EngineTypeType } from '~/apollo/fragments/offer/types/engineTypeType';
+import { MarkType } from '~/apollo/fragments/offer/types/markType';
+import { FolderType } from '~/apollo/fragments/offer/types/folderType';
+import { OwnerType } from '~/apollo/fragments/offer/types/ownerType';
+import { DriveTypeType } from '~/apollo/fragments/offer/types/driveTypeType';
+import { BodyTypeType } from '~/apollo/fragments/offer/types/bodyTypeType';
+import { GearboxType } from '~/apollo/fragments/offer/types/gearboxType';
 
 export const OfferPagination = gql`
     ${MarkType}

@@ -1,4 +1,4 @@
-import {GenerationType} from '~/apollo/fragments/generation/generationType';
+import { GenerationType } from '~/apollo/fragments/generation/generationType';
 
 export const generations = gql`
     ${GenerationType}

@@ -1,8 +1,8 @@
-import {defineStore} from 'pinia';
-import {request} from '~/helpers/request';
-import {Mark} from '~/app/types/marks';
-import {SiteConfigType} from '~/app/types/config';
-import {siteConfigGql} from '~/apollo/queries/siteConfig';
+import { defineStore } from 'pinia';
+import { request } from '~/helpers/request';
+import { Mark } from '~/app/types/marks';
+import { SiteConfigType } from '~/app/types/config';
+import { siteConfigGql } from '~/apollo/queries/siteConfig';
 
 interface SettingSite {
     counter_ym: string,
@@ -43,7 +43,7 @@ export const useSiteConfig = defineStore('siteConfig', {
     },
     async getSiteConfig() {
       try {
-        const {data} = await request<SiteConfigType>(siteConfigGql, {category: 'used'});
+        const { data } = await request<SiteConfigType>(siteConfigGql, { category: 'used' });
         this.marks = data.value?.markFolderGeneration;
       } catch (error) {
         console.log(error);

@@ -1,4 +1,4 @@
-import {useSettings} from '~/store/settings';
+import { useSettings } from '~/store/settings';
 
 export default defineNuxtPlugin(async () => {
   const settings = useSettings();

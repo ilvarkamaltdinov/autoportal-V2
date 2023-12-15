@@ -1,5 +1,5 @@
-import {SeoTag} from '~/apollo/fragments/seoTag/seoTag';
-import {DocumentNode} from 'graphql/language';
+import { SeoTag } from '~/apollo/fragments/seoTag/seoTag';
+import { DocumentNode } from 'graphql/language';
 
 export const seoTags: DocumentNode = gql`
     ${SeoTag}

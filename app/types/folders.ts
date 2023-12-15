@@ -1,4 +1,4 @@
-import {Generation} from '~/app/types/generations';
+import { Generation } from '~/app/types/generations';
 
 export type Folder = {
     id: number

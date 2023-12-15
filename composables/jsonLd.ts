@@ -1,8 +1,8 @@
-import {CrumbsType} from '~/apollo/queries/seoTag';
+import { CrumbsType } from '~/apollo/queries/seoTag';
 // @ts-ignore
-import {useJsonld} from '#jsonld';
-import {useRoute} from 'vue-router';
-import {mainDomain} from '~/app/variables';
+import { useJsonld } from '#jsonld';
+import { useRoute } from 'vue-router';
+import { mainDomain } from '~/app/variables';
 
 const makeUrl = (slug: string) => {
   if (slug == '') {

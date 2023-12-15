@@ -1,4 +1,4 @@
-import {DocumentNode} from 'graphql/language';
+import { DocumentNode } from 'graphql/language';
 
 export const sendNewFeedbackGql: DocumentNode = gql`
     mutation sendFeedback(

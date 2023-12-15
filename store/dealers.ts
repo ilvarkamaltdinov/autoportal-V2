@@ -1,7 +1,7 @@
-import {defineStore} from 'pinia';
-import {request} from '~/helpers/request';
-import {dealers as dealersQuery} from '~/apollo/queries/dealer/dealers';
-import {Dealer, DealersQueryVariables} from '~/types/graphql';
+import { defineStore } from 'pinia';
+import { request } from '~/helpers/request';
+import { dealers as dealersQuery } from '~/apollo/queries/dealer/dealers';
+import { Dealer, DealersQueryVariables } from '~/types/graphql';
 
 type DealerState = {
   dealers: Dealer[];

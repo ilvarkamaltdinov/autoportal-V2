@@ -1,4 +1,4 @@
-import {Mark} from '~/app/types/marks';
+import { Mark } from '~/app/types/marks';
 
 const popularMarks = <string[]>[
   'audi', 'bmw', 'mercedes-benz', 'ford', 'hyundai', 'kia', 'toyota', 'volkswagen', 'nissan', 'skoda'

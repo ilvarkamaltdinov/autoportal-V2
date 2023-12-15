@@ -1,4 +1,4 @@
-import {DocumentNode} from 'graphql/language';
+import { DocumentNode } from 'graphql/language';
 export const siteConfigGql: DocumentNode = gql`
     query siteConfig(
         $site_id:Int

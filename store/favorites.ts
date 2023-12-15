@@ -1,9 +1,9 @@
-import {defineStore} from 'pinia';
-import {request} from '~/helpers/request';
-import {offersGql} from '~/apollo/queries/offer/offers';
-import {Offer, OffersQueryVariables} from '~/types/graphql';
-import {_AsyncData} from '#app/composables/asyncData';
-import {UnwrapRef} from 'vue';
+import { defineStore } from 'pinia';
+import { request } from '~/helpers/request';
+import { offersGql } from '~/apollo/queries/offer/offers';
+import { Offer, OffersQueryVariables } from '~/types/graphql';
+import { _AsyncData } from '#app/composables/asyncData';
+import { UnwrapRef } from 'vue';
 
 type OffersWrap = {
   offers: { data: Offer[] }

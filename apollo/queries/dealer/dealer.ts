@@ -1,4 +1,4 @@
-import {DealerPage} from '~/apollo/fragments/dealer/dealerPage';
+import { DealerPage } from '~/apollo/fragments/dealer/dealerPage';
 
 export const dealer = gql`
     ${DealerPage}

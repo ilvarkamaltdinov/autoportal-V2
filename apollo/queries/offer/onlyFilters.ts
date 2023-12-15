@@ -1,4 +1,4 @@
-import {OnlyFilterValues} from '~/apollo/fragments/filters/onlyFilterValues';
+import { OnlyFilterValues } from '~/apollo/fragments/filters/onlyFilterValues';
 
 export const offerFilters = gql`
     ${OnlyFilterValues}

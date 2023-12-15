@@ -1,7 +1,7 @@
-import {defineNuxtRouteMiddleware} from '#imports';
-import {seoTags} from '~/apollo/queries/seoTags';
-import {request} from '~/helpers/request';
-import {SeoTag, SeoTagsQueryVariables} from '~/types/graphql';
+import { defineNuxtRouteMiddleware } from '#imports';
+import { seoTags } from '~/apollo/queries/seoTags';
+import { request } from '~/helpers/request';
+import { SeoTag, SeoTagsQueryVariables } from '~/types/graphql';
 export default defineNuxtRouteMiddleware(async (to, from) => {
   async function fetchSeoTags() {
     const seoQuery = await request<{ seoTag: SeoTag }, Omit<SeoTagsQueryVariables, 'site_id'>>(seoTags, {

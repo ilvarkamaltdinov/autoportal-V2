@@ -1,4 +1,4 @@
-import {Folder} from '~/app/types/folders';
+import { Folder } from '~/app/types/folders';
 
 export type Mark = {
     id: number

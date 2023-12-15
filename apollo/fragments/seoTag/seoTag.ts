@@ -1,5 +1,5 @@
-import {SeoTagCrumbs} from '~/apollo/fragments/seoTag/seoTagCrumbs';
-import {SiteText} from '~/apollo/fragments/siteText/siteText';
+import { SeoTagCrumbs } from '~/apollo/fragments/seoTag/seoTagCrumbs';
+import { SiteText } from '~/apollo/fragments/siteText/siteText';
 
 export const SeoTag = gql`
     ${SeoTagCrumbs}

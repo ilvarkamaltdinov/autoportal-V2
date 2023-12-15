@@ -1,11 +1,11 @@
-import {ChosenFieldType} from '~/apollo/fragments/filters/types/chosenFieldType';
-import {BodyTypeFieldType} from '~/apollo/fragments/filters/types/bodyTypeFieldType';
-import {DriveTypeFieldType} from '~/apollo/fragments/filters/types/driveTypeFieldType';
-import {EngineTypeFieldType} from '~/apollo/fragments/filters/types/engineTypeFieldType';
-import {GearboxFieldType} from '~/apollo/fragments/filters/types/gearboxFieldType';
-import {GenerationFieldType} from '~/apollo/fragments/filters/types/generationFieldType';
-import {FolderFieldType} from '~/apollo/fragments/filters/types/folderFieldType';
-import {MarkFieldType} from '~/apollo/fragments/filters/types/markFieldType';
+import { ChosenFieldType } from '~/apollo/fragments/filters/types/chosenFieldType';
+import { BodyTypeFieldType } from '~/apollo/fragments/filters/types/bodyTypeFieldType';
+import { DriveTypeFieldType } from '~/apollo/fragments/filters/types/driveTypeFieldType';
+import { EngineTypeFieldType } from '~/apollo/fragments/filters/types/engineTypeFieldType';
+import { GearboxFieldType } from '~/apollo/fragments/filters/types/gearboxFieldType';
+import { GenerationFieldType } from '~/apollo/fragments/filters/types/generationFieldType';
+import { FolderFieldType } from '~/apollo/fragments/filters/types/folderFieldType';
+import { MarkFieldType } from '~/apollo/fragments/filters/types/markFieldType';
 
 export const OfferFilterValues = gql`
     ${MarkFieldType}

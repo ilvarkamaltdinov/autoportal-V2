@@ -1,4 +1,4 @@
-import {mainDomain} from '~/app/variables';
+import { mainDomain } from '~/app/variables';
 
 export const yandexMetrika = (route) => {
   (function (m, e, t, r, i, k, a) {
@@ -64,7 +64,7 @@ export const vkAdsReachGoal = (price, id, purchase = false) => {
     });
   }
 };
-export const yandexCommercialNew = ({id, mark, folder, price, modification}, thanks = false) => {
+export const yandexCommercialNew = ({ id, mark, folder, price, modification }, thanks = false) => {
   if (process.client) {
     const product = {
       id: id,
@@ -101,7 +101,7 @@ export const yandexCommercialNew = ({id, mark, folder, price, modification}, tha
     });
   }
 };
-export const yandexCommercialUsed = ({id, mark, folder, price, gearbox, year}, thanks = false) => {
+export const yandexCommercialUsed = ({ id, mark, folder, price, gearbox, year }, thanks = false) => {
   if (process.client) {
     const product = {
       id: id,

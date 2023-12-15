@@ -1,4 +1,4 @@
-import {SiteText} from '~/apollo/fragments/siteText/siteText';
+import { SiteText } from '~/apollo/fragments/siteText/siteText';
 
 export const BankType = gql`
     ${SiteText}

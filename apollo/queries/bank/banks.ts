@@ -1,4 +1,4 @@
-import {BankListType} from '~/apollo/fragments/bank/bankListType';
+import { BankListType } from '~/apollo/fragments/bank/bankListType';
 
 export const banksGql = gql`
     ${BankListType}
