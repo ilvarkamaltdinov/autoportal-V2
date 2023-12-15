@@ -29,8 +29,26 @@
 </template>
 
 <script setup lang="ts">
+export type Video = {
+  nextPageToken: string,
+  status: {
+    privacyStatus: string
+  },
+  id: string,
+  contentDetails: {
+    videoId: number;
+  }
+  snippet: {
+    title: string
+    thumbnails: {
+      high: {
+        url: string
+      }
+    }
+  }
+};
 defineProps<{
-  video: object;
+  video: Video;
   showingVideo: string;
 }>();
 </script>

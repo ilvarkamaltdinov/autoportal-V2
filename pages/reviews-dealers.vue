@@ -38,7 +38,7 @@
           <ul v-if="reviews.length"
               class="featured__list grid grid--featured featured__reviews">
             <VideoReview v-for="video in reviews" @click="selectVideo(video.id)"
-                         :video="video" :showing-video="showingVideo" :key="video.id" />
+                         :video="video" :showing-video="showingVideo || ''" :key="video.id" />
           </ul>
 
           <div v-else
@@ -61,14 +61,15 @@
 
 <script setup lang="ts">
 import { Dealer } from '~/types/graphql';
-import VideoReview from '~/components/Reviews/VideoReview.vue';
+import VideoReview, { Video } from '~/components/Reviews/VideoReview.vue';
 import { useDealers } from '~/store/dealers';
 import { storeToRefs } from 'pinia';
 
 const activeTab = ref(0);
 const dealersStore = useDealers();
+dealersStore.fetchDealers();
 const { dealers } = storeToRefs(dealersStore);
-const reviews = ref<unknown[]>([]);
+const reviews = ref<Video[]>([]);
 const showingVideo = ref<string | null>(null);
 const nextPageToken = ref<string | null>(null);
 const showMore = ref(true);
@@ -102,8 +103,12 @@ async function getPlaylist(pageToken: string | null, playlistId: string) {
     const url = new URL('https://www.googleapis.com/youtube/v3/playlistItems');
     Object.entries(params).forEach(([k, v]) => v ? url.searchParams.append(k, v.toString()): null);
     const response = await fetch(url.toString());
-    const responseData = await response.json();
-    nextPageToken.value = responseData.nextPageToken ? responseData.nextPageToken : showMore.value = false;
+    const responseData: Video = await response.json();
+    if(responseData.nextPageToken){
+      nextPageToken.value = responseData.nextPageToken;
+    } else {
+      showMore.value = false;
+    }
     reviews.value.push(...responseData.items);
   } catch (error) {
     console.log(error);
