@@ -8,7 +8,7 @@
               title="Воспроизвести видео"
               aria-label="Воспроизвести видео о портале">
         <nuxt-icon class="video__play-icon"
-                  name="icon-play" />
+                   name="icon-play"/>
       </button>
       <div v-if="isVideo"
            class="youtube"
@@ -25,17 +25,9 @@
       </div>
       <div v-else
            class="video__img-wrap">
-        <picture>
-          <source type="image/webp"
-                  media="(min-width: 768px)"
-                  :data-srcset="`/img/video/iphone@1x.webp 1x, /img/video/iphone@2x.webp 2x`" />
-          <source media="(min-width: 768px)"
-                  :data-srcset="`~/img/video/iphone@1x.png 1x, /img/video/iphone@2x.png 2x`" />
-          <img class="video__img lazyload"
-               data-src="~/assets/img/video/iphone@1x.png"
-               :data-srcset="`/img/video/iphone@2x.png 2x`"
-               alt="" />
-        </picture>
+        <NuxtImg class="video__img"
+                 src="/img/video/iphone@1x.png"
+                 alt=""/>
       </div>
       <p class="video__text">Узнай, почему на {{ $settings.dealer_anchor }} лучшие цены в России!</p>
     </div>

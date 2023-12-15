@@ -17,13 +17,10 @@
         <div class="about__block grid__col-12 grid text">
           <div class="grid__col-8 text__wrap text__wrap--figure">
             <div class="text__figure figure">
-              <picture-component
-                  classes="text__figure-img lazyload"
-                  :small="`/img/figures/figure-4@1x.png`"
-                  :small-webp="`/img/figures/figure-4@1x.webp`"
-                  :big="`/img/figures/figure-4@2x.png`"
-                  :big-webp="`/img/figures/figure-4@2x.webp`"
-              />
+              <NuxtImg
+                  class="text__figure-img lazyload"
+                  :src="`/img/figures/figure-4@2x.png`"
+                  format="webp" />
             </div>
             <div class="text__content">
               <h2 class="heading heading--h2">Коротко о главном</h2>
@@ -93,6 +90,5 @@
 </template>
 
 <script setup lang="ts">
-
 import VideoAbout from '~/components/Video/About.vue';
 </script>
