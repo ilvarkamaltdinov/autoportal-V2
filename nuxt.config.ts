@@ -79,6 +79,9 @@ export default defineNuxtConfig({
     class: 'icon',
     size: '24px'
   },
+  devServer: {
+    port: process.env.PORT || 3000
+  },
   apollo: {
     clients: {
       default: {
