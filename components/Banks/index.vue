@@ -1,15 +1,15 @@
 <template>
   <ul class="featured__list grid__col-12 grid grid--featured featured__banks">
-    <BankCard v-for="(bank, key) in featuredBanks" :key="key" :class="bank!.extraClass" :slug="bank.bank!.slug!">
+    <BankCard v-for="(bank, key) in featuredBanks" :key="key" :class="bank.extraClass" :slug="bank.bank!.slug">
       <template #title>
-        {{ bank.bank!.name! }}
+        {{ bank.bank!.name }}
       </template>
       <template #text>
-        от {{ bank.bank!.rate! }} %
+        от {{ bank.bank!.rate }} %
       </template>
       <template #image>
         <NuxtImg :src="`/img/featured/featured-${bank.pictureNumber}@2x.png`" densities="1x 2x" format="webp"
-                 class="featured__img lazyload" />
+                 class="featured__img lazyload"/>
       </template>
     </BankCard>
   </ul>
@@ -21,7 +21,7 @@
           :key="bank.id">
         <div class="banks__main">
           <img class="banks__img"
-               :src="bank.image!"
+               :src="bank.image"
                alt=""/>
           <Rating v-tippy="{
                     content:`<div class='tippy__text'>Рейтинг банка</div>`,
@@ -30,13 +30,16 @@
                     }" bank :max="100" :rating="bank.rating!"/>
         </div>
         <ul class="banks__info">
-          <li class="banks__info-item">Заявок в месяц
+          <li class="banks__info-item">
+            Заявок в месяц
             <span class="banks__info-number">{{ bank.request }}</span>
           </li>
-          <li class="banks__info-item">Одобрено автокредитов
+          <li class="banks__info-item">
+            Одобрено автокредитов
             <span class="banks__info-number">{{ bank.approval }}</span>
           </li>
-          <li class="banks__info-item">Процентная ставка
+          <li class="banks__info-item">
+            Процентная ставка
             <span class="banks__info-number banks__info-number--stake">{{ bank.rate }}%</span>
           </li>
         </ul>
@@ -51,9 +54,9 @@
 </template>
 
 <script setup lang="ts">
-import {useBanks} from '~/store/banks';
-import {storeToRefs} from 'pinia';
-import {UnwrapRef} from 'vue';
+import { useBanks } from '~/store/banks';
+import { storeToRefs } from 'pinia';
+import { UnwrapRef } from 'vue';
 import BankCard from '~/components/Banks/BankCard.vue';
 
 const banksStore = useBanks();
