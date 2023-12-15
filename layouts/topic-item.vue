@@ -36,13 +36,12 @@
         </div>
       </section>
     </div>
-    >
   </main>
 </template>
 <script setup lang="ts">
-import {Article, ArticleQueryVariables} from '~/types/graphql';
-import {request} from '~/helpers/request';
-import {article as articleQuery} from '~/apollo/queries/blog/article';
+import { Article, ArticleQueryVariables } from '~/types/graphql';
+import { request } from '~/helpers/request';
+import { article as articleQuery } from '~/apollo/queries/blog/article';
 import domParser from '~/composables/domParser';
 
 const article = ref<Article | null>(null);
