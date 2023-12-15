@@ -63,7 +63,7 @@
             <div class="dealers__item-img-wrap">
               <NuxtImg
                   v-if="dealer.images[0]"
-                  class="dealers__item-img lazyload"
+                  class="dealers__item-img"
                   :src="dealer.images[0].small"
                   format="webp"
                   densites="1x 2x"/>

@@ -4,14 +4,14 @@
        :key="item.slug"
        :id="`faq-${item.slug}`">
     <h2 class="faq__heading heading heading--h2">
-      <slot name="title" :item="item as T"/>
+      <slot name="title" :item="item"/>
     </h2>
     <slot name="items" :items="item" />
   </div>
 </template>
 
-<script setup lang="ts" generic="T extends { slug: string; }[]">
+<script setup lang="ts">
 defineProps<{
-  items: T
+  items: any[],
 }>();
 </script>

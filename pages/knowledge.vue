@@ -27,11 +27,11 @@
           <div class="grid__col-9">
             <section class="faq__questions col">
               <div class="faq__questions-block">
-                <QuestionBlock :items="faqItems" >
-                  <template #title="{ item }">
-                    {{ (item as typeof faqItems[number]).title }}
+                <QuestionBlock :items="faqItems" :generic="faqItems" >
+                  <template #title="{ item }: {item: UnwrapRef<typeof faqItems>[number]}">
+                    {{ item.title }}
                   </template>
-                  <template #items="{items}">
+                  <template #items="{items}: { items: UnwrapRef<typeof faqItems>[number] }">
                     <div class="faq__item"
                          :class="{'faq__item--active':question.active}"
                          v-for="question in items.list"
@@ -58,6 +58,7 @@
 <script setup lang="ts">
 import NavItem from '~/components/Knowledge/NavItem.vue';
 import QuestionBlock from '~/components/Knowledge/QuestionBlock.vue';
+import { UnwrapRef } from 'vue';
 
 const { $settings } = useNuxtApp();
 
