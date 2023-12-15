@@ -1,6 +1,11 @@
 <template>
   <main class="page-main">
     <div class="grid__col-12 grid dealers dealers--catalog">
+      <div class="heading-group heading-group--catalog heading-group--h1 grid__col-12">
+        <div class="heading-group__wrap">
+          <h1 class="heading heading--h1">{{ title }}</h1>
+        </div>
+      </div>
       <Card v-for="{title, short_description, id, rating, images, slug, site} in currentDealers"
             :key="id" class="grid__col-6 dealers__item--catalog">
         <template #header>
