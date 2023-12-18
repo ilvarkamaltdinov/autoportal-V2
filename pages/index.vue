@@ -12,7 +12,7 @@
         </section>
       </div>
       <div class="page-main__credit-index grid__col-4">
-        <FormCredit has-chose :calculator="true" offer=""/>
+        <FormCredit has-chose :calculator="true" />
       </div>
       <section class="page-main__catalog catalog grid__col-12 catalog--slider">
         <CatalogHome/>
@@ -21,7 +21,7 @@
         <Sets/>
       </section>
       <section class="page-main__blog blog grid">
-<!--        <Blog is-index/>-->
+        <Blog is-index/>
       </section>
       <VideoAbout/>
       <!--            <LazyHydrate when-visible>-->
