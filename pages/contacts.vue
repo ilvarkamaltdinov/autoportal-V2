@@ -61,7 +61,6 @@
               <li class="text__list-item">ООО «Ю-СТАЙЛ»</li>
               <li class="text__list-item">ИНН: 7724398974</li>
               <li class="text__list-item">ОГРН: 1177746078916</li>
-              <li class="text"></li>
             </ul>
             </template>
           </ContentBlock>
