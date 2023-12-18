@@ -64,8 +64,15 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'nuxt-jsonld',
     '@nuxtjs/device',
-    '@nuxt/image'
+    '@nuxt/image',
+    'nuxt-primevue',
   ],
+  primeVue: {
+    usePrimeVue: true,
+    components: {
+      include: ['Sidebar']
+    }
+  },
   plugins: [
     '~/plugins/settings.ts',
   ],

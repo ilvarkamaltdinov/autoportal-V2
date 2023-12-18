@@ -21,9 +21,12 @@
         <Sets/>
       </section>
       <section class="page-main__blog blog grid">
-        <Blog is-index/>
+<!--        <Blog is-index/>-->
       </section>
       <VideoAbout/>
+      <Sidebar v-model:visible="isVisible" position="right">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius eveniet iusto quis. Fugit mollitia, nobis. Ad corporis doloremque porro ratione ut? Amet culpa eaque fugiat impedit minus quaerat sit totam!
+      </Sidebar>
       <!--            <LazyHydrate when-visible>-->
       <!--              <text-main />-->
       <!--            </LazyHydrate>-->
@@ -31,6 +34,7 @@
   </main>
 </template>
 <script setup lang="ts">
+import '../assets/themes/mytheme/theme.scss';
 
 import SliderHome from '~/components/Slider/Home.vue';
 import Stories from '~/components/Stories/index.vue';
@@ -40,4 +44,5 @@ import Sets from '~/components/Sets/index.vue';
 import Blog from '~/components/Blog/index.vue';
 import VideoAbout from '~/components/Video/About.vue';
 
+const isVisible = ref(true);
 </script>
