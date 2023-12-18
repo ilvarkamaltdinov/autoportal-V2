@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="blog__wrap grid__col-12">
-    <template v-for="(article) in (isIndex ? blogCategories![0] : blogCategories) as ArticleCategory[]" :key="article.id">
+    <template v-for="(article) in (isIndex ? [blogCategories![0]] : blogCategories) as ArticleCategory[]" :key="article.id">
       <h2 class="heading heading--h2" v-if="!isIndex">{{ article.page_title }}</h2>
       <ul class="blog__list">
         <BlogArticle v-for="(item, index) in article.articles" :key="item.id" :to="item.url" :class="getArticleClass(index)">
@@ -28,8 +28,8 @@
 </template>
 <script setup lang="ts">
 import BlogArticle from '~/components/Blog/Article.vue';
-import {requestBlogCategories} from '~/helpers/request';
-import {ArticleCategory, ArticlesPaginateQueryVariables} from '~/types/graphql';
+import { requestBlogCategories } from '~/helpers/request';
+import { ArticleCategory, ArticlesPaginateQueryVariables } from '~/types/graphql';
 
 const route = useRoute();
 defineProps<{
@@ -50,13 +50,13 @@ function getArticleClass (index: number) {
 }
 
 async function getBlogCategories() {
-  const {data} = await requestBlogCategories(variables.value);
+  const { data } = await requestBlogCategories(variables.value);
   blogCategories.value = data.value?.articleCategory;
 }
 
 watch(route, async () => {
   await getBlogCategories();
-}, {immediate: true});
+}, { immediate: true });
 
 
 </script>
