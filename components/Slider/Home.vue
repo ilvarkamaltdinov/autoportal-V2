@@ -7,14 +7,14 @@
           :modules="[Autoplay, Pagination, Navigation]"
           :autoplay="{
             delay: 2500,
-            disableOnInteraction: false,
+            disableOnInteraction: false
           }"
           :pagination="{
             clickable: true,
-            renderBullet: renderBullet
+            // renderBullet: renderBullet
           }"
           :space-between="50">
-    <swiper-slide v-for="slide in slides">
+    <swiper-slide v-for="slide in slides" :key="slide.id">
       <a v-if="slide.telegram"
          :href="'TODO'"
          class="slider-index__item">

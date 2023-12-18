@@ -15,10 +15,10 @@
       <label
           :class="{ 'form__field-wrap--car-active': modalOfferSelection_offer }"
           class="form__field-wrap form__field-wrap--car ">
-        <button class="form__field" @click.prevent="useModals().setModal(modalPayloadCredit)">
-          {{ modalOfferSelection_offer ? modalOfferSelection_offer.name : 'Выбрать автомобиль' }}
-          <span v-if="modalOfferSelection_offer">, {{ numberFormat(modalOfferSelection_offer.price) }}</span>
-        </button>
+<!--        <button class="form__field" @click.prevent="useModals().setModal(modalPayloadCredit)">-->
+<!--          {{ modalOfferSelection_offer ? modalOfferSelection_offer.name : 'Выбрать автомобиль' }}-->
+<!--          <span v-if="modalOfferSelection_offer">, {{ numberFormat(modalOfferSelection_offer.price) }}</span>-->
+<!--        </button>-->
         <nuxt-icon name="icon-form" class="form__car-icon"/>
       </label>
     </fieldset>
@@ -53,10 +53,10 @@
   </form>
 </template>
 <script setup lang="ts">
-import {numberFormat} from '~/helpers/filters';
-import {useModals, ModalOfferSelection_offerType} from '~/store/modals';
-import {OfferQuery} from '~/types/graphql';
-import {computed, ref} from '#imports';
+import { numberFormat } from '~/helpers/filters';
+import { useModals, ModalOfferSelection_offerType } from '~/store/modals';
+import { OfferQuery } from '~/types/graphql';
+import { computed, ref } from '#imports';
 import FormCreditCalculator from '~/components/Form/form-components/FormCreditCalculator.vue';
 
 const props = defineProps<{

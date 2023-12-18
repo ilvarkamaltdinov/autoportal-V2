@@ -21,7 +21,7 @@
           </template>
         </BlogArticle>
       </ul>
-      <nuxt-link :to="article.url!" class="button button--link button--more">Показать больше</nuxt-link>
+      <nuxt-link :to="article.url" class="button button--link button--more">Показать больше</nuxt-link>
     </template>
   </div>
 
