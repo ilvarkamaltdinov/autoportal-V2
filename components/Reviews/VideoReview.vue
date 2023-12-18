@@ -31,6 +31,10 @@
 <script setup lang="ts">
 export type Video = {
   nextPageToken: string,
+  items: VideoItem[],
+};
+
+export type VideoItem = {
   status: {
     privacyStatus: string
   },
@@ -46,9 +50,9 @@ export type Video = {
       }
     }
   }
-};
+}
 defineProps<{
-  video: Video;
+  video: VideoItem;
   showingVideo: string;
 }>();
 </script>

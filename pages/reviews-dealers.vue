@@ -61,7 +61,7 @@
 
 <script setup lang="ts">
 import { Dealer } from '~/types/graphql';
-import VideoReview, { Video } from '~/components/Reviews/VideoReview.vue';
+import VideoReview, { Video, VideoItem } from '~/components/Reviews/VideoReview.vue';
 import { useDealers } from '~/store/dealers';
 import { storeToRefs } from 'pinia';
 
@@ -69,15 +69,16 @@ const activeTab = ref(0);
 const dealersStore = useDealers();
 dealersStore.fetchDealers();
 const { dealers } = storeToRefs(dealersStore);
-const reviews = ref<Video[]>([]);
+const reviews = ref<VideoItem[]>([]);
 const showingVideo = ref<string | null>(null);
 const nextPageToken = ref<string | null>(null);
 const showMore = ref(true);
+const activeToken = computed(() => dealers.value[activeTab.value].youtube_playlist_review);
 
 onMounted(async () => {
   try {
     dealers.value = dealers.value.filter(item => item.youtube_playlist_review);
-    await getPlaylist(nextPageToken.value, dealers.value[0].youtube_playlist_review!);
+    await getPlaylist(nextPageToken.value, dealers.value[0].youtube_playlist_review);
   } catch (error){
     console.log(error);
   }
@@ -87,7 +88,7 @@ function getReviews(dealer: Dealer, index: number) {
   reviews.value = [];
   showMore.value = true;
   activeTab.value = index;
-  getPlaylist(null, dealer.youtube_playlist_review!);
+  getPlaylist(null, dealer.youtube_playlist_review);
 }
 async function getPlaylist(pageToken: string | null, playlistId: string) {
   const params = {
@@ -118,7 +119,6 @@ async function getPlaylist(pageToken: string | null, playlistId: string) {
 function selectVideo(id: string) {
   showingVideo.value = id;
 }
-const activeToken = computed(() => dealers.value[activeTab.value].youtube_playlist_review);
 function getMore() {
   getPlaylist(nextPageToken.value, activeToken.value!);
 }
