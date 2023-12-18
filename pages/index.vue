@@ -31,16 +31,5 @@
   </main>
 </template>
 <script setup lang="ts">
-import '../assets/themes/mytheme/theme.scss';
-
-import SliderHome from '~/components/Slider/Home.vue';
-import Stories from '~/components/Stories/index.vue';
-import FormCredit from '~/components/Form/Credit.vue';
-import CatalogHome from '~/components/Catalog/Home.vue';
-import Sets from '~/components/Sets/index.vue';
-import Blog from '~/components/Blog/index.vue';
-import VideoAbout from '~/components/Video/About.vue';
-import OfferSelection from '~/components/Modals/OfferSelection.vue';
-
 const isVisible = ref(true);
 </script>

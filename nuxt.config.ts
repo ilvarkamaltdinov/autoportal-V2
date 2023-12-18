@@ -54,7 +54,8 @@ export default defineNuxtConfig({
     '@fancyapps/ui/dist/carousel/carousel.thumbs.css',
     '@fancyapps/ui/dist/fancybox/fancybox.css',
     '@vueform/slider/themes/default.css',
-    'v3-infinite-loading/lib/style.css'
+    'v3-infinite-loading/lib/style.css',
+    '@/assets/themes/mytheme/theme.scss'
   ],
   modules: [
     'nuxt-icon',
