@@ -4,10 +4,10 @@
     <div class="modal__wrap grid grid__container">
       <nav class="main-nav main-nav--modal grid__col-12">
         <ul class="main-nav__list site-list" v-if="isDesktop">
-          <li class="site-list__item site-list__item--group" v-for="item in navList">
+          <li class="site-list__item site-list__item--group" v-for="item in navList" :key="item.title">
             <div class="site-list__link site-list__link--group">{{ item.title }}</div>
             <ul class="site-list__group-list">
-              <li class="site-list__item site-list__item--sub" v-for="sub in item.links">
+              <li class="site-list__item site-list__item--sub" v-for="sub in item.links" :key="sub.name" @click="useHeader().setMenu(false)">
                 <a v-if="sub.blank" target="_blank" :href="sub.link"> {{ sub.name }} </a>
                 <nuxt-link v-else class="site-list__link"
                            :to="sub.link">
@@ -19,7 +19,7 @@
         </ul>
         <ul class="main-nav__list site-list" v-if="isMobile">
           <li class="site-list__item site-list__item--group"
-              v-for="item in navList">
+              v-for="item in navList" :key="item.title">
             <div class="site-list__link site-list__link--group">
               {{ item.title }}
             </div>
@@ -54,6 +54,8 @@
   </section>
 </template>
 <script setup lang="ts">
+import { useHeader } from '~/store/header';
+
 const { isMobile, isDesktop } = useDevice();
 
 type NavListType = {
