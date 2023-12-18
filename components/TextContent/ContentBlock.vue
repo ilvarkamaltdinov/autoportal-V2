@@ -1,5 +1,5 @@
 <template>
-  <div class="text__wrap">
+  <div class="text__wrap" :class="{ 'text__wrap--figure': $slots.figure }">
     <div class="text__figure figure" v-if="$slots.figure">
       <slot name="figure" />
     </div>
