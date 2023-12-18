@@ -15,14 +15,14 @@
           </div>
         </div>
         <div class="about__block grid__col-12 grid text">
-          <div class="grid__col-8 text__wrap text__wrap--figure">
-            <div class="text__figure figure">
+          <ContentBlock class="grid__col-8 text__wrap--figure">
+            <template #figure>
               <NuxtImg
                   class="text__figure-img lazyload"
                   :src="`/img/figures/figure-4@2x.png`"
-                  format="webp" />
-            </div>
-            <div class="text__content">
+                  format="webp"/>
+            </template>
+            <template #content>
               <h2 class="heading heading--h2">Коротко о главном</h2>
               <p class="text__p">
                 В «стенах» нашего автопортала собраны тысячи подержанных
@@ -35,10 +35,10 @@
                 покупателям — тот случай, когда огромный выбор непременно переходит
                 в качественную покупку.
               </p>
-            </div>
-          </div>
-          <div class="grid__col-4 text__wrap">
-            <div class="text__content">
+            </template>
+          </ContentBlock>
+          <ContentBlock class="grid__col-4">
+            <template #content>
               <h2 class="heading heading--h2">Формирование парка</h2>
               <p class="text__p">
                 Что делает нас успешнее и прогрессивнее? Это уникальность и
@@ -49,10 +49,10 @@
                 Проверка отдельно взятой модели начинается на этапе ее закупки и
                 затем — продолжается во время предпродажной подготовки.
               </p>
-            </div>
-          </div>
-          <div class="grid__col-7 text__wrap">
-            <div class="text__content">
+            </template>
+          </ContentBlock>
+          <ContentBlock class="grid__col-7">
+            <template #content>
               <h2 class="heading heading--h2">Наши принципы</h2>
               <p class="text__p">
                 Каждый день мы стремимся сделать покупку авто безопасной,
@@ -66,10 +66,10 @@
                 Мы сформировали культурный б/у-сегмент в сфере автоторговли и не
                 собираемся останавливаться на достигнутом.
               </p>
-            </div>
-          </div>
-          <div class="grid__col-5 text__wrap">
-            <div class="text__content">
+            </template>
+          </ContentBlock>
+          <ContentBlock class="grid__col-5">
+            <template #content>
               <h2 class="heading heading--h2">Почему мы?</h2>
               <p class="text__p">
                 Всего несколько кликов — и вы не только выбрали подходящее авто по
@@ -80,8 +80,8 @@
                 Мы разработали современный портал, на котором удобно искать
                 автомобиль своей мечты с любого устройства.
               </p>
-            </div>
-          </div>
+            </template>
+          </ContentBlock>
         </div>
       </section>
       <VideoAbout/>
@@ -91,4 +91,5 @@
 
 <script setup lang="ts">
 import VideoAbout from '~/components/Video/About.vue';
+import ContentBlock from '~/components/TextContent/ContentBlock.vue';
 </script>
