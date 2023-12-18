@@ -15,7 +15,7 @@
       <label
           :class="{ 'form__field-wrap--car-active': modalOfferSelection_offer }"
           class="form__field-wrap form__field-wrap--car ">
-        <button class="form__field" @click.prevent="useModals().setModal(modalPayloadCredit)">
+        <button class="form__field" @click.prevent="modalVisibility = true">
           {{ modalOfferSelection_offer ? modalOfferSelection_offer.name : 'Выбрать автомобиль' }}
           <span v-if="modalOfferSelection_offer">, {{ numberFormat(modalOfferSelection_offer.price) }}</span>
         </button>
@@ -51,6 +51,9 @@
 <!--        </fieldset>-->
 <!--        <button-typical :loading="buttonDisabled" text="Оставить заявку" button-class="button&#45;&#45;credit button&#45;&#45;form"/>-->
   </form>
+  <Sidebar v-model:visible="modalVisibility" position="right" header="Выберите автомобиль" class="modal">
+    <OfferSelection />
+  </Sidebar>
 </template>
 <script setup lang="ts">
 import { numberFormat } from '~/helpers/filters';
@@ -58,6 +61,7 @@ import { useModals, ModalOfferSelection_offerType } from '~/store/modals';
 import { OfferQuery } from '~/types/graphql';
 import { computed, ref } from '#imports';
 import FormCreditCalculator from '~/components/Form/form-components/FormCreditCalculator.vue';
+import OfferSelection from '~/components/Modals/OfferSelection.vue';
 
 const props = defineProps<{
   calculator: boolean;
@@ -73,6 +77,8 @@ const modalPayloadCredit = {
   title: 'Выберите автомобиль',
   subtitle: ''
 };
+
+const modalVisibility = ref(false);
 
 const modalOfferSelection_offer = computed<ModalOfferSelection_offerType>(() => useModals().modalOfferSelection_offer);
 const creditParams = ref({

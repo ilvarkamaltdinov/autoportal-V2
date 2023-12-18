@@ -1,6 +1,4 @@
 <template>
-  <ModalsTemplate>
-    <template v-slot:content>
       <div class="modal__options">
         <div class="tabs tabs--modal">
           <ul class="tabs__list" role="tablist">
@@ -151,21 +149,19 @@
           </section>
         </div>
       </div>
-    </template>
-  </ModalsTemplate>
 </template>
 <script setup lang="ts">
 import ModalsTemplate from '~/components/Modals/Template.vue';
 import CatalogFilter from '~/components/Catalog/Filter.vue';
 import CatalogModal from '~/components/Catalog/Modal.vue';
-import {useModals} from '~/store/modals';
-import {useSiteConfig} from '~/store/siteConfig';
-import {filterMarksByLetter, getAlphabet, getPopularMarks} from '~/helpers/filterMarks';
-import {MarkType} from '~/app/types/marks';
-import {FolderType} from '~/app/types/folders';
-import {GenerationType} from '~/app/types/generations';
+import { useModals } from '~/store/modals';
+import { useSiteConfig } from '~/store/siteConfig';
+import { filterMarksByLetter, getAlphabet, getPopularMarks } from '~/helpers/filterMarks';
+import { MarkType } from '~/app/types/marks';
+import { FolderType } from '~/app/types/folders';
+import { GenerationType } from '~/app/types/generations';
 
-const {isMobile} = useDevice();
+const { isMobile } = useDevice();
 
 const modalOfferSelection_mark = computed(() => useModals().modalOfferSelection_mark);
 const modalOfferSelection_folder = computed(() => useModals().modalOfferSelection_folder);

@@ -24,9 +24,6 @@
 <!--        <Blog is-index/>-->
       </section>
       <VideoAbout/>
-      <Sidebar v-model:visible="isVisible" position="right">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius eveniet iusto quis. Fugit mollitia, nobis. Ad corporis doloremque porro ratione ut? Amet culpa eaque fugiat impedit minus quaerat sit totam!
-      </Sidebar>
       <!--            <LazyHydrate when-visible>-->
       <!--              <text-main />-->
       <!--            </LazyHydrate>-->
@@ -43,6 +40,7 @@ import CatalogHome from '~/components/Catalog/Home.vue';
 import Sets from '~/components/Sets/index.vue';
 import Blog from '~/components/Blog/index.vue';
 import VideoAbout from '~/components/Video/About.vue';
+import OfferSelection from '~/components/Modals/OfferSelection.vue';
 
 const isVisible = ref(true);
 </script>
