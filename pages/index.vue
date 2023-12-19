@@ -31,5 +31,4 @@
   </main>
 </template>
 <script setup lang="ts">
-const isVisible = ref(true);
 </script>

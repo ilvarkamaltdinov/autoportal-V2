@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {OfferQuery} from '~/types/graphql';
-import {computed, useNuxtApp} from '#imports';
+import { OfferQuery } from '~/types/graphql';
+import { computed, useNuxtApp } from '#imports';
 import Slider from '@vueform/slider';
 
 type FormCreditCalculatorProps = {
@@ -69,10 +69,12 @@ function changePeriod(value: string) {
   periodValue.value = +value;
   calculate();
 }
+
 function changePayment(value: string) {
   paymentValue.value = +value;
   calculate();
 }
+
 watch([() => props.offer, () => percent], () => {
   calculate();
 });
@@ -85,11 +87,16 @@ watch([() => props.offer, () => percent], () => {
         <span class="form__range-name">Срок кредитования, мес.:</span>
         <span class="form__range-value">{{ periodValue }}</span>
       </label>
-    <Slider v-model="periodValue" class="range-period"
-                  :text="installment ? 'Период рассрочки:' :'Срок кредитования, мес.:'"
-                  :options="params.rangePeriodValues"
-                  :period="currentPeriod"
-                  @changePeriod="changePeriod"/>
+      <Slider v-model="periodValue" class="range-period"
+              :text="installment ? 'Период рассрочки:' :'Срок кредитования, мес.:'"
+              :options="params.rangePeriodValues"
+              :period="currentPeriod"
+              @changePeriod="changePeriod"/>
+      <div class="irs-grid">
+        <div :class="`irs-grid-text-${parseInt(k) || k}`" v-for="([k,v], index) in Object.entries(params.rangePeriodValues.range)">
+          {{ v }}
+        </div>
+      </div>
     </div>
     <div class="form__block form__block--range range">
       <label class="form__range-wrap">

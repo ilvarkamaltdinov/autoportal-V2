@@ -41,6 +41,31 @@
   height: 0;
 }
 
+.irs-grid {
+  position: relative;
+}
+
+@for $k from 0 through 100 {
+  .irs-grid-text-#{$k} {
+    left: percentage(calc($k / 100));
+    //margin-left: -3.4%;
+    position: absolute;
+    margin-left: -3.40909%;
+  }
+}
+
+.irs-grid-text-min {
+  left: 0;
+  position: absolute;
+  margin-left: -2.4%;
+}
+
+.irs-grid-text-max {
+  left: 100%;
+  position: absolute;
+  margin-left: -3.40909%;
+}
+
 .range .irs--flat .irs-bar {
   height: 4px;
   background: linear-gradient(90deg, rgba(237, 41, 57, 0) 0%, #ED2939 100%);
