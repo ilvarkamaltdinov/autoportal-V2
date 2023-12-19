@@ -5,7 +5,21 @@ import Slider from '@vueform/slider';
 
 type FormCreditCalculatorProps = {
   offer: OfferQuery['offer'];
-  params: object;
+  params: {
+    rangePeriodValues: {
+      range: {
+        [k in string]: number
+      }
+    },
+    rangePaymentValues: {
+      snap: boolean,
+      range: {
+        [k in string]: number
+      }
+    },
+    period: number,
+    payment: number,
+  }
   installment: boolean;
 }
 
@@ -92,9 +106,12 @@ watch([() => props.offer, () => percent], () => {
               :options="params.rangePeriodValues"
               :period="currentPeriod"
               @changePeriod="changePeriod"/>
-      <div class="irs-grid">
-        <div :class="`irs-grid-text-${parseInt(k) || k}`" v-for="([k,v], index) in Object.entries(params.rangePeriodValues.range)">
-          {{ v }}
+      <div class="irs irs--flat irs-with-grid">
+        <div class="irs-grid">
+          <div :key="k" :class="`irs-grid-text-${parseInt(k) || k}`"
+               v-for="([k,v]) in Object.entries(params.rangePeriodValues.range)">
+            {{ v }}
+          </div>
         </div>
       </div>
     </div>

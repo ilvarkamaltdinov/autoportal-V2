@@ -51,6 +51,7 @@
     //margin-left: -3.4%;
     position: absolute;
     margin-left: -3.40909%;
+    @extend .irs-grid-text;
   }
 }
 
@@ -58,12 +59,14 @@
   left: 0;
   position: absolute;
   margin-left: -2.4%;
+  @extend .irs-grid-text;
 }
 
 .irs-grid-text-max {
   left: 100%;
   position: absolute;
   margin-left: -3.40909%;
+  @extend .irs-grid-text;
 }
 
 .range .irs--flat .irs-bar {

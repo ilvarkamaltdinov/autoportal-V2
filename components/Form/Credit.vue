@@ -94,12 +94,14 @@ const creditParams = ref({
     snap: true,
     range: {
       'min': 2,
-      '19%': 6,
-      '35%': 12,
-      '52%': 24,
-      '68%': 36,
-      '85%': 48,
-      'max': 60,
+      '12%': 6,
+      '24%': 12,
+      '36%': 24,
+      '50%': 36,
+      '62%': 48,
+      '75': 60,
+      '87': 72,
+      'max': 84,
     }
   },
   rangePaymentValues: {
@@ -118,7 +120,8 @@ const creditParams = ref({
   },
   period: 84,
   payment: 0,
-});
+}
+);
 
 const submitForm = () => {
 
