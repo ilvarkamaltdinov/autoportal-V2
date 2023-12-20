@@ -35,7 +35,7 @@ $colorError: #F15461;
 
 $colorButton: #f2f3f6;
 
-$colorBg: #F7F8FA;
+$colorBg: black;
 $colorBgHover: #E5E7EC;
 $colorBgActive: #DBDEE4;
 $colorBgButton: #DEE9FA;
@@ -118,11 +118,4 @@ $gridGapTabletWidth: 23px;
 	--x: 0;
 	--y: 0;
   --fancybox-accent-color: $colorPrimary!important;
-}
-@mixin add-css-variables($module) {
-  :root {
-    @each $name, $value in $module {
-      --#{$name}: #{$value};
-    }
-  }
 }
