@@ -6,13 +6,14 @@
         <section class="page-main__slider-index slider-index grid__col-8">
           <SliderHome/>
         </section>
-        <section class="page-main__stories stories" :class="{'stories--desktop grid__col-8': !$device.isMobileOrTablet}">
+        <section class="page-main__stories stories"
+                 :class="{'stories--desktop grid__col-8': !$device.isMobileOrTablet}">
           <h2 class="visually-hidden">Акции и спецпредложения</h2>
           <Stories/>
         </section>
       </div>
       <div class="page-main__credit-index grid__col-4">
-        <FormCredit has-chose :calculator="true" />
+        <FormCredit has-chose :calculator="true"/>
       </div>
       <section class="page-main__catalog catalog grid__col-12 catalog--slider">
         <CatalogHome/>
@@ -21,7 +22,7 @@
         <Sets/>
       </section>
       <section class="page-main__blog blog grid">
-<!--        <Blog is-index/>-->
+        <!--        <Blog is-index/>-->
       </section>
       <VideoAbout/>
       <!--            <LazyHydrate when-visible>-->
@@ -31,4 +32,5 @@
   </main>
 </template>
 <script setup lang="ts">
+
 </script>
