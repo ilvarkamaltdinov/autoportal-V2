@@ -60,6 +60,12 @@
                   name="icon-favorites"/>
             </nuxt-link>
           </li>
+          <li class="page-header__buttons-item" @click="changeTheme">
+            <div class="page-header__buttons-link">
+              <nuxt-icon
+                  name="icon-bmw"/>
+            </div>
+          </li>
           <li class="page-header__buttons-item">
             <div class="page-header__buttons-link">
               <nuxt-icon
@@ -115,6 +121,7 @@ import { getPopularMarks } from '~/helpers/filterMarks';
 import { useFavorites } from '~/store/favorites';
 import { storeToRefs } from 'pinia';
 import MenuMarks from '~/components/Modals/MenuMarks.vue';
+import { useHead } from '#imports';
 
 
 const menuList = computed(() => {
@@ -146,6 +153,29 @@ const headerStore = useHeader();
 const { marks: isMarksShowing } = storeToRefs(headerStore);
 const menu = computed(() => useHeader().menu);
 const likes = ref(0);
+
+const isDark = ref(true);
+
+function changeTheme() {
+  isDark.value = !isDark.value;
+  useHead({
+    link: [{
+      rel: 'stylesheet', href: isDark.value ? 'dark.css' : 'index.css', type: 'text/css', id: 'theme',
+    }]
+  });
+}
+
+if(process.client) {
+  window.matchMedia('(prefers-color-scheme: dark)')
+    .addEventListener('change', ({ matches }) => {
+      if (matches) {
+        isDark.value = true;
+      } else {
+        isDark.value = false;
+      }
+      changeTheme();
+    });
+}
 
 const marks = useSiteConfig().marks;
 
