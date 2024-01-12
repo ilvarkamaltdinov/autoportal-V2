@@ -27,12 +27,9 @@ export const useSettings = defineStore('settings', {
   actions: {
     async getSettings() {
       try {
-        const { data } = await request<SettingsQuery>(settings, undefined);
+        const { data } = await request<SettingsQuery>(settings);
         data.value.settings!.settings!.forEach((setting) => {
-          if (setting && 'key' in setting && setting.key !== null) {
-            //@ts-expect-error idk how to fix yet
-            this.settings[setting!.key as keyof SettingSite] = setting!.value;
-          }
+          this.settings[setting!.key as keyof SettingSite] = setting!.value!;
         });
         return this.settings;
       } catch (error) {
