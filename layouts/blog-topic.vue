@@ -55,22 +55,22 @@ withDefaults(defineProps<{
 });
 
 const page = ref(1);
-const limit = ref(20);
+const limit = computed(() => 20);
 const list = ref<TArticle[]>([]);
 
 const { path } = useRoute();
 
 async function getArticles() {
-  const response = await request<{
+  const { data: { value: { articlesPaginate: { data: response } } } } = await request<{
     articlesPaginate: { data: TArticle[] }
   }, ArticlesPaginateQueryVariables>(articlesPaginate, {
     category_url: path,
     limit: limit.value,
     page: page.value,
   });
-  if (response.data.value.articlesPaginate.data.length) {
+  if (response.length) {
     page.value += 1;
-    list.value.push(...response.data.value.articlesPaginate.data);
+    list.value.push(...response);
   }
 }
 </script>
