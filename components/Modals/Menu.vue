@@ -2,6 +2,10 @@
   <section class="modal modal--menu">
     <h2 class="visually-hidden">Меню сайта</h2>
     <div class="modal__wrap grid grid__container">
+      <div class="modal__theme">
+        <p>Переключение темы:</p>
+        <ThemeToggle />
+      </div>
       <nav class="main-nav main-nav--modal grid__col-12">
         <ul class="main-nav__list site-list" v-if="isDesktop">
           <li class="site-list__item site-list__item--group" v-for="item in navList" :key="item.title">
@@ -55,6 +59,7 @@
 </template>
 <script setup lang="ts">
 import { useHeader } from '~/store/header';
+import ThemeToggle from '~/components/Inputs/ThemeToggle.vue';
 
 const { isMobile, isDesktop } = useDevice();
 

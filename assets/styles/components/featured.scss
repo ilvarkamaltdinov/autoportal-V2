@@ -13,12 +13,8 @@
 
 .featured__item--business {
   &:hover .featured__link {
-    background-color: $colorTextDark;
+    background-color: var(--color-text-dark);
   }
-}
-
-.features__bold {
-  font-weight: bold;
 }
 
 .featured__link {
@@ -51,7 +47,7 @@
 }
 
 .featured__item--business .featured__link {
-  background-color: $colorText;
+  background-color: var(--color-text-dark);
 }
 
 .featured__label {
@@ -191,7 +187,7 @@
   background-color: $colorBankTinkoff;
 
   * {
-    color: $colorText;
+    color: var(--color-text-dark);
   }
 
   &:hover {
@@ -231,7 +227,7 @@
   }
 
   * {
-    color: $colorText;
+    color: var(--color-text-dark);
   }
 }
 
@@ -297,7 +293,6 @@
   position: relative;
   @include overlay;
   aspect-ratio: 4 / 3;
-  background-color: $colorBgActive;
 
   &:hover {
     cursor: pointer;
@@ -317,7 +312,7 @@
 }
 
 .featured__item--review .featured__link {
-  background-color: $colorText;
+  background-color: var(--color-text);
 }
 
 .featured__item--review-active {

@@ -1,11 +1,17 @@
 .page-header {
-  background-color: white;
+  background-color: var(--color-section);
   box-shadow: $shadow;
-  z-index: 200;
-  position: relative;
   overflow: hidden;
   margin-bottom: 16px;
   @include border-bottom;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 200;
+}
+
+.page-header__logo-letters {
+  filter: var(--svg-filter);
 }
 
 .page-header__logo-img-wrap {
@@ -38,31 +44,13 @@
   display: flex;
 }
 
-.page-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: white;
-  z-index: 200;
-}
-
 .page-header__wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
   transition: none;
   @include border-bottom;
-
-  // position: fixed;
-  // top: 0;
-  // width: 100%;
-  // background: white;
-  // z-index: 200;
 }
-
-// .page-header__container {
-//   padding-top: 56px;
-// }
 
 .page-header__buttons-link {
   display: block;
@@ -77,6 +65,10 @@
   }
 }
 
+.page-header__buttons-link .icon {
+  fill: var(--color-text);
+}
+
 .page-header__makes-list {
   display: flex;
   justify-content: space-between;
@@ -84,6 +76,7 @@
 
 .page-header__logo-circle {
   margin-right: 5px;
+  filter: var(--svg-filter);
 }
 
 .page-header__makes-list--full {
@@ -113,7 +106,7 @@
   }
 }
 
-.page-header__makes-more-arrow svg {
+.page-header__makes-more-arrow {
   width: 16px;
   height: 16px;
   margin-left: 4px;
@@ -123,7 +116,7 @@
   transition: $transitionHover;
 }
 
-.page-header__makes-more--active .page-header__makes-more-arrow svg {
+.page-header__makes-more--active .page-header__makes-more-arrow {
   top: 2px;
   transform: rotate(180deg);
 }
@@ -163,6 +156,7 @@
   width: 16px;
   height: 16px;
   margin-right: 4px;
+  fill: var(--color-text);
 }
 
 .page-header__nav--desktop.main-nav {
@@ -192,16 +186,16 @@
 }
 
 @media (max-width: $mobile-width-only) {
+  .page-header__wrap .toggle {
+    display: none;
+  }
+
   .page-header__search--form {
     width: 100%;
     position: absolute;
     top: 57px;
     z-index: 200;
     background: white;
-    display: none;
-  }
-
-  .page-header__buttons-item--call {
     display: none;
   }
 
@@ -234,9 +228,9 @@
       content: "";
       display: block;
       background: linear-gradient(
-                      90deg,
-                      rgb(145, 147, 153, 0%) 0,
-                      rgb(145, 147, 153, 17%)
+        90deg,
+        rgb(145, 147, 153, 0%) 0,
+        rgb(145, 147, 153, 17%)
       );
       position: absolute;
       right: 0;
@@ -262,9 +256,9 @@
   .page-header__logo {
     margin-right: 32px;
 
-    &:hover .page-header__logo-circle {
-      transform: rotate(22deg);
-    }
+     &:hover .page-header__logo-circle {
+       transform: rotate(22deg);
+     }
 
     &:hover .page-header__logo-hat {
       top: -14px;

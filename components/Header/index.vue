@@ -46,6 +46,7 @@
             </li>
           </ul>
         </nav>
+        <ThemeToggle v-if="$device.isDesktopOrTablet" />
         <ul class="page-header__buttons">
           <li class="page-header__buttons-item">
             <nuxt-link to="/favorites"
@@ -115,6 +116,7 @@ import { getPopularMarks } from '~/helpers/filterMarks';
 import { useFavorites } from '~/store/favorites';
 import { storeToRefs } from 'pinia';
 import MenuMarks from '~/components/Modals/MenuMarks.vue';
+import ThemeToggle from '~/components/Inputs/ThemeToggle.vue';
 
 
 const menuList = computed(() => {

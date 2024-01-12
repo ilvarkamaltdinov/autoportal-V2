@@ -1,5 +1,5 @@
 .modal {
-  background: white;
+  background: var(--color-section);
   position: fixed;
   width: 100%;
   top: 72px;
@@ -12,8 +12,13 @@
   pointer-events: auto;
 }
 
+.modal .benefits__link {
+  border: 1px solid var(--color-divider);
+}
+
 .modal__logo {
   max-width: 128px;
+  filter: var(--svg-filter);
 }
 
 .modal__wrap {
@@ -37,7 +42,7 @@
 }
 
 .modal__close-icon {
-  fill: $colorText;
+  fill: var(--color-text);
   transition: $transitionHover;
 }
 
@@ -115,9 +120,26 @@
 }
 
 @media (max-width: $mobile-width-only) {
+  .modal__theme {
+    padding: 16px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--color-divider);
+  }
+
   .modal {
     top: auto;
     bottom: 0;
+  }
+
+  .modal .catalog__item--vertical {
+    border-bottom: 1px solid var(--color-divider);
+    margin-bottom: 0;
+  }
+
+  .modal__buttons--dealer .button__text {
+    display: none
   }
 
   .modal--makes {
@@ -140,7 +162,7 @@
   }
 
   .modal .heading-group--modal {
-    background: white;
+    background: var(--color-section);
     position: fixed;
     top: 0;
     width: 100%;
@@ -154,7 +176,7 @@
   }
 
   .modal .modal__options {
-    background: white;
+    background: var(--color-section);
     position: fixed;
     width: 100%;
     z-index: 250;
@@ -197,7 +219,7 @@
   }
 
   .modal__options ~ .modal__wrap {
-    padding-top: 202px;
+    padding-top: 188px;
   }
   .modal.modal--credit .modal__options {
     top: 89px;
@@ -247,6 +269,10 @@
 
 
 @media (min-width: $tablet-width) {
+  .modal__theme {
+    display: none;
+  }
+
   .modal {
     top: auto;
     bottom: -10px;
@@ -268,6 +294,10 @@
 }
 
 @media (min-width: $desktop-width) {
+  .modal .catalog__item {
+    border: 1px solid var(--color-divider);
+  }
+
   .modal.modal--makes,
   .modal.modal--menu {
     height: auto;
@@ -299,8 +329,8 @@
   .modal {
     height: 100%;
     top: 0;
-    width: 880px;
-    left: calc(100% - 880px);
+    width: 916px;
+    left: calc(100% - 916px);
   }
 
   .modal__choose-group {
