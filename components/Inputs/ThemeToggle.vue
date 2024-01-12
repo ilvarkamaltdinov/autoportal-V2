@@ -19,11 +19,14 @@ import { storeToRefs } from 'pinia';
 
 const themeStore = useThemeStore();
 const { theme } = storeToRefs(themeStore);
-const isDark = computed(() => theme.value == Themes.DARK);
+const isDark = computed({
+  get: () => theme.value === Themes.DARK,
+  set: (value) => value,
+});
 
 watchEffect(() => {
-  if (theme.value == null && process.client) {
-    themeStore.matchWithMedia();
+  if (!theme.value) {
+    themeStore.setFromDevice();
   }
   useHead({
     htmlAttrs() {
