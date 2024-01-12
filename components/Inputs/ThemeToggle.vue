@@ -28,7 +28,7 @@ watchEffect(() => {
   useHead({
     htmlAttrs() {
       return {
-        'data-theme': theme.value,
+        'data-theme': theme.value || '',
       };
     },
   });

@@ -8,13 +8,13 @@ export const enum Themes {
 
 type ThemeState = {
   _themeCookieKey: string;
-  theme: Themes;
+  theme: Themes | null;
 }
 
 export const useThemeStore = defineStore('themeStore', {
   state: (): ThemeState => {
     const { themeCookieKey } = useAppConfig();
-    const currentTheme = useCookie(themeCookieKey);
+    const currentTheme = useCookie<Themes | null>(themeCookieKey);
     return {
       theme: currentTheme.value,
       _themeCookieKey: themeCookieKey,
