@@ -17,6 +17,7 @@
             <ul class="blog__list">
               <Article v-for="item in list"
                        :key="item.id"
+                       :to="item.url"
                        class="blog__item">
                 <template #views>
                   {{ item.views }}
