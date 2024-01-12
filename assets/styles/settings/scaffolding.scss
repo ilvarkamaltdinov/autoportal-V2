@@ -1,11 +1,3 @@
-@use "sass:meta";
-@use "variables.scss" as colors;
-$colors: meta.module-variables('colors');
-
-// Usages
-@include add-css-variables($colors);
-
-
 .grecaptcha-badge {
   visibility: hidden;
 }
