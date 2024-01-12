@@ -7,6 +7,38 @@
   padding: 16px;
   box-shadow: $shadow;
   transition-property: opacity, box-shadow, background !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.catalog__info {
+  order: 1;
+}
+
+.catalog__img {
+  order: 2;
+}
+
+.catalog__tech {
+  display: flex;
+  margin-bottom: 16px;
+  order: 3;
+}
+
+.catalog__item--modal-desktop .catalog__tech {
+  margin-bottom: 0;
+}
+
+.catalog__buttons {
+  display: flex;
+  justify-content: space-between;
+  order: 4;
+}
+
+.catalog__buttons .button--credit {
+  margin-left: 16px;
+  // max-width: 194px;
+  max-width: auto;
 }
 
 .catalog__item .rating {

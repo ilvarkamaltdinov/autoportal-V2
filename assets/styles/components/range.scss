@@ -1,15 +1,24 @@
 .range {
   position: relative;
+  margin-top: 24px;
 }
 
-.range .irs--flat .irs-handle {
+.range .slider-tooltip {
+  display: none;
+}
+
+.range .slider-handle {
   border-radius: 50%;
   background-color: $colorPrimary;
-  width: 24px;
-  height: 24px;
-  top: 18px;
+  width: 24px !important;
+  height: 24px !important;
+  top: -10px !important;
   transition: all 0.3s;
   box-shadow: $shadowHover;
+}
+
+.range .slider-horizontal {
+  height: 4px !important;
 }
 
 .range .irs--flat .irs-handle > i {
@@ -29,8 +38,41 @@
   transition: all 0.3s;
 }
 
+.range .slider-connect {
+  background: linear-gradient(90deg, rgba(237, 41, 57, 0) 0%, #ED2939 100%);
+  //transition: all 0.3s;
+}
+
 .range .irs-grid-pol.small {
   height: 0;
+}
+
+.irs-grid {
+  position: relative;
+}
+
+@for $k from 0 through 100 {
+  .irs-grid-text-#{$k} {
+    left: percentage(calc($k / 100));
+    //margin-left: -3.4%;
+    position: absolute;
+    margin-left: -3.40909%;
+    @extend .irs-grid-text;
+  }
+}
+
+.irs-grid-text-min {
+  left: 0;
+  position: absolute;
+  margin-left: -2.4%;
+  @extend .irs-grid-text;
+}
+
+.irs-grid-text-max {
+  left: 100%;
+  position: absolute;
+  margin-left: -3.40909%;
+  @extend .irs-grid-text;
 }
 
 .range .irs--flat .irs-bar {

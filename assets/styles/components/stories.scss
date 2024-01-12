@@ -201,10 +201,16 @@
 
   .stories--desktop .swiper-button-next {
     right: 16px;
+    &:after {
+      display: none;
+    }
   }
 
   .stories--desktop .swiper-button-prev {
     left: -64px;
+    &:after {
+      display: none;
+    }
   }
 
   .stories__modal {
