@@ -1,32 +1,24 @@
 <template>
   <fieldset class="form__fieldset">
-    <div class="form__block form__block--range range">
-      <label class="form__range-wrap">
-        <span class="form__range-name">Срок кредитования, мес.:</span>
-        <span class="form__range-value">{{ periodValue }}</span>
-      </label>
-      <SliderOptions v-model="periodValue" class="range-period"
-                     :text="installment ? 'Период рассрочки:' :'Срок кредитования, мес.:'"
-                     :options="params.rangePeriodValues"
-                     @input="changePeriod">
-        <template #option-label="{ option }">
-          {{ option }}
-        </template>
-      </SliderOptions>
-    </div>
-    <div class="form__block form__block--range range">
-      <label class="form__range-wrap">
-        <span class="form__range-name">Первоначальный взнос:</span>
-        <!--TODO в будущем переписать toCurrency и исправить этот костыль -->
-        <span class="form__range-value" v-if="currentPaymentSum"> {{ currentPaymentSum }}</span>
-        <span class="form__range-value" v-else> 0 ₽</span>
-      </label>
-      <Slider
-          class="range-payment"
-          :options="params.rangePaymentValues"
-          @input="changePayment">
-      </Slider>
-    </div>
+    <SliderOptions v-model="periodValue" class="range-period"
+                   :options="params.rangePeriodValues"
+                   @input="changePeriod">
+      <template #option-label="{ option }">
+        {{ option }}
+      </template>
+    </SliderOptions>
+    <SliderOptions
+        text="Первоначальный взнос:"
+        class="range-payment"
+        :options="params.rangePaymentValues"
+        @input="changePayment">
+      <template #option-label="{ option }">
+        {{ option }} %
+      </template>
+      <template #default>
+        Первоначальный взнос
+      </template>
+    </SliderOptions>
     <div class="form__total">
       <div class="form__total-label">Ваш платеж:</div>
       <div class="form__total-payment">
@@ -42,6 +34,7 @@ import { OfferQuery } from '~/types/graphql';
 import { computed, useNuxtApp } from '#imports';
 import Slider from '@vueform/slider';
 import SliderOptions from '~/components/Inputs/SliderOptions.vue';
+import Template from '~/components/Modals/Template.vue';
 
 export type FormCreditCalculatorProps = {
   offer: OfferQuery['offer'];
