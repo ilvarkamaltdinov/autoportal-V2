@@ -6,8 +6,15 @@
       <template #option-label="{ option }">
         {{ option }}
       </template>
+      <template #default>
+        Срок кредитования, мес.:
+      </template>
+      <template #value="{ value }">
+        {{ value }} мес.
+      </template>
     </SliderOptions>
     <SliderOptions
+        v-model="paymentValue"
         text="Первоначальный взнос:"
         class="range-payment"
         :options="params.rangePaymentValues"
@@ -16,7 +23,10 @@
         {{ option }} %
       </template>
       <template #default>
-        Первоначальный взнос
+        Первоначальный взнос:
+      </template>
+      <template #value="{ value }">
+        {{ currentPaymentSum || 0 }} ₽
       </template>
     </SliderOptions>
     <div class="form__total">
@@ -32,9 +42,7 @@
 <script setup lang="ts">
 import { OfferQuery } from '~/types/graphql';
 import { computed, useNuxtApp } from '#imports';
-import Slider from '@vueform/slider';
 import SliderOptions from '~/components/Inputs/SliderOptions.vue';
-import Template from '~/components/Modals/Template.vue';
 
 export type FormCreditCalculatorProps = {
   offer: OfferQuery['offer'];

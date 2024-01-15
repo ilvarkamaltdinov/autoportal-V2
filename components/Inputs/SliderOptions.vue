@@ -4,13 +4,14 @@
       <span class="form__range-name">
         <slot name="default" />
       </span>
-      <!--TODO в будущем переписать toCurrency и исправить этот костыль -->
-      <span class="form__range-value" v-if="currentPaymentSum"> {{ currentPaymentSum }}</span>
-      <span class="form__range-value" v-else> 0 ₽</span>
+      <span class="form__range-value">
+        <slot name="value" :value="modelValue">
+          {{ modelValue }}
+        </slot>
+      </span>
     </label>
     <Slider v-model="modelValue" @update:model-value="newvalue => $emit('update:modelValue', newvalue)"
             class="range-period"
-            :text="text"
             :options="options"
             @input="$emit('input', $event)"/>
     <div class="irs irs--flat irs-with-grid">
@@ -31,7 +32,6 @@ import type { FormCreditCalculatorProps } from '~/components/Form/form-component
 type SliderOptionProps = {
   options: FormCreditCalculatorProps['params']['rangePeriodValues'];
   modelValue: number;
-  text: string;
 }
 
 defineEmits(['input', 'update:modelValue']);

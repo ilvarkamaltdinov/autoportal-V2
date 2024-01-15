@@ -105,6 +105,40 @@ $gridColumnWidth: 72px;
 $gridGapWidth: 24px;
 $gridGapTabletWidth: 23px;
 
+@mixin expose-variables($variables: $variables-dark) { // это должно быть здесь. не в mixins :)
+  @each $key, $value in $variables {
+    --#{$key}: #{$value};
+  }
+}
+
+$variables-dark: (
+  color-text: #f6f7f9,
+  color-section: #1C1C1E,
+  color-text-secondary: #919399,
+  color-bg: #0C0C0C,
+  color-divider: #2a2a2c,
+  color-button: #26282A,
+  color-button-secondary: #26282A,
+  color-primary-light: #26282A,
+  color-text-link: #f6f7f9,
+  svg-filter: brightness(0) invert(1),
+);
+
+$variables-light: (
+  color-text: #2C2D2E,
+  color-text-dark: #262727,
+  color-text-secondary: #919399,
+  color-text-link: #005FF9,
+  color-section: #ffffff,
+  color-bg: #F7F8FA,
+  color-bg-active: #DBDEE4,
+  color-divider: #E0E2E8,
+  color-button: #f2f3f6,
+  color-button-secondary: #DEE9FA,
+  svg-filter: none,
+  color-primary-light: #FBD4D7,
+);
+
 // Root
 
 :root {
@@ -116,77 +150,25 @@ $gridGapTabletWidth: 23px;
   --fancybox-accent-color: $colorPrimary !important;
 
   // Main Variables
-
-  --color-text: #2C2D2E;
-  --color-text-dark: #262727;
-  --color-text-secondary: #919399;
-  --color-text-link: #005FF9;
-  --color-section: #ffffff;
-  --color-bg: #F7F8FA;
-  --color-bg-active: #DBDEE4;
-  --color-divider: #E0E2E8;
-  --color-button: #f2f3f6;
-  --color-button-secondary: #DEE9FA;
-  --svg-filter: none;
-  --color-primary-light: #FBD4D7;
+  @include expose-variables($variables-light);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-text: #f6f7f9;
-    --color-section: #1C1C1E;
-    --color-text-secondary: #919399;
-    --color-bg: #0C0C0C;
-    --color-divider: #2a2a2c;
-    --color-button: #26282A;
-    --color-button-secondary: #26282A;
-    --color-primary-light: #26282A;
-    --color-text-link: #f6f7f9;
-    --svg-filter: brightness(0) invert(1);
+    @include expose-variables($variables-dark);
   }
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --color-text: #2C2D2E;
-    --color-text-dark: #262727;
-    --color-text-secondary: #919399;
-    --color-text-link: #005FF9;
-    --color-section: #ffffff;
-    --color-bg: #F7F8FA;
-    --color-bg-active: #DBDEE4;
-    --color-divider: #E0E2E8;
-    --color-button: #f2f3f6;
-    --color-button-secondary: #DEE9FA;
-    --svg-filter: none;
-    --color-primary-light: #FBD4D7;
+    @include expose-variables($variables-light);
   }
 }
 
 :root[data-theme="dark"] {
-  --color-text: #f6f7f9;
-  --color-section: #1C1C1E;
-  --color-text-secondary: #919399;
-  --color-bg: #0C0C0C;
-  --color-divider: #2a2a2c;
-  --color-button: #26282A;
-  --color-button-secondary: #26282A;
-  --color-primary-light: #26282A;
-  --color-text-link: #f6f7f9;
-  --svg-filter: brightness(0) invert(1);
+  @include expose-variables($variables-dark);
 }
 
 :root[data-theme="light"] {
-  --color-text: #2C2D2E;
-  --color-text-dark: #262727;
-  --color-text-secondary: #919399;
-  --color-text-link: #005FF9;
-  --color-section: #ffffff;
-  --color-bg: #F7F8FA;
-  --color-bg-active: #DBDEE4;
-  --color-divider: #E0E2E8;
-  --color-button: #f2f3f6;
-  --color-button-secondary: #DEE9FA;
-  --svg-filter: none;
-  --color-primary-light: #FBD4D7;
+  @include expose-variables($variables-light);
 }
