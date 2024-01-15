@@ -62,7 +62,7 @@
 <script setup lang="ts">
 import { Dealer } from '~/types/graphql';
 import VideoReview, { Video, VideoItem } from '~/components/Reviews/VideoReview.vue';
-import { useDealers } from '~/store/dealers';
+import { useDealers } from '~/store/dealersStore';
 import { storeToRefs } from 'pinia';
 
 const activeTab = ref(0);

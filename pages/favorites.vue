@@ -41,7 +41,7 @@
   </main>
 </template>
 <script setup lang="ts">
-import {useFavorites} from '~/store/favorites';
+import {useFavorites} from '~/store/favoritesStore';
 import {storeToRefs} from 'pinia';
 import CatalogItem from '~/components/Catalog/Item/index.vue';
 import {Offer} from '~/types/graphql';

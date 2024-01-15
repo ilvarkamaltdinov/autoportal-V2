@@ -41,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-import { useDealers } from '~/store/dealers';
+import { useDealers } from '~/store/dealersStore';
 import { storeToRefs } from 'pinia';
 import Card from '~/components/Dealer/Card.vue';
 

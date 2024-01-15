@@ -113,7 +113,7 @@
 import { useHeader } from '~/store/header';
 import { useSiteConfig } from '~/store/siteConfig';
 import { getPopularMarks } from '~/helpers/filterMarks';
-import { useFavorites } from '~/store/favorites';
+import { useFavorites } from '~/store/favoritesStore';
 import { storeToRefs } from 'pinia';
 import MenuMarks from '~/components/Modals/MenuMarks.vue';
 import ThemeToggle from '~/components/Inputs/ThemeToggle.vue';

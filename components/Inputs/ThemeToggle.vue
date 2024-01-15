@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { Themes, useThemeStore } from '~/store/theme';
+import { Themes, useThemeStore } from '~/store/themeStore';
 import { storeToRefs } from 'pinia';
 
 const themeStore = useThemeStore();

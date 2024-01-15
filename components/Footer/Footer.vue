@@ -182,7 +182,7 @@
 </template>
 
 <script setup lang="ts">
-import { useMarks } from '~/store/marks';
+import { useMarks } from '~/store/carbrandsStore';
 import { storeToRefs } from 'pinia';
 
 const isRegionsOpen = ref(false);
