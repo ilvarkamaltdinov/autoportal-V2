@@ -1,15 +1,14 @@
 <template>
   <Slider v-model="modelValue" @update:model-value="newvalue => $emit('update:modelValue', newvalue)"
           class="range-period"
-          :text="installment ? 'Период рассрочки:' :'Срок кредитования, мес.:'"
+          :text="text"
           :options="options"
-          :period="currentPeriod"
-          @changePeriod="$emit('changePeriod', $event)"/>
+          @input="$emit('input', $event)"/>
   <div class="irs irs--flat irs-with-grid">
     <div class="irs-grid">
       <div :key="k" :class="`irs-grid-text-${parseInt(k) || k}`"
            v-for="([k,v]) in Object.entries(options.range)">
-        {{ v }}
+        <slot name="option-label" :option="v" :key="k"/>
       </div>
     </div>
   </div>
@@ -17,19 +16,17 @@
 
 <script setup lang="ts">
 import Slider from '@vueform/slider';
+import type { FormCreditCalculatorProps } from '~/components/Form/form-components/FormCreditCalculator.vue';
 
-type FormCreditCalculatorProps = {
-  options: object;
-  installment: boolean;
+type SliderOptionProps = {
+  options: FormCreditCalculatorProps['params']['rangePeriodValues'];
   modelValue: number;
-  currentPeriod: string;
+  text: string;
 }
 
-defineEmits(['changePeriod', 'update:modelValue']);
+defineEmits(['input', 'update:modelValue']);
 
-const props = withDefaults(defineProps<FormCreditCalculatorProps>(), {
-  installment: false,
-});
+const props = defineProps<SliderOptionProps>();
 
 const modelValue = ref(props.modelValue);
 </script>

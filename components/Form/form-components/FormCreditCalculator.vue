@@ -6,18 +6,13 @@
         <span class="form__range-value">{{ periodValue }}</span>
       </label>
       <SliderOptions v-model="periodValue" class="range-period"
-              :text="installment ? 'Период рассрочки:' :'Срок кредитования, мес.:'"
-              :options="params.rangePeriodValues"
-              :period="currentPeriod"
-              @changePeriod="changePeriod"/>
-<!--      <div class="irs irs&#45;&#45;flat irs-with-grid">-->
-<!--        <div class="irs-grid">-->
-<!--          <div :key="k" :class="`irs-grid-text-${parseInt(k) || k}`"-->
-<!--               v-for="([k,v]) in Object.entries(params.rangePeriodValues.range)">-->
-<!--            {{ v }}-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
+                     :text="installment ? 'Период рассрочки:' :'Срок кредитования, мес.:'"
+                     :options="params.rangePeriodValues"
+                     @input="changePeriod">
+        <template #option-label="{ option }">
+          {{ option }}
+        </template>
+      </SliderOptions>
     </div>
     <div class="form__block form__block--range range">
       <label class="form__range-wrap">
@@ -48,7 +43,7 @@ import { computed, useNuxtApp } from '#imports';
 import Slider from '@vueform/slider';
 import SliderOptions from '~/components/Inputs/SliderOptions.vue';
 
-type FormCreditCalculatorProps = {
+export type FormCreditCalculatorProps = {
   offer: OfferQuery['offer'];
   params: {
     rangePeriodValues: {
