@@ -26,13 +26,12 @@
 </template>
 
 <script setup lang="ts">
-import {useSiteConfig} from '~/store/siteConfig';
 import {markTitle, sortMarksCatalog} from '~/helpers/filterMarks';
 
 const {isMobile} = useDevice();
 
 const showAll = ref(false);
-const allMarks = useSiteConfig().marks;
+const allMarks = [];
 const marksList = computed(() => {
   return sortMarksCatalog([...allMarks], isMobile ? 10 : 21, showAll.value);
 });

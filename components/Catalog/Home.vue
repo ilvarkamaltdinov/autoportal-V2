@@ -31,8 +31,8 @@
 <script setup lang="ts">
 import CatalogItem from '~/components/Catalog/Item/index.vue';
 
-import {requestCatalogOffers} from '~/helpers/request';
-import {OfferCatalog, OffersCatalogInputType} from '~/app/types/offers';
+import { requestCatalogOffers } from '~/helpers/request';
+import { OfferCatalog, OffersCatalogInputType } from '~/app/types/offers';
 
 const route = useRoute();
 const offers = ref<OfferCatalog[]>();
@@ -45,15 +45,14 @@ let variables = computed<OffersCatalogInputType>(() => {
 });
 
 async function getOffers() {
-  const {data} = await requestCatalogOffers(variables.value);
-  console.log(data.value);
+  const { data } = await requestCatalogOffers(variables.value);
   // offers.value = data.value.data;
 }
 
 
 watch(route, async () => {
   await getOffers();
-}, {immediate: true});
+}, { immediate: true });
 
 
 </script>

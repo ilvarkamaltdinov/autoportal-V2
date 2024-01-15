@@ -17,11 +17,10 @@
 </template>
 
 <script setup lang="ts">
-import {useSiteConfig} from '~/store/siteConfig';
 import {Folder} from '~/app/types/folders';
 
 const route = useRoute();
-const marks = useSiteConfig().marks;
+const marks = [];
 
 const currentFolders = computed<Folder[]>(() => {
   let currentMark = marks.find(mark => mark.slug === route.params.mark);
