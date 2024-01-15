@@ -158,7 +158,7 @@
 <!--import CatalogModal from '~/components/Catalog/Modal.vue';-->
 <!--import {useModals} from '~/store/modals';-->
 <!--import {useSiteConfig} from '~/store/siteConfig';-->
-<!--import {filterMarksByLetter, getAlphabet, getPopularMarks} from '~/helpers/filterMarks';-->
+<!--import {filterMarksByLetter, getAlphabet, getPopularMarks} from '~/utils/filterMarks';-->
 <!--import {MarkType} from '~/app/types/marks';-->
 <!--import {FolderType} from '~/app/types/folders';-->
 <!--import {GenerationType} from '~/app/types/generations';-->

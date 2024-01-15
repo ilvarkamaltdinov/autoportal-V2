@@ -2,7 +2,7 @@ export default defineNuxtRouteMiddleware(async () => {}); // todo delete
 
 // import { defineNuxtRouteMiddleware } from '#imports';
 // import { seoTags } from '~/apollo/queries/seoTags';
-// import { request } from '~/helpers/request';
+// import { request } from '~/utils/request';
 // import { SeoTag, SeoTagsQueryVariables } from '~/types/graphql';
 // export default defineNuxtRouteMiddleware(async (to, from) => {
 //   async function fetchSeoTags() {

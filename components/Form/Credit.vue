@@ -63,7 +63,7 @@
   </Sidebar>
 </template>
 <script setup lang="ts">
-import { numberFormat } from '~/helpers/filters';
+import { numberFormat } from '~/utils/filters';
 import { useModals, ModalOfferSelection_offerType } from '~/store/modals';
 import { OfferQuery } from '~/types/graphql';
 import { computed, ref } from '#imports';

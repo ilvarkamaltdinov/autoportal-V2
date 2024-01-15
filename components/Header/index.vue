@@ -111,7 +111,7 @@
 </template>
 <script setup lang="ts">
 import { useHeader } from '~/store/header';
-import { getPopularMarks } from '~/helpers/filterMarks';
+import { getPopularMarks } from '~/utils/filterMarks';
 import { useFavorites } from '~/store/favoritesStore';
 import { storeToRefs } from 'pinia';
 import MenuMarks from '~/components/Modals/MenuMarks.vue';

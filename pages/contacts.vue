@@ -72,7 +72,7 @@
 
 <script setup lang="ts">
 import { DealersContactQueryVariables, Dealer } from '~/types/graphql';
-import { request } from '~/helpers/request';
+import { request } from '~/utils/request';
 import { dealersContact } from '~/apollo/queries/dealer/dealersContact';
 import ContentBlock from '~/components/TextContent/ContentBlock.vue';
 

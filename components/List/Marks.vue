@@ -26,9 +26,9 @@
 </template>
 
 <script setup lang="ts">
-import {markTitle, sortMarksCatalog} from '~/helpers/filterMarks';
+import { markTitle, sortMarksCatalog } from '~/utils/filterMarks';
 
-const {isMobile} = useDevice();
+const { isMobile } = useDevice();
 
 const showAll = ref(false);
 const allMarks = [];

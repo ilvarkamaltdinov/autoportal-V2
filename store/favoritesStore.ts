@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { request } from '~/helpers/request';
+import { request } from '~/utils/request';
 import { offersGql } from '~/apollo/queries/offer/offers';
 import { Offer, OffersQueryVariables } from '~/types/graphql';
 import { _AsyncData } from '#app/composables/asyncData';

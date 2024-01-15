@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { request } from '~/helpers/request';
+import { request } from '~/utils/request';
 import { Bank, BanksQueryVariables } from '~/types/graphql';
 import { banksGql as banksQuery } from '~/apollo/queries/bank/banks';
 

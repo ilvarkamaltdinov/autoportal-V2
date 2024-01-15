@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { settings } from '~/apollo/queries/settings';
-import { request } from '~/helpers/request';
+import { request } from '~/utils/request';
 import { SettingsQuery } from '~/types/graphql';
 
 interface SettingSite {

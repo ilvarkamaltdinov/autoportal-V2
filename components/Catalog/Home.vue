@@ -31,7 +31,7 @@
 <script setup lang="ts">
 import CatalogItem from '~/components/Catalog/Item/index.vue';
 
-import { requestCatalogOffers } from '~/helpers/request';
+import { requestCatalogOffers } from '~/utils/request';
 import { OfferCatalog, OffersCatalogInputType } from '~/app/types/offers';
 
 const route = useRoute();

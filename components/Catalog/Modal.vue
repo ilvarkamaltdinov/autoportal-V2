@@ -33,12 +33,12 @@
 </template>
 <script setup lang="ts">
 import CatalogItem from '~/components/Catalog/Item/index.vue';
-import {offersGql} from '~/apollo/queries/offer/offers';
+import { offersGql } from '~/apollo/queries/offer/offers';
 
-import {VueEternalLoading, LoadAction} from '@ts-pro/vue-eternal-loading';
-import {useModals} from '~/store/modals';
-import {request} from '~/helpers/request';
-import {Offer, OffersQueryVariables, OfferTypePagination} from '~/types/graphql';
+import { VueEternalLoading, LoadAction } from '@ts-pro/vue-eternal-loading';
+import { useModals } from '~/store/modals';
+import { request } from '~/utils/request';
+import { Offer, OffersQueryVariables, OfferTypePagination } from '~/types/graphql';
 
 const current_page = ref(1);
 const last_page = ref(1);
@@ -58,12 +58,12 @@ let variables = computed<OffersQueryVariables>(() => {
 
 
 const getOffers = async () => {
-  const {data} = await request<OfferTypePagination, OffersQueryVariables>(offersGql, variables.value);
+  const { data } = await request<OfferTypePagination, OffersQueryVariables>(offersGql, variables.value);
   offers.value.push(...data.value.offers.data);
   last_page.value = data.value?.offers.last_page;
 };
 
-async function load({loaded}: LoadAction) {
+async function load({ loaded }: LoadAction) {
   await getOffers();
   current_page.value += 1;
   loaded();

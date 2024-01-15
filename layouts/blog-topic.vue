@@ -44,7 +44,7 @@
 <script setup lang="ts">
 import Article from '~/components/Blog/Article.vue';
 import { articlesPaginate } from '~/apollo/queries/blog/articlesPaginate';
-import { request } from '~/helpers/request';
+import { request } from '~/utils/request';
 import { Article as TArticle, ArticlesPaginateQueryVariables } from '~/types/graphql';
 import { useRoute } from '#imports';
 

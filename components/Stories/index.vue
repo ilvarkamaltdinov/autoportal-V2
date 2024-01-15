@@ -52,18 +52,18 @@
   </ModalV2>
 </template>
 <script setup lang="ts">
-import {request} from '~/helpers/request';
-import {stories as storiesQuery} from '~/apollo/queries/stories/stories';
-import {Story, StoriesQueryVariables} from '~/types/graphql';
+import { request } from '~/utils/request';
+import { stories as storiesQuery } from '~/apollo/queries/stories/stories';
+import { Story, StoriesQueryVariables } from '~/types/graphql';
 import StoriesItem from '~/components/Stories/StoriesItem.vue';
-import {Swiper, SwiperSlide} from 'swiper/vue';
-import {Autoplay, Navigation} from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Autoplay, Navigation } from 'swiper/modules';
 import ModalV2 from '~/components/ModalsV2/ModalV2.vue';
 import StoriesModal from '~/components/Stories/StoriesModal.vue';
 
 const stories = ref<Story[]>([]);
 
-let {pending: loading, data: response} = await request<{stories: Story[]}, StoriesQueryVariables>(storiesQuery);
+let { pending: loading, data: response } = await request<{stories: Story[]}, StoriesQueryVariables>(storiesQuery);
 stories.value = response.value.stories;
 
 const modal = ref(null);
