@@ -1,9 +1,9 @@
 <template>
-	<main class="page-main">
-		<div class="grid">
-<!--			<crumbs :crumbs="crumbs"/>-->
-		</div>
-		<div class="grid grid--container">
+  <main class="page-main">
+    <div class="grid">
+      <!--			<crumbs :crumbs="crumbs"/>-->
+    </div>
+    <div class="grid grid--container">
       <section class="page-main__featured featured featured--reviews grid">
         <div class="heading-group heading-group--h1">
           <div class="heading-group__wrap">
@@ -38,7 +38,7 @@
           <ul v-if="reviews.length"
               class="featured__list grid grid--featured featured__reviews">
             <VideoReview v-for="video in reviews" @click="selectVideo(video.id)"
-                         :video="video" :showing-video="showingVideo || ''" :key="video.id" />
+                         :video="video" :showing-video="showingVideo || ''" :key="video.id"/>
           </ul>
 
           <div v-else
@@ -56,7 +56,7 @@
         </div>
       </section>
     </div>
-	</main>
+  </main>
 </template>
 
 <script setup lang="ts">
@@ -69,6 +69,7 @@ const activeTab = ref(0);
 const dealersStore = useDealers();
 dealersStore.fetchDealers();
 const { dealers } = storeToRefs(dealersStore);
+dealers.value = dealers.value.filter(item => item.youtube_playlist_review);
 const reviews = ref<VideoItem[]>([]);
 const showingVideo = ref<string | null>(null);
 const nextPageToken = ref<string | null>(null);
@@ -77,9 +78,8 @@ const activeToken = computed(() => dealers.value[activeTab.value].youtube_playli
 
 onMounted(async () => {
   try {
-    dealers.value = dealers.value.filter(item => item.youtube_playlist_review);
     await getPlaylist(nextPageToken.value, dealers.value[0].youtube_playlist_review);
-  } catch (error){
+  } catch (error) {
     console.log(error);
   }
 });
@@ -90,6 +90,7 @@ function getReviews(dealer: Dealer, index: number) {
   activeTab.value = index;
   getPlaylist(null, dealer.youtube_playlist_review);
 }
+
 async function getPlaylist(pageToken: string | null, playlistId: string) {
   const params = {
     'playlistId': playlistId,
@@ -102,10 +103,10 @@ async function getPlaylist(pageToken: string | null, playlistId: string) {
   };
   try {
     const url = new URL('https://www.googleapis.com/youtube/v3/playlistItems');
-    Object.entries(params).forEach(([k, v]) => v ? url.searchParams.append(k, v.toString()): null);
+    Object.entries(params).forEach(([k, v]) => v ? url.searchParams.append(k, v.toString()) : null);
     const response = await fetch(url.toString());
     const responseData: Video = await response.json();
-    if(responseData.nextPageToken){
+    if (responseData.nextPageToken) {
       nextPageToken.value = responseData.nextPageToken;
     } else {
       showMore.value = false;
@@ -119,6 +120,7 @@ async function getPlaylist(pageToken: string | null, playlistId: string) {
 function selectVideo(id: string) {
   showingVideo.value = id;
 }
+
 function getMore() {
   getPlaylist(nextPageToken.value, activeToken.value!);
 }
