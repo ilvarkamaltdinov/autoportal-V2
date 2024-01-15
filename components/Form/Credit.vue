@@ -92,6 +92,7 @@ const modalOfferSelection_offer = computed<ModalOfferSelection_offerType>(() => 
 const creditParams = ref({
   rangePeriodValues: {
     snap: true,
+    //todo move in settings
     range: {
       'min': 2,
       '12': 6,
