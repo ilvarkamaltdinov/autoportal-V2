@@ -2,16 +2,14 @@
   <div class="grid__col-12">
     <div class="catalog__makes makes">
       <ul class="makes__list makes__list--all makes__list--all-modal">
-        <li class="makes__item" :key="mark.id" v-for="mark in marksList">
-          <nuxt-link :to="`used/${mark.slug}`" class="makes__link">
-            <span class="makes__title">
-              {{ markTitle(mark) }}
-            </span>
-            <span class="makes__qty">
-              {{ mark.offers_count }}
-            </span>
-          </nuxt-link>
-        </li>
+        <CarBrandBadge :to="`used/${mark.slug}`" v-for="mark in marksList" :key="mark.id">
+          <template #title>
+            {{ markTitle(mark) }}
+          </template>
+          <template #right-content>
+            {{ mark.offers_count }}
+          </template>
+        </CarBrandBadge>
         <li v-if="showAllButton">
           <button
               @click="toggleShow"
@@ -29,6 +27,7 @@
 import { markTitle, sortMarksCatalog } from '~/utils/filterMarks';
 import { useMarks } from '~/store/carbrandsStore';
 import { storeToRefs } from 'pinia';
+import CarBrandBadge from '~/components/Inputs/CarBrandBadge.vue';
 
 const { isMobile } = useDevice();
 const carBrandsStore = useMarks();

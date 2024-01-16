@@ -25,7 +25,7 @@
               />
               <img
                   src="/img/logo-part-2.svg"
-                  :alt="`Портал проверенных автомобилей с пробегом — ${$settings.dealer_anchor}}`"
+                  :alt="`Портал проверенных автомобилей с пробегом — ${$settings.dealer_anchor}`"
                   height="13"
                   width="79"
                   class="page-header__logo-letters"
@@ -46,7 +46,7 @@
             </li>
           </ul>
         </nav>
-        <ThemeToggle v-if="$device.isDesktopOrTablet" />
+        <ThemeToggle v-if="$device.isDesktopOrTablet"/>
         <ul class="page-header__buttons">
           <li class="page-header__buttons-item">
             <nuxt-link to="/favorites"
@@ -73,7 +73,7 @@
                aria-label="Бесплатный звонок">
               <nuxt-icon
                   name="icon-call"/>
-              <span class="page-header__buttons-phone">+7 (499) 519-13-24</span>
+              <span class="page-header__buttons-phone">{{ $settings.phone }}</span>
             </a>
           </li>
         </ul>
