@@ -3,7 +3,6 @@
           :slides-per-view="1"
           slide-active-class="swiper-slide-visible"
           @swiper="onSwiper"
-          @slideChange="onSlideChange"
           :modules="[Autoplay, Pagination, Navigation]"
           :loop="true"
           :autoplay="{
@@ -102,8 +101,8 @@ type SlideType = {
 const pagination = ref({
   el: '.swiper--index .swiper-pagination',
   clickable: true,
-  type: 'bullets',
-  renderBullet: function (index: number, className: string) {
+  type: 'bullets' as const,
+  renderBullet: (index: number, className: string) => {
     return '<span class="' + className + '">' + '<span class="swiper-pagination-bar"></span>' + '<span class="swiper-pagination-progress"></span>' + '</span>';
   },
 });
