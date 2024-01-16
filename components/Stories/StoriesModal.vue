@@ -1,11 +1,11 @@
 <template>
-  <div class="stories__modal_wrapper-wrap">
-    <div class="overlay"></div>
-    <div class="stories stories--modal">
+<!--  <div class="stories__modal_wrapper-wrap">-->
+<!--    <div class="overlay"></div>-->
+<!--    <div class="stories stories&#45;&#45;modal">-->
       <div class="stories__modal-wrap">
         <!--TODO кнопка закрытия сториз нужна ли? и если нужна сделать больше z-index-->
         <button class="stories__close"
-                @click="close()">
+                @click="$emit('close')">
           <nuxt-icon class="stories__close-icon"
                      name="icon-close-s" />
         </button>
@@ -57,8 +57,8 @@
           </template>
         </Swiper>
       </div>
-    </div>
-  </div>
+<!--    </div>-->
+<!--  </div>-->
 </template>
 
 <script setup lang="ts">
@@ -78,5 +78,4 @@ const pagination = ref({
 defineProps<{
   stories: Story['stories']
 }>();
-const close = inject('close');
 </script>

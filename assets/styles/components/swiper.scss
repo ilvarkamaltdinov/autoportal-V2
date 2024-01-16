@@ -10,6 +10,11 @@
   margin: 16px 0;
 }
 
+.swiper--stories-modal .swiper-pagination {
+  position: static !important;
+  text-align: unset !important;
+}
+
 .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
@@ -170,8 +175,8 @@
 
   .swiper--progress .swiper-pagination-bullet .swiper-pagination-bar,
   .swiper--progress
-    .swiper-pagination-bullet-active
-    .swiper-pagination-progress {
+  .swiper-pagination-bullet-active
+  .swiper-pagination-progress {
     height: 8px;
   }
 
