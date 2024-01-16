@@ -3,6 +3,10 @@
   overflow: hidden !important; // todo fixit mozillu
 }
 
+.swiper--home {
+  overflow: hidden !important;
+}
+
 .swiper-pagination {
   display: flex;
   width: 100%;
@@ -198,7 +202,7 @@
 
 @media (min-width: $desktop-width) {
   .swiper--index {
-    margin: -100px;
-    padding: 100px;
+    margin: -100px !important;
+    padding: 100px !important;
   }
 }
