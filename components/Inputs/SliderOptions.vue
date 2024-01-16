@@ -10,7 +10,7 @@
         </slot>
       </span>
     </label>
-    <Slider v-model="modelValue" @update:model-value="newvalue => $emit('update:modelValue', newvalue)"
+    <Slider v-model="modelValue" @update:model-value="(newValue: string) => $emit('update:modelValue', newValue)"
             class="range-period"
             :options="options"
             @input="$emit('input', $event)"/>

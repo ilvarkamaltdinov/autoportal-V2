@@ -79,14 +79,6 @@ const props = defineProps<{
 }>();
 
 const currentCar = null;
-
-const modalPayloadCredit = {
-  open: true,
-  component: 'offerSelection',
-  title: 'Выберите автомобиль',
-  subtitle: ''
-};
-
 const modalVisibility = ref(false);
 
 const modalOfferSelection_offer = computed<ModalOfferSelection_offerType>(() => useModals().modalOfferSelection_offer);

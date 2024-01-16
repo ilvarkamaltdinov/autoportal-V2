@@ -16,6 +16,7 @@
         <div class="page-footer__social">
           <Social />
           <div class="page-footer__contacts-list">
+<!--            todo from phone provider-->
             <a class="page-footer__contacts-item"
                v-show="$settings.phone && !isNight"
                :href="`tel:${$settings.phone.replace(/[^+\d]/g, '')}`">{{ $settings.phone }}
