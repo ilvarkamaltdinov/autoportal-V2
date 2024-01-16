@@ -9,12 +9,10 @@
     </ul>
   </div>
   <!--  todo add skeleton-->
-  <ul class="stories__list"
-      v-if="$device.isMobileOrTablet">
+  <ul class="stories__list" v-if="$device.isMobileOrTablet">
     <StoriesItem :story="item" @click="openStories(item)" v-for="item in stories" :key="item.id"/>
   </ul>
-  <div v-else
-       class="swiper swiper--stories">
+  <div v-else class="swiper swiper--stories">
     <ul class="stories__list swiper-wrapper">
       <swiper class="swiper"
               :slides-per-view="5"
@@ -55,7 +53,7 @@ import { Autoplay, Navigation } from 'swiper/modules';
 
 const stories = ref<Story[]>([]);
 
-let { pending: loading, data: response } = await request<{ stories: Story[] }, StoriesQueryVariables>(storiesQuery);
+const { pending: loading, data: response } = await request<{ stories: Story[] }, StoriesQueryVariables>(storiesQuery);
 stories.value = response.value.stories;
 
 const selectedStory = ref<StoryContent[] | null>(null);
@@ -66,5 +64,3 @@ function openStories(story: Story) {
   isStorySelected.value = true;
 }
 </script>
-
-
