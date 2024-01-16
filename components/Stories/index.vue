@@ -38,7 +38,7 @@
       <nuxt-icon class="swiper-button__icon" name="icon-arrow"/>
     </button>
   </template>
-  <Dialog v-model:visible="isStorySelected" modal :draggable="false" :closable="true">
+  <Dialog v-model:visible="isStorySelected" modal :draggable="false" :closable="true" v-if="selectedStory">
     <template #container>
       <StoriesModal @close="isStorySelected = false" :stories="selectedStory"/>
     </template>
