@@ -16,7 +16,7 @@
     </template>
     <swiper-slide v-for="slide in slides" :key="slide.id">
       <a v-if="slide.telegram"
-         :href="'TODO'"
+         :href="$settings!.soc_telegram"
          class="slider-index__item">
         <div class="slider-index__media-wrap">
           <div class="slider-index__media">

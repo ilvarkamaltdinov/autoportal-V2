@@ -18,6 +18,7 @@ interface SettingSite {
   credit_percent: string
   dealer_title: string
   dealer_anchor: string
+  soc_telegram: string
 }
 
 export const useSettings = defineStore('settings', {
