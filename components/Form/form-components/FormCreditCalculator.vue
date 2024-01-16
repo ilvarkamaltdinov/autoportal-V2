@@ -78,9 +78,6 @@ const percent = computed(() => {
   const { $settings } = useNuxtApp();
   return Number($settings?.credit_percent.replace('%', ''));
 });
-const currentPeriod = computed(() => {
-  return String(periodValue.value) + ' мес.';
-});
 const currentPaymentSum = computed(() => {
   if (props.offer) {
     return props.offer.price * paymentValue.value / 100;
@@ -88,6 +85,7 @@ const currentPaymentSum = computed(() => {
 });
 
 function calculate() {
+  // todo from utils
   if (props.offer) {
     let creditProc: number = props.installment ? 0.001 : percent.value;
     let car_price = props.offer.price;
@@ -116,7 +114,6 @@ function calculate() {
     }
   }
   emit('changePeriod', periodValue);
-  //для ЦРМКИ
   emit('changePayment', paymentPriceValue);
 }
 

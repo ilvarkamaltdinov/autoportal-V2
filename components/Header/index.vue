@@ -87,12 +87,12 @@
         <!--        </nuxt-link>-->
         <div class="page-header__nav-wrap makes">
           <ul class="makes__list makes__list--header">
-<!--            <li class="makes__item" v-for="mark in getPopularMarks(marks, 8)" :key="mark.id">-->
-<!--              <nuxt-link class="makes__link">-->
-<!--&lt;!&ndash;                <div class="makes__title">{{ mark.title }}</div>&ndash;&gt;-->
-<!--&lt;!&ndash;                <div class="makes__count">{{ mark.offers_count }}</div>&ndash;&gt;-->
-<!--              </nuxt-link>-->
-<!--            </li>-->
+            <li class="makes__item" v-for="mark in popularMarks.slice(0,8)" :key="mark.id">
+              <nuxt-link class="makes__link">
+                <div class="makes__title">{{ mark.title }}</div>
+                <div class="makes__count">{{ mark.offers_count }}</div>
+              </nuxt-link>
+            </li>
           </ul>
         </div>
         <button class="page-header__makes-more"
@@ -111,11 +111,15 @@
 </template>
 <script setup lang="ts">
 import { useHeader } from '~/store/header';
-import { getPopularMarks } from '~/utils/filterMarks';
 import { useFavorites } from '~/store/favoritesStore';
 import { storeToRefs } from 'pinia';
 import MenuMarks from '~/components/Modals/MenuMarks.vue';
 import ThemeToggle from '~/components/Inputs/ThemeToggle.vue';
+import { useMarks } from '~/store/carbrandsStore';
+
+const carBrandsStore = useMarks();
+await carBrandsStore.getAllMarksFillPopular();
+const { popularMarks } = storeToRefs(carBrandsStore);
 
 
 const menuList = computed(() => {
@@ -147,8 +151,6 @@ const headerStore = useHeader();
 const { marks: isMarksShowing } = storeToRefs(headerStore);
 const menu = computed(() => useHeader().menu);
 const likes = ref(0);
-
-const marks = [];
 
 if (process.client) {
   const favoritesStore = useFavorites();
