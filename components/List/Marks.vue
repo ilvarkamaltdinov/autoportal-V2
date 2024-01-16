@@ -1,9 +1,9 @@
 <template>
   <div class="grid__col-12">
     <div class="catalog__makes makes">
-      <ul class="makes__list makes__list--all makes__list--all-catalog">
+      <ul class="makes__list makes__list--all makes__list--all-modal">
         <li class="makes__item" :key="mark.id" v-for="mark in marksList">
-          <nuxt-link :to="`${$route.params.category}/${mark.slug}`" class="makes__link">
+          <nuxt-link :to="`used/${mark.slug}`" class="makes__link">
             <span class="makes__title">
               {{ markTitle(mark) }}
             </span>
@@ -27,19 +27,22 @@
 
 <script setup lang="ts">
 import { markTitle, sortMarksCatalog } from '~/utils/filterMarks';
+import { useMarks } from '~/store/carbrandsStore';
+import { storeToRefs } from 'pinia';
 
 const { isMobile } = useDevice();
+const carBrandsStore = useMarks();
+const { allMarks } = storeToRefs(carBrandsStore);
 
 const showAll = ref(false);
-const allMarks = [];
 const marksList = computed(() => {
-  return sortMarksCatalog([...allMarks], isMobile ? 10 : 21, showAll.value);
+  return sortMarksCatalog(allMarks.value, isMobile ? 10 : 21, showAll.value);
 });
 const showAllButton = computed(() => {
   if (isMobile && allMarks) {
-    return allMarks.length > 10;
+    return allMarks.value.length > 10;
   } else if (allMarks) {
-    return allMarks.length > 21;
+    return allMarks.value.length > 21;
   }
 });
 

@@ -88,7 +88,7 @@
         <div class="page-header__nav-wrap makes">
           <ul class="makes__list makes__list--header">
             <li class="makes__item" v-for="mark in popularMarks.slice(0,8)" :key="mark.id">
-              <nuxt-link class="makes__link">
+              <nuxt-link class="makes__link" :to="`/used/${mark.slug}`">
                 <div class="makes__title">{{ mark.title }}</div>
                 <div class="makes__count">{{ mark.offers_count }}</div>
               </nuxt-link>

@@ -35,9 +35,11 @@ export const useMarks = defineStore('marks', {
       const { data } = await request<{ marks: Mark[] }, MarksQueryVariables>(marks);
       this.allMarks = data.value.marks;
       this.popularMarks = this.popularMarksNames.map((name) => this.allMarks.find((mark) => mark.slug === name)) as Mark[];
-      // this.allMarks.forEach((mark) => {
-      //   this.marksQuantity += mark.offers_count;
-      // });
+      if (!this.marksQuantity) {
+        this.allMarks.forEach((mark) => {
+          this.marksQuantity += mark.offers_count;
+        });
+      }
       return this.allMarks;
     }
   }
