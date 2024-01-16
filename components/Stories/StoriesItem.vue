@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {Story} from '~/types/graphql';
+import { Story } from '~/types/graphql';
 
 type StoriesItemProps = {
   story: Story;
@@ -9,7 +9,6 @@ defineProps<StoriesItemProps>();
 
 <template>
   <li class="stories__item"
-      :class="{'swiper-slide': $device.isMobile}"
       @click="$emit('click')">
     <div class="stories__figure">
       <PictureComponent classes="stories__img lazyload"

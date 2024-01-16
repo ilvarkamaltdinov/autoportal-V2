@@ -1,5 +1,6 @@
 .swiper {
   position: relative;
+  overflow: hidden !important; // todo fixit mozillu
 }
 
 .swiper-pagination {
