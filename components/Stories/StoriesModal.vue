@@ -1,24 +1,3 @@
-<script setup lang="ts">
-import {Swiper, SwiperSlide} from 'swiper/vue';
-import {Autoplay, Navigation, Pagination} from 'swiper/modules';
-import {Story} from '~/types/graphql';
-
-const modules = ref([Navigation, Pagination, Autoplay]);
-const pagination = ref({
-  el: '.swiper--stories-modal .swiper-pagination',
-  clickable: true,
-  type: 'bullets',
-  renderBullet: function (index: any, className: any) {
-    return '<span class="' + className + '">' + '<span class="swiper-pagination-bar"></span>' + '<span class="swiper-pagination-progress"></span>' + '</span>';
-  },
-});
-
-defineProps<{
-  stories: Story['stories']
-}>();
-const close = inject('close');
-</script>
-
 <template>
   <div class="stories__modal_wrapper-wrap">
     <div class="overlay"></div>
@@ -28,7 +7,7 @@ const close = inject('close');
         <button class="stories__close"
                 @click="close()">
           <nuxt-icon class="stories__close-icon"
-                    name="icon-close-s" />
+                     name="icon-close-s" />
         </button>
         <Swiper :modules="[Navigation, Pagination, Autoplay]"
                 :space-between="16"
@@ -80,3 +59,24 @@ const close = inject('close');
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { Story } from '~/types/graphql';
+
+const modules = ref([Navigation, Pagination, Autoplay]);
+const pagination = ref({
+  el: '.swiper--stories-modal .swiper-pagination',
+  clickable: true,
+  type: 'bullets',
+  renderBullet: function (index: any, className: any) {
+    return '<span class="' + className + '">' + '<span class="swiper-pagination-bar"></span>' + '<span class="swiper-pagination-progress"></span>' + '</span>';
+  },
+});
+
+defineProps<{
+  stories: Story['stories']
+}>();
+const close = inject('close');
+</script>
