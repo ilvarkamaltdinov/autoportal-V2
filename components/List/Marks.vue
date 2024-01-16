@@ -1,15 +1,18 @@
 <template>
   <div class="grid__col-12">
     <div class="catalog__makes makes">
+      <ul class="makes__list makes__list--popular">
+        <CarBrandLogo :car-brand="mark" v-for="mark in popularMarks" :key="mark.id"></CarBrandLogo>
+      </ul>
       <ul class="makes__list makes__list--all makes__list--all-modal">
-        <CarBrandBadge :to="`used/${mark.slug}`" v-for="mark in marksList" :key="mark.id">
+        <TwoSideBadge :to="`used/${mark.slug}`" v-for="mark in marksList" :key="mark.id">
           <template #title>
             {{ markTitle(mark) }}
           </template>
           <template #right-content>
             {{ mark.offers_count }}
           </template>
-        </CarBrandBadge>
+        </TwoSideBadge>
         <li v-if="showAllButton">
           <button
               @click="toggleShow"
@@ -27,11 +30,12 @@
 import { markTitle, sortMarksCatalog } from '~/utils/filterMarks';
 import { useMarks } from '~/store/carbrandsStore';
 import { storeToRefs } from 'pinia';
-import CarBrandBadge from '~/components/Inputs/CarBrandBadge.vue';
+import TwoSideBadge from '~/components/Inputs/TwoSideBadge.vue';
+import CarBrandLogo from '~/components/Inputs/CarBrandLogo.vue';
 
 const { isMobile } = useDevice();
 const carBrandsStore = useMarks();
-const { allMarks } = storeToRefs(carBrandsStore);
+const { allMarks, popularMarks } = storeToRefs(carBrandsStore);
 
 const showAll = ref(false);
 const marksList = computed(() => {
