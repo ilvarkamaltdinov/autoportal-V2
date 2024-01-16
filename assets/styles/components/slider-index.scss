@@ -141,7 +141,7 @@
   display: flex;
   bottom: 0;
   position: absolute;
-  width: calc(50% - 16px);
+  width: calc(50% - 16px) !important;
   margin: 8px 16px;
   align-items: center;
   z-index: 50;
@@ -213,13 +213,21 @@
   }
 
   .slider-index .swiper-pagination {
-    left: 76px;
-    bottom: 80px;
+    left: 76px !important;
+    bottom: 80px !important;
   }
 }
 
+//.slider-index .swiper-pagination {
+//  left: 76px !important;
+//  bottom: 80px !important;
+//  top: revert !important;
+//  width: initial !important;
+//}
+
 @media (min-width: $desktop-width) {
   .slider-index .swiper-pagination {
+
     padding: 24px 0;
     height: 16px;
   }

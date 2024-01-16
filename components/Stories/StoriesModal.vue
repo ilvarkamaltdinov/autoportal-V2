@@ -18,7 +18,8 @@
                 :navigation="{
                   nextEl: '.swiper--stories-modal .swiper-button-next',
                   prevEl: '.swiper--stories-modal .swiper-button-prev'
-                }" class="swiper--stories-modal swiper--progress"
+                }"
+                class="swiper--stories-modal swiper--progress"
         >
           <SwiperSlide class="swiper-slide" v-for="story in stories" :key="story.id">
             <div class="stories__modal">
@@ -65,7 +66,6 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Story } from '~/types/graphql';
 
-const modules = ref([Navigation, Pagination, Autoplay]);
 const pagination = ref({
   el: '.swiper--stories-modal .swiper-pagination',
   clickable: true,

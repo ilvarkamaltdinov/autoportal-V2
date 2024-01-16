@@ -5,15 +5,16 @@
           @swiper="onSwiper"
           @slideChange="onSlideChange"
           :modules="[Autoplay, Pagination, Navigation]"
+          :loop="true"
           :autoplay="{
             delay: 2500,
             disableOnInteraction: false
           }"
-          :pagination="{
-            clickable: true,
-            // renderBullet: renderBullet
-          }"
+          :pagination="pagination"
           :space-between="50">
+    <template #container-start>
+      <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"></div>
+    </template>
     <swiper-slide v-for="slide in slides" :key="slide.id">
       <a v-if="slide.telegram"
          :href="'TODO'"
@@ -97,6 +98,15 @@ type SlideType = {
   link?: string
   telegram?: boolean
 }
+
+const pagination = ref({
+  el: '.swiper--index .swiper-pagination',
+  clickable: true,
+  type: 'bullets',
+  renderBullet: function (index: any, className: any) {
+    return '<span class="' + className + '">' + '<span class="swiper-pagination-bar"></span>' + '<span class="swiper-pagination-progress"></span>' + '</span>';
+  },
+});
 
 const { $settings } = useNuxtApp();
 const slides = computed<SlideType[]>(() => {
