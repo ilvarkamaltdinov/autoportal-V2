@@ -56,8 +56,10 @@
     left: percentage(calc($k / 100));
     //margin-left: -3.4%;
     position: absolute;
-    margin-left: -3.40909%;
+    margin-left: -4.0909%;
     @extend .irs-grid-text;
+    padding: 0;
+    text-align: center;
   }
 }
 
@@ -69,7 +71,7 @@
 }
 
 .irs-grid-text-max {
-  left: 100%;
+  left: 96%;
   position: absolute;
   margin-left: -3.40909%;
   @extend .irs-grid-text;
