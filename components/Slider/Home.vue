@@ -1,11 +1,14 @@
 <template>
-  <swiper class="swiper swiper--progress swiper--index swiper--home"
+  <swiper class="swiper swiper--progress swiper--index"
           :slides-per-view="1"
           slide-active-class="swiper-slide-visible"
           @swiper="onSwiper"
           @slideChange="onSlideChange"
           :modules="[Autoplay, Pagination, Navigation]"
-
+          :autoplay="{
+            delay: 2500,
+            disableOnInteraction: false
+          }"
           :pagination="{
             clickable: true,
             // renderBullet: renderBullet
