@@ -1,5 +1,5 @@
 <template>
-  <swiper class="swiper swiper--progress swiper--index"
+  <Swiper class="swiper swiper--progress swiper--index"
           :slides-per-view="1"
           slide-active-class="swiper-slide-visible"
           @swiper="onSwiper"
@@ -11,44 +11,8 @@
           }"
           :pagination="pagination"
           :space-between="50">
-    <template #container-start>
-      <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"></div>
-    </template>
-    <swiper-slide v-for="slide in slides" :key="slide.id">
-      <a v-if="slide.telegram"
-         :href="$settings!.soc_telegram"
-         class="slider-index__item">
-        <div class="slider-index__media-wrap">
-          <div class="slider-index__media">
-            <PictureHomeSlide classes="slider-index__media slider-index__media--element lazyload"
-                              aos="fade-up"
-                              :small="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-element-${slide.id}@1x.png`)}`"
-                              :small-webp="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-element-${slide.id}@1x.webp`)}`"
-                              :big="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-element-${slide.id}@2x.png`)}`"
-                              :big-webp="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-element-${slide.id}@2x.webp`)}`"/>
-            <PictureHomeSlide classes="slider-index__media slider-index__media--car lazyload"
-                              aos="fade-right"
-                              :small="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-car-${slide.id}@1x.png`)}`"
-                              :small-webp="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-car-${slide.id}@1x.webp`)}`"
-                              :big="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-car-${slide.id}@2x.png`)}`"
-                              :big-webp="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-car-${slide.id}@2x.webp`)}`"/>
-          </div>
-        </div>
-        <div class="slider-index__text-wrap">
-          <div class="slider-index__circle"
-               data-aos="fade-up-left"
-               data-aos-duration="750"
-               data-aos-easing="ease-in-out"
-               data-aos-mirror="true"></div>
-          <div class="slider-index__text">
-            <div class="slider-index__heading">{{ slide.heading }}</div>
-            <div class="slider-index__content">{{ slide.content }}</div>
-          </div>
-        </div>
-      </a>
-      <nuxt-link v-else
-                 :to="slide.link"
-                 :class="{'slider-index__item--black': slide.id === 10}"
+    <SwiperSlide v-for="slide in slides" :key="slide.id">
+      <nuxt-link :to="slide.telegram ? '': slide.link" @click="slide.telegram ? navigateToTelegram(): null" :class="{'slider-index__item--black': slide.id === 10}"
                  class="slider-index__item">
         <div class="slider-index__media-wrap">
           <div class="slider-index__media">
@@ -79,8 +43,12 @@
           </div>
         </div>
       </nuxt-link>
-    </swiper-slide>
-  </swiper>
+    </SwiperSlide>
+    <template #container-start>
+      <div
+          class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"></div>
+    </template>
+  </Swiper>
 </template>
 
 <script setup lang="ts">
@@ -97,6 +65,11 @@ type SlideType = {
   link?: string
   telegram?: boolean
 }
+const { $settings } = useNuxtApp();
+
+function navigateToTelegram() {
+  window.location.href = $settings!.soc_telegram;
+}
 
 const pagination = ref({
   el: '.swiper--index .swiper-pagination',
@@ -107,7 +80,6 @@ const pagination = ref({
   },
 });
 
-const { $settings } = useNuxtApp();
 const slides = computed<SlideType[]>(() => {
   return [
     {
