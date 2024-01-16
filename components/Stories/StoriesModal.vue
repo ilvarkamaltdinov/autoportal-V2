@@ -28,16 +28,9 @@
                 <p class="stories__modal-text"> {{ story.body }}</p>
               </div>
               <div class="stories__modal-img-wrap">
-                <picture-component
-                    classes="stories__modal-img lazyload"
-                    :small="story.image.small"
-                    :small-webp="story.image.small_webp"
-                    :big="story.image.medium"
-                    :big-webp="story.image.medium_webp" />
+                <NuxtImg class="stories__modal-img" :src="story.image.medium_webp" densities="x1 x2" format="webp" />
               </div>
-              <nuxt-link @click.native="buttonClick"
-                         :to="story.button_link"
-                         class="button button--credit">
+              <nuxt-link :to="story.button_link" class="button button--credit">
                 {{ story.button_title }}
               </nuxt-link>
             </div>
@@ -69,8 +62,8 @@ import { Story } from '~/types/graphql';
 const pagination = ref({
   el: '.swiper--stories-modal .swiper-pagination',
   clickable: true,
-  type: 'bullets',
-  renderBullet: function (index: any, className: any) {
+  type: 'bullets' as const,
+  renderBullet: function (index: number, className: string) {
     return '<span class="' + className + '">' + '<span class="swiper-pagination-bar"></span>' + '<span class="swiper-pagination-progress"></span>' + '</span>';
   },
 });

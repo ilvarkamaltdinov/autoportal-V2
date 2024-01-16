@@ -6,6 +6,7 @@ export const Story = gql`fragment Story on Story {
       body
       title
       button_link
+      button_title
       image {
           medium
           medium_webp
