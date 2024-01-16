@@ -12,23 +12,15 @@
           :pagination="pagination"
           :space-between="50">
     <SwiperSlide v-for="slide in slides" :key="slide.id">
-      <nuxt-link :to="slide.telegram ? '': slide.link" @click="slide.telegram ? navigateToTelegram(): null" :class="{'slider-index__item--black': slide.id === 10}"
+      <nuxt-link :to="slide.telegram ? '': slide.link" @click="slide.telegram ? navigateToTelegram(): null"
+                 :class="{'slider-index__item--black': slide.id === 10}"
                  class="slider-index__item">
         <div class="slider-index__media-wrap">
           <div class="slider-index__media">
-            <PictureHomeSlide classes="slider-index__media slider-index__media--element lazyload"
-                              aos="fade-up"
-                              :small="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-element-${slide.id}@1x.png`)}`"
-                              :small-webp="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-element-${slide.id}@1x.webp`)}`"
-                              :big="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-element-${slide.id}@2x.png`)}`"
-                              :big-webp="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-element-${slide.id}@2x.webp`)}`"/>
-
-            <PictureHomeSlide classes="slider-index__media slider-index__media--car lazyload"
-                              aos="fade-right"
-                              :small="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-car-${slide.id}@1x.png`)}`"
-                              :small-webp="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-car-${slide.id}@1x.webp`)}`"
-                              :big="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-car-${slide.id}@2x.png`)}`"
-                              :big-webp="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-car-${slide.id}@2x.webp`)}`"/>
+            <NuxtImg data-aos="fade-up" class="slider-index__media slider-index__media--element lazyload"
+                     :src="`/img/slider-index/slider-index-${slide.id}/slider-index-element-${slide.id}@2x.webp`"/>
+            <NuxtImg data-aos="fade-right" class="slider-index__media slider-index__media--car lazyload"
+                     :src="`/img/slider-index/slider-index-${slide.id}/slider-index-car-${slide.id}@2x.webp`"/>
           </div>
         </div>
         <div class="slider-index__text-wrap">
@@ -52,7 +44,6 @@
 </template>
 
 <script setup lang="ts">
-import PictureHomeSlide from '~/components/Picture/HomeSlide.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import AOS from 'aos';
