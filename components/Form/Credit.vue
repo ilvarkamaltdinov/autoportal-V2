@@ -2,9 +2,10 @@
   <div class="heading-group heading-group--form">
     <div class="heading-group__wrap">
       <h2 class="heading heading--h2">
-        Автокредит от {{ $settings.credit_percent }}
+        Автокредит от
         <span class="heading__promo">
-          </span>
+          {{ $settings.credit_percent }}
+        </span>
       </h2>
       <!-- <span class="heading-group__label">Получите одобрение за 5 минут</span> -->
     </div>

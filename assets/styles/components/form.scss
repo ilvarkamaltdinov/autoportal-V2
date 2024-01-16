@@ -32,6 +32,8 @@
 .form__range-wrap {
   display: flex;
   justify-content: space-between;
+  position: relative;
+  top: -15px;
 }
 
 .form__range-name {
