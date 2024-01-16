@@ -103,7 +103,7 @@ const pagination = ref({
   el: '.swiper--index .swiper-pagination',
   clickable: true,
   type: 'bullets',
-  renderBullet: function (index: any, className: any) {
+  renderBullet: function (index: number, className: string) {
     return '<span class="' + className + '">' + '<span class="swiper-pagination-bar"></span>' + '<span class="swiper-pagination-progress"></span>' + '</span>';
   },
 });
@@ -161,25 +161,7 @@ const slides = computed<SlideType[]>(() => {
     }
   ];
 });
-const onSwiper = (swiper: any) => {
-  AOS.init();
-};
-const renderBullet = (index: any, className: any) => {
-  return (
-    '<span class="' + className + '">' +
-      '<span class="swiper-pagination-bar"></span>' +
-      '<span class="swiper-pagination-progress"></span>' +
-      '</span>'
-  );
-};
-const onSlideChange = () => {
-  document.querySelectorAll('.swiper-slide-next .slider-index__circle')
-    .forEach((val: any) => {
-      val.style.display = 'none';
-      val.classList.remove('aos-init', 'aos-animate');
-      val.style.display = 'block';
-      val.classList.add('aos-init', 'aos-animate');
-    });
+const onSwiper = () => {
   AOS.init();
 };
 
