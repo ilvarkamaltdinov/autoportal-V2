@@ -1,7 +1,7 @@
 <template>
-  <slot name="night" v-if="isNight" :exposeCallbackModal="exposeModalCallback" :phone="$settings.phone" />
-  <slot name="day" v-else :href="`tel:${$settings.phone}`" :phone="$settings.phone" />
-<!--todo add slot for newyear-->
+  <slot name="night" v-if="isNight" :exposeCallbackModal="exposeModalCallback" :phone="$settings.phone"/>
+  <slot name="day" v-else :href="`tel:${$settings.phone}`" :phone="$settings.phone"/>
+  <!--todo add slot for newyear-->
   <Sidebar v-model:visible="isSidebarOpened" position="right" class="modal">
     <template #header>
       <div class="heading-group heading-group--modal">
@@ -17,7 +17,7 @@
             <li class="benefits__item" v-for="(benefit, index) in benefits" :key="index">
               <TwoSideBadge class="benefits__link popup--link">
                 <template #title>
-                  <nuxt-icon class="benefits__icon" :name="`icon-docs`" />
+                  <nuxt-icon class="benefits__icon" :name="`icon-${benefit.icon}`"/>
                 </template>
                 <template #right-content>
                   <div class="benefits__text">
@@ -37,17 +37,14 @@
 </template>
 <script setup lang="ts">
 import TwoSideBadge from '~/components/Inputs/TwoSideBadge.vue';
+import { useBenefitsStore } from '~/store/benefitsStore';
 
 const isSidebarOpened = ref();
-function exposeModalCallback(){
+
+function exposeModalCallback() {
   isSidebarOpened.value = true;
 }
 
-const benefits = computed(() => [
-  {
-    text: 'aa',
-    text_strong: 'bb',
-    icon: 'sale'
-  }
-]);
+const benefitsStore = useBenefitsStore();
+const benefits = computed(() => benefitsStore.find('credit'));
 </script>
