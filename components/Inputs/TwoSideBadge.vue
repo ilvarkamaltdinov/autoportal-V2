@@ -12,7 +12,9 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
+withDefaults(defineProps<{
   to: string
-}>();
+}>(), {
+  to: ''
+});
 </script>
