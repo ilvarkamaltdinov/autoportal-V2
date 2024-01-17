@@ -5,6 +5,7 @@
           @swiper="onSwiper"
           :modules="[Autoplay, Pagination, Navigation]"
           :loop="true"
+          :watch-slides-progress="true"
           :autoplay="{
             delay: 2500,
             disableOnInteraction: false
@@ -75,8 +76,8 @@ const slides = computed<SlideType[]>(() => {
   return [
     {
       id: 6,
-      heading: 'Супер-автокредит от TODO годовых',
-      content: 'Скидка TODO ₽, одобрение по паспорту и В/У, взнос от 0%',
+      heading: `Супер-автокредит от ${$settings!.credit_percent} годовых`,
+      content: `Скидка ${$settings!.sale_credit}, одобрение по паспорту и В/У, взнос от 0%`,
       link: '/',
     },
     {
@@ -88,12 +89,12 @@ const slides = computed<SlideType[]>(() => {
     {
       id: 8,
       heading: 'Обменяй авто по Trade-In',
-      content: 'Выгода TODO ₽, рыночная цена, оформление 30 мин.',
+      content: `Выгода ${$settings!.sale_tradein} ₽, рыночная цена, оформление 30 мин.`,
       link: '/',
     },
     {
       id: 1,
-      heading: 'Рассрочка 0% от Совкомбанка',
+      heading: `Рассрочка ${$settings!.first_installment} от Совкомбанка`,
       content: 'Успей купить авто на выгодных условиях',
       link: '/',
     },

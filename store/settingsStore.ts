@@ -19,6 +19,9 @@ interface SettingSite {
   dealer_title: string
   dealer_anchor: string
   soc_telegram: string
+  sale_tradein: string
+  sale_credit: string
+  first_installment: string
 }
 
 export const useSettings = defineStore('settings', {
