@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 withDefaults(defineProps<{
-  to: string
+  to?: string
 }>(), {
   to: ''
 });
