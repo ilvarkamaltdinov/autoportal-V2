@@ -30,6 +30,52 @@
             </li>
           </ul>
         </div>
+        <div class="application application--modal grid__col-12 grid grid--application grid--application-modal">
+          <div class="application__form grid__col-4">
+            <form class="form">
+              <!--              <div class="catalog form__catalog"-->
+              <!--                   v-if="$device.isMobile && offer.mark">-->
+              <!--                <catalog-item-large-mobile-form :is-form="true"-->
+              <!--                                                :offer="offer"/>-->
+              <!--              </div>-->
+              <fieldset class="form__fieldset">
+                <label class="form__field-wrap">
+                  <InputText class="form__field" :unstyled="true" placeholder="Имя"/>
+                  <!--                  <inputs-input placeholder="Имя"-->
+                  <!--                                @input="handlerInput('name')"-->
+                  <!--                                v-model="form.name.value"-->
+                  <!--                                type="text"/>-->
+                </label>
+                <label class="form__field-wrap">
+                  <InputMask class="form__field" mask="+7 (999) 999-9999" placeholder="Телефон" :unstyled="true"/>
+                  <!--                       :class="phoneClass">-->
+                  <!--                  <inputs-input placeholder="Телефон"-->
+                  <!--                                @input="handlerInput('phone')"-->
+                  <!--                                @phoneMaskComplete="form.phone.valid = true"-->
+                  <!--                                @onincomplete="form.phone.valid = null"-->
+                  <!--                                v-model="form.phone.value"-->
+                  <!--                                mask="phone"-->
+                  <!--                                type="tel"/>-->
+                </label>
+                <CheckBoxForm>
+                  <template #text>
+                    <span>Согласен на</span>
+                  </template>
+                  <template #link>
+                    обработку личных данных
+                  </template>
+                </CheckBoxForm>
+                <!--                <checkbox-form :error="error === 'agree'"-->
+                <!--                               @change="changeCheckbox($event,'agree')"-->
+                <!--                               label="Согласен на"-->
+                <!--                               link="обработку личных данных"/>-->
+              </fieldset>
+              <Button class="button button--credit button--form" :unstyled="true">
+                Перезвоните мне
+              </Button>
+            </form>
+          </div>
+        </div>
       </div>
     </template>
   </Sidebar>
@@ -38,6 +84,7 @@
 <script setup lang="ts">
 import { useBenefitsStore } from '~/store/benefitsStore';
 import TwoSideBadge from '~/components/Inputs/TwoSideBadge.vue';
+import CheckBoxForm from '~/components/Form/form-components/CheckBoxForm.vue';
 
 const props = defineProps<{
   modelValue: boolean
@@ -45,6 +92,8 @@ const props = defineProps<{
 const benefitsStore = useBenefitsStore();
 const benefits = computed(() => benefitsStore.find('credit'));
 const isVisible = ref(props.modelValue);
+
+const check = ref(false);
 
 defineEmits(['update:modelValue']);
 watch(() => props.modelValue, (val) => isVisible.value = val);
