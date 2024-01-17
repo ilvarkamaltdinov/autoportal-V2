@@ -34,8 +34,7 @@
                 <div class="text__contacts-group">
                 </div>
                 <div class="text__contacts-label">Вопросы сотрудничества:</div>
-                <a class="text__contacts-item" :href="`mailto:${$settings.email}`">{{ $settings.email }}
-                </a>
+                <a class="text__contacts-item" :href="`mailto:${$settings.email}`">{{ $settings.email }}</a>
               </div>
               <template v-if="dealers">
                 <div class="text__contacts-group" v-for="(dealer, index) in dealers"
