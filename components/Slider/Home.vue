@@ -1,70 +1,27 @@
 <template>
-  <swiper class="swiper swiper--progress swiper--index"
+  <Swiper class="swiper swiper--progress swiper--index"
           :slides-per-view="1"
           slide-active-class="swiper-slide-visible"
           @swiper="onSwiper"
-          @slideChange="onSlideChange"
           :modules="[Autoplay, Pagination, Navigation]"
+          :loop="true"
+          :watch-slides-progress="true"
           :autoplay="{
             delay: 2500,
             disableOnInteraction: false
           }"
-          :pagination="{
-            clickable: true,
-            // renderBullet: renderBullet
-          }"
+          :pagination="pagination"
           :space-between="50">
-    <swiper-slide v-for="slide in slides" :key="slide.id">
-      <a v-if="slide.telegram"
-         :href="'TODO'"
-         class="slider-index__item">
-        <div class="slider-index__media-wrap">
-          <div class="slider-index__media">
-            <PictureHomeSlide classes="slider-index__media slider-index__media--element lazyload"
-                              aos="fade-up"
-                              :small="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-element-${slide.id}@1x.png`)}`"
-                              :small-webp="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-element-${slide.id}@1x.webp`)}`"
-                              :big="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-element-${slide.id}@2x.png`)}`"
-                              :big-webp="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-element-${slide.id}@2x.webp`)}`"/>
-            <PictureHomeSlide classes="slider-index__media slider-index__media--car lazyload"
-                              aos="fade-right"
-                              :small="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-car-${slide.id}@1x.png`)}`"
-                              :small-webp="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-car-${slide.id}@1x.webp`)}`"
-                              :big="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-car-${slide.id}@2x.png`)}`"
-                              :big-webp="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-car-${slide.id}@2x.webp`)}`"/>
-          </div>
-        </div>
-        <div class="slider-index__text-wrap">
-          <div class="slider-index__circle"
-               data-aos="fade-up-left"
-               data-aos-duration="750"
-               data-aos-easing="ease-in-out"
-               data-aos-mirror="true"></div>
-          <div class="slider-index__text">
-            <div class="slider-index__heading">{{ slide.heading }}</div>
-            <div class="slider-index__content">{{ slide.content }}</div>
-          </div>
-        </div>
-      </a>
-      <nuxt-link v-else
-                 :to="slide.link"
+    <SwiperSlide v-for="slide in slides" :key="slide.id">
+      <nuxt-link :to="slide.telegram ? '': slide.link" @click="slide.telegram ? navigateToTelegram(): null"
                  :class="{'slider-index__item--black': slide.id === 10}"
                  class="slider-index__item">
         <div class="slider-index__media-wrap">
           <div class="slider-index__media">
-            <PictureHomeSlide classes="slider-index__media slider-index__media--element lazyload"
-                              aos="fade-up"
-                              :small="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-element-${slide.id}@1x.png`)}`"
-                              :small-webp="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-element-${slide.id}@1x.webp`)}`"
-                              :big="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-element-${slide.id}@2x.png`)}`"
-                              :big-webp="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-element-${slide.id}@2x.webp`)}`"/>
-
-            <PictureHomeSlide classes="slider-index__media slider-index__media--car lazyload"
-                              aos="fade-right"
-                              :small="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-car-${slide.id}@1x.png`)}`"
-                              :small-webp="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-car-${slide.id}@1x.webp`)}`"
-                              :big="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-car-${slide.id}@2x.png`)}`"
-                              :big-webp="`${(`/img/slider-index/slider-index-${slide.id}/slider-index-car-${slide.id}@2x.webp`)}`"/>
+            <NuxtImg data-aos="fade-up" class="slider-index__media slider-index__media--element lazyload"
+                     :src="`/img/slider-index/slider-index-${slide.id}/slider-index-element-${slide.id}@2x.webp`"/>
+            <NuxtImg data-aos="fade-right" class="slider-index__media slider-index__media--car lazyload"
+                     :src="`/img/slider-index/slider-index-${slide.id}/slider-index-car-${slide.id}@2x.webp`"/>
           </div>
         </div>
         <div class="slider-index__text-wrap">
@@ -79,12 +36,15 @@
           </div>
         </div>
       </nuxt-link>
-    </swiper-slide>
-  </swiper>
+    </SwiperSlide>
+    <template #container-start>
+      <div
+          class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"></div>
+    </template>
+  </Swiper>
 </template>
 
 <script setup lang="ts">
-import PictureHomeSlide from '~/components/Picture/HomeSlide.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import AOS from 'aos';
@@ -97,14 +57,27 @@ type SlideType = {
   link?: string
   telegram?: boolean
 }
-
 const { $settings } = useNuxtApp();
+
+function navigateToTelegram() {
+  window.location.href = $settings!.soc_telegram;
+}
+
+const pagination = ref({
+  el: '.swiper--index .swiper-pagination',
+  clickable: true,
+  type: 'bullets' as const,
+  renderBullet: (index: number, className: string) => {
+    return '<span class="' + className + '">' + '<span class="swiper-pagination-bar"></span>' + '<span class="swiper-pagination-progress"></span>' + '</span>';
+  },
+});
+
 const slides = computed<SlideType[]>(() => {
   return [
     {
       id: 6,
-      heading: 'Супер-автокредит от TODO годовых',
-      content: 'Скидка TODO ₽, одобрение по паспорту и В/У, взнос от 0%',
+      heading: `Супер-автокредит от ${$settings!.credit_percent} годовых`,
+      content: `Скидка ${$settings!.sale_credit}, одобрение по паспорту и В/У, взнос от 0%`,
       link: '/',
     },
     {
@@ -116,12 +89,12 @@ const slides = computed<SlideType[]>(() => {
     {
       id: 8,
       heading: 'Обменяй авто по Trade-In',
-      content: 'Выгода TODO ₽, рыночная цена, оформление 30 мин.',
+      content: `Выгода ${$settings!.sale_tradein} ₽, рыночная цена, оформление 30 мин.`,
       link: '/',
     },
     {
       id: 1,
-      heading: 'Рассрочка 0% от Совкомбанка',
+      heading: `Рассрочка ${$settings!.first_installment} от Совкомбанка`,
       content: 'Успей купить авто на выгодных условиях',
       link: '/',
     },
@@ -151,25 +124,7 @@ const slides = computed<SlideType[]>(() => {
     }
   ];
 });
-const onSwiper = (swiper: any) => {
-  AOS.init();
-};
-const renderBullet = (index: any, className: any) => {
-  return (
-    '<span class="' + className + '">' +
-      '<span class="swiper-pagination-bar"></span>' +
-      '<span class="swiper-pagination-progress"></span>' +
-      '</span>'
-  );
-};
-const onSlideChange = () => {
-  document.querySelectorAll('.swiper-slide-next .slider-index__circle')
-    .forEach((val: any) => {
-      val.style.display = 'none';
-      val.classList.remove('aos-init', 'aos-animate');
-      val.style.display = 'block';
-      val.classList.add('aos-init', 'aos-animate');
-    });
+const onSwiper = () => {
   AOS.init();
 };
 

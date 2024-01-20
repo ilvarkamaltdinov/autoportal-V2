@@ -1,6 +1,6 @@
 .page-footer {
   position: relative;
-  background-color: white;
+  background-color: var(--color-section);
   box-shadow: $shadowFooter;
   margin-top: 112px;
 }
@@ -30,7 +30,7 @@
     position: absolute;
     left: calc(50% - 700px);
     top: 0;
-    background-color: white;
+    background-color: var(--color-section);
     border-radius: 100%;
   }
 
@@ -50,7 +50,7 @@
   margin-top: -9px;
   position: relative;
   top: 7px;
-  filter: grayscale(1);
+  filter: var(--svg-filter);
 }
 
 .page-footer__logo {
@@ -100,8 +100,8 @@
   @include border-top;
   @include border-bottom;
 
-  border-bottom-color: $colorBg;
-  border-top-color: $colorBg;
+  border-bottom-color: var(--color-bg);
+  border-top-color: var(--color-bg);
 }
 
 .page-footer__city-wrap {
@@ -122,13 +122,13 @@
   @include border-top;
   @include border-bottom;
 
-  border-bottom-color: $colorBg;
-  border-top-color: $colorBg;
+  border-bottom-color: var(--color-bg);
+  border-top-color: var(--color-bg);
 }
 
 .page-footer__disclaimer {
   padding: 16px 40px;
-  color: $colorTextSecondary;
+  color: var(--color-text-secondary);
   text-align: center;
 }
 
@@ -142,17 +142,24 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  padding-top: 16px;
-  padding-bottom: 16px;
   @include border-bottom;
+  padding: 16px;
+  text-align: center;
 
-  border-bottom-color: $colorBg;
+  border-bottom-color: var(--color-bg);
 }
 
 .page-footer__legal-item {
   font-size: 12px;
   line-height: 20px;
   font-family: $fontFamilyAdd;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.page-footer__legal-item-label {
+  color: var(--color-text-secondary);
 }
 
 .page-footer__city {
@@ -163,11 +170,16 @@
 }
 
 .page-footer__city-icon {
-  fill: $colorLink !important;
+  fill: $colorLink;
   width: 16px;
   height: 16px;
-  display: inline-block;
   margin-right: 8px;
+}
+
+@media (max-width: $mobile-width-only) {
+  .page-footer__legal-list {
+    gap: 8px;
+  }
 }
 
 @media (max-width: $iphone-mini-only) {
@@ -197,7 +209,9 @@
   .page-footer__legal-list {
     display: flex;
     flex-direction: row;
-    padding-top: 0;
+    padding: 0;
+    text-align: left;
+    padding-bottom: 16px;
   }
 
   .page-footer {
@@ -224,8 +238,8 @@
     @include border-top;
     @include border-bottom;
 
-    border-bottom-color: $colorBg;
-    border-top-color: $colorBg;
+    border-bottom-color: var(--color-bg);
+    border-top-color: var(--color-bg);
   }
 
   .page-footer__cars-stock-number {
@@ -255,6 +269,7 @@
 
   .page-footer__makes-link {
     @include hover-icon;
+    display: flex;
   }
 
   .page-footer__makes-logos {
@@ -276,6 +291,7 @@
     width: 32px;
     height: 32px;
     image-rendering: optimizequality;
+    fill: var(--color-text);
   }
 
   .page-footer__makes-item {

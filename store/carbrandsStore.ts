@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { request } from '~/helpers/request';
+import { request } from '~/utils/request';
 import { Mark, MarksQueryVariables } from '~/types/graphql';
 import { marks } from '~/apollo/queries/marks';
 
@@ -29,15 +29,18 @@ export const useMarks = defineStore('marks', {
 
   actions: {
     async getAllMarksFillPopular() {
-      if(this.allMarks.length) {
+      if (this.allMarks.length) {
         return;
       }
-      const { data } = await request<{marks: Mark[]}, MarksQueryVariables>(marks);
+      const { data } = await request<{ marks: Mark[] }, MarksQueryVariables>(marks);
       this.allMarks = data.value.marks;
       this.popularMarks = this.popularMarksNames.map((name) => this.allMarks.find((mark) => mark.slug === name)) as Mark[];
-      this.allMarks.forEach((mark) => {
-        this.marksQuantity += mark!.offers_count!;
-      });
+      if (!this.marksQuantity) {
+        this.allMarks.forEach((mark) => {
+          this.marksQuantity += mark.offers_count;
+        });
+      }
+      return this.allMarks;
     }
   }
 });

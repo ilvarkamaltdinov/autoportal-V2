@@ -1,20 +1,61 @@
+<template>
+  <fieldset class="form__fieldset">
+    <SliderOptions v-model="periodValue" class="range-period"
+                   :options="params.rangePeriodValues"
+                   @input="changePeriod">
+      <template #option-label="{ option }">
+        {{ option }}
+      </template>
+      <template #default>
+        Срок кредитования, мес.:
+      </template>
+      <template #value="{ value }">
+        {{ value }} мес.
+      </template>
+    </SliderOptions>
+    <SliderOptions
+        v-model="paymentValue"
+        text="Первоначальный взнос:"
+        class="range-payment"
+        :options="params.rangePaymentValues"
+        @input="changePayment">
+      <template #option-label="{ option }">
+        {{ option }} %
+      </template>
+      <template #default>
+        Первоначальный взнос:
+      </template>
+      <template #value="{ value }">
+        {{ currentPaymentSum || 0 }} ₽
+      </template>
+    </SliderOptions>
+    <div class="form__total">
+      <div class="form__total-label">Ваш платеж:</div>
+      <div class="form__total-payment">
+        {{ total || '-' }}
+        <TippyQuestion text="Платеж является ориентировочным и зависит от конкретного банка и кредитной программы."/>
+      </div>
+    </div>
+  </fieldset>
+</template>
+
 <script setup lang="ts">
 import { OfferQuery } from '~/types/graphql';
 import { computed, useNuxtApp } from '#imports';
-import Slider from '@vueform/slider';
+import SliderOptions from '~/components/Inputs/SliderOptions.vue';
 
-type FormCreditCalculatorProps = {
+export type FormCreditCalculatorProps = {
   offer: OfferQuery['offer'];
   params: {
     rangePeriodValues: {
       range: {
-        [k in string]: number
+        [k: string]: number
       }
     },
     rangePaymentValues: {
       snap: boolean,
       range: {
-        [k in string]: number
+        [k: string]: number
       }
     },
     period: number,
@@ -37,9 +78,6 @@ const percent = computed(() => {
   const { $settings } = useNuxtApp();
   return Number($settings?.credit_percent.replace('%', ''));
 });
-const currentPeriod = computed(() => {
-  return String(periodValue.value) + ' мес.';
-});
 const currentPaymentSum = computed(() => {
   if (props.offer) {
     return props.offer.price * paymentValue.value / 100;
@@ -47,6 +85,7 @@ const currentPaymentSum = computed(() => {
 });
 
 function calculate() {
+  // todo from utils
   if (props.offer) {
     let creditProc: number = props.installment ? 0.001 : percent.value;
     let car_price = props.offer.price;
@@ -75,7 +114,6 @@ function calculate() {
     }
   }
   emit('changePeriod', periodValue);
-  //для ЦРМКИ
   emit('changePayment', paymentPriceValue);
 }
 
@@ -93,51 +131,3 @@ watch([() => props.offer, () => percent], () => {
   calculate();
 });
 </script>
-
-<template>
-  <fieldset class="form__fieldset">
-    <div class="form__block form__block--range range">
-      <label class="form__range-wrap">
-        <span class="form__range-name">Срок кредитования, мес.:</span>
-        <span class="form__range-value">{{ periodValue }}</span>
-      </label>
-      <Slider v-model="periodValue" class="range-period"
-              :text="installment ? 'Период рассрочки:' :'Срок кредитования, мес.:'"
-              :options="params.rangePeriodValues"
-              :period="currentPeriod"
-              @changePeriod="changePeriod"/>
-      <div class="irs irs--flat irs-with-grid">
-        <div class="irs-grid">
-          <div :key="k" :class="`irs-grid-text-${parseInt(k) || k}`"
-               v-for="([k,v]) in Object.entries(params.rangePeriodValues.range)">
-            {{ v }}
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="form__block form__block--range range">
-      <label class="form__range-wrap">
-        <span class="form__range-name">Первоначальный взнос:</span>
-        <!--TODO в будущем переписать toCurrency и исправить этот костыль -->
-        <span class="form__range-value" v-if="currentPaymentSum"> {{ currentPaymentSum }}</span>
-        <span class="form__range-value" v-else> 0 ₽</span>
-      </label>
-      <Slider
-          class="range-payment"
-          :options="params.rangePaymentValues"
-          @input="changePayment">
-      </Slider>
-    </div>
-    <div class="form__total">
-      <div class="form__total-label">Ваш платеж:</div>
-      <div class="form__total-payment">
-        {{ total || '-' }}
-        <TippyQuestion text="Платеж является ориентировочным и зависит от конкретного банка и кредитной программы."/>
-      </div>
-    </div>
-  </fieldset>
-</template>
-
-<style scoped>
-
-</style>

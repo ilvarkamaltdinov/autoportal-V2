@@ -3,7 +3,7 @@
 }
 
 .catalog__item {
-  background-color: white;
+  background-color: var(--color-section);
   padding: 16px;
   box-shadow: $shadow;
   transition-property: opacity, box-shadow, background !important;
@@ -134,7 +134,7 @@
 
 .catalog__year {
   margin-left: 8px;
-  color: $colorTextSecondary;
+  color: var(--color-text-secondary);
 }
 
 .catalog__heading * {
@@ -154,11 +154,23 @@
   text-decoration: line-through;
   margin-right: 8px;
 }
-
 .catalog__price-old {
   display: none;
 }
+.catalog__buttons {
+  display: flex;
+  justify-content: space-between;
+}
 
+.catalog__item--modal-desktop .catalog__tech {
+  margin-bottom: 0;
+}
+
+.catalog__buttons .button--credit {
+  margin-left: 16px;
+  // max-width: 194px;
+  max-width: auto;
+}
 
 .catalog__price-wrap {
   display: flex;
@@ -172,6 +184,10 @@
   color: $colorPrimary;
 }
 
+.catalog__tech {
+  display: flex;
+  margin-bottom: 16px;
+}
 
 .catalog__tech.catalog__tech--no-buttons {
   margin-bottom: 0
@@ -179,7 +195,7 @@
 
 .catalog__tech-item {
   @include font-features;
-  color: $colorTextSecondary;
+  color: var(--color-text-secondary);
 }
 
 .catalog__tech-list {
@@ -196,7 +212,7 @@
 
 .catalog__credit-price {
   @include font-features;
-  color: $colorTextSecondary;
+  color: var(--color-text-secondary);
 }
 
 .catalog__item--small .catalog__credit-price {
@@ -658,6 +674,10 @@
 }
 
 @media (min-width: $desktop-width) {
+  .catalog__list .button.button--more {
+    margin-top: 0;
+  }
+
   .catalog__filter--aside {
     display: block;
     margin-bottom: 0;

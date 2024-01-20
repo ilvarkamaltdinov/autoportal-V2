@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { request } from '~/helpers/request';
+import { request } from '~/utils/request';
 import { dealers as dealersQuery } from '~/apollo/queries/dealer/dealers';
 import { Dealer, DealersQueryVariables } from '~/types/graphql';
 

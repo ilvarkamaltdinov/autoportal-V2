@@ -1,16 +1,4 @@
 import { Mark } from '~/app/types/marks';
-
-const popularMarks = <string[]>[
-  'audi', 'bmw', 'mercedes-benz', 'ford', 'hyundai', 'kia', 'toyota', 'volkswagen', 'nissan', 'skoda'
-];
-export const getPopularMarks = (marks: Mark[], count?: number) => {
-  const result = popularMarks.map((name: string) => marks.find((mark: Mark) => mark.slug === name));
-  if (count) {
-    return result.slice(0, count);
-  } else {
-    return result;
-  }
-};
 export const getAlphabet = (marks: Mark[]) => {
   let alphabet: string[] = [];
   marks.map(mark => {

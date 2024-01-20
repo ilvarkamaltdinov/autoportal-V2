@@ -2,9 +2,10 @@
   <div class="heading-group heading-group--form">
     <div class="heading-group__wrap">
       <h2 class="heading heading--h2">
-        Автокредит от {{ $settings.credit_percent }}
+        Автокредит от
         <span class="heading__promo">
-          </span>
+          {{ $settings.credit_percent }}
+        </span>
       </h2>
       <!-- <span class="heading-group__label">Получите одобрение за 5 минут</span> -->
     </div>
@@ -63,7 +64,7 @@
   </Sidebar>
 </template>
 <script setup lang="ts">
-import { numberFormat } from '~/helpers/filters';
+import { numberFormat } from '~/utils/filters';
 import { useModals, ModalOfferSelection_offerType } from '~/store/modals';
 import { OfferQuery } from '~/types/graphql';
 import { computed, ref } from '#imports';
@@ -78,44 +79,37 @@ const props = defineProps<{
 }>();
 
 const currentCar = null;
-
-const modalPayloadCredit = {
-  open: true,
-  component: 'offerSelection',
-  title: 'Выберите автомобиль',
-  subtitle: ''
-};
-
 const modalVisibility = ref(false);
 
 const modalOfferSelection_offer = computed<ModalOfferSelection_offerType>(() => useModals().modalOfferSelection_offer);
 const creditParams = ref({
   rangePeriodValues: {
     snap: true,
+    //todo move in settings
     range: {
       'min': 2,
-      '12%': 6,
-      '24%': 12,
-      '36%': 24,
-      '50%': 36,
-      '62%': 48,
-      '75': 60,
-      '87': 72,
+      '12': 6,
+      '24': 12,
+      '36': 24,
+      '48': 36,
+      '60': 48,
+      '72': 60,
+      '84': 72,
       'max': 84,
     }
   },
   rangePaymentValues: {
     snap: true,
     range: {
-      'min': 2,
-      '12.5%': 6,
-      '25%': 12,
-      '37.5%': 24,
-      '50%': 36,
-      '62,.5%': 48,
-      '74.5%': 60,
-      '87%': 72,
-      'max': 84
+      'min': 0,
+      '12': 10,
+      '24': 20,
+      '36': 30,
+      '48': 40,
+      '60': 50,
+      '72': 60,
+      '84': 70,
+      'max': 80,
     }
   },
   period: 84,

@@ -1,35 +1,27 @@
 <template>
   <h2 class="heading heading--h2">Подборки</h2>
   <ul class="featured__list grid grid--featured">
-        <BankCard :slug="set.slug" class="" :class="set.class" v-for="set in sets" :key="set.slug">>
-          <template #extra-picture v-if="set.extraImage">
-            <nuxt-img loading="lazy" alt="carro-select" class="featured__label" :src="set.extraImage" />
-          </template>
-          <template #title>
-            {{set.title}}
-          </template>
-          <template #text>
-            {{ set.description }}
-          </template>
-          <template #image>
-            <NuxtImg :src="`/img/featured/featured-${set.image}@2x.png`" class="featured__img lazyload" />
-          </template>
-        </BankCard>
+    <BankCard :slug="set.slug" class="" :class="set.class" v-for="set in sets" :key="set.slug">>
+      <template #extra-picture v-if="set.extraImage">
+        <nuxt-img loading="lazy" alt="carro-select" class="featured__label" :src="set.extraImage"/>
+      </template>
+      <template #title>
+        {{ set.title }}
+      </template>
+      <template #text>
+        {{ set.description }}
+      </template>
+      <template #image>
+        <NuxtImg :src="`/img/featured/featured-${set.image}@2x.png`" class="featured__img lazyload"/>
+      </template>
+    </BankCard>
   </ul>
   <nuxt-link to="/used" class="button button--link button--more">
     Все автомобили
   </nuxt-link>
 </template>
 <script setup lang="ts">
-// type Set = {
-//   title: string,
-//   description: string,
-//   slug: string,
-//   class: string,
-//   image: string,
-// }
 import BankCard from '~/components/Banks/BankCard.vue';
-import Template from '~/components/Modals/Template.vue';
 
 const sets = [
   {

@@ -1,6 +1,6 @@
 .filter__catalog-wrap {
   padding: 16px;
-  background-color: white;
+  background-color: var(--color-section);
   z-index: 25;
   position: relative;
   @include border-bottom;
@@ -20,6 +20,10 @@
   display: flex;
 }
 
+.filter__buttons-wrap--hidden .filter__buttons-sort {
+  display: none;
+}
+
 .filter__menu-text {
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -34,8 +38,8 @@
   }
 }
 
-.filter__button--active .nuxt-icon {
-  color: $colorPrimary;
+.filter__button--active .icon {
+  fill: $colorPrimary;
 }
 
 .filter__more {
@@ -72,6 +76,7 @@
   width: 16px;
   height: 16px;
   transform: rotate(-90deg);
+  fill: var(--color-text);
 }
 
 .filter--modal {

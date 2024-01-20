@@ -54,7 +54,7 @@
 </template>
 
 <script setup lang="ts">
-import { useBanks } from '~/store/banks';
+import { useBanks } from '~/store/banksStore';
 import { storeToRefs } from 'pinia';
 import { UnwrapRef } from 'vue';
 import BankCard from '~/components/Banks/BankCard.vue';

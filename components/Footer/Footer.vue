@@ -16,6 +16,7 @@
         <div class="page-footer__social">
           <Social />
           <div class="page-footer__contacts-list">
+<!--            todo from phone provider-->
             <a class="page-footer__contacts-item"
                v-show="$settings.phone && !isNight"
                :href="`tel:${$settings.phone.replace(/[^+\d]/g, '')}`">{{ $settings.phone }}
@@ -182,7 +183,7 @@
 </template>
 
 <script setup lang="ts">
-import { useMarks } from '~/store/marks';
+import { useMarks } from '~/store/carbrandsStore';
 import { storeToRefs } from 'pinia';
 
 const isRegionsOpen = ref(false);

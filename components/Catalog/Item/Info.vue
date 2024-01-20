@@ -22,5 +22,5 @@
 </template>
 
 <script setup lang="ts">
-import {creditPrice, engineVolume, numberFormat} from '~/helpers/filters';
+import { creditPrice, engineVolume, numberFormat } from '~/utils/filters';
 </script>

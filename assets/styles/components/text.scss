@@ -10,7 +10,22 @@
 .text__p {
   margin-bottom: 16px;
 }
-.text__p--car-description{
+
+.text__p--modal {
+  text-align: center;
+  position: relative;
+  margin: 0 -24px;
+  padding: 0 16px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.text__working-hours {
+  font-weight: 600;
+}
+
+.text__p--car-description {
   white-space: break-spaces;
 }
 
@@ -110,7 +125,7 @@
   }
 
   .text__img-wrap {
-    margin: 0 -24px;
+    margin: 0 -16px;
     margin-bottom: 16px;
   }
 
@@ -140,7 +155,7 @@
   .text__contacts-label {
     @include font-features;
     margin-bottom: 8px;
-    color: $colorTextSecondary;
+    color: var(--color-text-secondary);
   }
 
   .text__contacts-item {
@@ -165,7 +180,8 @@
     transition: $transitionHover;
 
     &:hover {
-      transform: translateY(-8px);    transition: $transitionHover;
+      transform: translateY(-8px);
+      transition: $transitionHover;
     }
   }
 
@@ -177,12 +193,16 @@
   }
 
   .text__img-wrap {
-    margin: 0 -32px;
+    margin: 0 -24px;
   }
 }
 
 @media (min-width: $desktop-width) {
   .text__img-wrap {
-    margin: 0 -64px;
+    margin: 0 -32px;
+  }
+
+  .text__p--modal {
+    margin-bottom: 24px;
   }
 }

@@ -32,8 +32,14 @@
   top: -12px;
 }
 
-.range .slider-connect {
+.range .irs--flat .irs-bar {
   background: linear-gradient(90deg, rgba(237, 41, 57, 0) 0%, #ED2939 100%);
+  transition: none;
+  transition: all 0.3s;
+}
+
+.range .slider-connect {
+  background: linear-gradient(90deg, var(--color-section) 2%, #ED2939 98%);
   //transition: all 0.3s;
 }
 
@@ -50,8 +56,10 @@
     left: percentage(calc($k / 100));
     //margin-left: -3.4%;
     position: absolute;
-    margin-left: -3.40909%;
+    margin-left: -4.0909%;
     @extend .irs-grid-text;
+    padding: 0;
+    text-align: center;
   }
 }
 
@@ -63,7 +71,7 @@
 }
 
 .irs-grid-text-max {
-  left: 100%;
+  left: 96%;
   position: absolute;
   margin-left: -3.40909%;
   @extend .irs-grid-text;
@@ -90,7 +98,7 @@
 
   &:hover {
     cursor: pointer;
-    background-color: $colorBg;
+    background-color: var(--color-bg);
   }
 }
 

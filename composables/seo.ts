@@ -1,5 +1,5 @@
 import Twig from 'twig';
-import { engineVolume, numberFormat } from '~/helpers/filters';
+import { engineVolume, numberFormat } from '~/utils/filters';
 import { SeoTagType } from '~/apollo/queries/seoTag';
 import { useSeoTags } from '~/store/seoTag';
 import { jsonLd } from '~/composables/jsonLd';

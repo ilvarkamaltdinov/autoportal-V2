@@ -25,7 +25,7 @@
               />
               <img
                   src="/img/logo-part-2.svg"
-                  :alt="`Портал проверенных автомобилей с пробегом — ${$settings.dealer_anchor}}`"
+                  :alt="`Портал проверенных автомобилей с пробегом — ${$settings.dealer_anchor}`"
                   height="13"
                   width="79"
                   class="page-header__logo-letters"
@@ -46,6 +46,7 @@
             </li>
           </ul>
         </nav>
+        <ThemeToggle v-if="$device.isDesktopOrTablet"/>
         <ul class="page-header__buttons">
           <li class="page-header__buttons-item">
             <nuxt-link to="/favorites"
@@ -60,12 +61,6 @@
                   name="icon-favorites"/>
             </nuxt-link>
           </li>
-          <li class="page-header__buttons-item" @click="changeTheme">
-            <div class="page-header__buttons-link">
-              <nuxt-icon
-                  name="icon-bmw"/>
-            </div>
-          </li>
           <li class="page-header__buttons-item">
             <div class="page-header__buttons-link">
               <nuxt-icon
@@ -78,7 +73,7 @@
                aria-label="Бесплатный звонок">
               <nuxt-icon
                   name="icon-call"/>
-              <span class="page-header__buttons-phone">+7 (499) 519-13-24</span>
+              <span class="page-header__buttons-phone">{{ $settings.phone }}</span>
             </a>
           </li>
         </ul>
@@ -92,8 +87,8 @@
         <!--        </nuxt-link>-->
         <div class="page-header__nav-wrap makes">
           <ul class="makes__list makes__list--header">
-            <li class="makes__item" v-for="mark in getPopularMarks(marks, 8)" :key="mark.id">
-              <nuxt-link class="makes__link">
+            <li class="makes__item" v-for="mark in popularMarks.slice(0,8)" :key="mark.id">
+              <nuxt-link class="makes__link" :to="`/used/${mark.slug}`">
                 <div class="makes__title">{{ mark.title }}</div>
                 <div class="makes__count">{{ mark.offers_count }}</div>
               </nuxt-link>
@@ -116,12 +111,15 @@
 </template>
 <script setup lang="ts">
 import { useHeader } from '~/store/header';
-import { useSiteConfig } from '~/store/siteConfig';
-import { getPopularMarks } from '~/helpers/filterMarks';
-import { useFavorites } from '~/store/favorites';
+import { useFavorites } from '~/store/favoritesStore';
 import { storeToRefs } from 'pinia';
 import MenuMarks from '~/components/Modals/MenuMarks.vue';
-import { useHead } from '#imports';
+import ThemeToggle from '~/components/Inputs/ThemeToggle.vue';
+import { useMarks } from '~/store/carbrandsStore';
+
+const carBrandsStore = useMarks();
+await carBrandsStore.getAllMarksFillPopular();
+const { popularMarks } = storeToRefs(carBrandsStore);
 
 
 const menuList = computed(() => {
@@ -153,31 +151,6 @@ const headerStore = useHeader();
 const { marks: isMarksShowing } = storeToRefs(headerStore);
 const menu = computed(() => useHeader().menu);
 const likes = ref(0);
-
-const isDark = ref(true);
-
-function changeTheme() {
-  isDark.value = !isDark.value;
-  useHead({
-    link: [{
-      rel: 'stylesheet', href: isDark.value ? 'dark.css' : 'index.css', type: 'text/css', id: 'theme',
-    }]
-  });
-}
-
-if(process.client) {
-  window.matchMedia('(prefers-color-scheme: dark)')
-    .addEventListener('change', ({ matches }) => {
-      if (matches) {
-        isDark.value = true;
-      } else {
-        isDark.value = false;
-      }
-      changeTheme();
-    });
-}
-
-const marks = useSiteConfig().marks;
 
 if (process.client) {
   const favoritesStore = useFavorites();

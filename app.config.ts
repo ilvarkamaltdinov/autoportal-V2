@@ -3,5 +3,6 @@ export default defineAppConfig({
   nuxtIcon: {
     class: 'icon',
     size: '24px'
-  }
+  },
+  themeCookieKey: 'theme',
 });

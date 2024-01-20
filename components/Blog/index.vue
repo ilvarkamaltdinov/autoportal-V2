@@ -28,7 +28,7 @@
 </template>
 <script setup lang="ts">
 import BlogArticle from '~/components/Blog/Article.vue';
-import { requestBlogCategories } from '~/helpers/request';
+import { requestBlogCategories } from '~/utils/request';
 import { ArticleCategory, ArticlesPaginateQueryVariables } from '~/types/graphql';
 
 const route = useRoute();

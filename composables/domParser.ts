@@ -1,6 +1,5 @@
 import DOMParser from 'universal-dom-parser';
 
-
 export default class DomParser {
   private static addClass(arr: HTMLElement[], className: string) {
     arr.forEach(value => {
@@ -15,18 +14,28 @@ export default class DomParser {
     const parser = new DOMParser();
     const doc = parser.parseFromString(`${str}`, 'text/html');
 
-    const p_array = doc.documentElement.querySelectorAll('p');
-    const h2_array = doc.documentElement.querySelectorAll('h2');
-    const ul_array = doc.documentElement.querySelectorAll('ul');
-    const ol_array = doc.documentElement.querySelectorAll('ol');
-    const li_array = doc.documentElement.querySelectorAll('li');
+    const tags = {
+      p: {
+        name: ['text__p'],
+      },
+      h2: {
+        name: ['heading--h2', 'heading'],
+      },
+      ul: {
+        name: ['text__list'],
+      },
+      ol: {
+        name: ['text__list'],
+      },
+      li: {
+        name: ['text__list-item']
+      }
+    };
 
-    this.addClass(p_array, 'text__p');
-    this.addClass(h2_array, 'heading--h2');
-    this.addClass(h2_array, 'heading');
-    this.addClass(ul_array, 'text__list');
-    this.addClass(ol_array, 'text__list');
-    this.addClass(li_array, 'text__list-item');
+    Object.entries(tags).forEach(([key, value]) => {
+      const queryArray = doc.documentElement.querySelectorAll(key);
+      value.name.forEach(name => this.addClass(queryArray, name));
+    });
 
     return doc.documentElement.outerHTML;
   }

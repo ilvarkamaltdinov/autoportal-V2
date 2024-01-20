@@ -17,6 +17,7 @@
             <ul class="blog__list">
               <Article v-for="item in list"
                        :key="item.id"
+                       :to="item.url"
                        class="blog__item">
                 <template #views>
                   {{ item.views }}
@@ -43,7 +44,7 @@
 <script setup lang="ts">
 import Article from '~/components/Blog/Article.vue';
 import { articlesPaginate } from '~/apollo/queries/blog/articlesPaginate';
-import { request } from '~/helpers/request';
+import { request } from '~/utils/request';
 import { Article as TArticle, ArticlesPaginateQueryVariables } from '~/types/graphql';
 import { useRoute } from '#imports';
 
@@ -54,22 +55,22 @@ withDefaults(defineProps<{
 });
 
 const page = ref(1);
-const limit = ref(20);
+const limit = computed(() => 20);
 const list = ref<TArticle[]>([]);
 
 const { path } = useRoute();
 
 async function getArticles() {
-  const response = await request<{
+  const { data: { value: { articlesPaginate: { data: response } } } } = await request<{
     articlesPaginate: { data: TArticle[] }
   }, ArticlesPaginateQueryVariables>(articlesPaginate, {
     category_url: path,
     limit: limit.value,
     page: page.value,
   });
-  if (response.data.value.articlesPaginate.data.length) {
+  if (response.length) {
     page.value += 1;
-    list.value.push(...response.data.value.articlesPaginate.data);
+    list.value.push(...response);
   }
 }
 </script>
