@@ -1,5 +1,6 @@
 <template>
-  <slot name="night" v-if="isNight" :exposeCallbackModal="exposeModalCallback" :phone="$settings.phone"/>
+  <slot name="newyear" v-if="isNewYear" :exposeModal="exposeModal" :phone="$settings.phone" />
+  <slot name="night" v-else-if="isNight" :exposeModal="exposeModal" :phone="$settings.phone"/>
   <slot name="day" v-else :href="`tel:${$settings.phone}`" :phone="$settings.phone"/>
   <!--todo add slot for newyear-->
   <slot name="modal" :toggle="() => isSidebarOpened = !isSidebarOpened" :isVisible="isSidebarOpened">
@@ -10,7 +11,7 @@
 import ModalCallback from '~/components/Modals/ModalCallback.vue';
 
 const isSidebarOpened = ref(false);
-function exposeModalCallback() {
+function exposeModal() {
   isSidebarOpened.value = true;
 }
 </script>
