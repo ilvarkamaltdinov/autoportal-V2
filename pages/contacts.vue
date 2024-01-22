@@ -30,6 +30,9 @@
                   <template #day="{phone, href}">
                     <a class="text__contacts-item" :href="href">{{ phone }}</a>
                   </template>
+                  <template #modal="{isVisible, toggle}">
+                    <ModalCallback :model-value="isVisible" @update:model-value="toggle()" />
+                  </template>
                 </DateTimeProvider>
                 <div class="text__contacts-group">
                 </div>
@@ -76,6 +79,7 @@ import { request } from '~/utils/request';
 import { dealersContact } from '~/apollo/queries/dealer/dealersContact';
 import ContentBlock from '~/components/TextContent/ContentBlock.vue';
 import DateTimeProvider from '~/components/DayTime/DateTimeProvider.vue';
+import ModalCallback from '~/components/Modals/ModalCallback.vue';
 
 const { data: { value: { dealers } } } = await request<{
   dealers: Dealer[]
