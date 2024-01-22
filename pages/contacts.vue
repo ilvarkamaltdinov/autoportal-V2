@@ -21,7 +21,7 @@
             <template #content>
               <div class="text__contacts-group" v-if="$settings.phone">
                 <div class="text__contacts-label">Вопросы о портале:</div>
-                <DateTimeProvider>
+                <TimeConditionHandler>
                   <template #night="{exposeCallbackModal, phone}">
                     <span class="text__contacts-item" @click="exposeCallbackModal">
                       {{ phone }}
@@ -33,7 +33,7 @@
                   <template #modal="{isVisible, toggle}">
                     <ModalCallback :model-value="isVisible" @update:model-value="toggle()" />
                   </template>
-                </DateTimeProvider>
+                </TimeConditionHandler>
                 <div class="text__contacts-group">
                 </div>
                 <div class="text__contacts-label">Вопросы сотрудничества:</div>
@@ -78,8 +78,8 @@ import { DealersContactQueryVariables, Dealer } from '~/types/graphql';
 import { request } from '~/utils/request';
 import { dealersContact } from '~/apollo/queries/dealer/dealersContact';
 import ContentBlock from '~/components/TextContent/ContentBlock.vue';
-import DateTimeProvider from '~/components/DayTime/DateTimeProvider.vue';
 import ModalCallback from '~/components/Modals/ModalCallback.vue';
+import TimeConditionHandler from '~/components/TimeCondition/TimeConditionHandler.vue';
 
 const { data: { value: { dealers } } } = await request<{
   dealers: Dealer[]
