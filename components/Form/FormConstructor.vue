@@ -20,7 +20,7 @@
       <!--                                      :params="creditParams" :offer="offer || currentCar"/>-->
       <slot name="calculator"/>
       <fieldset class="form__fieldset">
-        <div class="form__field-wrap" v-for="({ attrs, component, name }, index) in inputs" :key="name" :class="{
+        <div class="form__field-wrap" v-for="({ attrs, component, name }) in inputs" :key="name" :class="{
           'form__field-wrap--error': errors[name]
         }">
           <component :is="component" v-bind="attrs" :unstyled="true" v-model="fields[name]" />
@@ -39,6 +39,7 @@
 <script setup lang="ts">
 import { useForm } from 'vee-validate';
 import * as yup from 'yup';
+import { ISchema, ObjectShape } from 'yup';
 
 type InputAttrs = {
   type: string
@@ -50,15 +51,25 @@ export type Input = {
   attrs: InputAttrs,
   name: string,
   component: string,
+  validationRule: ISchema<unknown>
 }
 const props = defineProps<{
   inputs: Input[]
 }>();
 
-const schema = yup.object({
-  phone: yup.string().required().matches(/^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/),
-  fullName: yup.string().required().label('Full name'),
-});
+function getValidationRulesFromProps(){
+  return props.inputs.reduce((prev, current) => {
+    return {
+      ...prev,
+      [current.name]: current.validationRule
+    };
+  }, {});
+}
+
+
+const validationRules = ref<ObjectShape>({});
+const schema = yup.object(getValidationRulesFromProps());
+
 
 const { defineField, handleSubmit, errors } = useForm({
   validationSchema: schema,
@@ -67,6 +78,7 @@ const { defineField, handleSubmit, errors } = useForm({
 const fields: Record<string, unknown> = reactive({});
 Object.entries(props.inputs).forEach( ([_,v]) => {
   fields[v.name] = defineField(v.name)[0];
+  validationRules.value[v.name] = v.validationRule;
 });
 
 const onSubmit = handleSubmit((values) => {

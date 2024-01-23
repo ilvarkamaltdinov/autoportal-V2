@@ -56,6 +56,7 @@ import FormCreditCalculator from '~/components/Form/form-components/FormCreditCa
 import { ref } from '#imports';
 import CheckBoxForm from '~/components/Form/form-components/CheckBoxForm.vue';
 import { Input } from '~/components/Form/FormConstructor.vue';
+import validation from '~/composables/validation';
 
 const inputs = ref<Input[]>([
   {
@@ -65,7 +66,8 @@ const inputs = ref<Input[]>([
       type: 'text',
       placeholder: 'ФИО',
       class: 'form__field',
-    }
+    },
+    validationRule: validation.value.fullName.rule,
   },
   {
     name: 'phone',
@@ -73,9 +75,10 @@ const inputs = ref<Input[]>([
     attrs: {
       type: 'tel',
       placeholder: 'Телефон',
-      mask: masks.value.phone,
+      mask: validation.value.phone.mask,
       class: 'form__field',
     },
+    validationRule: validation.value.phone.rule,
   },
 ]);
 

@@ -56,7 +56,7 @@
                   <!--                                type="text"/>-->
                 </label>
                 <label class="form__field-wrap">
-                  <InputMask class="form__field" :mask="masks.phone" placeholder="Телефон" :unstyled="true"/>
+                  <InputMask class="form__field" :mask="validation.phone.mask" placeholder="Телефон" :unstyled="true"/>
                   <!--                       :class="phoneClass">-->
                   <!--                  <inputs-input placeholder="Телефон"-->
                   <!--                                @input="handlerInput('phone')"-->
