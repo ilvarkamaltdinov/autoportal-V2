@@ -31,6 +31,22 @@
               </FormCreditCalculator>
             </template>
           </FormConstructor>
+
+          <button class="application__choose-car grid__col-8">
+            <nuxt-icon class="application__choose-car-icon" name="icon-form" />
+            <span class="application__choose-car-text">Выберите автомобиль</span>
+          </button>
+
+          <ContentBlock class="application__terms grid__col-3">
+            <template #content>
+              <div class="application__terms-item">
+                <div class="application__terms-item">
+                  <div class="application__terms-number application__terms-number--stake"> 0% </div>
+                  <div class="application__terms-text">Ставка по рассрочке</div>
+                </div>
+              </div>
+            </template>
+          </ContentBlock>
         </div>
       </section>
     </div>
@@ -41,6 +57,7 @@ import FormCreditCalculator from '~/components/Form/form-components/FormCreditCa
 import { ref } from '#imports';
 import { Input } from '~/components/Form/FormConstructor.vue';
 import validation from '~/composables/validation';
+import ContentBlock from '~/components/TextContent/ContentBlock.vue';
 
 const inputs = ref<Input[]>([
   {
