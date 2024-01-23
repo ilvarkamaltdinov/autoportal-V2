@@ -13,11 +13,6 @@
           <slot name="car-choose"/>
         </label>
       </fieldset>
-      <!--              <div class="catalog form__catalog" v-if="$device.isMobile && (offer || currentCar)">-->
-      <!--                <catalog-item-large-mobile-form :is-form="true" :offer="offer || currentCar"/>-->
-      <!--              </div>-->
-      <!--              <form-credit-calculator installment @changePeriod="changePeriod" @changePayment="changePayment"-->
-      <!--                                      :params="creditParams" :offer="offer || currentCar"/>-->
       <slot name="calculator"/>
       <fieldset class="form__fieldset">
         <div class="form__field-wrap" v-for="({ attrs, component, name }) in inputs" :key="name" :class="{
@@ -26,8 +21,6 @@
           <component :is="component" v-bind="attrs" :unstyled="true" v-model="fields[name]" />
         </div>
         <slot name="inputs" />
-        <!--                <checkbox-form :error="error === 'agree'" @change="changeCheckbox($event, 'agree')" label="Согласен на"-->
-        <!--                               link="обработку личных данных"/>-->
         <CheckBoxForm v-model="grazhdanstvo">
           <template #text>
             Подтверждаю наличие гражданства РФ
