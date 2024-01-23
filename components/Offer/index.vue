@@ -5,7 +5,7 @@
     </div>
     <div class="page-main__car car">
       <div class="grid grid--container" v-if="isMobile">
-        <Benefits :type="currentBenefitsType" class="car__benefits"/>
+<!--        <Benefits :type="currentBenefitsType" class="car__benefits"/>-->
       </div>
       <div class="grid grid--container">
         <div class="heading-group heading-group--h1 grid__col-6">
@@ -63,15 +63,15 @@
 
 <script setup lang="ts">
 // import { SwiperSlide } from 'swiper/vue';
-import Benefits from '~/components/Benefits/index.vue';
+// import Benefits from '~/components/Benefits/index.vue';
 import OfferSlider from '~/components/Offer/Slider.vue';
 import OfferBuy from '~/components/Offer/Buy.vue';
 
 const { isMobile } = useDevice();
 
-const currentBenefitsType = computed(() => {
-  return 'credit';
-});
+// const currentBenefitsType = computed(() => {
+//   return 'credit';
+// });
 
 
 function callback() {
