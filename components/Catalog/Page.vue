@@ -43,7 +43,7 @@
 
 <script setup lang="ts">
 
-import Benefits from '~/components/Benefits/index.vue';
+// import Benefits from '~/components/Benefits/index.vue';
 import FiltersSort from '~/components/Filters/Sort.vue';
 import FiltersList from '~/components/Filters/List.vue';
 import CatalogCategory from '~/components/Catalog/Category.vue';
@@ -54,8 +54,8 @@ const currentList = computed(() => {
   // TODO либо марки либо модели либо поколения
   return ListMarks;
 });
-const currentBenefitsType = computed(() => {
-  return 'credit';
-});
+// const currentBenefitsType = computed(() => {
+//   return 'credit';
+// });
 
 </script>
