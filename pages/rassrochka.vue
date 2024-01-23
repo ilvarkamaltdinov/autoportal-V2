@@ -40,11 +40,17 @@
           <ContentBlock class="application__terms grid__col-3">
             <template #content>
               <div class="application__terms-item">
-                <div class="application__terms-item">
-                  <div class="application__terms-number application__terms-number--stake"> 0% </div>
-                  <div class="application__terms-text">Ставка по рассрочке</div>
-                </div>
+                <div class="application__terms-number application__terms-number--stake"> это </div>
+                <div class="application__terms-text">моковые данные</div>
               </div>
+              <div class="application__terms-item">
+                <div class="application__terms-number application__terms-number--stake"> их </div>
+                <div class="application__terms-text">нужно сделать вместе с выбором оффера</div>
+              </div>
+                <div class="application__terms-item">
+                  <div class="application__terms-number application__terms-number--stake"> и найти </div>
+                  <div class="application__terms-text">замену для библиотеки</div>
+                </div>
             </template>
           </ContentBlock>
         </div>
