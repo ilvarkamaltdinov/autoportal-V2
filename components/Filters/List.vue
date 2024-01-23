@@ -1,57 +1,29 @@
 <template>
   <ul class="filter__menu-list">
-    <li class="filter__menu-item">
-      <div class="filter__menu-text">
-        Марка
-      </div>
-      <nuxt-icon class="filter__arrow"
-                 name="icon-arrow"/>
+    <li>
+      <ControlsSelect @select="handlerSelect" :options="marks" title="Марка" type="mark" :value="mark"/>
     </li>
-    <li class="filter__menu-item">
-      <div class="filter__menu-text">
-        Модель
-      </div>
-      <nuxt-icon class="filter__arrow"
-                 name="icon-arrow"/>
+    <li>
+      <ControlsSelect @select="handlerSelect" :options="folders" title="Модель" type="folder" :value="folder"/>
     </li>
-    <li class="filter__menu-item">
-      <div class="filter__menu-text">
-        Поколение
-      </div>
-      <nuxt-icon class="filter__arrow"
-                 name="icon-arrow"/>
+    <li>
+      <ControlsSelect options="" title="Поколение" type="" value=""/>
     </li>
-    <li class="filter__menu-item">
-      <div class="filter__menu-text">
-        Двигатель
-      </div>
-      <nuxt-icon class="filter__arrow"
-                 name="icon-arrow"/>
+    <li>
+      <ControlsSelect options="" title="Двигатель" type="" value=""/>
     </li>
-    <li class="filter__menu-item">
-      <div class="filter__menu-text">
-        Кузов
-      </div>
-      <nuxt-icon class="filter__arrow"
-                 name="icon-arrow"/>
+    <li>
+      <ControlsSelect options="" title="Кузов" type="" value=""/>
     </li>
-    <li class="filter__menu-item">
-      <div class="filter__menu-text">
-        КПП
-      </div>
-      <nuxt-icon class="filter__arrow"
-                 name="icon-arrow"/>
+    <li>
+      <ControlsSelect options="" title="КПП" type="" value=""/>
     </li>
-    <li class="filter__menu-item">
-      <div class="filter__menu-text">
-        Привод
-      </div>
-      <nuxt-icon class="filter__arrow"
-                 name="icon-arrow"/>
+    <li>
+      <ControlsSelect options="" title="Привод" type="" value=""/>
     </li>
   </ul>
   <div class="filter__more">
-    <button class="button button--show">
+    <button class="button button--show" @click="allFilters = !allFilters">
       Больше фильтров
     </button>
   </div>
@@ -68,5 +40,44 @@
 </template>
 
 <script setup lang="ts">
+import ControlsSelect from '~/components/Controls/Select.vue';
 import RangeFilterPrice from '~/components/Range/FilterPrice.vue';
+import { useMarks } from '~/store/carbrandsStore';
+import { Mark } from '~/app/types/marks';
+import { Folder } from '~/app/types/folders';
+
+const allFilters = ref<boolean>(false);
+const router = useRouter();
+
+const marks = computed(() => {
+  return useMarks().allMarks.filter(item => item.offers_count > 0);
+});
+const folders = computed(() => {
+  return mark.value?.folders.filter(item => item.offers_count > 0) || [];
+});
+
+
+const mark = ref<Mark | null>();
+const folder = ref<Folder | null>();
+
+
+async function handlerSelect(data: { option: object, type: string }) {
+  await router.replace({ 'query': undefined });
+  if (data.type === 'mark') {
+    console.log(data.option);
+    mark.value = data.option;
+    folder.value = null;
+    // bodyType.value = null
+    // gearbox.value = null
+    // driveType.value = null
+    // engineType.value = null
+  }
+  if (data.type === 'folder') {
+    folder.value = data.option;
+    // bodyType.value = null
+    // gearbox.value = null
+    // driveType.value = null
+    // engineType.value = null
+  }
+}
 </script>

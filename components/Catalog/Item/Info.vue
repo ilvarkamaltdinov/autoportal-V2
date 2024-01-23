@@ -2,10 +2,10 @@
   <div class="catalog__info">
     <div class="catalog__title-wrap">
       <h3 class="catalog__heading">
-        <a href="/" class="catalog__title-link">
+        <nuxt-link to="/used/mark/model/123" class="catalog__title-link">
           <span class="catalog__title"> Hyundai Sonata <span>, {{ engineVolume(2) }} </span></span> <span
             class="catalog__year">2007</span>
-        </a>
+        </nuxt-link>
       </h3>
     </div>
     <div class="catalog__price-wrap">

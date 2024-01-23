@@ -1,13 +1,14 @@
 import { defineStore } from 'pinia';
 import { request } from '~/utils/request';
-import { Mark, MarksQueryVariables } from '~/types/graphql';
+import { Mark } from '~/app/types/marks';
+import { MarksQueryVariables } from '~/types/graphql';
 import { marks } from '~/apollo/queries/marks';
 
 type MarksState = {
-  allMarks: Mark[];
-  popularMarks: Mark[];
-  popularMarksNames: string[];
-  marksQuantity: number;
+    allMarks: Mark[];
+    popularMarks: Mark[];
+    popularMarksNames: string[];
+    marksQuantity: number;
 };
 export const useMarks = defineStore('marks', {
   state: (): MarksState => {
