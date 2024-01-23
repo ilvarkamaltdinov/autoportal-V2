@@ -21,12 +21,16 @@
           <component :is="component" v-bind="attrs" :unstyled="true" v-model="fields[name]" />
         </div>
         <slot name="inputs" />
-        <CheckBoxForm v-model="grazhdanstvo">
+        <CheckBoxForm v-model="grazhdanstvo" :class="{
+          'checkbox--error': errors['grazhdanstvo']
+        }">
           <template #text>
             Подтверждаю наличие гражданства РФ
           </template>
         </CheckBoxForm>
-        <CheckBoxForm v-model="agree">
+        <CheckBoxForm v-model="agree" :class="{
+          'checkbox--error': errors['agree']
+        }">
           <template #text>
             <span>Согласен на</span>
           </template>

@@ -39,7 +39,6 @@
 <script setup lang="ts">
 import FormCreditCalculator from '~/components/Form/form-components/FormCreditCalculator.vue';
 import { ref } from '#imports';
-import CheckBoxForm from '~/components/Form/form-components/CheckBoxForm.vue';
 import { Input } from '~/components/Form/FormConstructor.vue';
 import validation from '~/composables/validation';
 
