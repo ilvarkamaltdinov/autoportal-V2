@@ -30,21 +30,6 @@
                 </template>
               </FormCreditCalculator>
             </template>
-            <template #inputs>
-              <CheckBoxForm>
-                <template #text>
-                  <span>Подтверждаю наличие гражданства РФ</span>
-                </template>
-              </CheckBoxForm>
-              <CheckBoxForm>
-                <template #text>
-                  <span>Согласен на</span>
-                </template>
-                <template #link>
-                  обработку личных данных
-                </template>
-              </CheckBoxForm>
-            </template>
           </FormConstructor>
         </div>
       </section>

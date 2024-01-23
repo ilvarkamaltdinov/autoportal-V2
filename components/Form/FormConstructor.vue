@@ -28,6 +28,19 @@
         <slot name="inputs" />
         <!--                <checkbox-form :error="error === 'agree'" @change="changeCheckbox($event, 'agree')" label="Согласен на"-->
         <!--                               link="обработку личных данных"/>-->
+        <CheckBoxForm v-model="grazhdanstvo">
+          <template #text>
+            Подтверждаю наличие гражданства РФ
+          </template>
+        </CheckBoxForm>
+        <CheckBoxForm v-model="agree">
+          <template #text>
+            <span>Согласен на</span>
+          </template>
+          <template #link>
+            обработку личных данных
+          </template>
+        </CheckBoxForm>
       </fieldset>
       <Button :unstyled="true" class="button button--credit button--form" @click="onSubmit">
         Оставить заявку
@@ -40,6 +53,7 @@
 import { useForm } from 'vee-validate';
 import * as yup from 'yup';
 import { ISchema, ObjectShape } from 'yup';
+import CheckBoxForm from '~/components/Form/form-components/CheckBoxForm.vue';
 
 type InputAttrs = {
   type: string
@@ -63,13 +77,14 @@ function getValidationRulesFromProps(){
       ...prev,
       [current.name]: current.validationRule
     };
-  }, {});
+  }, {
+    grazhdanstvo: yup.boolean().required().isTrue(),
+    agree: yup.boolean().required().isTrue(),
+  });
 }
-
 
 const validationRules = ref<ObjectShape>({});
 const schema = yup.object(getValidationRulesFromProps());
-
 
 const { defineField, handleSubmit, errors } = useForm({
   validationSchema: schema,
@@ -80,6 +95,8 @@ Object.entries(props.inputs).forEach( ([_,v]) => {
   fields[v.name] = defineField(v.name)[0];
   validationRules.value[v.name] = v.validationRule;
 });
+const [grazhdanstvo] = defineField('grazhdanstvo');
+const [agree] = defineField('agree');
 
 const onSubmit = handleSubmit((values) => {
   console.log('Submitted with', values);
