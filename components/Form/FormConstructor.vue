@@ -57,6 +57,7 @@ const props = defineProps<{
 
 const schema = yup.object({
   email: yup.string().required().email().label('Email address'),
+  phone: yup.string().required().matches(/^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/).label('Phone number'),
   fullName: yup.string().required().label('Full name'),
   password: yup.string().required().min(6).label('Password'),
   passwordConfirm: yup
