@@ -7,7 +7,12 @@
         {{ option }}
       </template>
       <template #default>
-        Срок кредитования, мес.:
+        <slot name="first-slider-name" :names="{
+          credit: 'Срок кредитования, мес.:',
+          installment: 'Период рассрочки, мес.:',
+        }">
+          Срок кредитования, мес.:
+        </slot>
       </template>
       <template #value="{ value }">
         {{ value }} мес.
@@ -25,7 +30,7 @@
       <template #default>
         Первоначальный взнос:
       </template>
-      <template #value="{ value }">
+      <template #value>
         {{ currentPaymentSum || 0 }} ₽
       </template>
     </SliderOptions>

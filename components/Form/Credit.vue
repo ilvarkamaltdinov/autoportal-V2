@@ -81,6 +81,7 @@ const props = defineProps<{
 const currentCar = null;
 const modalVisibility = ref(false);
 
+//todo fixme eto v primevue modalku
 const modalOfferSelection_offer = computed<ModalOfferSelection_offerType>(() => useModals().modalOfferSelection_offer);
 const creditParams = ref({
   rangePeriodValues: {
@@ -114,8 +115,7 @@ const creditParams = ref({
   },
   period: 84,
   payment: 0,
-}
-);
+});
 
 const submitForm = () => {
 
