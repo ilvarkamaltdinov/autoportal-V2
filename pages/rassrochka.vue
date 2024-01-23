@@ -17,8 +17,7 @@
               <div class="heading-group__wrap">
                 <h2 class="heading heading--h2">
                   Рассрочка
-                  <span class="heading__promo">0%
-          </span>
+                  <span class="heading__promo">0%</span>
                 </h2>
               </div>
             </div>
@@ -26,37 +25,34 @@
               <fieldset class="form__fieldset">
                 <label
                     class="form__field-wrap form__field-wrap--car ">
-                  <Button class="form__field" @click.prevent="choseCar()">
+                  <Button class="form__field">
                     {{ 'Выбрать автомобиль' }}
-                    <span v-if="currentCar">
-                      {{ currentCar.price | toCurrency }}
-                    </span>
+<!--                    <span v-if="currentCar">-->
+<!--                      {{ currentCar.price | toCurrency }}-->
+<!--                    </span>-->
                   </Button>
-                  <svg-icon name="icon-form" class="form__car-icon"/>
+                  <nuxt-icon name="icon-form" class="form__car-icon"/>
                 </label>
               </fieldset>
-              <div class="catalog form__catalog" v-if="$device.isMobile && (offer || currentCar)">
-                <catalog-item-large-mobile-form :is-form="true" :offer="offer || currentCar"/>
-              </div>
-              <form-credit-calculator installment @changePeriod="changePeriod" @changePayment="changePayment"
-                                      :params="creditParams" :offer="offer || currentCar"/>
+<!--              <div class="catalog form__catalog" v-if="$device.isMobile && (offer || currentCar)">-->
+<!--                <catalog-item-large-mobile-form :is-form="true" :offer="offer || currentCar"/>-->
+<!--              </div>-->
+<!--              <form-credit-calculator installment @changePeriod="changePeriod" @changePayment="changePayment"-->
+<!--                                      :params="creditParams" :offer="offer || currentCar"/>-->
               <fieldset class="form__fieldset">
-                <label class="form__field-wrap" :class="nameClass">
-                  <inputs-input placeholder="ФИО" @input="handlerInput('name')" v-model="form.name.value" type="text"/>
+                <label class="form__field-wrap">
+                  <InputText placeholder="ФИО" class="form__field" type="text" :unstyled="true" />
                 </label>
-                <label class="form__field-wrap" :class="phoneClass">
-                  <inputs-input placeholder="Телефон" @input="handlerInput('phone')"
-                                @phoneMaskComplete="form.phone.valid = true"
-                                @onincomplete="form.phone.valid = null" v-model="form.phone.value" mask="phone"
-                                type="tel"/>
+                <label class="form__field-wrap">
+                  <InputText placeholder="Телефон" class="form__field" mask="phone" type="tel"/>
                 </label>
-                <checkbox-form :error="error === 'agreeRf'" @change="changeCheckbox($event, 'agreeRf')"
-                               label="Подтверждаю наличие гражданства РФ"/>
-                <checkbox-form :error="error === 'agree'" @change="changeCheckbox($event, 'agree')" label="Согласен на"
-                               link="обработку личных данных"/>
+                <Checkbox label="Подтверждаю наличие гражданства РФ" inputId="grazdhanstvo" />
+                <label for="grazdhanstvo" class="ml-2"> Onion </label>
+                <!--                <checkbox-form :error="error === 'agree'" @change="changeCheckbox($event, 'agree')" label="Согласен на"-->
+<!--                               link="обработку личных данных"/>-->
               </fieldset>
-              <button-typical :loading="buttonDisabled" text="Оставить заявку"
-                              button-class="button--credit button--form"/>
+<!--              <button-typical :loading="buttonDisabled" text="Оставить заявку"-->
+<!--                              button-class="button&#45;&#45;credit button&#45;&#45;form"/>-->
             </form>
           </div>
         </div>
