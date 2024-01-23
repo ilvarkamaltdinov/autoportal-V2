@@ -19,7 +19,7 @@
           'form__field-wrap--error': errors[name],
           'form__field-wrap--success': isFieldValid(name)
         }">
-          <component :is="component" v-bind="attrs" :unstyled="true" v-model="fields[name]" />
+          <component :is="component" v-bind="attrs" :unstyled="true" :modelValue="fields[name]" @update:model-value="$event !== '' ? fields[name] = $event: null" />
         </div>
         <slot name="inputs" />
         <CheckBoxForm v-model="grazhdanstvo" :class="{
@@ -58,6 +58,7 @@ type InputAttrs = {
   placeholder: string
   class: string
   mask?: string
+  autoClear?: boolean
 }
 export type Input = {
   attrs: InputAttrs,

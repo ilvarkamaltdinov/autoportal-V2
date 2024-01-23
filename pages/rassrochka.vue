@@ -61,6 +61,7 @@ const inputs = ref<Input[]>([
       placeholder: 'Телефон',
       mask: validation.value.phone.mask,
       class: 'form__field',
+      autoClear: false
     },
     validationRule: validation.value.phone.rule,
   },
