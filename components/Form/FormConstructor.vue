@@ -85,7 +85,7 @@ function getValidationRulesFromProps(){
 const validationRules = ref<ObjectShape>({});
 const schema = yup.object(getValidationRulesFromProps());
 
-const { defineField, handleSubmit, errors, isFieldValid,isFieldTouched } = useForm({
+const { defineField, handleSubmit, errors, isFieldValid } = useForm({
   validationSchema: schema,
 });
 
