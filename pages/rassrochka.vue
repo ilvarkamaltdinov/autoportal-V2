@@ -23,6 +23,40 @@
               </Button>
               <nuxt-icon name="icon-form" class="form__car-icon"/>
             </template>
+            <template #calculator>
+              <FormCreditCalculator :offer="null" :params="creditParams">
+                <template #first-slider-name="{names}">
+                  {{ names.installment }}
+                </template>
+              </FormCreditCalculator>
+            </template>
+            <template #inputs>
+              <label class="form__field-wrap">
+                <InputText placeholder="ФИО" class="form__field" type="text" :unstyled="true"/>
+              </label>
+              <label class="form__field-wrap">
+                <InputText placeholder="Телефон" class="form__field" mask="phone" type="tel"/>
+              </label>
+              <label class="form__checkbox-wrap checkbox">
+                <Checkbox class="form__checkbox visually-hidden"/>
+                <nuxt-icon name="icon-checkmark"
+                           class="checkbox__icon"/>
+                <span class="form__checkbox-text">Подтверждаю наличие гражданства РФ</span>
+              </label>
+              <label class="form__checkbox-wrap checkbox">
+                <Checkbox class="form__checkbox visually-hidden"/>
+                <nuxt-icon name="icon-checkmark"
+                           class="checkbox__icon"/>
+                <span class="form__checkbox-text">Согласен на обработку
+                    <a href="/privacy" class="form__checkbox-text-link" rel="nofollow" target="_blank">
+                      персональных данных
+                    </a>
+                </span>
+              </label>
+              <Button class="button button--credit button--form" :unstyled="true">
+                Оставить заявку
+              </Button>
+            </template>
           </FormConstructor>
         </div>
       </section>
@@ -30,5 +64,40 @@
   </main>
 </template>
 <script setup lang="ts">
+import FormCreditCalculator from '~/components/Form/form-components/FormCreditCalculator.vue';
+import { ref } from '#imports';
 
+const creditParams = ref({
+  rangePeriodValues: {
+    snap: true,
+    //todo move in settings
+    range: {
+      'min': 2,
+      '12': 6,
+      '24': 12,
+      '36': 24,
+      '48': 36,
+      '60': 48,
+      '72': 60,
+      '84': 72,
+      'max': 84,
+    }
+  },
+  rangePaymentValues: {
+    snap: true,
+    range: {
+      'min': 0,
+      '12': 10,
+      '24': 20,
+      '36': 30,
+      '48': 40,
+      '60': 50,
+      '72': 60,
+      '84': 70,
+      'max': 80,
+    }
+  },
+  period: 84,
+  payment: 0,
+});
 </script>
