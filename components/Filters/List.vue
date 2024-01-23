@@ -42,7 +42,7 @@
 <script setup lang="ts">
 import ControlsSelect from '~/components/Controls/Select.vue';
 import RangeFilterPrice from '~/components/Range/FilterPrice.vue';
-import { useSiteConfig } from '~/store/siteConfig';
+import { useMarks } from '~/store/carbrandsStore';
 import { Mark } from '~/app/types/marks';
 import { Folder } from '~/app/types/folders';
 
@@ -50,7 +50,7 @@ const allFilters = ref<boolean>(false);
 const router = useRouter();
 
 const marks = computed(() => {
-  return useSiteConfig().marks.filter(item => item.offers_count > 0);
+  return useMarks().allMarks.filter(item => item.offers_count > 0);
 });
 const folders = computed(() => {
   return mark.value?.folders.filter(item => item.offers_count > 0) || [];
@@ -64,6 +64,7 @@ const folder = ref<Folder | null>();
 async function handlerSelect(data: { option: object, type: string }) {
   await router.replace({ 'query': undefined });
   if (data.type === 'mark') {
+    console.log(data.option);
     mark.value = data.option;
     folder.value = null;
     // bodyType.value = null

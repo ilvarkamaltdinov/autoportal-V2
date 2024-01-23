@@ -1,21 +1,24 @@
 import { defineStore } from 'pinia';
+import { useSettings } from '~/store/settingsStore';
 
 type BenefitKey = ['credit', 'europe', 'installment', 'tradeIn', 'buyout', 'car', 'new', 'installmentNew', 'creditMobile'];
 
 type MapBenefits = {
-  [k in BenefitKey[number]]: string[]
+    [k in BenefitKey[number]]: string[]
 };
 
 type Benefit = {
-  text: string
-  text_strong: string
-  icon: string
-  description: string
-  slug: string
+    text: string
+    text_strong: string
+    icon: string
+    description: string
+    slug: string
 }
 
 export const useBenefitsStore = defineStore('benefits', {
   state: (): MapBenefits & { benefits: Benefit[] } => {
+    const settings = useSettings().settings;
+    console.log(settings);
     return {
       benefits: [
         {
