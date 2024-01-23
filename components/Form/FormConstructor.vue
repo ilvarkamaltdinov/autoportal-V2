@@ -20,7 +20,9 @@
       <!--                                      :params="creditParams" :offer="offer || currentCar"/>-->
       <slot name="calculator"/>
       <fieldset class="form__fieldset">
-        <slot name="inputs" />
+        <div class="form__field-wrap" v-for="({ attrs, component }, index) in inputs" :key="index">
+          <component :is="component" v-bind="attrs" :unstyled="true" />
+        </div>
         <!--                <checkbox-form :error="error === 'agree'" @change="changeCheckbox($event, 'agree')" label="Согласен на"-->
         <!--                               link="обработку личных данных"/>-->
       </fieldset>
@@ -29,4 +31,17 @@
 </template>
 
 <script setup lang="ts">
+type InputAttrs = {
+  type: string
+  placeholder: string
+  class: string
+  mask?: string
+}
+type Input = {
+  attrs: InputAttrs,
+  component: string,
+}
+defineProps<{
+  inputs: Input[]
+}>();
 </script>

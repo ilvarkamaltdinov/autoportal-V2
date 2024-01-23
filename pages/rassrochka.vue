@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="grid__col-12 grid grid--application">
-          <FormConstructor>
+          <FormConstructor :inputs="inputs">
             <template #name>
               Рассрочка
               <span class="heading__promo">0%</span>
@@ -31,31 +31,29 @@
               </FormCreditCalculator>
             </template>
             <template #inputs>
-              <label class="form__field-wrap">
-                <InputText placeholder="ФИО" class="form__field" type="text" :unstyled="true"/>
-              </label>
-              <label class="form__field-wrap">
-                <InputText placeholder="Телефон" class="form__field" mask="phone" type="tel"/>
-              </label>
-              <label class="form__checkbox-wrap checkbox">
-                <Checkbox class="form__checkbox visually-hidden"/>
-                <nuxt-icon name="icon-checkmark"
-                           class="checkbox__icon"/>
-                <span class="form__checkbox-text">Подтверждаю наличие гражданства РФ</span>
-              </label>
-              <label class="form__checkbox-wrap checkbox">
-                <Checkbox class="form__checkbox visually-hidden"/>
-                <nuxt-icon name="icon-checkmark"
-                           class="checkbox__icon"/>
-                <span class="form__checkbox-text">Согласен на обработку
-                    <a href="/privacy" class="form__checkbox-text-link" rel="nofollow" target="_blank">
-                      персональных данных
-                    </a>
-                </span>
-              </label>
-              <Button class="button button--credit button--form" :unstyled="true">
-                Оставить заявку
-              </Button>
+              <!--              <label class="form__field-wrap">-->
+              <!--                <InputText placeholder="ФИО" class="form__field" type="text" :unstyled="true"/>-->
+              <!--              </label>-->
+
+              <!--              <label class="form__checkbox-wrap checkbox">-->
+              <!--                <Checkbox class="form__checkbox visually-hidden"/>-->
+              <!--                <nuxt-icon name="icon-checkmark"-->
+              <!--                           class="checkbox__icon"/>-->
+              <!--                <span class="form__checkbox-text">Подтверждаю наличие гражданства РФ</span>-->
+              <!--              </label>-->
+              <!--              <label class="form__checkbox-wrap checkbox">-->
+              <!--                <Checkbox class="form__checkbox visually-hidden"/>-->
+              <!--                <nuxt-icon name="icon-checkmark"-->
+              <!--                           class="checkbox__icon"/>-->
+              <!--                <span class="form__checkbox-text">Согласен на обработку-->
+              <!--                    <a href="/privacy" class="form__checkbox-text-link" rel="nofollow" target="_blank">-->
+              <!--                      персональных данных-->
+              <!--                    </a>-->
+              <!--                </span>-->
+              <!--              </label>-->
+              <!--              <Button class="button button&#45;&#45;credit button&#45;&#45;form" :unstyled="true">-->
+              <!--                Оставить заявку-->
+              <!--              </Button>-->
             </template>
           </FormConstructor>
         </div>
@@ -66,6 +64,27 @@
 <script setup lang="ts">
 import FormCreditCalculator from '~/components/Form/form-components/FormCreditCalculator.vue';
 import { ref } from '#imports';
+import masks from '~/composables/masks';
+
+const inputs = ref([
+  {
+    component: 'InputText',
+    attrs: {
+      type: 'text',
+      placeholder: 'ФИО',
+      class: 'form__field',
+    }
+  },
+  {
+    component: 'InputMask',
+    attrs: {
+      type: 'tel',
+      placeholder: 'Телефон',
+      mask: masks.value.phone,
+      class: 'form__field',
+    }
+  },
+]);
 
 const creditParams = ref({
   rangePeriodValues: {

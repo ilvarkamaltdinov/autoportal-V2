@@ -72,7 +72,7 @@
                   <!--                                type="text"/>-->
                 </label>
                 <label class="form__field-wrap">
-                  <InputMask class="form__field" mask="+7 (999) 999-9999" placeholder="Телефон" :unstyled="true"/>
+                  <InputMask class="form__field" :mask="masks.phone" placeholder="Телефон" :unstyled="true"/>
                   <!--                       :class="phoneClass">-->
                   <!--                  <inputs-input placeholder="Телефон"-->
                   <!--                                @input="handlerInput('phone')"-->
