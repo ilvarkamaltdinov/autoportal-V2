@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { useSettings } from '~/store/settingsStore';
 
-type BenefitKey = ['credit', 'europe', 'installment', 'tradeIn', 'buyout', 'car', 'new', 'installmentNew', 'creditMobile'];
+export type BenefitKey = ['credit', 'europe', 'installment', 'tradeIn', 'buyout', 'car', 'new', 'installmentNew', 'creditMobile'];
 
 type MapBenefits = {
     [k in BenefitKey[number]]: string[]
@@ -14,6 +14,8 @@ type Benefit = {
     description: string
     slug: string
 }
+
+export type BenefitType = BenefitKey[number];
 
 export const useBenefitsStore = defineStore('benefits', {
   state: (): MapBenefits & { benefits: Benefit[] } => {
@@ -189,7 +191,7 @@ export const useBenefitsStore = defineStore('benefits', {
   },
 
   actions: {
-    find(key: BenefitKey[number]): Benefit[] {
+    find(key: BenefitType): Benefit[] {
       return this.benefits.filter((benefit: Benefit) => {
         return this[key].find((b: string) => b === benefit.slug);
       });

@@ -63,7 +63,7 @@
 
 <script setup lang="ts">
 // import { SwiperSlide } from 'swiper/vue';
-import Benefits from '~/components/Benefits/index.vue';
+import Benefits from '~/components/Benefits/Benefits.vue';
 import OfferSlider from '~/components/Offer/Slider.vue';
 import OfferBuy from '~/components/Offer/Buy.vue';
 
