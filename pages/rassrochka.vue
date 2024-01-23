@@ -31,29 +31,19 @@
               </FormCreditCalculator>
             </template>
             <template #inputs>
-              <!--              <label class="form__field-wrap">-->
-              <!--                <InputText placeholder="ФИО" class="form__field" type="text" :unstyled="true"/>-->
-              <!--              </label>-->
-
-              <!--              <label class="form__checkbox-wrap checkbox">-->
-              <!--                <Checkbox class="form__checkbox visually-hidden"/>-->
-              <!--                <nuxt-icon name="icon-checkmark"-->
-              <!--                           class="checkbox__icon"/>-->
-              <!--                <span class="form__checkbox-text">Подтверждаю наличие гражданства РФ</span>-->
-              <!--              </label>-->
-              <!--              <label class="form__checkbox-wrap checkbox">-->
-              <!--                <Checkbox class="form__checkbox visually-hidden"/>-->
-              <!--                <nuxt-icon name="icon-checkmark"-->
-              <!--                           class="checkbox__icon"/>-->
-              <!--                <span class="form__checkbox-text">Согласен на обработку-->
-              <!--                    <a href="/privacy" class="form__checkbox-text-link" rel="nofollow" target="_blank">-->
-              <!--                      персональных данных-->
-              <!--                    </a>-->
-              <!--                </span>-->
-              <!--              </label>-->
-              <!--              <Button class="button button&#45;&#45;credit button&#45;&#45;form" :unstyled="true">-->
-              <!--                Оставить заявку-->
-              <!--              </Button>-->
+              <CheckBoxForm>
+                <template #text>
+                  <span>Подтверждаю наличие гражданства РФ</span>
+                </template>
+              </CheckBoxForm>
+              <CheckBoxForm>
+                <template #text>
+                  <span>Согласен на</span>
+                </template>
+                <template #link>
+                  обработку личных данных
+                </template>
+              </CheckBoxForm>
             </template>
           </FormConstructor>
         </div>
@@ -65,6 +55,7 @@
 import FormCreditCalculator from '~/components/Form/form-components/FormCreditCalculator.vue';
 import { ref } from '#imports';
 import masks from '~/composables/masks';
+import CheckBoxForm from '~/components/Form/form-components/CheckBoxForm.vue';
 
 const inputs = ref([
   {
@@ -82,7 +73,8 @@ const inputs = ref([
       placeholder: 'Телефон',
       mask: masks.value.phone,
       class: 'form__field',
-    }
+    },
+
   },
 ]);
 

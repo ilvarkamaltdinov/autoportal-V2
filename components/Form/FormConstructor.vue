@@ -23,9 +23,13 @@
         <div class="form__field-wrap" v-for="({ attrs, component }, index) in inputs" :key="index">
           <component :is="component" v-bind="attrs" :unstyled="true" />
         </div>
+        <slot name="inputs" />
         <!--                <checkbox-form :error="error === 'agree'" @change="changeCheckbox($event, 'agree')" label="Согласен на"-->
         <!--                               link="обработку личных данных"/>-->
       </fieldset>
+      <Button :unstyled="true" class="button button--credit button--form">
+        Оставить заявку
+      </Button>
     </form>
   </div>
 </template>
