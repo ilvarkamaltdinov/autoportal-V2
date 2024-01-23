@@ -16,7 +16,8 @@
       <slot name="calculator"/>
       <fieldset class="form__fieldset">
         <div class="form__field-wrap" v-for="({ attrs, component, name }) in inputs" :key="name" :class="{
-          'form__field-wrap--error': errors[name]
+          'form__field-wrap--error': errors[name],
+          'form__field-wrap--success': isFieldValid(name)
         }">
           <component :is="component" v-bind="attrs" :unstyled="true" v-model="fields[name]" />
         </div>
@@ -83,7 +84,7 @@ function getValidationRulesFromProps(){
 const validationRules = ref<ObjectShape>({});
 const schema = yup.object(getValidationRulesFromProps());
 
-const { defineField, handleSubmit, errors } = useForm({
+const { defineField, handleSubmit, errors, isFieldValid,isFieldTouched } = useForm({
   validationSchema: schema,
 });
 
