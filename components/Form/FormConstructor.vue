@@ -56,21 +56,8 @@ const props = defineProps<{
 }>();
 
 const schema = yup.object({
-  email: yup.string().required().email().label('Email address'),
-  phone: yup.string().required().matches(/^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/).label('Phone number'),
+  phone: yup.string().required().matches(/^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/),
   fullName: yup.string().required().label('Full name'),
-  password: yup.string().required().min(6).label('Password'),
-  passwordConfirm: yup
-    .string()
-    .oneOf([yup.ref('password')], 'Passwords must match')
-    .required()
-    .label('Password confirmation'),
-  terms: yup
-    .boolean()
-    .required()
-    .isTrue('You must agree to terms and conditions')
-    .label('terms agreement'),
-  type: yup.string().required().label('Account type'),
 });
 
 const { defineField, handleSubmit, errors } = useForm({
@@ -81,18 +68,6 @@ const fields: Record<string, unknown> = reactive({});
 Object.entries(props.inputs).forEach( ([_,v]) => {
   fields[v.name] = defineField(v.name)[0];
 });
-
-watch(fields, (val) => {
-  console.log(val);
-});
-console.log(fields);
-
-// const [fullName] = defineField('fullName');
-// const [email] = defineField('email');
-// const [password] = defineField('password');
-// const [passwordConfirm] = defineField('passwordConfirm');
-// const [terms] = defineField('terms');
-// const [type] = defineField('type');
 
 const onSubmit = handleSubmit((values) => {
   console.log('Submitted with', values);
