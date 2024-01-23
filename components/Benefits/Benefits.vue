@@ -1,6 +1,6 @@
 <template>
   <ul class="benefits__list benefits__list--car">
-    <li class="benefits__item" v-for="(benefit) in benefits" :key="benefit.text">
+    <li class="benefits__item" v-for="(benefit) in benefits" :key="benefit.icon">
       <TwoSideBadge class="benefits__link popup--link">
         <template #title>
           <nuxt-icon class="benefits__icon" :name="`icon-${benefit.icon}`"/>

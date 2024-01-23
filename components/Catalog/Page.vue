@@ -6,7 +6,7 @@
     <div class="grid grid--container">
       <section class="page-main__catalog catalog grid catalog--used">
         <div class="benefits grid__col-12 benefits--catalog">
-          <Benefits type="credit" />
+          <Benefits :type="currentBenefitsType" />
         </div>
         <div class="heading-group heading-group--catalog heading-group--h1 grid__col-12">
           <div class="heading-group__wrap">
