@@ -54,11 +54,12 @@
 <script setup lang="ts">
 import FormCreditCalculator from '~/components/Form/form-components/FormCreditCalculator.vue';
 import { ref } from '#imports';
-import masks from '~/composables/masks';
 import CheckBoxForm from '~/components/Form/form-components/CheckBoxForm.vue';
+import { Input } from '~/components/Form/FormConstructor.vue';
 
-const inputs = ref([
+const inputs = ref<Input[]>([
   {
+    name: 'fullName',
     component: 'InputText',
     attrs: {
       type: 'text',
@@ -67,6 +68,7 @@ const inputs = ref([
     }
   },
   {
+    name: 'phone',
     component: 'InputMask',
     attrs: {
       type: 'tel',
@@ -74,7 +76,6 @@ const inputs = ref([
       mask: masks.value.phone,
       class: 'form__field',
     },
-
   },
 ]);
 
