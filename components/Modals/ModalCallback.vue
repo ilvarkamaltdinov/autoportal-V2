@@ -32,6 +32,31 @@
         </div>
         <div class="application application--modal grid__col-12 grid grid--application grid--application-modal">
           <div class="application__form grid__col-4">
+            <div class="text">
+              <p class="text__p text__p--modal">
+                <TimeConditionHandler>
+                  <template #newyear>
+                    Автомобильный портал <span class="text__working-hours">{{ $settings.dealer_title }}</span>
+                    поздравляет вас с Новым годом!
+                    Оставьте заявку, и наши операторы перезвонят вам <span class="text__working-hours">2 января</span>!
+                  </template>
+                  <template #night>
+                    Операторы работают <span class="text__working-hours">с 9:00 до 21:00</span>.
+                    Оставьте заявку, и мы с радостью перезвоним вам в рабочее время!
+                  </template>
+                  <template #day>
+                    Оставьте заявку, и наши операторы свяжутся с вами в
+                    течение <span class="text__working-hours">5 минут!</span>
+                  </template>
+                </TimeConditionHandler>
+              </p>
+            </div>
+            <div class="heading-group heading-group--form">
+              <div class="heading-group__wrap">
+                <h2 class="heading heading--h2">Обратный звонок</h2>
+                <span class="heading-group__label">Перезвоним в течение 5 минут</span>
+              </div>
+            </div>
             <form class="form">
               <!--              <div class="catalog form__catalog"-->
               <!--                   v-if="$device.isMobile && offer.mark">-->

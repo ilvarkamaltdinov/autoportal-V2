@@ -126,7 +126,7 @@ const menuList = computed(() => {
   return [
     {
       title: 'Рассрочка',
-      link: '/',
+      link: '/rassrochka',
     },
     {
       title: 'Автокредит',

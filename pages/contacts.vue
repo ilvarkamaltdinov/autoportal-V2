@@ -14,23 +14,29 @@
         <div class="about__block grid__col-12 grid text">
           <ContentBlock class="grid__col-7">
             <template #figure>
-              <NuxtImg
-                  class="text__figure-img"
-                  src="/img/figures/figure-5@2x.png"/>
+              <NuxtImg class="text__figure-img" src="/img/figures/figure-5@2x.png"/>
             </template>
             <template #content>
               <div class="text__contacts-group" v-if="$settings.phone">
                 <div class="text__contacts-label">Вопросы о портале:</div>
-                <DateTimeProvider>
-                  <template #night="{exposeCallbackModal, phone}">
-                    <span class="text__contacts-item" @click="exposeCallbackModal">
+                <TimeConditionHandler>
+                  <template #newyear="{phone, exposeModal}">
+                    <span class="text__contacts-item" @click="exposeModal">
+                      {{ phone }}
+                    </span>
+                  </template>
+                  <template #night="{exposeModal, phone}">
+                    <span class="text__contacts-item" @click="exposeModal">
                       {{ phone }}
                     </span>
                   </template>
                   <template #day="{phone, href}">
                     <a class="text__contacts-item" :href="href">{{ phone }}</a>
                   </template>
-                </DateTimeProvider>
+                  <template #modal="{isVisible, toggle}">
+                    <ModalCallback :model-value="isVisible" @update:model-value="toggle()" />
+                  </template>
+                </TimeConditionHandler>
                 <div class="text__contacts-group">
                 </div>
                 <div class="text__contacts-label">Вопросы сотрудничества:</div>
@@ -75,7 +81,8 @@ import { DealersContactQueryVariables, Dealer } from '~/types/graphql';
 import { request } from '~/utils/request';
 import { dealersContact } from '~/apollo/queries/dealer/dealersContact';
 import ContentBlock from '~/components/TextContent/ContentBlock.vue';
-import DateTimeProvider from '~/components/DayTime/DateTimeProvider.vue';
+import ModalCallback from '~/components/Modals/ModalCallback.vue';
+import TimeConditionHandler from '~/components/TimeCondition/TimeConditionHandler.vue';
 
 const { data: { value: { dealers } } } = await request<{
   dealers: Dealer[]
