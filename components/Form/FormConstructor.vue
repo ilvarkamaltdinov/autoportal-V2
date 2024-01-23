@@ -3,22 +3,14 @@
     <div class="heading-group heading-group--form">
       <div class="heading-group__wrap">
         <h2 class="heading heading--h2">
-          <slot name="name">
-          </slot>
+          <slot name="name" />
         </h2>
       </div>
     </div>
     <form class="form">
       <fieldset class="form__fieldset">
-        <label
-            class="form__field-wrap form__field-wrap--car ">
-          <Button class="form__field">
-            {{ 'Выбрать автомобиль' }}
-            <!--                    <span v-if="currentCar">-->
-            <!--                      {{ currentCar.price | toCurrency }}-->
-            <!--                    </span>-->
-          </Button>
-          <nuxt-icon name="icon-form" class="form__car-icon"/>
+        <label class="form__field-wrap form__field-wrap--car">
+          <slot name="car-choose" />
         </label>
       </fieldset>
       <!--              <div class="catalog form__catalog" v-if="$device.isMobile && (offer || currentCar)">-->
@@ -26,6 +18,11 @@
       <!--              </div>-->
       <!--              <form-credit-calculator installment @changePeriod="changePeriod" @changePayment="changePayment"-->
       <!--                                      :params="creditParams" :offer="offer || currentCar"/>-->
+      <FormCreditCalculator :offer="null" :params="creditParams">
+        <template #first-slider-name="{names}">
+          {{names.installment}}
+        </template>
+      </FormCreditCalculator>
       <fieldset class="form__fieldset">
         <label class="form__field-wrap">
           <InputText placeholder="ФИО" class="form__field" type="text" :unstyled="true"/>
@@ -60,4 +57,40 @@
 
 <script setup lang="ts">
 
+import FormCreditCalculator from '~/components/Form/form-components/FormCreditCalculator.vue';
+import { ref } from '#imports';
+
+const creditParams = ref({
+  rangePeriodValues: {
+    snap: true,
+    //todo move in settings
+    range: {
+      'min': 2,
+      '12': 6,
+      '24': 12,
+      '36': 24,
+      '48': 36,
+      '60': 48,
+      '72': 60,
+      '84': 72,
+      'max': 84,
+    }
+  },
+  rangePaymentValues: {
+    snap: true,
+    range: {
+      'min': 0,
+      '12': 10,
+      '24': 20,
+      '36': 30,
+      '48': 40,
+      '60': 50,
+      '72': 60,
+      '84': 70,
+      'max': 80,
+    }
+  },
+  period: 84,
+  payment: 0,
+});
 </script>

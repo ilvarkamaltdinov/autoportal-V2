@@ -17,6 +17,12 @@
               Рассрочка
               <span class="heading__promo">0%</span>
             </template>
+            <template #car-choose>
+              <Button class="form__field">
+                {{ 'Выбрать автомобиль' }}
+              </Button>
+              <nuxt-icon name="icon-form" class="form__car-icon"/>
+            </template>
           </FormConstructor>
         </div>
       </section>
