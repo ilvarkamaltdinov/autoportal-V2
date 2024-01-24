@@ -3,7 +3,10 @@
     <div class="tabs tabs--modal">
       <ul class="tabs__list" id="tabs" role="tablist">
         <TwoSideBadge class="tabs__link" v-for="(tab, index) in tabs" :key="tab.title"
-                      :class="{'tabs__item--disabled': !componentProps[tab.name] }" @click="currentTab = tab">
+                      :class="{
+          'tabs__item--disabled': !componentProps[tab.name],
+          'tabs__item--active': tab.name === currentTab.name
+        }" @click="currentTab = tab">
           <template #title>
             {{ index + 1 }}. {{ tab.title }}
           </template>
