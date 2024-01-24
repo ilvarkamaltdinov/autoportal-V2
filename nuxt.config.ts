@@ -71,7 +71,7 @@ export default defineNuxtConfig({
   primeVue: {
     usePrimeVue: true,
     components: {
-      include: ['Sidebar', 'Dialog', 'InputText', 'InputMask', 'Button']
+      include: ['Sidebar', 'Dialog', 'InputText', 'InputMask', 'Button', 'Accordion', 'AccordionTab']
     }
   },
   plugins: [

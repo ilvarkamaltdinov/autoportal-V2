@@ -8,11 +8,26 @@
         <nuxt-icon name="icon-form" class="form__car-icon"/>
       </template>
       <template #calculator>
-        <FormCreditCalculator :offer="null" :params="creditParams">
-          <template #first-slider-name="{names}">
-            {{ names.installment }}
+        <CheckBoxForm v-model="isAccordionExpanded">
+          <template #text>
+            Купить авто в кредит
           </template>
-        </FormCreditCalculator>
+        </CheckBoxForm>
+        <Accordion v-model:activeIndex="accordionIndex" :unstyled="true">
+          <template #collapseicon>
+            {{null}}
+          </template>
+          <template #expandicon>
+            {{null}}
+          </template>
+          <AccordionTab :unstyled="true">
+            <FormCreditCalculator :offer="null" :params="creditParams">
+              <template #first-slider-name="{names}">
+                {{ names.installment }}
+              </template>
+            </FormCreditCalculator>
+          </AccordionTab>
+        </Accordion>
       </template>
     </FormConstructor>
   </div>
@@ -34,6 +49,10 @@ import { ref } from '#imports';
 import validation from '~/composables/validation';
 import { Input } from '~/components/Form/FormConstructor.vue';
 import OfferSelection from '~/components/Modals/OfferSelection.vue';
+import CheckBoxForm from '~/components/Form/form-components/CheckBoxForm.vue';
+
+const isAccordionExpanded = ref(false);
+const accordionIndex = computed(() => isAccordionExpanded.value ? 0 : -1);
 
 const inputs = ref<Input[]>([
   {
