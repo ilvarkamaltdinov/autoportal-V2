@@ -5,7 +5,7 @@
         <TwoSideBadge class="tabs__link" v-for="(tab, index) in tabs" :key="tab.title"
                       :class="{'tabs__item--disabled': !componentProps[tab.name] }" @click="currentTab = tab">
           <template #title>
-            {{index + 1}}. {{ tab.title }}
+            {{ index + 1 }}. {{ tab.title }}
           </template>
         </TwoSideBadge>
       </ul>
@@ -19,7 +19,13 @@
 import TwoSideBadge from '~/components/Inputs/TwoSideBadge.vue';
 import { UnwrapRef } from 'vue';
 
-const tabs = computed(() =>
+type Tab = {
+  title: string
+  name: keyof UnwrapRef<typeof componentProps>
+  component: unknown
+}
+
+const tabs = computed<Tab[]>(() =>
   [
     {
       title: 'Марка',
@@ -53,7 +59,8 @@ const componentProps = ref({
   car: null,
 });
 
-function setCarData(name: keyof UnwrapRef<typeof componentProps>, event: any) {
+function setCarData(name: Tab['name'], event: Tab['component']) {
+  //@ts-expect-error lol
   componentProps.value[name] = event;
   nextTab();
 }
