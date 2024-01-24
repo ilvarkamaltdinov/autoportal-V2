@@ -4,10 +4,10 @@
       <ul class="tabs__list"
           id="tabs"
           role="tablist">
-        <TwoSideBadge class="tabs__link" v-for="tab in tabs" :key="tab.title"
-                      @click="currentTab = tab">
+        <TwoSideBadge class="tabs__link" v-for="(tab, index) in tabs" :key="tab.title"
+                      :class="{'tabs__item--disabled': !componentProps[tab.name] }" @click="currentTab = tab">
           <template #title>
-            {{ tab.title }}
+            {{index + 1}}. {{ tab.title }}
           </template>
         </TwoSideBadge>
         <!--        <tabs-item :is-active="tabComponent === 'model'"-->
@@ -45,19 +45,23 @@ import { UnwrapRef } from 'vue';
 const tabs = computed(() =>
   [
     {
-      title: '1. Марка',
+      title: 'Марка',
+      name: 'mark',
       component: defineAsyncComponent(() => import('~/components/Modals/ChooseCarBrand.vue')),
     },
     {
-      title: '2. Модель',
+      title: 'Модель',
+      name: 'folder',
       component: defineAsyncComponent(() => import('~/components/Modals/ChooseModel.vue')),
     },
     {
-      title: '3. Поколение',
+      title: 'Поколение',
+      name: 'generation',
       component: defineAsyncComponent(() => import('~/components/Modals/ChooseGeneration.vue')),
     },
     {
-      title: '4. Автомобиль',
+      title: 'Автомобиль',
+      name: 'car',
       component: defineAsyncComponent(() => import('~/components/Modals/ChooseCars.vue')),
     },
   ]
@@ -69,11 +73,11 @@ const componentProps = ref({
   mark: null,
   folder: null,
   generation: null,
+  car: null,
 });
 
 function setCarData(name: keyof UnwrapRef<typeof componentProps>, event: any) {
   componentProps.value[name] = event;
-  console.log(componentProps);
   nextTab();
 }
 
