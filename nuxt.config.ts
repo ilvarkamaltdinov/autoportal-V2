@@ -87,6 +87,9 @@ export default defineNuxtConfig({
     class: 'icon',
     size: '24px'
   },
+  image: {
+    dir: 'assets/img',
+  },
   devServer: {
     port: process.env.PORT || 3000
   },

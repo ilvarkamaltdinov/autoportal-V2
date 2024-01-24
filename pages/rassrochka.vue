@@ -18,6 +18,7 @@
             <span class="application__choose-car-text">Выберите автомобиль</span>
           </button>
 
+<!--          todo mb ne content block idk-->
           <ContentBlock class="application__terms grid__col-3">
             <template #content>
               <div class="application__terms-item">
@@ -34,6 +35,15 @@
                 </div>
             </template>
           </ContentBlock>
+
+          <ApplicationBankCard>
+            <template #logo>
+              <NuxtImg src="/banks/logo-tinkoff.svg" class="application__banks-img application__banks-img--sovcom" />
+            </template>
+            <template #image>
+
+            </template>
+          </ApplicationBankCard>
         </div>
       </section>
     </div>
@@ -41,4 +51,5 @@
 </template>
 <script setup lang="ts">
 import ContentBlock from '~/components/TextContent/ContentBlock.vue';
+import ApplicationBankCard from '~/components/Application/ApplicationBankCard.vue';
 </script>
