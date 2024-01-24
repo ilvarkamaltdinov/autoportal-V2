@@ -1,5 +1,5 @@
 <template>
-    <div class="heading-group heading-group--form">
+    <div class="heading-group heading-group--form" v-if="$slots.name">
       <div class="heading-group__wrap">
         <h2 class="heading heading--h2">
           <slot name="name"/>

@@ -134,7 +134,7 @@ const menuList = computed(() => {
     },
     {
       title: 'Trade-In',
-      link: '/',
+      link: '/exchange',
     },
     {
       title: 'В наличии',

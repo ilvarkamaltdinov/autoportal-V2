@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="grid__col-12 grid grid--application">
-          <form-installment/>
+          <form-tradein />
           <button class="application__choose-car grid__col-8">
             <nuxt-icon class="application__choose-car-icon" name="icon-form"/>
             <span class="application__choose-car-text">Выберите автомобиль</span>
@@ -44,7 +44,7 @@
         </div>
       </section>
       <div class="benefits grid__col-12">
-        <Benefits type="installment"/>
+        <Benefits type="tradeIn" />
       </div>
       <section class="page-main__text text grid__col-12">
         <h2 class="heading heading--h2">Об услуге</h2>
@@ -66,7 +66,7 @@
                 Окончательное решение о предоставлении рассрочки принимается банками-партнерами {{ $settings.dealer_title }}.
               </p>
               <p class="text__p">
-                Преимущества рассрочки {{ $settings.dealer_anchor }}
+                Преимущества рассрочки {{ $settings.dealer_anchor }}:
               </p>
               <ul class="text__list">
                 <li class="text__list-item">Ставка {{ $settings.first_installment }}</li>
