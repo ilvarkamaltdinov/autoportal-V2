@@ -3,7 +3,7 @@
     <FormConstructor :inputs="inputs">
       <template #name>
         Рассрочка
-        <span class="heading__promo">0%</span>
+        <span class="heading__promo">{{ $settings.first_installment }}</span>
       </template>
       <template #car-choose>
         <Button class="form__field">

@@ -55,7 +55,11 @@ const tabs = computed(() =>
     {
       title: '3. Поколение',
       component: defineAsyncComponent(() => import('~/components/Modals/ChooseGeneration.vue')),
-    }
+    },
+    {
+      title: '4. Автомобиль',
+      component: defineAsyncComponent(() => import('~/components/Modals/ChooseCars.vue')),
+    },
   ]
 );
 const currentTab = shallowRef(tabs.value[0]);
@@ -67,15 +71,15 @@ const componentProps = ref({
   generation: null,
 });
 
-function nextTab() {
-  const index = tabs.value.findIndex((val) => val.title === currentTab.value.title) + 1;
-  currentTab.value = tabs.value[index];
-}
-
 function setCarData(name: keyof UnwrapRef<typeof componentProps>, event: any) {
   componentProps.value[name] = event;
   console.log(componentProps);
   nextTab();
+}
+
+function nextTab() {
+  const index = tabs.value.findIndex((val) => val.title === currentTab.value.title) + 1;
+  currentTab.value = tabs.value[index];
 }
 </script>
 
