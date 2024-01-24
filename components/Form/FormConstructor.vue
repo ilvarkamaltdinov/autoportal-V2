@@ -59,9 +59,9 @@ type InputAttrs = {
   autoClear?: boolean
 }
 export type Input = {
-  attrs: InputAttrs,
   name: string,
   component: string,
+  attrs: InputAttrs,
   validationRule: ISchema<unknown>
 }
 const props = defineProps<{

@@ -56,6 +56,16 @@ const accordionIndex = computed(() => isAccordionExpanded.value ? 0 : -1);
 
 const inputs = ref<Input[]>([
   {
+    name: 'car',
+    component: 'InputText',
+    attrs: {
+      type: 'text',
+      placeholder: 'Ваш автомобиль',
+      class: 'form__field',
+    },
+    validationRule: validation.value.car.rule,
+  },
+  {
     name: 'fullName',
     component: 'InputText',
     attrs: {
