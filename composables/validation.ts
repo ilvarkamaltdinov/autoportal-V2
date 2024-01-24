@@ -7,7 +7,7 @@ export default computed(() => ({
   },
   fullName: {
     mask: null,
-    rule: yup.string().required(),
+    rule: yup.string().min(5).required(),
   },
   car: {
     mask: null,

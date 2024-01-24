@@ -20,25 +20,25 @@
 
           <ApplicationBankCard class="grid__col-5">
             <template #logo>
-              <NuxtImg src="/banks/logo-sovcom.svg" class="application__banks-img application__banks-img--sovcom"/>
+              <NuxtImg src="/banks/logo-tinkoff.svg" class="application__banks-img"/>
             </template>
             <template #image>
-              <NuxtImg src="/banks/image-sovcom.webp"/>
+              <NuxtImg src="/banks/tinkoff.webp"/>
             </template>
           </ApplicationBankCard>
 
           <div class="application__terms grid__col-3">
             <div class="application__terms-item">
-              <div class="application__terms-number application__terms-number--stake"> это</div>
-              <div class="application__terms-text">моковые данные</div>
+              <div class="application__terms-number application__terms-number--stake">от {{ $settings.credit_percent }}</div>
+              <div class="application__terms-text">Ставка по кредиту</div>
             </div>
             <div class="application__terms-item">
-              <div class="application__terms-number application__terms-number--payment"> их</div>
-              <div class="application__terms-text">нужно сделать вместе с выбором оффера</div>
+              <div class="application__terms-number application__terms-number--payment">-</div>
+              <div class="application__terms-text">Срок автокредита</div>
             </div>
             <div class="application__terms-item">
-              <div class="application__terms-number application__terms-number--payment"> и найти</div>
-              <div class="application__terms-text">замену для библиотеки</div>
+              <div class="application__terms-number application__terms-number--payment">-</div>
+              <div class="application__terms-text">Ежемесячный платеж</div>
             </div>
           </div>
         </div>
@@ -52,27 +52,27 @@
           <ContentBlock class="grid__col-12">
             <template #content>
               <p class="text__p">
-                На {{ $settings.dealer_title }} вы можете приобрести автомобиль в рассрочку без любых переплат и процентов.
+                Условия современной программы Trade-In авто подойдут для тех, кто хочет выгодно продать старый автомобиль и получить взамен новый, с доплатой. Авто-портал {{$settings.dealer_title}} предоставляет возможность сотрудничества с множеством проверенных, надежных автосалонов Москвы. У нас вы найдете широкий ассортимент легковых автомобилей самых популярных марок и коммерческий транспорт
+                Посетив наш портал, вы сможете подобрать транспортное средство, отвечающее вашим требованиям, ознакомиться с его техническим состоянием и совершить обмен авто с пробегом по системе Trade-In в Москве на выгодных условиях
               </p>
               <p class="text__p">
-                Рассрочка является удобным способом покупки транспортного средства с пробегом, учитывая,
-                что процентная ставка не начисляется. Рассрочка станет идеальным решением в случае
-                погашения стоимости автомобиля за срок до 3 лет. Если же выплата всей суммы за 3 года
-                обременительна для семейного бюджета, оптимальным решением станет
-                <nuxt-link to="/credit">автокредит</nuxt-link>
-                {{ $settings.credit_percent }} со скидкой {{ $settings.sale_credit }}.
+                Услуга Trade-In предполагает обмен Вашего старого автомобиля на более новый. Обмен
+                позволяет
+                сэкономить время на время затратной продаже своего авто, и обновить автомобиль за пару
+                часов.
               </p>
               <p class="text__p">
-                Окончательное решение о предоставлении рассрочки принимается банками-партнерами {{ $settings.dealer_title }}.
+                По приезду в автоцентр Ваш автомобиль проверят, оценят и предложат сумму к доплате в обе
+                стороны. А выбрать автомобиль по вкусу из более чем 4000 проверенных авто, представленных
+                на
+                {{ $settings.dealer_title }}, будет совсем просто.
               </p>
               <p class="text__p">
-                Преимущества рассрочки {{ $settings.dealer_anchor }}:
+                После выбора понравившейся модели оформляйте заявку на обмен и дождитесь звонка менеджера.
+                Вам
+                будет предложено подъехать в автоцентр для бесплатной технической диагностики, оценки и
+                тест-драйва.
               </p>
-              <ul class="text__list">
-                <li class="text__list-item">Ставка {{ $settings.first_installment }}</li>
-                <li class="text__list-item">Без первоначального взноса</li>
-                <li class="text__list-item">Комплект резины в подарок</li>
-              </ul>
             </template>
             <template #figure>
               <NuxtImg class="text__figure-img" src="figures/figure-2@2x.webp" />
