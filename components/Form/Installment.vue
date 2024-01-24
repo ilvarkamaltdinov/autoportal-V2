@@ -1,23 +1,25 @@
 <template>
-  <FormConstructor :inputs="inputs">
-    <template #name>
-      Рассрочка
-      <span class="heading__promo">0%</span>
-    </template>
-    <template #car-choose>
-      <Button class="form__field">
-        {{ 'Выбрать автомобиль' }}
-      </Button>
-      <nuxt-icon name="icon-form" class="form__car-icon"/>
-    </template>
-    <template #calculator>
-      <FormCreditCalculator :offer="null" :params="creditParams">
-        <template #first-slider-name="{names}">
-          {{ names.installment }}
-        </template>
-      </FormCreditCalculator>
-    </template>
-  </FormConstructor>
+  <div class="application__form grid__col-4">
+    <FormConstructor :inputs="inputs">
+      <template #name>
+        Рассрочка
+        <span class="heading__promo">0%</span>
+      </template>
+      <template #car-choose>
+        <Button class="form__field">
+          {{ 'Выбрать автомобиль' }}
+        </Button>
+        <nuxt-icon name="icon-form" class="form__car-icon"/>
+      </template>
+      <template #calculator>
+        <FormCreditCalculator :offer="null" :params="creditParams">
+          <template #first-slider-name="{names}">
+            {{ names.installment }}
+          </template>
+        </FormCreditCalculator>
+      </template>
+    </FormConstructor>
+  </div>
 </template>
 
 <script setup lang="ts">

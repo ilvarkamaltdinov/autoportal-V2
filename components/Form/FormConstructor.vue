@@ -1,5 +1,4 @@
 <template>
-  <div class="application__form grid__col-4">
     <div class="heading-group heading-group--form">
       <div class="heading-group__wrap">
         <h2 class="heading heading--h2">
@@ -44,7 +43,6 @@
         Оставить заявку
       </Button>
     </form>
-  </div>
 </template>
 
 <script setup lang="ts">
