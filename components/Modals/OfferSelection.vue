@@ -34,11 +34,13 @@
       </ul>
     </div>
   </div>
-  <component :is="currentTab.component" @select="(name, event) => {componentProps[name] = event; nextTab()}" v-bind="componentProps" />
+  <component :is="currentTab.component" @select="setCarData"
+             v-bind="componentProps"/>
 </template>
 
 <script setup lang="ts">
 import TwoSideBadge from '~/components/Inputs/TwoSideBadge.vue';
+import { UnwrapRef } from 'vue';
 
 const tabs = computed(() =>
   [
@@ -52,17 +54,22 @@ const tabs = computed(() =>
     }
   ]
 );
-
+const currentTab = shallowRef(tabs.value[0]);
 const chosenMark = ref(null);
+
 
 const componentProps = ref({
   mark: chosenMark.value,
 });
-const currentTab = shallowRef(tabs.value[0]);
 
 function nextTab() {
   const index = tabs.value.findIndex((val) => val.title === currentTab.value.title) + 1;
   currentTab.value = tabs.value[index];
+}
+
+function setCarData(name: keyof UnwrapRef<typeof componentProps>, event: any) {
+  componentProps.value[name] = event;
+  nextTab();
 }
 </script>
 
