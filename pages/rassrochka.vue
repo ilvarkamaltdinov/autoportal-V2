@@ -12,44 +12,40 @@
           </div>
         </div>
         <div class="grid__col-12 grid grid--application">
-          <form-installment />
+          <form-installment/>
           <button class="application__choose-car grid__col-8">
-            <nuxt-icon class="application__choose-car-icon" name="icon-form" />
+            <nuxt-icon class="application__choose-car-icon" name="icon-form"/>
             <span class="application__choose-car-text">Выберите автомобиль</span>
           </button>
 
-<!--          todo mb ne content block idk-->
-          <ContentBlock class="application__terms grid__col-3">
-            <template #content>
-              <div class="application__terms-item">
-                <div class="application__terms-number application__terms-number--stake"> это </div>
-                <div class="application__terms-text">моковые данные</div>
-              </div>
-              <div class="application__terms-item">
-                <div class="application__terms-number application__terms-number--stake"> их </div>
-                <div class="application__terms-text">нужно сделать вместе с выбором оффера</div>
-              </div>
-                <div class="application__terms-item">
-                  <div class="application__terms-number application__terms-number--stake"> и найти </div>
-                  <div class="application__terms-text">замену для библиотеки</div>
-                </div>
-            </template>
-          </ContentBlock>
-
-          <ApplicationBankCard>
+          <ApplicationBankCard class="grid__col-5">
             <template #logo>
-              <NuxtImg src="/banks/logo-tinkoff.svg" class="application__banks-img application__banks-img--sovcom" />
+              <NuxtImg src="/banks/logo-sovcom.svg" class="application__banks-img application__banks-img--sovcom"/>
             </template>
             <template #image>
-
+              <NuxtImg src="/banks/image-sovcom.webp"/>
             </template>
           </ApplicationBankCard>
+
+          <div class="application__terms grid__col-3">
+            <div class="application__terms-item">
+              <div class="application__terms-number application__terms-number--stake"> это</div>
+              <div class="application__terms-text">моковые данные</div>
+            </div>
+            <div class="application__terms-item">
+              <div class="application__terms-number application__terms-number--payment"> их</div>
+              <div class="application__terms-text">нужно сделать вместе с выбором оффера</div>
+            </div>
+            <div class="application__terms-item">
+              <div class="application__terms-number application__terms-number--payment"> и найти</div>
+              <div class="application__terms-text">замену для библиотеки</div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
   </main>
 </template>
 <script setup lang="ts">
-import ContentBlock from '~/components/TextContent/ContentBlock.vue';
 import ApplicationBankCard from '~/components/Application/ApplicationBankCard.vue';
 </script>
