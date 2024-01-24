@@ -12,23 +12,7 @@
     <template #default>
       <div class="modal__wrap">
         <div class="benefits grid__col-12 benefits--modal">
-          <ul class="benefits__list benefits__list--car">
-            <li class="benefits__item" v-for="(benefit, index) in benefits" :key="index">
-              <TwoSideBadge class="benefits__link popup--link">
-                <template #title>
-                  <nuxt-icon class="benefits__icon" :name="`icon-${benefit.icon}`"/>
-                </template>
-                <template #right-content>
-                  <div class="benefits__text">
-                    {{ benefit.text }}
-                    <div class="benefits__text-strong">
-                      {{ benefit.text_strong }}
-                    </div>
-                  </div>
-                </template>
-              </TwoSideBadge>
-            </li>
-          </ul>
+          <Benefits type="credit" />
         </div>
         <div class="application application--modal grid__col-12 grid grid--application grid--application-modal">
           <div class="application__form grid__col-4">
@@ -72,7 +56,7 @@
                   <!--                                type="text"/>-->
                 </label>
                 <label class="form__field-wrap">
-                  <InputMask class="form__field" mask="+7 (999) 999-9999" placeholder="Телефон" :unstyled="true"/>
+                  <InputMask class="form__field" :mask="validation.phone.mask" placeholder="Телефон" :unstyled="true"/>
                   <!--                       :class="phoneClass">-->
                   <!--                  <inputs-input placeholder="Телефон"-->
                   <!--                                @input="handlerInput('phone')"-->
@@ -107,19 +91,13 @@
 </template>
 
 <script setup lang="ts">
-import { useBenefitsStore } from '~/store/benefitsStore';
-import TwoSideBadge from '~/components/Inputs/TwoSideBadge.vue';
 import CheckBoxForm from '~/components/Form/form-components/CheckBoxForm.vue';
+import Benefits from '~/components/Benefits/Benefits.vue';
 
 const props = defineProps<{
   modelValue: boolean
 }>();
-const benefitsStore = useBenefitsStore();
-const benefits = computed(() => benefitsStore.find('credit'));
 const isVisible = ref(props.modelValue);
-
-const check = ref(false);
-
 defineEmits(['update:modelValue']);
 watch(() => props.modelValue, (val) => isVisible.value = val);
 </script>

@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="grid__col-12 grid grid--application">
-          <FormConstructor>
+          <FormConstructor :inputs="inputs">
             <template #name>
               Рассрочка
               <span class="heading__promo">0%</span>
@@ -30,34 +30,29 @@
                 </template>
               </FormCreditCalculator>
             </template>
-            <template #inputs>
-              <label class="form__field-wrap">
-                <InputText placeholder="ФИО" class="form__field" type="text" :unstyled="true"/>
-              </label>
-              <label class="form__field-wrap">
-                <InputText placeholder="Телефон" class="form__field" mask="phone" type="tel"/>
-              </label>
-              <label class="form__checkbox-wrap checkbox">
-                <Checkbox class="form__checkbox visually-hidden"/>
-                <nuxt-icon name="icon-checkmark"
-                           class="checkbox__icon"/>
-                <span class="form__checkbox-text">Подтверждаю наличие гражданства РФ</span>
-              </label>
-              <label class="form__checkbox-wrap checkbox">
-                <Checkbox class="form__checkbox visually-hidden"/>
-                <nuxt-icon name="icon-checkmark"
-                           class="checkbox__icon"/>
-                <span class="form__checkbox-text">Согласен на обработку
-                    <a href="/privacy" class="form__checkbox-text-link" rel="nofollow" target="_blank">
-                      персональных данных
-                    </a>
-                </span>
-              </label>
-              <Button class="button button--credit button--form" :unstyled="true">
-                Оставить заявку
-              </Button>
-            </template>
           </FormConstructor>
+
+          <button class="application__choose-car grid__col-8">
+            <nuxt-icon class="application__choose-car-icon" name="icon-form" />
+            <span class="application__choose-car-text">Выберите автомобиль</span>
+          </button>
+
+          <ContentBlock class="application__terms grid__col-3">
+            <template #content>
+              <div class="application__terms-item">
+                <div class="application__terms-number application__terms-number--stake"> это </div>
+                <div class="application__terms-text">моковые данные</div>
+              </div>
+              <div class="application__terms-item">
+                <div class="application__terms-number application__terms-number--stake"> их </div>
+                <div class="application__terms-text">нужно сделать вместе с выбором оффера</div>
+              </div>
+                <div class="application__terms-item">
+                  <div class="application__terms-number application__terms-number--stake"> и найти </div>
+                  <div class="application__terms-text">замену для библиотеки</div>
+                </div>
+            </template>
+          </ContentBlock>
         </div>
       </section>
     </div>
@@ -66,6 +61,34 @@
 <script setup lang="ts">
 import FormCreditCalculator from '~/components/Form/form-components/FormCreditCalculator.vue';
 import { ref } from '#imports';
+import { Input } from '~/components/Form/FormConstructor.vue';
+import validation from '~/composables/validation';
+import ContentBlock from '~/components/TextContent/ContentBlock.vue';
+
+const inputs = ref<Input[]>([
+  {
+    name: 'fullName',
+    component: 'InputText',
+    attrs: {
+      type: 'text',
+      placeholder: 'ФИО',
+      class: 'form__field',
+    },
+    validationRule: validation.value.fullName.rule,
+  },
+  {
+    name: 'phone',
+    component: 'InputMask',
+    attrs: {
+      type: 'tel',
+      placeholder: 'Телефон',
+      mask: validation.value.phone.mask,
+      class: 'form__field',
+      autoClear: false
+    },
+    validationRule: validation.value.phone.rule,
+  },
+]);
 
 const creditParams = ref({
   rangePeriodValues: {
