@@ -5,7 +5,7 @@
     </div>
     <div class="page-main__car car">
       <div class="grid grid--container" v-if="isMobile">
-<!--        <Benefits :type="currentBenefitsType" class="car__benefits"/>-->
+        <!--        <Benefits :type="currentBenefitsType" class="car__benefits"/>-->
       </div>
       <div class="grid grid--container">
         <div class="heading-group heading-group--h1 grid__col-6">
@@ -55,6 +55,10 @@
       </div>
       <div class="grid grid--car grid--container grid__col-12">
         <OfferBuy/>
+        <transition name="slide-fade">
+          <OfferFixed v-if="showFixed"/>
+        </transition>
+        <OfferInfo />
       </div>
     </div>
 
@@ -66,6 +70,8 @@
 // import Benefits from '~/components/Benefits/index.vue';
 import OfferSlider from '~/components/Offer/Slider.vue';
 import OfferBuy from '~/components/Offer/Buy.vue';
+import OfferFixed from '~/components/Offer/Fixed.vue';
+import OfferInfo from '~/components/Offer/Info.vue';
 
 const { isMobile } = useDevice();
 
@@ -73,6 +79,7 @@ const { isMobile } = useDevice();
 //   return 'credit';
 // });
 
+let showFixed = ref(false);
 
 function callback() {
   console.log('callback');
