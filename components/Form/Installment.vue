@@ -6,7 +6,7 @@
         <span class="heading__promo">{{ $settings.first_installment }}</span>
       </template>
       <template #car-choose>
-        <Button class="form__field">
+        <Button class="form__field" @click="isModalVisible = true">
           {{ 'Выбрать автомобиль' }}
         </Button>
         <nuxt-icon name="icon-form" class="form__car-icon"/>
@@ -20,6 +20,16 @@
       </template>
     </FormConstructor>
   </div>
+  <Sidebar v-model:visible="isModalVisible" position="right" header="Выберите автомобиль" class="modal">
+    <template #header>
+      <div class="heading-group heading-group--modal">
+        <div class="heading-group__wrap">
+          <h2 class="heading heading--h1">Выберите автомобиль</h2>
+        </div>
+      </div>
+    </template>
+    <OfferSelection/>
+  </Sidebar>
 </template>
 
 <script setup lang="ts">
@@ -27,6 +37,7 @@ import FormCreditCalculator from '~/components/Form/form-components/FormCreditCa
 import { ref } from '#imports';
 import validation from '~/composables/validation';
 import { Input } from '~/components/Form/FormConstructor.vue';
+import OfferSelection from '~/components/Modals/OfferSelection.vue';
 
 const inputs = ref<Input[]>([
   {
@@ -52,6 +63,8 @@ const inputs = ref<Input[]>([
     validationRule: validation.value.phone.rule,
   },
 ]);
+
+const isModalVisible = ref(false);
 
 const creditParams = ref({
   rangePeriodValues: {
