@@ -43,6 +43,9 @@
           </div>
         </div>
       </section>
+      <div class="benefits grid__col-12">
+      <Benefits type="installment" />
+      </div>
     </div>
   </main>
 </template>
