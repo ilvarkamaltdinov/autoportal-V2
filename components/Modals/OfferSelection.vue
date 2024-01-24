@@ -54,7 +54,6 @@ const tabs = computed<Tab[]>(() =>
 );
 const currentTab = shallowRef(tabs.value[0]);
 
-//optional, just for show
 const componentProps = ref({
   mark: null,
   folder: null,

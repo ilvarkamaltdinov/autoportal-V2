@@ -18,7 +18,7 @@
           'form__field-wrap--error': errors[name],
           'form__field-wrap--success': isFieldValid(name)
         }">
-          <component :is="component" v-bind="attrs" :unstyled="true" :modelValue="fields[name]" @update:model-value="$event !== '' ? fields[name] = $event: null" />
+          <component :is="component" v-bind="attrs" :unstyled="true" :modelValue="fields[name]" @update:model-value="fields[name] = $event" />
         </div>
         <slot name="inputs" />
         <CheckBoxForm v-model="grazhdanstvo" :class="{
