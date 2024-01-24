@@ -31,7 +31,7 @@ export const useMarks = defineStore('marks', {
   actions: {
     async getAllMarksFillPopular() {
       if (this.allMarks.length) {
-        return;
+        return this.allMarks;
       }
       const { data } = await request<{ marks: Mark[] }, MarksQueryVariables>(marks);
       this.allMarks = data.value.marks;

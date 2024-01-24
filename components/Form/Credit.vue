@@ -6,7 +6,7 @@
         <span class="heading__promo">{{ $settings.credit_percent }}</span>
       </template>
       <template #car-choose>
-        <Button class="form__field">
+        <Button class="form__field" @click="modalVisibility = true">
           {{ 'Выбрать автомобиль' }}
         </Button>
         <nuxt-icon name="icon-form" class="form__car-icon"/>
@@ -32,6 +32,7 @@
   </Sidebar>
 </template>
 <script setup lang="ts">
+//todo пофиксить высоту контейнера, она выше чем левый блок со сторизами
 import { useModals, ModalOfferSelection_offerType } from '~/store/modals';
 import { OfferQuery } from '~/types/graphql';
 import { computed, ref } from '#imports';

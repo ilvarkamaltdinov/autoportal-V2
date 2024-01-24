@@ -1,4 +1,57 @@
-<template></template>
+<template>
+  <div class="modal__options">
+    <div class="tabs tabs--modal">
+      <ul class="tabs__list"
+          id="tabs"
+          role="tablist">
+        <TwoSideBadge class="tabs__link" v-for="tab in tabs" :key="tab.title" @click="currentComponent = tab.component">
+          <template #title>
+            {{ tab.title }}
+          </template>
+        </TwoSideBadge>
+        <!--        <tabs-item :is-active="tabComponent === 'model'"-->
+        <!--                   :class="{'tabs__item&#45;&#45;disabled':!currentMark}">-->
+        <!--          <button class="tabs__link"-->
+        <!--                  @click="tabClick('model')">-->
+        <!--            {{ currentModel ? '2. ' + currentModel.title : '2. Модель' }}-->
+        <!--          </button>-->
+        <!--        </tabs-item>-->
+        <!--        <tabs-item :is-active="tabComponent === 'generation'"-->
+        <!--                   :class="{'tabs__item&#45;&#45;disabled':!currentModel}">-->
+        <!--          <button class="tabs__link"-->
+        <!--                  @click="tabClick('generation')">-->
+        <!--            {{ currentGeneration ? '3. ' + currentGeneration.name : '3. Поколение' }}-->
+        <!--          </button>-->
+        <!--        </tabs-item>-->
+        <!--        <tabs-item :is-active="tabComponent === 'car'"-->
+        <!--                   :class="{'tabs__item&#45;&#45;disabled':!currentGeneration}">-->
+        <!--          <button class="tabs__link"-->
+        <!--                  @click="tabClick('car')">-->
+        <!--            4. Автомобиль-->
+        <!--          </button>-->
+        <!--        </tabs-item>-->
+      </ul>
+    </div>
+  </div>
+  <component :is="currentComponent"/>
+</template>
+
+<script setup lang="ts">
+import TwoSideBadge from '~/components/Inputs/TwoSideBadge.vue';
+
+const tabs = computed(() =>
+  [
+    {
+      title: '1. Марка',
+      component: defineAsyncComponent(() => import('~/components/Modals/ChooseCarBrand.vue')),
+    },
+    {
+      title: '2. Модель',
+      component: defineAsyncComponent(() => import('~/components/Modals/ChooseCarBrand.vue')),
+    }
+  ]);
+const currentComponent = shallowRef(tabs.value[0].component);
+</script>
 
 <!--<template>-->
 <!--  <div class="modal__options">-->
@@ -37,58 +90,6 @@
 <!--          </button>-->
 <!--        </li>-->
 <!--      </ul>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div v-if="tabComponent === 'mark'">-->
-<!--    <div class="modal__wrap" v-if="isMobile">-->
-<!--      &lt;!&ndash;                  <makes :for-chose-modal="true"/>&ndash;&gt;-->
-<!--    </div>-->
-<!--    <div class="modal__wrap modal__wrap&#45;&#45;modal" v-else>-->
-<!--      <div class="makes__letters">-->
-<!--        <ul class="makes__letters-list">-->
-<!--          <li v-for="item in getAlphabet(marks)">-->
-<!--            <a href="#" class="makes__letters-link">-->
-<!--              {{ item }}-->
-<!--            </a>-->
-<!--          </li>-->
-<!--        </ul>-->
-<!--      </div>-->
-<!--      <div class="makes">-->
-<!--        <div class="makes__wrap">-->
-<!--          <ul class="makes__list makes__list&#45;&#45;popular">-->
-<!--            <li v-for="mark in getPopularMarks(marks, 10)"-->
-<!--                class="makes__popular-item">-->
-<!--                    <span class="makes__popular-link ">-->
-<!--                      <nuxt-icon :name="'icon-' + mark.title.toLowerCase()"-->
-<!--                                 class="makes__popular-logo"/>-->
-<!--                    </span>-->
-<!--            </li>-->
-<!--          </ul>-->
-<!--          <div class="makes__group"-->
-<!--               v-for="letter in getAlphabet(marks)"-->
-<!--               :key="letter">-->
-<!--            <div class="makes__letter-item">-->
-<!--              <a class="makes__letters-link"-->
-<!--                 :id="letter"-->
-<!--                 href="">-->
-<!--                {{ letter }}-->
-<!--              </a>-->
-<!--            </div>-->
-<!--            <ul class="makes__list makes__list&#45;&#45;modal">-->
-<!--              <li class="makes__item" @click="selectMark(mark)" v-for="mark in filterMarksByLetter(marks, letter)">-->
-<!--                      <span class="makes__link">-->
-<!--                        <span class="makes__title">-->
-<!--                          {{ mark.title }}-->
-<!--                        </span>-->
-<!--                        <span class="makes__qty">-->
-<!--                          {{ mark.offers_count }}-->
-<!--                        </span>-->
-<!--                      </span>-->
-<!--              </li>-->
-<!--            </ul>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
 <!--    </div>-->
 <!--  </div>-->
 <!--  <div v-if="tabComponent === 'folder'">-->

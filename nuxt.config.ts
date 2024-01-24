@@ -55,7 +55,7 @@ export default defineNuxtConfig({
     '@fancyapps/ui/dist/fancybox/fancybox.css',
     '@vueform/slider/themes/default.css',
     'v3-infinite-loading/lib/style.css',
-    'primevue/resources/themes/md-dark-deeppurple/theme.css'
+    '@/assets/themes/mytheme/theme.scss'
   ],
   modules: [
     'nuxt-icon',
