@@ -51,15 +51,20 @@ const tabs = computed(() =>
     {
       title: '2. Модель',
       component: defineAsyncComponent(() => import('~/components/Modals/ChooseModel.vue')),
+    },
+    {
+      title: '3. Поколение',
+      component: defineAsyncComponent(() => import('~/components/Modals/ChooseGeneration.vue')),
     }
   ]
 );
 const currentTab = shallowRef(tabs.value[0]);
-const chosenMark = ref(null);
 
-
+//optional, just for show
 const componentProps = ref({
-  mark: chosenMark.value,
+  mark: null,
+  folder: null,
+  generation: null,
 });
 
 function nextTab() {
@@ -69,6 +74,7 @@ function nextTab() {
 
 function setCarData(name: keyof UnwrapRef<typeof componentProps>, event: any) {
   componentProps.value[name] = event;
+  console.log(componentProps);
   nextTab();
 }
 </script>
