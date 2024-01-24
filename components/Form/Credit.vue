@@ -1,5 +1,5 @@
 <template>
-  <form class="form" @submit.prevent="submitForm()">
+  <div class="application__form grid__col-4">
     <FormConstructor :inputs="inputs">
       <template #name>
         Автокредит от
@@ -19,7 +19,7 @@
         </FormCreditCalculator>
       </template>
     </FormConstructor>
-  </form>
+  </div>
   <Sidebar v-model:visible="isModalVisible" position="right" header="Выберите автомобиль" class="modal">
     <template #header>
       <div class="heading-group heading-group--modal">

@@ -130,7 +130,7 @@ const menuList = computed(() => {
     },
     {
       title: 'Автокредит',
-      link: '/',
+      link: '/credit',
     },
     {
       title: 'Trade-In',
