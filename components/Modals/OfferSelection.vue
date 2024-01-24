@@ -4,7 +4,8 @@
       <ul class="tabs__list"
           id="tabs"
           role="tablist">
-        <TwoSideBadge class="tabs__link" v-for="tab in tabs" :key="tab.title" @click="currentComponent = tab.component">
+        <TwoSideBadge class="tabs__link" v-for="tab in tabs" :key="tab.title"
+                      @click="currentTab = tab">
           <template #title>
             {{ tab.title }}
           </template>
@@ -33,7 +34,7 @@
       </ul>
     </div>
   </div>
-  <component :is="currentComponent"/>
+  <component :is="currentTab.component" @select="(name, event) => {componentProps[name] = event; nextTab()}" v-bind="componentProps" />
 </template>
 
 <script setup lang="ts">
@@ -47,10 +48,22 @@ const tabs = computed(() =>
     },
     {
       title: '2. Модель',
-      component: defineAsyncComponent(() => import('~/components/Modals/ChooseCarBrand.vue')),
+      component: defineAsyncComponent(() => import('~/components/Modals/ChooseModel.vue')),
     }
-  ]);
-const currentComponent = shallowRef(tabs.value[0].component);
+  ]
+);
+
+const chosenMark = ref(null);
+
+const componentProps = ref({
+  mark: chosenMark.value,
+});
+const currentTab = shallowRef(tabs.value[0]);
+
+function nextTab() {
+  const index = tabs.value.findIndex((val) => val.title === currentTab.value.title) + 1;
+  currentTab.value = tabs.value[index];
+}
 </script>
 
 <!--<template>-->

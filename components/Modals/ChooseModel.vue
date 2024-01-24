@@ -5,7 +5,7 @@
       <div class="makes">
         <div class="makes__wrap">
           <ul class="makes__list makes__list--models">
-            <li class="makes__item" @click="selectFolder(folder)" v-for="folder in folders">
+            <li class="makes__item" @click="selectFolder(folder)" v-for="folder in mark.folders">
                       <span class="makes__link">
                         <span class="makes__title">
                           {{ folder.title }}
@@ -23,5 +23,11 @@
 </template>
 
 <script setup lang="ts">
+import { MarkFolder } from '~/types/graphql';
 
+const props = defineProps<{
+  mark: MarkFolder
+}>();
+
+console.log(props.mark);
 </script>

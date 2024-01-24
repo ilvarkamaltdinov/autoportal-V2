@@ -1,12 +1,11 @@
 import { defineStore } from 'pinia';
 import { request } from '~/utils/request';
-import { Mark } from '~/app/types/marks';
-import { MarksQueryVariables } from '~/types/graphql';
-import { marks } from '~/apollo/queries/marks';
+import { MarkFolder, MarkFolderGenerationQueryVariables } from '~/types/graphql';
+import { markFolderGeneration } from '~/apollo/queries/markFolderGeneration';
 
 type MarksState = {
-    allMarks: Mark[];
-    popularMarks: Mark[];
+    allMarks: MarkFolder[];
+    popularMarks: MarkFolder[];
     popularMarksNames: string[];
     marksQuantity: number;
 };
@@ -33,9 +32,9 @@ export const useMarks = defineStore('marks', {
       if (this.allMarks.length) {
         return this.allMarks;
       }
-      const { data } = await request<{ marks: Mark[] }, MarksQueryVariables>(marks);
-      this.allMarks = data.value.marks;
-      this.popularMarks = this.popularMarksNames.map((name) => this.allMarks.find((mark) => mark.slug === name)) as Mark[];
+      const { data: { value: { markFolderGeneration: markFolders } } } = await request<{ markFolderGeneration: MarkFolder[] }, MarkFolderGenerationQueryVariables>(markFolderGeneration, { category: '' } );
+      this.allMarks = markFolders;
+      this.popularMarks = this.popularMarksNames.map((name) => this.allMarks.find((mark) => mark.slug === name)) as MarkFolder[];
       if (!this.marksQuantity) {
         this.allMarks.forEach((mark) => {
           this.marksQuantity += mark.offers_count;

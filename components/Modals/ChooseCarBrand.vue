@@ -30,7 +30,7 @@
             </a>
           </div>
           <ul class="makes__list makes__list--modal">
-            <li class="makes__item" @click="selectMark(mark)" v-for="mark in filterMarksByLetter(allMarks, letter)"
+            <li class="makes__item" @click="$emit('select', 'mark', mark)" v-for="mark in filterMarksByLetter(allMarks, letter)"
                 :key="mark.id">
                       <span class="makes__link">
                         <span class="makes__title">
