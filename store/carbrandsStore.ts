@@ -32,7 +32,9 @@ export const useMarks = defineStore('marks', {
       if (this.allMarks.length) {
         return this.allMarks;
       }
-      const { data: { value: { markFolderGeneration: markFolders } } } = await request<{ markFolderGeneration: MarkFolder[] }, MarkFolderGenerationQueryVariables>(markFolderGeneration, { category: '' } );
+      const { data: { value: { markFolderGeneration: markFolders } } } = await request<{ markFolderGeneration: MarkFolder[] }, MarkFolderGenerationQueryVariables>(
+        markFolderGeneration, { category: '' }
+      );
       this.allMarks = markFolders;
       this.popularMarks = this.popularMarksNames.map((name) => this.allMarks.find((mark) => mark.slug === name)) as MarkFolder[];
       if (!this.marksQuantity) {
