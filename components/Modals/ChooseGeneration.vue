@@ -29,7 +29,10 @@
 <script setup lang="ts">
 import { FolderGeneration } from '~/types/graphql';
 
-defineProps<{
+const props = defineProps<{
   folder: FolderGeneration
 }>();
+
+const emit = defineEmits(['select']);
+props.folder.generations.length === 1 && emit('select', 'generation', props.folder.generations[0]);
 </script>
