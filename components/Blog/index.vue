@@ -8,11 +8,16 @@
       <span class="heading-group__label">Лучшее из мира автомобилей</span>
     </div>
   </div>
+
+  {{pending}}
+
   <div class="blog__wrap grid__col-12">
-    <template v-for="(article) in (isIndex ? [blogCategories![0]] : blogCategories) as ArticleCategory[]" :key="article.id">
+    <template v-for="(article) in (isIndex ? [value?.articleCateogry![0]] : value?.articleCategory) as ArticleCategory[]"
+              :key="article.id">
       <h2 class="heading heading--h2" v-if="!isIndex">{{ article.page_title }}</h2>
       <ul class="blog__list">
-        <BlogArticle v-for="(item, index) in article.articles" :key="item.id" :to="item.url" :class="getArticleClass(index)">
+        <BlogArticle v-for="(item, index) in article.articles" :key="item.id" :to="item.url"
+                     :class="getArticleClass(index)">
           <template #title>
             {{ item.page_title }}
           </template>
@@ -30,6 +35,7 @@
 import BlogArticle from '~/components/Blog/Article.vue';
 import { requestBlogCategories } from '~/utils/request';
 import { ArticleCategory, ArticlesPaginateQueryVariables } from '~/types/graphql';
+import { useAsyncData } from '#app';
 
 const route = useRoute();
 defineProps<{
@@ -42,21 +48,19 @@ let variables = computed<ArticlesPaginateQueryVariables>(() => {
     limit: 7
   };
 });
-function getArticleClass (index: number) {
+
+function getArticleClass(index: number) {
   return {
     '0': 'blog__item--vertical',
     '3': 'blog__item--horizontal',
   }[index];
 }
 
-async function getBlogCategories() {
-  const { data } = await requestBlogCategories(variables.value);
-  blogCategories.value = data.value?.articleCategory;
-}
+// async function getBlogCategories() {
+//   const { data } = await requestBlogCategories(variables.value);
+//   blogCategories.value = data.value?.articleCategory;
+// }
 
-watch(route, async () => {
-  await getBlogCategories();
-}, { immediate: true });
-
-
+// await getBlogCategories();
+const { data: { value }, pending } = await useAsyncData('blogs', async () => (await requestBlogCategories(variables.value)).data);
 </script>
