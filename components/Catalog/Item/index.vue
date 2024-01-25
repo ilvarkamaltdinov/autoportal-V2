@@ -35,7 +35,7 @@
           <div class="catalog__credit-price">
             <slot name="price-credit">
 <!--              todo fix me wrong price-->
-              {{ creditPrice(offer.price) }}₽ / мес. без взноса
+              {{ creditPrice(offer.price) }} ₽ / мес. без взноса
             </slot>
           </div>
           <slot name="stock">
@@ -47,10 +47,7 @@
       </div>
       <div class="catalog__tech">
         <slot name="tech">
-          <div class="rating" style="--rating-number: 80; --rating-color: #0DC268;" data-tippy-directive=""
-               tabindex="0">
-            {{ engineVolume(offer.engine_volume) }}
-          </div>
+          <Rating :rating="offer.rating.rating_total" :max="10" />
           <ul class="catalog__tech-list">
             <li class="catalog__tech-item">
               {{ numberFormat(offer.run) }} км
