@@ -9,8 +9,6 @@
     </div>
   </div>
 
-  {{pending}}
-
   <div class="blog__wrap grid__col-12">
     <template v-for="(article) in (isIndex ? [value?.articleCateogry![0]] : value?.articleCategory) as ArticleCategory[]"
               :key="article.id">
@@ -56,6 +54,6 @@ function getArticleClass(index: number) {
 
 const nuxtApp = useNuxtApp();
 const { data: { value }, pending } = await useAsyncData('blogs', async () => (await requestBlogCategories(variables.value)).data, {
-  getCachedData: (key) => nuxtApp.payload.data[key] || nuxtApp.static.data[key]
+  getCachedData: (key: string) => nuxtApp.payload.data[key] || nuxtApp.static.data[key]
 });
 </script>
