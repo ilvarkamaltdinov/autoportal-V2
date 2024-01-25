@@ -12,26 +12,30 @@
           <h3 class="catalog__heading">
             <slot name="heading">
               <nuxt-link to="/used/mark/model/123" class="catalog__title-link">
-                <span class="catalog__title"> Hyundai Sonata <span>, {{ engineVolume(2) }} </span></span> <span
-                  class="catalog__year">2007</span>
+                <span class="catalog__title">
+                  {{ offer.mark.title }} {{ offer.folder.title }}
+                  <span>, {{ engineVolume(offer.engine_volume) }} </span>
+                </span>
+                <span class="catalog__year">{{ offer.year }}</span>
               </nuxt-link>
             </slot>
           </h3>
         </div>
         <div class="catalog__price-wrap">
           <div class="catalog__price">
-            <slot name="price">
-              {{ numberFormat(300000) }} ₽
+            <slot name="price" :format="numberFormat" :postfix="'₽'">
+              {{ numberFormat(offer.price) }} ₽
             </slot>
           </div>
           <div class="catalog__price-old">
             <slot name="price-old">
-              {{ numberFormat(400000) }} ₽
+              {{ numberFormat(offer.price_old) }} ₽
             </slot>
           </div>
           <div class="catalog__credit-price">
             <slot name="price-credit">
-              {{ creditPrice(300000) }}₽ / мес. без взноса
+<!--              todo fix me wrong price-->
+              {{ creditPrice(offer.price) }}₽ / мес. без взноса
             </slot>
           </div>
           <slot name="stock">
@@ -45,21 +49,27 @@
         <slot name="tech">
           <div class="rating" style="--rating-number: 80; --rating-color: #0DC268;" data-tippy-directive=""
                tabindex="0">
-            {{ engineVolume(2) }}
+            {{ engineVolume(offer.engine_volume) }}
           </div>
           <ul class="catalog__tech-list">
             <li class="catalog__tech-item">
-              {{ numberFormat(179205) }} км
+              {{ numberFormat(offer.run) }} км
             </li>
             <li class="catalog__tech-item">
-              137 л.с.
+              <!--              todo fixme предусмотреть электрички-->
+              {{ offer.engine_power }} л.с.
             </li>
-            <li class="catalog__tech-item">АКПП</li>
-            <li class="catalog__tech-item">Бензин
+            <li class="catalog__tech-item">
+              {{ offer.gearbox.title_short_rus }}
             </li>
-            <li class="catalog__tech-item">2 владельца
+            <li class="catalog__tech-item">
+              {{ offer.engineType.title }}
             </li>
-            <li class="catalog__tech-item">Передний
+            <li class="catalog__tech-item">
+              {{ offer.owner.title }}
+            </li>
+            <li class="catalog__tech-item">
+              {{ offer.driveType.title }}
             </li>
           </ul>
         </slot>
@@ -157,9 +167,11 @@
 import CatalogItemImage from '~/components/Catalog/Item/Image.vue';
 import { creditPrice, engineVolume, numberFormat } from '~/utils/filters';
 import ButtonFavorite from '~/components/Button/ButtonFavorite.vue';
+import { Offer } from '~/types/graphql';
 
 const props = defineProps<{
-  view?: string
+  view?: string,
+  offer?: Offer
 }>();
 
 const isFavorite = ref<boolean>(false);

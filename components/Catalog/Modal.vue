@@ -1,9 +1,6 @@
 <template>
   <div class="catalog__list grid grid--catalog">
-    <CatalogItem v-for="offer in offers" :key="offer.id">
-      <template #price>
-        {{offer.price}}
-      </template>
+    <CatalogItem v-for="offer in offers" :key="offer.id" :offer="offer">
       <template #main-button>
         <Button class="button button--credit" @click="$emit('select', 'car', offer)">Выбрать</Button>
       </template>
@@ -68,7 +65,6 @@ const getOffers = async () => {
   const fetchedOffers = await offersStore.fetchOffers(variables.value);
   offers.value.push(...fetchedOffers.data);
   lastPage.value = fetchedOffers.last_page;
-  console.log(fetchedOffers.last_page);
 };
 
 async function load({ loaded }: LoadAction) {
