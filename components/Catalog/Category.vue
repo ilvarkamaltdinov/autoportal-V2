@@ -10,10 +10,78 @@
           </div>
         </div>
       </div>
-      <CatalogItem grid v-for="i in 6" :key="i"/>
+      <CatalogItem view="short">
+        <template #heading>
+          Дефолтная карточка
+        </template>
+      </CatalogItem>
+      <CatalogItem view="short">
+        <template #slider>
+          <img src="~/assets/img/repair@1x.png" alt="">
+        </template>
+        <template #heading>
+          Карточка со слотами
+        </template>
+        <template #price>
+          test price
+        </template>
+        <template #price-old>
+          test price old
+        </template>
+        <template #price-credit>
+          test price-credit
+        </template>
+        <template #stock>
+          <div class="stock stock--true" data-tippy-directive="" tabindex="0">
+            stock
+          </div>
+        </template>
+        <template #tech>
+          <Rating :max="5" :rating="4"/>
+          <ul class="catalog__tech-list">
+            <li class="catalog__tech-item">
+              test tech
+            </li>
+            <li class="catalog__tech-item">
+              test tech
+            </li>
+            <li class="catalog__tech-item">
+              test tech
+            </li>
+            <li class="catalog__tech-item">
+              test tech
+            </li>
+          </ul>
+        </template>
+        <template #actions-button-left>
+          <button class="button button--action button--call">
+            1
+          </button>
+        </template>
+        <template #actions-button-right>
+          <button class="button button--action button--call">
+            2
+          </button>
+        </template>
+        <template #main-button-left>
+          <button class="button button--credit">
+            main-button-1
+          </button>
+        </template>
+        <template #main-button-right>
+          <button class="button button--credit">
+            main-button-2
+          </button>
+        </template>
+      </CatalogItem>
+      <CatalogItem view="long">
+        <template #heading>
+          Длинная карточка
+        </template>
+      </CatalogItem>
       <div class="grid__col-8">
         <button class="button button--link button--more"
-                @click="paginationClick('button')">
+                @click="paginationClick">
           Далее
         </button>
       </div>
@@ -43,6 +111,9 @@
 </template>
 
 <script setup lang="ts">
-
 import CatalogItem from '~/components/Catalog/Item/index.vue';
+
+function paginationClick() {
+  console.log('paginationClick');
+}
 </script>
