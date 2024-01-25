@@ -40,10 +40,8 @@
 </template>
 <script setup lang="ts">
 import CatalogItem from '~/components/Catalog/Item/index.vue';
-import { offersGql } from '~/apollo/queries/offer/offers';
 import { VueEternalLoading, LoadAction } from '@ts-pro/vue-eternal-loading';
-import { request } from '~/utils/request';
-import { Offer, OffersQueryVariables, OfferTypePagination } from '~/types/graphql';
+import { Offer, OffersQueryVariables } from '~/types/graphql';
 import { useOffers } from '~/store/offersStore';
 
 const offersStore = useOffers();

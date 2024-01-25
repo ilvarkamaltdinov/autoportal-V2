@@ -15,7 +15,6 @@ export const useOffers = defineStore('offers', {
 
   actions: {
     async fetchOffers(variables: OffersQueryVariables) {
-      console.log(variables);
       // if(this.offers.length > 0) return this.offers;
       const { data: { value: { offers } } } = await request<{ offers: OfferTypePagination }, OffersQueryVariables>(offersGql, variables);
       this.offers = offers;
