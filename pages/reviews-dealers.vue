@@ -67,8 +67,8 @@ import { storeToRefs } from 'pinia';
 
 const activeTab = ref(0);
 const dealersStore = useDealers();
-dealersStore.fetchDealers();
 const { dealers } = storeToRefs(dealersStore);
+await dealersStore.fetchDealers();
 dealers.value = dealers.value.filter(item => item.youtube_playlist_review);
 const reviews = ref<VideoItem[]>([]);
 const showingVideo = ref<string | null>(null);
@@ -76,13 +76,11 @@ const nextPageToken = ref<string | null>(null);
 const showMore = ref(true);
 const activeToken = computed(() => dealers.value[activeTab.value].youtube_playlist_review);
 
-onMounted(async () => {
-  try {
-    await getPlaylist(nextPageToken.value, dealers.value[0].youtube_playlist_review);
-  } catch (error) {
-    console.log(error);
-  }
-});
+try {
+  await getPlaylist(nextPageToken.value, dealers.value[0].youtube_playlist_review);
+} catch (error) {
+  console.log(error);
+}
 
 function getReviews(dealer: Dealer, index: number) {
   reviews.value = [];
