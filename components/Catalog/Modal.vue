@@ -2,7 +2,7 @@
   <div class="catalog__list grid grid--catalog">
     <CatalogItem v-for="offer in offers" :key="offer.id" :offer="offer">
       <template #main-button>
-        <Button class="button button--credit" @click="$emit('select', 'car', offer)">Выбрать</Button>
+        <Button class="button button--credit" @click="select('car', offer)">Выбрать</Button>
       </template>
     </CatalogItem>
     <VueEternalLoading v-if="currentPage <= lastPage" :load="load">
