@@ -3,7 +3,6 @@
     <img :data-src="coverSrc"
          @load="onImgLoad"
          :class="className"
-         alt="offer.title"
          :src="coverSrc"/>
     <div class="tmb-wrap">
       <div class="tmb-wrap-table"
@@ -26,9 +25,13 @@ const props = defineProps<{
   images: Offer['images'];
 }>();
 
+// зачем
 let className = ref<string>('');
+// писать
 let limit = ref<number>(10);
+// типы
 let forceCoverPhoto = ref<string | null>(null);
+// для ref?
 let activeThumb = ref<number>(0);
 const onImgLoad = () => {
   className.value = 'loaded';
