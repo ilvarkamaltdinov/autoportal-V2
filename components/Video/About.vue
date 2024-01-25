@@ -26,7 +26,7 @@
       <div v-else
            class="video__img-wrap">
         <NuxtImg class="video__img"
-                 src="/img/video/iphone@1x.png"
+                 src="/video/iphone@1x.png"
                  alt=""/>
       </div>
       <p class="video__text">Узнай, почему на {{ $settings.dealer_anchor }} лучшие цены в России!</p>

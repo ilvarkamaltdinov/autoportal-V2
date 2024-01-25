@@ -23,7 +23,7 @@
         </template>
         <template #image>
           <div class="dealers__item-img-wrap">
-            <NuxtImg class="dealers__item-img" :src="filter.replaceApiUrl(images[0].medium)"/>
+            <NuxtImg class="dealers__item-img" :src="filter.replaceApiUrl(images[0].medium)" format="webp"/>
             <button @click="showMore(slug)"
                     class="button--show">
               Подробнее о дилере

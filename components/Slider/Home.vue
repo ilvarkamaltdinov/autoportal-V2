@@ -19,9 +19,9 @@
         <div class="slider-index__media-wrap">
           <div class="slider-index__media">
             <NuxtImg data-aos="fade-up" class="slider-index__media slider-index__media--element lazyload"
-                     :src="`/img/slider-index/slider-index-${slide.id}/slider-index-element-${slide.id}@2x.webp`"/>
+                     :src="`/slider-index/slider-index-${slide.id}/slider-index-element-${slide.id}@2x.webp`"/>
             <NuxtImg data-aos="fade-right" class="slider-index__media slider-index__media--car lazyload"
-                     :src="`/img/slider-index/slider-index-${slide.id}/slider-index-car-${slide.id}@2x.webp`"/>
+                     :src="`/slider-index/slider-index-${slide.id}/slider-index-car-${slide.id}@2x.webp`"/>
           </div>
         </div>
         <div class="slider-index__text-wrap">

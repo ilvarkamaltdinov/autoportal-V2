@@ -8,7 +8,7 @@
         от {{ bank.bank!.rate }} %
       </template>
       <template #image>
-        <NuxtImg :src="`/img/featured/featured-${bank.pictureNumber}@2x.png`" densities="1x 2x" format="webp"
+        <NuxtImg :src="`/featured/featured-${bank.pictureNumber}@2x.png`" densities="1x 2x" format="webp"
                  class="featured__img lazyload"/>
       </template>
     </BankCard>

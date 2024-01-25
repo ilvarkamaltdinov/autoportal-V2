@@ -14,7 +14,7 @@
         <div class="about__block grid__col-12 grid text">
           <ContentBlock class="grid__col-7">
             <template #figure>
-              <NuxtImg class="text__figure-img" src="/img/figures/figure-5@2x.png"/>
+              <NuxtImg class="text__figure-img" src="/figures/figure-5@2x.png"/>
             </template>
             <template #content>
               <div class="text__contacts-group" v-if="$settings.phone">
