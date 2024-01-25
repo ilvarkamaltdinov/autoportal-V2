@@ -2,7 +2,7 @@
   <article class="catalog__item" :class="classes">
     <div class="catalog__img">
       <slot name="slider">
-        <CatalogItemImage :view="view"/>
+        <CatalogItemImage :images="offer.images" :view="view"/>
       </slot>
     </div>
     <!--    TODO подумать как сделать лучше стилями этот блок-->

@@ -7,12 +7,12 @@
          :src="coverSrc"/>
     <div class="tmb-wrap">
       <div class="tmb-wrap-table"
-           v-if="photos && photos.length"
+           v-if="images && images.length"
            @mouseleave="mouseLeave">
-        <div v-for="(photo, key) in photos"
+        <div v-for="(photo, key) in images"
              :key="key"
              :class="{'active': key === activeThumb }"
-             @mouseover="mouseOver(photo, key)">
+             @mouseover="mouseOver(photo.small, key)">
         </div>
       </div>
     </div>
@@ -20,6 +20,11 @@
 </template>
 
 <script setup lang="ts">
+import { Offer } from '~/types/graphql';
+
+const props = defineProps<{
+  images: Offer['images'];
+}>();
 
 let className = ref<string>('');
 let limit = ref<number>(10);
@@ -40,26 +45,27 @@ const mouseLeave = () => {
   forceCoverPhoto.value = null;
   className.value = 'loaded';
 };
-const photos = computed(() => {
-  return [
-    '/img/mock/offer-card-img-1.webp',
-    '/img/mock/offer-card-img-2.webp',
-    '/img/mock/offer-card-img-3.webp',
-    '/img/mock/offer-card-img-1.webp',
-    '/img/mock/offer-card-img-2.webp',
-    '/img/mock/offer-card-img-3.webp',
-    '/img/mock/offer-card-img-1.webp',
-    '/img/mock/offer-card-img-2.webp',
-    '/img/mock/offer-card-img-3.webp',
-    '/img/mock/offer-card-img-1.webp',
-    '/img/mock/offer-card-img-2.webp',
-    '/img/mock/offer-card-img-3.webp'
-  ];
-  // return props.offer.images;
-});
+// const images = computed(() => {
+//   return [
+//     '/img/mock/offer-card-img-1.webp',
+//     '/img/mock/offer-card-img-2.webp',
+//     '/img/mock/offer-card-img-3.webp',
+//     '/img/mock/offer-card-img-1.webp',
+//     '/img/mock/offer-card-img-2.webp',
+//     '/img/mock/offer-card-img-3.webp',
+//     '/img/mock/offer-card-img-1.webp',
+//     '/img/mock/offer-card-img-2.webp',
+//     '/img/mock/offer-card-img-3.webp',
+//     '/img/mock/offer-card-img-1.webp',
+//     '/img/mock/offer-card-img-2.webp',
+//     '/img/mock/offer-card-img-3.webp'
+//   ];
+//   // return props.offer.images;
+// });
 const coverSrc = computed(() => {
+  //todo fixme not working
   return forceCoverPhoto.value
     ? forceCoverPhoto.value
-    : photos.value[0];
+    : props.images[0].small_webp;
 });
 </script>
