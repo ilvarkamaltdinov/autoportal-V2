@@ -37,13 +37,11 @@ import { requestBlogCategories } from '~/utils/request';
 import { ArticleCategory, ArticlesPaginateQueryVariables } from '~/types/graphql';
 import { useAsyncData, useNuxtApp } from '#app';
 
-const route = useRoute();
 defineProps<{
   isIndex: boolean;
 }>();
 
-const blogCategories = ref<ArticleCategory[]>();
-let variables = computed<ArticlesPaginateQueryVariables>(() => {
+const variables = computed<ArticlesPaginateQueryVariables>(() => {
   return {
     limit: 7
   };
@@ -56,12 +54,7 @@ function getArticleClass(index: number) {
   }[index];
 }
 
-// async function getBlogCategories() {
-//   const { data } = await requestBlogCategories(variables.value);
-//   blogCategories.value = data.value?.articleCategory;
-// }
 const nuxtApp = useNuxtApp();
-// await getBlogCategories();
 const { data: { value }, pending } = await useAsyncData('blogs', async () => (await requestBlogCategories(variables.value)).data, {
   getCachedData: (key) => nuxtApp.payload.data[key] || nuxtApp.static.data[key]
 });
