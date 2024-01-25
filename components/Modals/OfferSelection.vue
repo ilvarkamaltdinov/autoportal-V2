@@ -22,7 +22,7 @@
 import TwoSideBadge from '~/components/Inputs/TwoSideBadge.vue';
 import { UnwrapRef } from 'vue';
 
-type Tab = {
+export type Tab = {
   title: string
   name: keyof UnwrapRef<typeof componentProps>
   component: unknown
@@ -60,6 +60,9 @@ const componentProps = ref({
   generation: null,
   car: null,
 });
+
+provide('componentProps', componentProps);
+provide('select', setCarData);
 
 function setCarData(name: Tab['name'], event: Tab['component']) {
   //@ts-expect-error lol

@@ -1,8 +1,11 @@
 <template>
   <div class="catalog__list grid grid--catalog">
-    <CatalogItem v-for="i in 10" :key="i">
+    <CatalogItem v-for="offer in offers" :key="offer.id">
+      <template #price>
+        {{offer.price}}
+      </template>
       <template #main-button>
-        <Button class="button button--credit">Выбрать</Button>
+        <Button class="button button--credit" @click="$emit('select', 'car', offer)">Выбрать</Button>
       </template>
     </CatalogItem>
     <VueEternalLoading v-if="current_page <= last_page" :load="load">
@@ -38,28 +41,31 @@
 <script setup lang="ts">
 import CatalogItem from '~/components/Catalog/Item/index.vue';
 import { offersGql } from '~/apollo/queries/offer/offers';
-
 import { VueEternalLoading, LoadAction } from '@ts-pro/vue-eternal-loading';
 import { useModals } from '~/store/modals';
 import { request } from '~/utils/request';
 import { Offer, OffersQueryVariables, OfferTypePagination } from '~/types/graphql';
+import { ComputedRef } from 'vue';
+import { Tab } from '~/components/Modals/OfferSelection.vue';
 
 const current_page = ref(1);
 const last_page = ref(1);
-const offers = ref<OfferTypePagination[]>([]);
+const offers = ref<Offer[]>([]);
 
 let variables = computed<OffersQueryVariables>(() => {
   return {
     category: 'cars',
-    mark_slug: useModals().modalOfferSelection_mark?.slug,
-    folder_slug: useModals().modalOfferSelection_folder?.slug,
-    generation_slug: useModals().modalOfferSelection_generation?.slug,
+    mark_slug: componentProps.value.mark.slug,
+    folder_slug: componentProps.value.folder.slug,
+    generation_slug: componentProps.value.generation.slug,
     limit: 4,
     page: current_page.value,
     dateFormat: 'j F Y года.',
   };
 });
 
+const componentProps = inject('componentProps');
+const select = inject('select');
 
 const getOffers = async () => {
   const { data } = await request<OfferTypePagination, OffersQueryVariables>(offersGql, variables.value);
