@@ -10,9 +10,11 @@
       <div class="grid grid--container">
         <div class="heading-group heading-group--h1 grid__col-6">
           <div class="heading-group__wrap">
-            <h1 class="heading heading--h1 heading--h1-car"
+            <h1 v-if="route.params.category === 'used'" class="heading heading--h1 heading--h1-car"
                 v-html="'Mercedes-Benz C-Класс, 1.8, АКПП, 120 994 км'"></h1>
-            <div class="heading-group__label heading-group__label--car">
+            <h1 v-if="route.params.category === 'new'" class="heading heading--h1 heading--h1-car"
+                v-html="'Lixiang L9 R-Line'"></h1>
+            <div class="heading-group__label heading-group__label--car" v-if="route.params.category === 'used'">
               <div class="heading-group__year">
                 2018
               </div>
@@ -26,6 +28,9 @@
                 </div>
                 <div> WDD20404*1A****57</div>
               </div>
+            </div>
+            <div class="heading-group__label heading-group__label--car" v-if="route.params.category === 'new'">
+              Официальный дилер Lixiang в Москве
             </div>
           </div>
         </div>
@@ -67,7 +72,6 @@
 
       </div>
     </div>
-
   </main>
 </template>
 
@@ -79,7 +83,9 @@ import OfferBuy from '~/components/Offer/Buy.vue';
 import OfferFixed from '~/components/Offer/Fixed.vue';
 import OfferInfo from '~/components/Offer/Info.vue';
 import OfferComplectation from '~/components/Offer/Complectation.vue';
+import OfferTitle from '~/components/Offer/Title.vue';
 
+const route = useRoute();
 const { isMobile } = useDevice();
 
 // const currentBenefitsType = computed(() => {

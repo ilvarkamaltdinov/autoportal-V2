@@ -1,6 +1,10 @@
 <template>
   <div class="catalog__list grid grid--catalog">
-    <CatalogItem v-for="i in 10" :key="i"/>
+    <CatalogItem v-for="i in 10" :key="i">
+      <template #main-button>
+        <Button class="button button--credit">Выбрать</Button>
+      </template>
+    </CatalogItem>
     <VueEternalLoading v-if="current_page <= last_page" :load="load">
       <template #loading>
         <div class="my-loading">

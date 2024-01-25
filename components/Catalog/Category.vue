@@ -12,6 +12,20 @@
       </div>
       <CatalogItem view="short">
         <template #heading>
+          <nuxt-link to="/used/mark/model/123" class="catalog__title-link">
+            Б/У карточка
+          </nuxt-link>
+        </template>
+      </CatalogItem>
+      <CatalogItem view="short">
+        <template #heading>
+          <nuxt-link to="/new/mark/model/123" class="catalog__title-link">
+            Карточка нового авто
+          </nuxt-link>
+        </template>
+      </CatalogItem>
+      <CatalogItem view="short">
+        <template #heading>
           Дефолтная карточка
         </template>
       </CatalogItem>
@@ -54,24 +68,24 @@
           </ul>
         </template>
         <template #actions-button-left>
-          <button class="button button--action button--call">
+          <Button class="button button--action button--call">
             1
-          </button>
+          </Button>
         </template>
         <template #actions-button-right>
-          <button class="button button--action button--call">
+          <Button class="button button--action button--call">
             2
-          </button>
+          </Button>
         </template>
-        <template #main-button-left>
-          <button class="button button--credit">
-            main-button-1
-          </button>
+        <template #main-button>
+          <Button class="button button--credit">
+            main-button
+          </Button>
         </template>
-        <template #main-button-right>
-          <button class="button button--credit">
-            main-button-2
-          </button>
+        <template #secondary-button>
+          <Button class="button button--credit">
+            secondary-button
+          </Button>
         </template>
       </CatalogItem>
       <CatalogItem view="long">
@@ -80,10 +94,10 @@
         </template>
       </CatalogItem>
       <div class="grid__col-8">
-        <button class="button button--link button--more"
+        <Button class="button button--link button--more"
                 @click="paginationClick">
           Далее
-        </button>
+        </Button>
       </div>
     </div>
     <!--    TODO новый paginate-->

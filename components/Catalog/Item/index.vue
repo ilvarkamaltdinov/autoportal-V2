@@ -15,7 +15,6 @@
                 <span class="catalog__title"> Hyundai Sonata <span>, {{ engineVolume(2) }} </span></span> <span
                   class="catalog__year">2007</span>
               </nuxt-link>
-
             </slot>
           </h3>
         </div>
@@ -134,21 +133,21 @@
           <ButtonFavorite @click="onFavoriteClick" :active="isFavorite"/>
         </slot>
         <slot name="actions-button-right">
-          <button class="button button--action button--call">
+          <Button class="button button--action button--call">
             <nuxt-icon class="button__icon" name="icon-call"/>
-          </button>
+          </Button>
         </slot>
       </div>
       <div class="catalog__actions-main">
-        <slot name="main-button-left">
-          <button class="button button--credit" @click="onCredit">
+        <slot name="main-button">
+          <Button class="button button--credit" @click="onCredit">
             Купить в кредит
-          </button>
+          </Button>
         </slot>
-        <slot name="main-button-right" v-if="view === 'long' && !isMobile">
-          <button class="button button--trade-in button--link" @click="onExchange">
+        <slot name="secondary-button" v-if="view === 'long' && !isMobile">
+          <Button class="button button--trade-in button--link" @click="onExchange">
             Trade-In
-          </button>
+          </Button>
         </slot>
       </div>
     </div>
