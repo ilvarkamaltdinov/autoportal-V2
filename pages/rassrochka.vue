@@ -12,45 +12,70 @@
           </div>
         </div>
         <div class="grid__col-12 grid grid--application">
-          <FormConstructor :inputs="inputs">
-            <template #name>
-              Рассрочка
-              <span class="heading__promo">0%</span>
-            </template>
-            <template #car-choose>
-              <Button class="form__field">
-                {{ 'Выбрать автомобиль' }}
-              </Button>
-              <nuxt-icon name="icon-form" class="form__car-icon"/>
-            </template>
-            <template #calculator>
-              <FormCreditCalculator :offer="null" :params="creditParams">
-                <template #first-slider-name="{names}">
-                  {{ names.installment }}
-                </template>
-              </FormCreditCalculator>
-            </template>
-          </FormConstructor>
-
+          <form-installment/>
           <button class="application__choose-car grid__col-8">
-            <nuxt-icon class="application__choose-car-icon" name="icon-form" />
+            <nuxt-icon class="application__choose-car-icon" name="icon-form"/>
             <span class="application__choose-car-text">Выберите автомобиль</span>
           </button>
 
-          <ContentBlock class="application__terms grid__col-3">
+          <ApplicationBankCard class="grid__col-5">
+            <template #logo>
+              <NuxtImg src="/banks/logo-sovcom.svg" class="application__banks-img application__banks-img--sovcom"/>
+            </template>
+            <template #image>
+              <NuxtImg src="/banks/image-sovcom.webp"/>
+            </template>
+          </ApplicationBankCard>
+
+          <div class="application__terms grid__col-3">
+            <div class="application__terms-item">
+              <div class="application__terms-number application__terms-number--stake"> это</div>
+              <div class="application__terms-text">моковые данные</div>
+            </div>
+            <div class="application__terms-item">
+              <div class="application__terms-number application__terms-number--payment"> их</div>
+              <div class="application__terms-text">нужно сделать вместе с выбором оффера</div>
+            </div>
+            <div class="application__terms-item">
+              <div class="application__terms-number application__terms-number--payment"> и найти</div>
+              <div class="application__terms-text">замену для библиотеки</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="benefits grid__col-12">
+        <Benefits type="installment"/>
+      </div>
+      <section class="page-main__text text grid__col-12">
+        <h2 class="heading heading--h2">Об услуге</h2>
+        <div class="grid">
+          <ContentBlock class="grid__col-12">
             <template #content>
-              <div class="application__terms-item">
-                <div class="application__terms-number application__terms-number--stake"> это </div>
-                <div class="application__terms-text">моковые данные</div>
-              </div>
-              <div class="application__terms-item">
-                <div class="application__terms-number application__terms-number--stake"> их </div>
-                <div class="application__terms-text">нужно сделать вместе с выбором оффера</div>
-              </div>
-                <div class="application__terms-item">
-                  <div class="application__terms-number application__terms-number--stake"> и найти </div>
-                  <div class="application__terms-text">замену для библиотеки</div>
-                </div>
+              <p class="text__p">
+                На {{ $settings.dealer_title }} вы можете приобрести автомобиль в рассрочку без любых переплат и процентов.
+              </p>
+              <p class="text__p">
+                Рассрочка является удобным способом покупки транспортного средства с пробегом, учитывая,
+                что процентная ставка не начисляется. Рассрочка станет идеальным решением в случае
+                погашения стоимости автомобиля за срок до 3 лет. Если же выплата всей суммы за 3 года
+                обременительна для семейного бюджета, оптимальным решением станет
+                <nuxt-link to="/credit">автокредит</nuxt-link>
+                {{ $settings.credit_percent }} со скидкой {{ $settings.sale_credit }}.
+              </p>
+              <p class="text__p">
+                Окончательное решение о предоставлении рассрочки принимается банками-партнерами {{ $settings.dealer_title }}.
+              </p>
+              <p class="text__p">
+                Преимущества рассрочки {{ $settings.dealer_anchor }}
+              </p>
+              <ul class="text__list">
+                <li class="text__list-item">Ставка {{ $settings.first_installment }}</li>
+                <li class="text__list-item">Без первоначального взноса</li>
+                <li class="text__list-item">Комплект резины в подарок</li>
+              </ul>
+            </template>
+            <template #figure>
+              <NuxtImg class="text__figure-img" src="figures/figure-2@2x.webp" />
             </template>
           </ContentBlock>
         </div>
@@ -59,68 +84,6 @@
   </main>
 </template>
 <script setup lang="ts">
-import FormCreditCalculator from '~/components/Form/form-components/FormCreditCalculator.vue';
-import { ref } from '#imports';
-import { Input } from '~/components/Form/FormConstructor.vue';
-import validation from '~/composables/validation';
+import ApplicationBankCard from '~/components/Application/ApplicationBankCard.vue';
 import ContentBlock from '~/components/TextContent/ContentBlock.vue';
-
-const inputs = ref<Input[]>([
-  {
-    name: 'fullName',
-    component: 'InputText',
-    attrs: {
-      type: 'text',
-      placeholder: 'ФИО',
-      class: 'form__field',
-    },
-    validationRule: validation.value.fullName.rule,
-  },
-  {
-    name: 'phone',
-    component: 'InputMask',
-    attrs: {
-      type: 'tel',
-      placeholder: 'Телефон',
-      mask: validation.value.phone.mask,
-      class: 'form__field',
-      autoClear: false
-    },
-    validationRule: validation.value.phone.rule,
-  },
-]);
-
-const creditParams = ref({
-  rangePeriodValues: {
-    snap: true,
-    //todo move in settings
-    range: {
-      'min': 2,
-      '12': 6,
-      '24': 12,
-      '36': 24,
-      '48': 36,
-      '60': 48,
-      '72': 60,
-      '84': 72,
-      'max': 84,
-    }
-  },
-  rangePaymentValues: {
-    snap: true,
-    range: {
-      'min': 0,
-      '12': 10,
-      '24': 20,
-      '36': 30,
-      '48': 40,
-      '60': 50,
-      '72': 60,
-      '84': 70,
-      'max': 80,
-    }
-  },
-  period: 84,
-  payment: 0,
-});
 </script>

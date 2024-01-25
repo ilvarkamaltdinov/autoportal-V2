@@ -6,8 +6,11 @@ export default computed(() => ({
     rule: yup.string().required().matches(/^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/),
   },
   fullName: {
-    mask: '',
+    mask: null,
+    rule: yup.string().min(5).required(),
+  },
+  car: {
+    mask: null,
     rule: yup.string().required(),
   },
-
 }));

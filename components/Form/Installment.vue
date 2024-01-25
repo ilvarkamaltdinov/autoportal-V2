@@ -2,8 +2,8 @@
   <div class="application__form grid__col-4">
     <FormConstructor :inputs="inputs">
       <template #name>
-        Автокредит от
-        <span class="heading__promo">{{ $settings.credit_percent }}</span>
+        Рассрочка
+        <span class="heading__promo">{{ $settings.first_installment }}</span>
       </template>
       <template #car-choose>
         <Button class="form__field" @click="isModalVisible = true">
@@ -14,7 +14,7 @@
       <template #calculator>
         <FormCreditCalculator :offer="null" :params="creditParams">
           <template #first-slider-name="{names}">
-            {{ names.credit }}
+            {{ names.installment }}
           </template>
         </FormCreditCalculator>
       </template>
@@ -31,25 +31,13 @@
     <OfferSelection/>
   </Sidebar>
 </template>
+
 <script setup lang="ts">
-//todo пофиксить высоту контейнера, она выше чем левый блок со сторизами
-import { useModals, ModalOfferSelection_offerType } from '~/store/modals';
-import { OfferQuery } from '~/types/graphql';
-import { computed, ref } from '#imports';
 import FormCreditCalculator from '~/components/Form/form-components/FormCreditCalculator.vue';
-import OfferSelection from '~/components/Modals/OfferSelection.vue';
-import Sidebar from 'primevue/sidebar';
+import { ref } from '#imports';
 import validation from '~/composables/validation';
 import { Input } from '~/components/Form/FormConstructor.vue';
-
-const props = defineProps<{
-  calculator: boolean;
-  hasChose?: boolean;
-  offer: OfferQuery['offer'];
-}>();
-
-const currentCar = null;
-const isModalVisible = ref(false);
+import OfferSelection from '~/components/Modals/OfferSelection.vue';
 
 const inputs = ref<Input[]>([
   {
@@ -76,8 +64,8 @@ const inputs = ref<Input[]>([
   },
 ]);
 
-//todo fixme eto v primevue modalku
-const modalOfferSelection_offer = computed<ModalOfferSelection_offerType>(() => useModals().modalOfferSelection_offer);
+const isModalVisible = ref(false);
+
 const creditParams = ref({
   rangePeriodValues: {
     snap: true,
@@ -111,8 +99,4 @@ const creditParams = ref({
   period: 84,
   payment: 0,
 });
-
-const submitForm = () => {
-
-};
 </script>

@@ -1,10 +1,6 @@
 <template>
   <div class="application__form grid__col-4">
     <FormConstructor :inputs="inputs">
-      <template #name>
-        Автокредит от
-        <span class="heading__promo">{{ $settings.credit_percent }}</span>
-      </template>
       <template #car-choose>
         <Button class="form__field" @click="isModalVisible = true">
           {{ 'Выбрать автомобиль' }}
@@ -12,11 +8,26 @@
         <nuxt-icon name="icon-form" class="form__car-icon"/>
       </template>
       <template #calculator>
-        <FormCreditCalculator :offer="null" :params="creditParams">
-          <template #first-slider-name="{names}">
-            {{ names.credit }}
+        <CheckBoxForm v-model="isAccordionExpanded">
+          <template #text>
+            Купить авто в кредит
           </template>
-        </FormCreditCalculator>
+        </CheckBoxForm>
+        <Accordion v-model:activeIndex="accordionIndex" :unstyled="true">
+          <template #collapseicon>
+            {{null}}
+          </template>
+          <template #expandicon>
+            {{null}}
+          </template>
+          <AccordionTab :unstyled="true">
+            <FormCreditCalculator :offer="null" :params="creditParams">
+              <template #first-slider-name="{names}">
+                {{ names.installment }}
+              </template>
+            </FormCreditCalculator>
+          </AccordionTab>
+        </Accordion>
       </template>
     </FormConstructor>
   </div>
@@ -31,27 +42,29 @@
     <OfferSelection/>
   </Sidebar>
 </template>
+
 <script setup lang="ts">
-//todo пофиксить высоту контейнера, она выше чем левый блок со сторизами
-import { useModals, ModalOfferSelection_offerType } from '~/store/modals';
-import { OfferQuery } from '~/types/graphql';
-import { computed, ref } from '#imports';
 import FormCreditCalculator from '~/components/Form/form-components/FormCreditCalculator.vue';
-import OfferSelection from '~/components/Modals/OfferSelection.vue';
-import Sidebar from 'primevue/sidebar';
+import { ref } from '#imports';
 import validation from '~/composables/validation';
 import { Input } from '~/components/Form/FormConstructor.vue';
+import OfferSelection from '~/components/Modals/OfferSelection.vue';
+import CheckBoxForm from '~/components/Form/form-components/CheckBoxForm.vue';
 
-const props = defineProps<{
-  calculator: boolean;
-  hasChose?: boolean;
-  offer: OfferQuery['offer'];
-}>();
-
-const currentCar = null;
-const isModalVisible = ref(false);
+const isAccordionExpanded = ref(false);
+const accordionIndex = computed(() => isAccordionExpanded.value ? 0 : -1);
 
 const inputs = ref<Input[]>([
+  {
+    name: 'car',
+    component: 'InputText',
+    attrs: {
+      type: 'text',
+      placeholder: 'Ваш автомобиль',
+      class: 'form__field',
+    },
+    validationRule: validation.value.car.rule,
+  },
   {
     name: 'fullName',
     component: 'InputText',
@@ -76,8 +89,8 @@ const inputs = ref<Input[]>([
   },
 ]);
 
-//todo fixme eto v primevue modalku
-const modalOfferSelection_offer = computed<ModalOfferSelection_offerType>(() => useModals().modalOfferSelection_offer);
+const isModalVisible = ref(false);
+
 const creditParams = ref({
   rangePeriodValues: {
     snap: true,
@@ -111,8 +124,4 @@ const creditParams = ref({
   period: 84,
   payment: 0,
 });
-
-const submitForm = () => {
-
-};
 </script>
