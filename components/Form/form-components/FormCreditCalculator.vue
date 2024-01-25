@@ -31,7 +31,7 @@
         Первоначальный взнос:
       </template>
       <template #value>
-        {{ currentPaymentSum || 0 }} ₽
+        {{ numberFormat(currentPaymentSum) || 0 }} ₽
       </template>
     </SliderOptions>
     <div class="form__total">

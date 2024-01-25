@@ -6,13 +6,15 @@
         <span class="heading__promo">{{ $settings.first_installment }}</span>
       </template>
       <template #car-choose>
-        <Button class="form__field" @click="isModalVisible = true">
-          {{ 'Выбрать автомобиль' }}
-        </Button>
-        <nuxt-icon name="icon-form" class="form__car-icon"/>
+        <label class="form__field-wrap form__field-wrap--car" :class="{'form__field-wrap--car-active' : offer}">
+          <Button class="form__field" @click="isModalVisible = true">
+            {{ (offer && `${offer.name}, ${numberFormat(offer.price)} ₽`) || 'Выбрать автомобиль' }}
+          </Button>
+          <nuxt-icon name="icon-form" class="form__car-icon"/>
+        </label>
       </template>
       <template #calculator>
-        <FormCreditCalculator :offer="null" :params="creditParams">
+        <FormCreditCalculator :offer="offer" :params="creditParams">
           <template #first-slider-name="{names}">
             {{ names.installment }}
           </template>
@@ -28,7 +30,7 @@
         </div>
       </div>
     </template>
-    <OfferSelection/>
+    <OfferSelection @choose="offer = $event.car; isModalVisible = false"/>
   </Sidebar>
 </template>
 
@@ -38,7 +40,9 @@ import { ref } from '#imports';
 import validation from '~/composables/validation';
 import { Input } from '~/components/Form/FormConstructor.vue';
 import OfferSelection from '~/components/Modals/OfferSelection.vue';
+import { Offer } from '~/types/graphql';
 
+const offer = ref<Offer | null>(null);
 const inputs = ref<Input[]>([
   {
     name: 'fullName',

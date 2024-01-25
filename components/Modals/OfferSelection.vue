@@ -28,6 +28,7 @@ export type Tab = {
   component: unknown
 }
 
+const emit = defineEmits(['choose']);
 const tabs = computed<Tab[]>(() =>
   [
     {
@@ -77,6 +78,13 @@ function setCarData(name: Tab['name'], event: Tab['component']) {
   console.log(name, event);
   //@ts-expect-error lol
   componentProps.value[name] = event;
+  const isContainsEmpty = Object.entries(componentProps.value).find(([key, value]) => {
+    return value === null;
+  });
+  if(!isContainsEmpty){
+    emit('choose', componentProps.value);
+    return;
+  }
   nextTab();
 }
 

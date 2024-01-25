@@ -8,9 +8,7 @@
     </div>
     <form class="form">
       <fieldset class="form__fieldset">
-        <label class="form__field-wrap form__field-wrap--car">
           <slot name="car-choose"/>
-        </label>
       </fieldset>
       <slot name="calculator"/>
       <fieldset class="form__fieldset">
