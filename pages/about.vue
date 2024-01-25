@@ -17,10 +17,7 @@
         <div class="about__block grid__col-12 grid text">
           <ContentBlock class="grid__col-8 text__wrap--figure">
             <template #figure>
-              <NuxtImg
-                  class="text__figure-img lazyload"
-                  :src="`/img/figures/figure-4@2x.png`"
-                  format="webp"/>
+              <NuxtImg class="text__figure-img lazyload" src="/figures/figure-4@2x.png" format="webp" />
             </template>
             <template #content>
               <h2 class="heading heading--h2">Коротко о главном</h2>

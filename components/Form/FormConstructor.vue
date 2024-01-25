@@ -48,7 +48,7 @@
 <script setup lang="ts">
 import { useForm } from 'vee-validate';
 import * as yup from 'yup';
-import { ISchema, ObjectShape } from 'yup';
+import { type ISchema, type ObjectShape } from 'yup';
 import CheckBoxForm from '~/components/Form/form-components/CheckBoxForm.vue';
 
 type InputAttrs = {

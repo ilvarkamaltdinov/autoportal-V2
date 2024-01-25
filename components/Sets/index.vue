@@ -12,7 +12,7 @@
         {{ set.description }}
       </template>
       <template #image>
-        <NuxtImg :src="`/img/featured/featured-${set.image}@2x.png`" class="featured__img lazyload"/>
+        <NuxtImg :src="`/featured/featured-${set.image}@2x.png`" class="featured__img lazyload"/>
       </template>
     </BankCard>
   </ul>
@@ -50,7 +50,7 @@ const sets = [
     description: 'Премиальные автомобили для самых взыскательных',
     slug: 'business-class',
     class: 'featured__item--business',
-    extraImage: '/img/featured/featured-label.svg',
+    extraImage: '/featured/featured-label.svg',
     image: '4'
   },
   {
