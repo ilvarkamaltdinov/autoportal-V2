@@ -50,7 +50,7 @@ const sets = [
     description: 'Премиальные автомобили для самых взыскательных',
     slug: 'business-class',
     class: 'featured__item--business',
-    extraImage: '/img/featured/featured-label.svg',
+    extraImage: '/featured/featured-label.svg',
     image: '4'
   },
   {
