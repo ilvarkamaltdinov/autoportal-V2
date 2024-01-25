@@ -12,7 +12,9 @@
           </div>
         </div>
         <div class="grid__col-12 grid grid--application">
-          <form-credit />
+          <div class="application__form grid__col-4">
+            <form-credit />
+          </div>
           <button class="application__choose-car grid__col-8">
             <nuxt-icon class="application__choose-car-icon" name="icon-form"/>
             <span class="application__choose-car-text">Выберите автомобиль</span>
