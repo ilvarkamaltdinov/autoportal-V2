@@ -25,38 +25,20 @@
         </ul>
       </div>
     </div>
-    <div class="swiper swiper--car-info">
-      <div class="car__info-groups swiper-wrapper">
-        <OfferTech
-            v-if="showTech"
-            class="swiper-slide car__info-group--tech"
-        />
-        <OfferTerms
-            v-if="showTerms && isMobile"
-            class="swiper-slide car__info-group--options"
-        />
-        <OfferComplectation/>
-        <!--        <car-complectation-->
-        <!--            v-if="-->
-        <!--                !$device.isMobile &&-->
-        <!--                showComplectation &&-->
-        <!--                equipment_group_list.length-->
-        <!--              "-->
-        <!--            :offer="offer"-->
-        <!--            class="swiper-slide car__info-group&#45;&#45;options"-->
-        <!--        />-->
-        <!--        <car-description-->
-        <!--            v-if="offer.description && !$device.isMobile"-->
-        <!--            :offer="offer"-->
-        <!--            :page-title="pageTitle"-->
-        <!--        />-->
-        <!--        <car-dealer-->
-        <!--            v-if="!$device.isMobile"-->
-        <!--            :offer="offer"-->
-        <!--            class="swiper-slide car__info-group&#45;&#45;options"-->
-        <!--        />-->
-      </div>
-      <!-- <div class="swiper-pagination"></div> -->
+    <div class="car__info-groups">
+      <OfferTech
+          v-if="showTech"
+          class="car__info-group--tech"
+      />
+      <OfferTerms
+          v-if="showTerms && isMobile"
+          class="car__info-group--options"
+      />
+      <!--        TODO equipment_group_list.length-->
+      <OfferComplectation class="car__info-group--options" v-if="showComplectation && true"/>
+      <!--        TODO offer.description-->
+      <OfferDescription v-if="!isMobile && true"/>
+      <OfferDealer v-if="!isMobile" class="car__info-group--options"/>
     </div>
   </div>
 </template>
@@ -64,6 +46,9 @@
 <script setup lang="ts">
 import OfferTech from '~/components/Offer/Tech.vue';
 import OfferTerms from '~/components/Offer/Terms.vue';
+import OfferComplectation from '~/components/Offer/Complectation.vue';
+import OfferDescription from '~/components/Offer/Description.vue';
+import OfferDealer from '~/components/Offer/Dealer.vue';
 
 const { isMobile } = useDevice();
 
@@ -94,6 +79,13 @@ const showTech = computed(() => {
   }
 });
 const showTerms = computed(() => {
+  if (isMobile) {
+    return activeTab.value === 2;
+  } else {
+    return true;
+  }
+});
+const showComplectation = computed(() => {
   if (isMobile) {
     return activeTab.value === 2;
   } else {

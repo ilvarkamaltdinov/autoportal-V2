@@ -62,15 +62,41 @@
           <!--        TODO    offer.is_active-->
           <button-favorite v-if="true"/>
           <!--<button-compare />-->
-<!--          <button-call v-if="offer.is_active && offer.dealer.phone" :phone="offer.dealer.phone"-->
-<!--                       @click="callback(offer)"/>-->
+          <!--          <button-call v-if="offer.is_active && offer.dealer.phone" :phone="offer.dealer.phone"-->
+          <!--                       @click="callback(offer)"/>-->
         </div>
       </div>
+      <div class="car__stock">
+        Под заказ в автоцентре
+        <a href="#" @click.prevent="aboutDealer" class="car__stock-dealer">
+          «dealer»
+        </a>
+        <div class="car__stock-promo">
+          г. city, address
+        </div>
+      </div>
+      <div class="car__stock">
+        В наличии в автоцентре
+        <a href="#" @click.prevent="aboutDealer" class="car__stock-dealer">
+          «dealer»
+        </a>
+        <div class="car__stock-promo">
+          г. city, address
+        </div>
+      </div>
+      <div class="car__stock car__stock--no">
+        Автомобиль находится на центральной стоянке
+      </div>
+      <div class="car__stock car__stock--no">
+        Нет в наличии
+      </div>
     </div>
+    <OfferTerms v-if="!isMobile" class="car__info-group--options"/>
   </div>
 </template>
 
 <script setup lang="ts">
+import OfferTerms from '~/components/Offer/Terms.vue';
 import TippyQuestion from '~/components/Tippy/TippyQuestion.vue';
 import ButtonFavorite from '~/components/Button/ButtonFavorite.vue';
 import Rating from '~/components/Rating/Rating.vue';
@@ -93,6 +119,10 @@ function onInstallmentClick() {
 
 function onAutoteka() {
   console.log('onAutoteka');
+}
+
+function aboutDealer() {
+  console.log('aboutDealer');
 }
 
 const showTradeIn = computed(() => {
