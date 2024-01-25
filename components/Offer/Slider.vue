@@ -3,10 +3,10 @@
     <Swiper class="swiper swiper--car"
             :loop="true"
             :modules="[Autoplay, Pagination, Navigation]"
-            :slides-per-view="2">
-      <div class="swiper-wrapper">
-        <slot name="slides"></slot>
-      </div>
+            :spaceBetween="slidesSpaceBetween"
+            :centeredSlides="centeredSlides"
+            :slides-per-view="slidesPerView">
+      <slot name="slides"></slot>
       <div class="swiper-pagination"></div>
     </Swiper>
     <button class="swiper-button swiper-button-prev">
@@ -21,4 +21,27 @@
 <script setup lang="ts">
 import { Swiper } from 'swiper/vue';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+
+const { isMobile } = useDevice();
+
+
+const centeredSlides = computed(() => {
+  return isMobile;
+});
+
+const slidesPerView = computed(() => {
+  if (isMobile) {
+    return 1.1;
+  } else {
+    return 2;
+  }
+});
+
+const slidesSpaceBetween = computed(() => {
+  if (isMobile) {
+    return 8;
+  } else {
+    return 24;
+  }
+});
 </script>

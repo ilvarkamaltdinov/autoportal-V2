@@ -5,27 +5,26 @@
     </div>
     <div class="page-main__car car">
       <div class="grid grid--container" v-if="isMobile">
-        <div class="benefits grid__col-12 benefits--catalog">
-          <Benefits type="credit" />
-        </div>
+        <!--        <Benefits :type="currentBenefitsType" class="car__benefits"/>-->
       </div>
       <div class="grid grid--container">
         <div class="heading-group heading-group--h1 grid__col-6">
           <div class="heading-group__wrap">
-            <h1 class="heading heading--h1 heading--h1-car" v-html="'pageTitle'"></h1>
+            <h1 class="heading heading--h1 heading--h1-car"
+                v-html="'Mercedes-Benz C-Класс, 1.8, АКПП, 120 994 км'"></h1>
             <div class="heading-group__label heading-group__label--car">
               <div class="heading-group__year">
                 2018
               </div>
-              <div class="heading-group__generation">
+              <span class="heading-group__generation">
                 II (F20/F21) Рестайлинг 2
-              </div>
+              </span>
               <div class="vin__wrapper-car">
                 <div class="car__vin vin">
                   <nuxt-icon name="icon-check"/>
                   VIN
                 </div>
-                <div> offer.vin</div>
+                <div> WDD20404*1A****57</div>
               </div>
             </div>
           </div>
@@ -41,22 +40,31 @@
       <div class="car__slider-wrap">
         <div class="grid grid--container">
           <OfferSlider>
-            <!--            <template #slides>-->
-            <!--              <div class="slider-car__item swiper-slide" v-for="(img, index) in 5" :key="index">-->
-            <!--                <div class="slider-car__link"-->
-            <!--                     @click.right.prevent-->
-            <!--                     :data-fancybox="`/img/mock/offer-card-img-${img}.webp`"-->
-            <!--                     data-src="/img/mock/offer-card-img-${img}.webp`"-->
-            <!--                     tabindex="0">-->
-            <!--                  <img class="slider__car-img lazyload" :src="`/img/mock/offer-card-img-${img}.webp`" alt="">-->
-            <!--                </div>-->
-            <!--              </div>-->
-            <!--            </template>-->
+            <template #slides>
+              <SwiperSlide class="slider-car__item" v-for="slide in 10" :key="slide">
+                <div class="slider-car__link"
+                     @click.right.prevent
+                     :data-fancybox="`/img/mock/offer-card-img-${slide}.webp`"
+                     data-src="/img/mock/offer-card-img-${img}.webp`"
+                     tabindex="0">
+                  <img class="slider__car-img lazyload" :src="`/img/mock/offer-card-img-${slide}.webp`" alt="">
+                </div>
+              </SwiperSlide>
+            </template>
           </OfferSlider>
         </div>
       </div>
       <div class="grid grid--car grid--container grid__col-12">
         <OfferBuy/>
+        <transition name="slide-fade">
+          <OfferFixed v-if="showFixed"/>
+        </transition>
+        <OfferInfo/>
+        <OfferComplectation v-if="isMobile" class="car__info-group--complectation"/>
+        <OfferDescription v-if="isMobile" class="car__info-group--description"/>
+      </div>
+      <div class="grid grid--container">
+
       </div>
     </div>
 
@@ -65,9 +73,12 @@
 
 <script setup lang="ts">
 // import { SwiperSlide } from 'swiper/vue';
+// import Benefits from '~/components/Benefits/index.vue';
 import OfferSlider from '~/components/Offer/Slider.vue';
 import OfferBuy from '~/components/Offer/Buy.vue';
-import Benefits from '~/components/Benefits/Benefits.vue';
+import OfferFixed from '~/components/Offer/Fixed.vue';
+import OfferInfo from '~/components/Offer/Info.vue';
+import OfferComplectation from '~/components/Offer/Complectation.vue';
 
 const { isMobile } = useDevice();
 
@@ -75,6 +86,7 @@ const { isMobile } = useDevice();
 //   return 'credit';
 // });
 
+let showFixed = ref(false);
 
 function callback() {
   console.log('callback');
