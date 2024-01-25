@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="grid__col-12 grid grid--application">
-          <form-installment/>
+          <form-installment :offer="offer" @showModal="isModalVisible = true"/>
           <button class="application__choose-car grid__col-8">
             <nuxt-icon class="application__choose-car-icon" name="icon-form"/>
             <span class="application__choose-car-text">Выберите автомобиль</span>
@@ -82,8 +82,24 @@
       </section>
     </div>
   </main>
+  <Sidebar v-model:visible="isModalVisible" position="right" header="Выберите автомобиль" class="modal">
+    <template #header>
+      <div class="heading-group heading-group--modal">
+        <div class="heading-group__wrap">
+          <h2 class="heading heading--h1">Выберите автомобиль</h2>
+        </div>
+      </div>
+    </template>
+    <OfferSelection @choose="offer = $event.car; isModalVisible = false"/>
+  </Sidebar>
 </template>
 <script setup lang="ts">
 import ApplicationBankCard from '~/components/Application/ApplicationBankCard.vue';
 import ContentBlock from '~/components/TextContent/ContentBlock.vue';
+import OfferSelection from '~/components/Modals/OfferSelection.vue';
+import { Offer } from '~/types/graphql';
+import { ref } from '#imports';
+
+const isModalVisible = ref(false);
+const offer = ref<Offer | null>(null);
 </script>

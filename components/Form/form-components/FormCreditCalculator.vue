@@ -49,6 +49,7 @@ import { OfferQuery } from '~/types/graphql';
 import { computed, useNuxtApp } from '#imports';
 import SliderOptions from '~/components/Inputs/SliderOptions.vue';
 
+//todo PEREPIWI ETO :D
 export type FormCreditCalculatorProps = {
   offer: OfferQuery['offer'];
   params: {
@@ -79,8 +80,8 @@ const paymentValue = ref(props.params.payment);
 const paymentPriceValue = ref<string | null>(null);
 const emit = defineEmits(['changePeriod', 'changePayment']);
 
+const { $settings } = useNuxtApp();
 const percent = computed(() => {
-  const { $settings } = useNuxtApp();
   return Number($settings?.credit_percent.replace('%', ''));
 });
 const currentPaymentSum = computed(() => {
