@@ -167,7 +167,8 @@ import ButtonFavorite from '~/components/Button/ButtonFavorite.vue';
 import { Offer } from '~/types/graphql';
 
 const props = defineProps<{
-  view?: string,
+  // todo fixme добавть тип вот ТАК
+  view?: 'long' | 'short' ,
   offer?: Offer
 }>();
 

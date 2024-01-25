@@ -13,7 +13,8 @@
         </div>
         <div class="grid__col-12 grid grid--application">
           <form-installment :offer="offer" @showModal="isModalVisible = true"/>
-          <button class="application__choose-car grid__col-8">
+          <CatalogItem :offer="offer" view="long" v-if="offer" />
+          <button v-else class="application__choose-car grid__col-8" @click="isModalVisible = true">
             <nuxt-icon class="application__choose-car-icon" name="icon-form"/>
             <span class="application__choose-car-text">Выберите автомобиль</span>
           </button>
