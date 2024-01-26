@@ -44,17 +44,17 @@
         </div>
       </div>
       <div class="filter__buttons-wrap filter__buttons-wrap--view">
-        <button @click.prevent="$emit('click')"
-                :disabled="currentView === 's'"
-                :class="{'filter__button--active':currentView === 's'}"
+        <button @click.prevent="$emit('update:view', 's')"
+                :disabled="view === 's'"
+                :class="{'filter__button--active':view === 's'}"
                 class="button button--action button--view-s filter__button"
                 type="button">
           <nuxt-icon class="button__icon icon"
                      name="icon-view-s"/>
         </button>
-        <button @click.prevent="$emit('click')"
-                :disabled="currentView === 'l'"
-                :class="{'filter__button--active':currentView === 'l'}"
+        <button @click.prevent="$emit('update:view', 'l')"
+                :disabled="view === 'l'"
+                :class="{'filter__button--active':view === 'l'}"
                 class="button button--action button--view-l filter__button"
                 type="button">
           <nuxt-icon class="button__icon"
@@ -70,9 +70,13 @@ type Sort = {
   slug: string,
   name: string
 }
-const {isMobile} = useDevice();
+const { isMobile } = useDevice();
 const isActive = ref(false);
-const currentView = ref('s');
+// const currentView = ref('s');
+defineProps<{
+  view: string
+}>();
+defineEmits(['update:view']);
 const sortList = [
   {
     slug: 'price|asc',

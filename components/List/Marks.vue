@@ -44,6 +44,7 @@ const catalogRoute = computed(()=>{
 
 const { isMobile } = useDevice();
 const carBrandsStore = useMarks();
+carBrandsStore.getAllMarksFillPopular();
 const { allMarks, popularMarks } = storeToRefs(carBrandsStore);
 
 const showAll = ref(false);
