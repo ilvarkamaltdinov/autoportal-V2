@@ -83,7 +83,7 @@ currentPage.value = Number(query.page || 1);
 
 const currentView = ref('s');
 
-const variables = computed<OffersQueryVariables>(() => {
+const variables = computed<Partial<OffersQueryVariables>>(() => {
   return {
     category: 'cars',
     mark_slug_array: [],

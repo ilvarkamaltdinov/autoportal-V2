@@ -14,9 +14,9 @@ export const useOffers = defineStore('offers', {
   },
 
   actions: {
-    async fetchOffers(variables: OffersQueryVariables) {
+    async fetchOffers<T>(variables: Partial<T>) {
       // if(this.offers.length > 0) return this.offers;
-      const { data: { value: { offers } } } = await request<{ offers: OfferTypePagination }, OffersQueryVariables>(offersGql, variables);
+      const { data: { value: { offers } } } = await request<{ offers: OfferTypePagination }, Partial<T>>(offersGql, variables);
       this.offers = offers;
       return offers;
     },
