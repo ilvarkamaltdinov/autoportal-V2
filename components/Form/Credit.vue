@@ -1,35 +1,31 @@
 <template>
-<!--  <div class="application__form grid__col-4">-->
-    <FormConstructor :inputs="inputs">
-      <template #name>
-        Автокредит от
-        <span class="heading__promo">{{ $settings.credit_percent }}</span>
-      </template>
-      <template #car-choose>
+  <!--  <div class="application__form grid__col-4">-->
+  <FormConstructor :inputs="inputs">
+    <template #name>
+      Автокредит от
+      <span class="heading__promo">{{ $settings.credit_percent }}</span>
+    </template>
+    <template #car-choose>
+      <label class="form__field-wrap form__field-wrap--car" :class="{'form__field-wrap--car-active' : offer}">
         <Button class="form__field" @click="isModalVisible = true">
           {{ 'Выбрать автомобиль' }}
         </Button>
         <nuxt-icon name="icon-form" class="form__car-icon"/>
-      </template>
-      <template #calculator>
-        <FormCreditCalculator :offer="null" :params="creditParams">
-          <template #first-slider-name="{names}">
-            {{ names.credit }}
-          </template>
-        </FormCreditCalculator>
-      </template>
-    </FormConstructor>
-<!--  </div>-->
-  <Sidebar v-model:visible="isModalVisible" position="right" header="Выберите автомобиль" class="modal">
-    <template #header>
-      <div class="heading-group heading-group--modal">
-        <div class="heading-group__wrap">
-          <h2 class="heading heading--h1">Выберите автомобиль</h2>
-        </div>
-      </div>
+      </label>
     </template>
-    <OfferSelection/>
-  </Sidebar>
+    <template #calculator>
+      <div class="catalog form__catalog">
+        <slot name="offer" />
+      </div>
+      <FormCreditCalculator :offer="offer" :params="creditParams" @changePeriod= "$emit('changePeriod', $event)"
+                            @changePayment="$emit('changePayment', $event)">
+        <template #first-slider-name="{names}">
+          {{ names.credit }}
+        </template>
+      </FormCreditCalculator>
+    </template>
+  </FormConstructor>
+  <!--  </div>-->
 </template>
 <script setup lang="ts">
 //todo пофиксить высоту контейнера, она выше чем левый блок со сторизами

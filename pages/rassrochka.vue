@@ -40,7 +40,7 @@
 
           <ApplicationBankCard class="grid__col-5">
             <template #logo>
-              <NuxtImg src="/banks/logo-sovcom.svg" class="application__banks-img application__banks-img--sovcom"/>
+              <NuxtImg src="/banks/logo-sovcom.svg" class="application__banks-img"/>
             </template>
             <template #image>
               <NuxtImg src="/banks/image-sovcom.webp"/>
