@@ -57,7 +57,8 @@
               <div class="application__terms-text">Срок рассрочки</div>
             </div>
             <div class="application__terms-item">
-              <div class="application__terms-number application__terms-number--payment">{{ installmentPayment }}</div>
+<!--              todo add like carro 2-->
+              <div class="application__terms-number application__terms-number--payment">{{ numberFormat(installmentPayment.split(' ')[0]) }} ₽</div>
               <div class="application__terms-text">Ежемесячный платеж</div>
             </div>
           </div>
