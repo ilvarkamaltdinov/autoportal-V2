@@ -8,7 +8,7 @@
           'tabs__item--active': tab.name === currentTab.name
         }" @click="currentTab = tab">
           <template #title>
-            {{ index + 1 }}. {{ tab.title }}
+            {{ index + 1 }}. {{ tabTitles[tab.name] || tab.title }}
           </template>
         </TwoSideBadge>
       </ul>
@@ -22,12 +22,13 @@
 import TwoSideBadge from '~/components/Inputs/TwoSideBadge.vue';
 import { UnwrapRef } from 'vue';
 
-type Tab = {
+export type Tab = {
   title: string
   name: keyof UnwrapRef<typeof componentProps>
   component: unknown
 }
 
+const emit = defineEmits(['choose']);
 const tabs = computed<Tab[]>(() =>
   [
     {
@@ -38,6 +39,7 @@ const tabs = computed<Tab[]>(() =>
     {
       title: 'Модель',
       name: 'folder',
+      // todo fix empty models idk
       component: defineAsyncComponent(() => import('~/components/Modals/ChooseModel.vue')),
     },
     {
@@ -61,9 +63,28 @@ const componentProps = ref({
   car: null,
 });
 
+provide('componentProps', componentProps);
+provide('select', setCarData);
+
+const tabTitles = computed(() => {
+  return Object.fromEntries(
+    Object.entries(componentProps.value).map(([key, value]) => {
+      return [key, value ? (value.title || value.name) : ''];
+    })
+  );
+});
+
 function setCarData(name: Tab['name'], event: Tab['component']) {
+  console.log(name, event);
   //@ts-expect-error lol
   componentProps.value[name] = event;
+  const isContainsEmpty = Object.entries(componentProps.value).find(([key, value]) => {
+    return value === null;
+  });
+  if(!isContainsEmpty){
+    emit('choose', componentProps.value);
+    return;
+  }
   nextTab();
 }
 

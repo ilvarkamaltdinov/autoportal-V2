@@ -1,11 +1,11 @@
 <template>
   <div class="catalog__list grid grid--catalog">
-    <CatalogItem v-for="i in 10" :key="i">
+    <CatalogItem v-for="offer in offers" :key="offer.id" :offer="offer">
       <template #main-button>
-        <Button class="button button--credit">Выбрать</Button>
+        <Button class="button button--credit" @click="select('car', offer)">Выбрать</Button>
       </template>
     </CatalogItem>
-    <VueEternalLoading v-if="current_page <= last_page" :load="load">
+    <VueEternalLoading v-if="currentPage <= lastPage" :load="load">
       <template #loading>
         <div class="my-loading">
           Trying to load content...
@@ -37,39 +37,39 @@
 </template>
 <script setup lang="ts">
 import CatalogItem from '~/components/Catalog/Item/index.vue';
-import { offersGql } from '~/apollo/queries/offer/offers';
-
 import { VueEternalLoading, LoadAction } from '@ts-pro/vue-eternal-loading';
-import { useModals } from '~/store/modals';
-import { request } from '~/utils/request';
-import { Offer, OffersQueryVariables, OfferTypePagination } from '~/types/graphql';
+import { Offer, OffersQueryVariables } from '~/types/graphql';
+import { useOffers } from '~/store/offersStore';
 
-const current_page = ref(1);
-const last_page = ref(1);
-const offers = ref<OfferTypePagination[]>([]);
+const offersStore = useOffers();
+const currentPage = ref(1);
+const lastPage = ref(1);
+const offers = ref<Offer[]>([]);
 
-let variables = computed<OffersQueryVariables>(() => {
+const componentProps = inject('componentProps');
+const select = inject('select');
+
+const variables = computed<OffersQueryVariables>(() => {
   return {
     category: 'cars',
-    mark_slug: useModals().modalOfferSelection_mark?.slug,
-    folder_slug: useModals().modalOfferSelection_folder?.slug,
-    generation_slug: useModals().modalOfferSelection_generation?.slug,
+    mark_slug_array: [componentProps.value.mark.slug],
+    folder_slug_array: [componentProps.value.folder.slug],
+    generation_slug_array: [componentProps.value.generation.slug],
     limit: 4,
-    page: current_page.value,
+    page: currentPage.value,
     dateFormat: 'j F Y года.',
   };
 });
 
-
 const getOffers = async () => {
-  const { data } = await request<OfferTypePagination, OffersQueryVariables>(offersGql, variables.value);
-  offers.value.push(...data.value.offers.data);
-  last_page.value = data.value?.offers.last_page;
+  const fetchedOffers = await offersStore.fetchOffers(variables.value);
+  offers.value.push(...fetchedOffers.data);
+  lastPage.value = fetchedOffers.last_page;
 };
 
 async function load({ loaded }: LoadAction) {
   await getOffers();
-  current_page.value += 1;
+  currentPage.value += 1;
   loaded();
 }
 

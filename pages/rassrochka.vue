@@ -12,8 +12,28 @@
           </div>
         </div>
         <div class="grid__col-12 grid grid--application">
-          <form-installment/>
-          <button class="application__choose-car grid__col-8">
+          <form-installment :offer="offer" @showModal="isModalVisible = true"
+                            @changePeriod="installmentPayment = $event" @changePayment="installmentPayment = $event">
+            <template #offer>
+              <CatalogItem :offer="offer" view="long" v-if="offer && $device!.isMobile" class="catalog__item--form">
+                <!--            todo fix-->
+                <template #actions-button-left>{{null}}</template>
+                <template #actions-button-long>{{null}}</template>
+                <template #actions-button-right>{{null}}</template>
+                <template #main-button>{{null}}</template>
+                <template #secondary-button>{{null}}</template>
+              </CatalogItem>
+            </template>
+          </form-installment>
+          <CatalogItem :offer="offer" view="long" v-if="offer && !$device!.isMobile">
+<!--            todo fix-->
+            <template #actions-button-left>{{null}}</template>
+            <template #actions-button-long>{{null}}</template>
+            <template #actions-button-right>{{null}}</template>
+            <template #main-button>{{null}}</template>
+            <template #secondary-button>{{null}}</template>
+          </CatalogItem>
+          <button v-else class="application__choose-car grid__col-8" @click="isModalVisible = true">
             <nuxt-icon class="application__choose-car-icon" name="icon-form"/>
             <span class="application__choose-car-text">Выберите автомобиль</span>
           </button>
@@ -29,16 +49,16 @@
 
           <div class="application__terms grid__col-3">
             <div class="application__terms-item">
-              <div class="application__terms-number application__terms-number--stake"> это</div>
-              <div class="application__terms-text">моковые данные</div>
+              <div class="application__terms-number application__terms-number--stake">{{ $settings.first_installment }}</div>
+              <div class="application__terms-text">Ставка по рассрочке</div>
             </div>
             <div class="application__terms-item">
-              <div class="application__terms-number application__terms-number--payment"> их</div>
-              <div class="application__terms-text">нужно сделать вместе с выбором оффера</div>
+              <div class="application__terms-number application__terms-number--payment">{{ installmentPeriod }}</div>
+              <div class="application__terms-text">Срок рассрочки</div>
             </div>
             <div class="application__terms-item">
-              <div class="application__terms-number application__terms-number--payment"> и найти</div>
-              <div class="application__terms-text">замену для библиотеки</div>
+              <div class="application__terms-number application__terms-number--payment">{{ installmentPayment }}</div>
+              <div class="application__terms-text">Ежемесячный платеж</div>
             </div>
           </div>
         </div>
@@ -82,8 +102,27 @@
       </section>
     </div>
   </main>
+  <Sidebar v-model:visible="isModalVisible" position="right" header="Выберите автомобиль" class="modal">
+    <template #header>
+      <div class="heading-group heading-group--modal">
+        <div class="heading-group__wrap">
+          <h2 class="heading heading--h1">Выберите автомобиль</h2>
+        </div>
+      </div>
+    </template>
+    <OfferSelection @choose="offer = $event.car; isModalVisible = false"/>
+  </Sidebar>
 </template>
 <script setup lang="ts">
 import ApplicationBankCard from '~/components/Application/ApplicationBankCard.vue';
 import ContentBlock from '~/components/TextContent/ContentBlock.vue';
+import OfferSelection from '~/components/Modals/OfferSelection.vue';
+import { Offer } from '~/types/graphql';
+import { ref } from '#imports';
+
+const isModalVisible = ref(false);
+const offer = ref<Offer | null>(null);
+
+const installmentPeriod = ref('-');
+const installmentPayment = ref('-');
 </script>

@@ -31,7 +31,7 @@
         Первоначальный взнос:
       </template>
       <template #value>
-        {{ currentPaymentSum || 0 }} ₽
+        {{ numberFormat(currentPaymentSum) || 0 }} ₽
       </template>
     </SliderOptions>
     <div class="form__total">
@@ -49,6 +49,7 @@ import { OfferQuery } from '~/types/graphql';
 import { computed, useNuxtApp } from '#imports';
 import SliderOptions from '~/components/Inputs/SliderOptions.vue';
 
+//todo PEREPIWI ETO :D
 export type FormCreditCalculatorProps = {
   offer: OfferQuery['offer'];
   params: {
@@ -79,8 +80,8 @@ const paymentValue = ref(props.params.payment);
 const paymentPriceValue = ref<string | null>(null);
 const emit = defineEmits(['changePeriod', 'changePayment']);
 
+const { $settings } = useNuxtApp();
 const percent = computed(() => {
-  const { $settings } = useNuxtApp();
   return Number($settings?.credit_percent.replace('%', ''));
 });
 const currentPaymentSum = computed(() => {
@@ -118,8 +119,8 @@ function calculate() {
       //
     }
   }
-  emit('changePeriod', periodValue);
-  emit('changePayment', paymentPriceValue);
+  emit('changePeriod', periodValue.value);
+  emit('changePayment', paymentPriceValue.value);
 }
 
 function changePeriod(value: string) {

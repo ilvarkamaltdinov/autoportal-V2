@@ -6,13 +6,19 @@
         <span class="heading__promo">{{ $settings.first_installment }}</span>
       </template>
       <template #car-choose>
-        <Button class="form__field" @click="isModalVisible = true">
-          {{ 'Выбрать автомобиль' }}
-        </Button>
-        <nuxt-icon name="icon-form" class="form__car-icon"/>
+        <label class="form__field-wrap form__field-wrap--car" :class="{'form__field-wrap--car-active' : offer}">
+          <Button class="form__field" @click="$emit('showModal')">
+            {{ (offer && `${offer.name}, ${numberFormat(offer.price)} ₽`) || 'Выбрать автомобиль' }}
+          </Button>
+          <nuxt-icon name="icon-form" class="form__car-icon"/>
+        </label>
       </template>
       <template #calculator>
-        <FormCreditCalculator :offer="null" :params="creditParams">
+        <div class="catalog form__catalog">
+          <slot name="offer" />
+        </div>
+        <FormCreditCalculator :offer="offer" :params="creditParams" :installment="true"
+                              @changePeriod= "$emit('changePeriod', $event)" @changePayment="$emit('changePayment', $event)">
           <template #first-slider-name="{names}">
             {{ names.installment }}
           </template>
@@ -20,16 +26,6 @@
       </template>
     </FormConstructor>
   </div>
-  <Sidebar v-model:visible="isModalVisible" position="right" header="Выберите автомобиль" class="modal">
-    <template #header>
-      <div class="heading-group heading-group--modal">
-        <div class="heading-group__wrap">
-          <h2 class="heading heading--h1">Выберите автомобиль</h2>
-        </div>
-      </div>
-    </template>
-    <OfferSelection/>
-  </Sidebar>
 </template>
 
 <script setup lang="ts">
@@ -37,8 +33,13 @@ import FormCreditCalculator from '~/components/Form/form-components/FormCreditCa
 import { ref } from '#imports';
 import validation from '~/composables/validation';
 import { Input } from '~/components/Form/FormConstructor.vue';
-import OfferSelection from '~/components/Modals/OfferSelection.vue';
+import { Offer } from '~/types/graphql';
 
+defineProps<{
+  offer: Offer
+}>();
+
+defineEmits(['changePeriod', 'changePayment']);
 const inputs = ref<Input[]>([
   {
     name: 'fullName',
@@ -63,8 +64,6 @@ const inputs = ref<Input[]>([
     validationRule: validation.value.phone.rule,
   },
 ]);
-
-const isModalVisible = ref(false);
 
 const creditParams = ref({
   rangePeriodValues: {
