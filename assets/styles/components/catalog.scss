@@ -133,6 +133,7 @@
 }
 
 .catalog__heading * {
+  width: 100%;
   &:not(.catalog__vin) {
     @include font-mobile-h3-card;
   }
@@ -477,6 +478,7 @@
 
   .catalog__heading {
     max-width: 100%;
+    width: 100%;
   }
 
   .catalog__img-link {
