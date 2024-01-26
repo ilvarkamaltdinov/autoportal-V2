@@ -1,9 +1,9 @@
 <template>
-  <main class="page-main">
+  <main class="page-main" v-if="!pending">
     <div class="grid ">
       <Crumbs/>
     </div>
-    <div class="page-main__car car">
+    <div class="page-main__car car" v-if="offer">
       <div class="grid grid--container" v-if="isMobile">
         <!--        <Benefits :type="currentBenefitsType" class="car__benefits"/>-->
       </div>
@@ -11,22 +11,22 @@
         <div class="heading-group heading-group--h1 grid__col-6">
           <div class="heading-group__wrap">
             <h1 v-if="route.params.category === 'used'" class="heading heading--h1 heading--h1-car"
-                v-html="'Mercedes-Benz C-Класс, 1.8, АКПП, 120 994 км'"></h1>
+                v-html="'pageTitle'"></h1>
             <h1 v-if="route.params.category === 'new'" class="heading heading--h1 heading--h1-car"
-                v-html="'Lixiang L9 R-Line'"></h1>
+                v-html="'pageTitle NEW'"></h1>
             <div class="heading-group__label heading-group__label--car" v-if="route.params.category === 'used'">
               <div class="heading-group__year">
-                2018
+                {{ offer.year }}
               </div>
               <span class="heading-group__generation">
-                II (F20/F21) Рестайлинг 2
+                {{ offer.generation.name }}
               </span>
-              <div class="vin__wrapper-car">
+              <div class="vin__wrapper-car" v-if="offer.vin">
                 <div class="car__vin vin">
                   <nuxt-icon name="icon-check"/>
                   VIN
                 </div>
-                <div> WDD20404*1A****57</div>
+                <span> {{ offer.vin }}</span>
               </div>
             </div>
             <div class="heading-group__label heading-group__label--car" v-if="route.params.category === 'new'">
@@ -34,25 +34,26 @@
             </div>
           </div>
         </div>
-        <div class="car__top-buttons grid__col-6" v-if="true"> <!--        TODO  v-if="offer.is_active"-->
+        <div class="car__top-buttons grid__col-6" v-if="offer.is_active">
           <button @click="callback" class="button button--icon button--link">
             Обратный звонок
             <nuxt-icon class="icon" name="icon-callback"/>
           </button>
-          <!--          <button-call-modal @click="callback" v-if="offer.dealer.phone" :phone="offer.dealer.phone"/>-->
+          <Button class="button button--action button--call">
+            <nuxt-icon class="button__icon" name="icon-call"/>
+          </Button>
         </div>
       </div>
       <div class="car__slider-wrap">
         <div class="grid grid--container">
           <OfferSlider>
             <template #slides>
-              <SwiperSlide class="slider-car__item" v-for="slide in 10" :key="slide">
+              <SwiperSlide class="slider-car__item" v-for="(img, key) in offer.images" :key="key">
                 <div class="slider-car__link"
                      @click.right.prevent
-                     :data-fancybox="`/img/mock/offer-card-img-${slide}.webp`"
-                     data-src="/img/mock/offer-card-img-${img}.webp`"
+                     :data-src="img.medium_webp"
                      tabindex="0">
-                  <img class="slider__car-img lazyload" :src="`/img/mock/offer-card-img-${slide}.webp`" alt="">
+                  <img class="slider__car-img lazyload" :src="img.medium_webp" alt="">
                 </div>
               </SwiperSlide>
             </template>
@@ -83,17 +84,42 @@ import OfferBuy from '~/components/Offer/Buy/index.vue';
 import OfferFixed from '~/components/Offer/Fixed.vue';
 import OfferInfo from '~/components/Offer/Info.vue';
 import OfferComplectation from '~/components/Offer/Complectation.vue';
+import { OfferQuery, OfferQueryVariables } from '~/types/graphql';
+import { useOffers } from '~/store/offersStore';
+import { useNuxtApp } from '#app';
 
 const route = useRoute();
 const { isMobile } = useDevice();
-
+const offersStore = useOffers();
 // const currentBenefitsType = computed(() => {
 //   return 'credit';
 // });
 
 let showFixed = ref(false);
+const offer = ref<OfferQuery | null>(null);
 
 function callback() {
   console.log('callback');
 }
+
+provide('offer', offer);
+
+const variables = computed<OfferQueryVariables>(() => {
+  return {
+    mark_slug: route.params.mark,
+    folder_slug: route.params.folder,
+    external_id: Number(route.params.offer),
+    dateFormat: 'j F Y года.'
+  };
+});
+
+async function getOffer() {
+  offer.value = await offersStore.fetchOffer(variables.value);
+}
+
+const nuxtApp = useNuxtApp();
+const { pending } = useAsyncData(route.params.offer, () => getOffer(), {
+  getCachedData: (key: string) => nuxtApp.payload.data[key] || nuxtApp.static.data[key]
+});
+
 </script>

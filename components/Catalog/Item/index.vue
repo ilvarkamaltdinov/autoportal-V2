@@ -11,7 +11,9 @@
         <div class="catalog__title-wrap">
           <h3 class="catalog__heading">
             <slot name="heading">
-              <nuxt-link to="/used/mark/model/123" class="catalog__title-link">
+              <nuxt-link
+                  :to="`/${offer?.category_enum}/${offer?.mark.slug}/${offer?.folder.slug}/${offer?.external_id}`"
+                  class="catalog__title-link">
                 <span class="catalog__title">
                   {{ offer && offer.mark.title }} {{ offer && offer.folder.title }}
                   <span>, {{ offer && engineVolume(offer.engine_volume) }} </span>
@@ -163,6 +165,7 @@ import CatalogItemImage from '~/components/Catalog/Item/Image.vue';
 import { creditPrice, engineVolume, numberFormat } from '~/utils/filters';
 import ButtonFavorite from '~/components/Button/ButtonFavorite.vue';
 import { Offer } from '~/types/graphql';
+import { offers } from '~/apollo/queries/filtersCount';
 
 const props = defineProps<{
   // todo fixme добавть тип вот ТАК
