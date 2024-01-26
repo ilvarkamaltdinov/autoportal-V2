@@ -119,8 +119,8 @@ function calculate() {
       //
     }
   }
-  emit('changePeriod', periodValue);
-  emit('changePayment', paymentPriceValue);
+  emit('changePeriod', periodValue.value);
+  emit('changePayment', paymentPriceValue.value);
 }
 
 function changePeriod(value: string) {

@@ -12,7 +12,8 @@
           </div>
         </div>
         <div class="grid__col-12 grid grid--application">
-          <form-installment :offer="offer" @showModal="isModalVisible = true">
+          <form-installment :offer="offer" @showModal="isModalVisible = true"
+                            @changePeriod="installmentPayment = $event" @changePayment="installmentPayment = $event">
             <template #offer>
               <CatalogItem :offer="offer" view="long" v-if="offer && $device!.isMobile" class="catalog__item--form">
                 <!--            todo fix-->
@@ -48,16 +49,16 @@
 
           <div class="application__terms grid__col-3">
             <div class="application__terms-item">
-              <div class="application__terms-number application__terms-number--stake"> это</div>
-              <div class="application__terms-text">моковые данные</div>
+              <div class="application__terms-number application__terms-number--stake">{{ $settings.first_installment }}</div>
+              <div class="application__terms-text">Ставка по рассрочке</div>
             </div>
             <div class="application__terms-item">
-              <div class="application__terms-number application__terms-number--payment"> их</div>
-              <div class="application__terms-text">нужно сделать вместе с выбором оффера</div>
+              <div class="application__terms-number application__terms-number--payment">{{ installmentPeriod }}</div>
+              <div class="application__terms-text">Срок рассрочки</div>
             </div>
             <div class="application__terms-item">
-              <div class="application__terms-number application__terms-number--payment"> и найти</div>
-              <div class="application__terms-text">замену для библиотеки</div>
+              <div class="application__terms-number application__terms-number--payment">{{ installmentPayment }}</div>
+              <div class="application__terms-text">Ежемесячный платеж</div>
             </div>
           </div>
         </div>
@@ -121,4 +122,7 @@ import { ref } from '#imports';
 
 const isModalVisible = ref(false);
 const offer = ref<Offer | null>(null);
+
+const installmentPeriod = ref('-');
+const installmentPayment = ref('-');
 </script>

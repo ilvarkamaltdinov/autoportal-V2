@@ -17,7 +17,8 @@
         <div class="catalog form__catalog">
           <slot name="offer" />
         </div>
-        <FormCreditCalculator :offer="offer" :params="creditParams">
+        <FormCreditCalculator :offer="offer" :params="creditParams" :installment="true"
+                              @changePeriod= "$emit('changePeriod', $event)" @changePayment="$emit('changePayment', $event)">
           <template #first-slider-name="{names}">
             {{ names.installment }}
           </template>
@@ -37,6 +38,8 @@ import { Offer } from '~/types/graphql';
 defineProps<{
   offer: Offer
 }>();
+
+defineEmits(['changePeriod', 'changePayment']);
 const inputs = ref<Input[]>([
   {
     name: 'fullName',
