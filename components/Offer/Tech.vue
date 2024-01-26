@@ -5,101 +5,91 @@
       <li class="car__tech-item">
         <div class="car__tech-icon-wrap">
           <nuxt-icon class="car__tech-icon"
-                    name="icon-year" />
+                     name="icon-year"/>
         </div>
         <div class="car__tech-content">
-<!--          {{ offer.year }}-->
-          test 1
+          {{ offer.year }}
         </div>
       </li>
       <li class="car__tech-item">
         <div class="car__tech-icon-wrap">
           <nuxt-icon class="car__tech-icon"
-                    name="icon-gear" />
+                     name="icon-gear"/>
         </div>
         <div class="car__tech-content">
-<!--          {{ offer.gearbox.title_short_rus }}-->
-          test 2
+          {{ offer.gearbox.title_short_rus }}
         </div>
       </li>
       <li class="car__tech-item">
         <div class="car__tech-icon-wrap">
           <nuxt-icon class="car__tech-icon"
-                    name="icon-mileage" />
+                     name="icon-mileage"/>
         </div>
         <div class="car__tech-content">
-<!--          {{ offer.run | run }} км-->
-          test 3
+          {{ offer.run }} км
         </div>
       </li>
       <li class="car__tech-item">
         <div class="car__tech-icon-wrap">
           <nuxt-icon class="car__tech-icon"
-                    name="icon-volume" />
+                     name="icon-volume"/>
         </div>
         <div class="car__tech-content">
-<!--          {{ offer.engine_volume | engineVolume }} л-->
-          test 4
+          {{ offer.engine_volume }} л
         </div>
       </li>
       <li class="car__tech-item">
         <div class="car__tech-icon-wrap">
           <nuxt-icon class="car__tech-icon"
-                    name="icon-engine" />
+                     name="icon-engine"/>
         </div>
         <div class="car__tech-content">
-<!--          {{ offer.engine_power }} л.с.-->
-          test 5
+          {{ offer.engine_power }} л.с.
         </div>
       </li>
       <li class="car__tech-item">
         <div class="car__tech-icon-wrap">
           <nuxt-icon class="car__tech-icon"
-                    name="icon-fuel" />
+                     name="icon-fuel"/>
         </div>
         <div class="car__tech-content">
-<!--          {{ offer.engineType.title }}-->
-          test 6
+          {{ offer.engineType.title }}
         </div>
       </li>
       <li class="car__tech-item">
         <div class="car__tech-icon-wrap">
           <nuxt-icon class="car__tech-icon"
-                    name="icon-form" />
+                     name="icon-form"/>
         </div>
         <div class="car__tech-content">
-<!--          {{ offer.bodyType.title }}-->
-          test 7
+          {{ offer.bodyType.title }}
         </div>
       </li>
       <li class="car__tech-item">
         <div class="car__tech-icon-wrap">
           <nuxt-icon class="car__tech-icon"
-                    name="icon-wd" />
+                     name="icon-wd"/>
         </div>
         <div class="car__tech-content">
-<!--          {{ offer.driveType.title }}-->
-          test 8
+          {{ offer.driveType.title }}
         </div>
       </li>
       <li class="car__tech-item car__tech-item--mobile">
         <div class="car__tech-icon-wrap">
           <nuxt-icon class="car__tech-icon"
-                    name="icon-color" />
+                     name="icon-color"/>
         </div>
         <div class="car__tech-content">
-<!--          {{ offer.color.title }}-->
-          test 9
+          {{ offer.color.title }}
         </div>
       </li>
       <li class="car__tech-item">
         <div class="car__tech-icon-wrap">
           <nuxt-icon class="car__tech-icon"
-                    name="icon-owners" />
+                     name="icon-owners"/>
         </div>
         <div class="car__tech-content">
-<!--          {{ offer.owner.title === '0 владельцев' ? 'Новый' : offer.owner.title }}-->
-          test 10
+          {{ offer.owner.title === '0 владельцев' ? 'Новый' : offer.owner.title }}
         </div>
       </li>
     </ul>
@@ -107,5 +97,5 @@
 </template>
 
 <script setup lang="ts">
-
+const offer = inject('offer');
 </script>
