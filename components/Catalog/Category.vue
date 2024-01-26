@@ -70,12 +70,16 @@ import { useOffers } from '~/store/offersStore';
 import { Offer, OffersQueryVariables } from '~/types/graphql';
 import type { DataViewPageEvent } from 'primevue/dataview';
 import Sort from '~/components/Filters/Sort.vue';
+import { useRoute } from '#imports';
 
 //todo add parse from query
 const offersStore = useOffers();
 const currentPage = ref(1);
 const lastPage = ref(1);
 const offers = ref<Offer[]>([]);
+
+const { query } = useRoute();
+currentPage.value = Number(query.page || 1);
 
 const currentView = ref('s');
 
@@ -93,11 +97,13 @@ const variables = computed<OffersQueryVariables>(() => {
 
 async function paginatorClick({ page }: DataViewPageEvent) {
   currentPage.value = ++page;
+  useRouter().push({ query: { page: page } });
   await refresh();
   // await getOffers();
 }
 
 async function getOffers() {
+  console.log(currentPage.value);
   const fetchedOffers = await offersStore.fetchOffers(variables.value);
   offers.value = fetchedOffers.data;
   lastPage.value = fetchedOffers.last_page;
