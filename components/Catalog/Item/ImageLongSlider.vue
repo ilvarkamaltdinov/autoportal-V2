@@ -3,12 +3,12 @@
           :spaceBetween="16"
           :slidesPerView="'auto'"
           :modules="[Autoplay, Pagination, Navigation]">
-    <SwiperSlide v-for="image in photos"
-                 :key="image">
+    <SwiperSlide v-for="image in images"
+                 :key="image.small_webp">
       <a class="catalog__img-link"
          title="Увеличить фотографию"
          aria-label="Увеличить фотографию">
-        <img :data-src="image" class="lazyload" loading="lazy" alt="" src="">
+        <img :data-src="image.small_webp" class="lazyload" loading="lazy" alt="" src="">
       </a>
     </SwiperSlide>
   </Swiper>
@@ -27,21 +27,25 @@
 <script setup lang="ts">
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { Swiper } from 'swiper/vue';
+import { Offer } from '~/types/graphql';
 
-const photos = computed(() => {
-  return [
-    '/img/mock/offer-card-img-1.webp',
-    '/img/mock/offer-card-img-2.webp',
-    '/img/mock/offer-card-img-3.webp',
-    '/img/mock/offer-card-img-1.webp',
-    '/img/mock/offer-card-img-2.webp',
-    '/img/mock/offer-card-img-3.webp',
-    '/img/mock/offer-card-img-1.webp',
-    '/img/mock/offer-card-img-2.webp',
-    '/img/mock/offer-card-img-3.webp',
-    '/img/mock/offer-card-img-1.webp',
-    '/img/mock/offer-card-img-2.webp',
-    '/img/mock/offer-card-img-3.webp'
-  ];
-});
+defineProps<{
+  images: Offer['images']
+}>();
+// const photos = computed(() => {
+//   return [
+//     '/img/mock/offer-card-img-1.webp',
+//     '/img/mock/offer-card-img-2.webp',
+//     '/img/mock/offer-card-img-3.webp',
+//     '/img/mock/offer-card-img-1.webp',
+//     '/img/mock/offer-card-img-2.webp',
+//     '/img/mock/offer-card-img-3.webp',
+//     '/img/mock/offer-card-img-1.webp',
+//     '/img/mock/offer-card-img-2.webp',
+//     '/img/mock/offer-card-img-3.webp',
+//     '/img/mock/offer-card-img-1.webp',
+//     '/img/mock/offer-card-img-2.webp',
+//     '/img/mock/offer-card-img-3.webp'
+//   ];
+// });
 </script>

@@ -12,8 +12,19 @@
           </div>
         </div>
         <div class="grid__col-12 grid grid--application">
-          <form-installment :offer="offer" @showModal="isModalVisible = true"/>
-          <CatalogItem :offer="offer" view="long" v-if="offer">
+          <form-installment :offer="offer" @showModal="isModalVisible = true">
+            <template #offer>
+              <CatalogItem :offer="offer" view="long" v-if="offer && $device!.isMobile" class="catalog__item--form">
+                <!--            todo fix-->
+                <template #actions-button-left>{{null}}</template>
+                <template #actions-button-long>{{null}}</template>
+                <template #actions-button-right>{{null}}</template>
+                <template #main-button>{{null}}</template>
+                <template #secondary-button>{{null}}</template>
+              </CatalogItem>
+            </template>
+          </form-installment>
+          <CatalogItem :offer="offer" view="long" v-if="offer && !$device!.isMobile">
 <!--            todo fix-->
             <template #actions-button-left>{{null}}</template>
             <template #actions-button-long>{{null}}</template>

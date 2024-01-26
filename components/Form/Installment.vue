@@ -14,6 +14,9 @@
         </label>
       </template>
       <template #calculator>
+        <div class="catalog form__catalog">
+          <slot name="offer" />
+        </div>
         <FormCreditCalculator :offer="offer" :params="creditParams">
           <template #first-slider-name="{names}">
             {{ names.installment }}
