@@ -114,10 +114,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 16px;
-
-  & > * {
-    margin-right: 8px;
-  }
+  gap: 8px;
 }
 
 .car__price {
@@ -466,6 +463,10 @@
     margin: 0px -24px 12px;
     padding: 12px 24px;
   }
+  .car__actions-block--new {
+    margin-bottom: 0;
+    border-bottom: 0;
+  }
 
   .car__top-buttons {
     display: flex;
@@ -481,10 +482,6 @@
 
   .car__price {
     @include font-desktop-h3;
-  }
-
-  .car__buy-block {
-    flex-direction: row-reverse;
   }
 
   .car__tech-item--mobile {
@@ -594,6 +591,9 @@
 
   .car__buy {
     padding: 24px;
+  }
+  .car__buy--new {
+    padding-bottom: 0;
   }
 
   .car__tech-list {

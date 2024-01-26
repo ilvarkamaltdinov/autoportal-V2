@@ -79,11 +79,10 @@
 // import { SwiperSlide } from 'swiper/vue';
 // import Benefits from '~/components/Benefits/index.vue';
 import OfferSlider from '~/components/Offer/Slider.vue';
-import OfferBuy from '~/components/Offer/Buy.vue';
+import OfferBuy from '~/components/Offer/Buy/index.vue';
 import OfferFixed from '~/components/Offer/Fixed.vue';
 import OfferInfo from '~/components/Offer/Info.vue';
 import OfferComplectation from '~/components/Offer/Complectation.vue';
-import OfferTitle from '~/components/Offer/Title.vue';
 
 const route = useRoute();
 const { isMobile } = useDevice();

@@ -1,10 +1,12 @@
 <template>
   <article class="catalog__item" :class="classes">
-    <div class="catalog__img">
-      <slot name="slider">
+
+    <slot name="slider">
+      <div class="catalog__img">
         <CatalogItemImage :view="view"/>
-      </slot>
-    </div>
+      </div>
+    </slot>
+
     <!--    TODO подумать как сделать лучше стилями этот блок-->
     <div class="catalog__info-wrap" v-if="!isMobile">
       <div class="catalog__info">

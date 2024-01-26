@@ -31,7 +31,9 @@
       </CatalogItem>
       <CatalogItem view="short">
         <template #slider>
-          <img src="~/assets/img/repair@1x.png" alt="">
+          <div class="catalog__img">
+            <img src="~/assets/img/repair@1x.png" alt="">
+          </div>
         </template>
         <template #heading>
           Карточка со слотами

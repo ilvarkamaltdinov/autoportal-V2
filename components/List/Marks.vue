@@ -5,7 +5,7 @@
         <CarBrandLogo :car-brand="mark" v-for="mark in popularMarks" :key="mark.id"></CarBrandLogo>
       </ul>
       <ul class="makes__list makes__list--all makes__list--all-modal">
-        <TwoSideBadge :to="`used/${mark.slug}`" v-for="mark in marksList" :key="mark.id">
+        <TwoSideBadge :to="`${catalogRoute}/${mark.slug}`" v-for="mark in marksList" :key="mark.id">
           <template #title>
             {{ markTitle(mark) }}
           </template>
@@ -32,6 +32,15 @@ import { useMarks } from '~/store/carbrandsStore';
 import { storeToRefs } from 'pinia';
 import TwoSideBadge from '~/components/Inputs/TwoSideBadge.vue';
 import CarBrandLogo from '~/components/Inputs/CarBrandLogo.vue';
+
+const props = defineProps<{
+  category?: string
+}>();
+
+const catalogRoute = computed(()=>{
+  return props.category === 'new' ? 'new' : 'used';
+});
+
 
 const { isMobile } = useDevice();
 const carBrandsStore = useMarks();
