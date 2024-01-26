@@ -36,11 +36,11 @@
       <DataView :first="currentPage * 8" dataKey="external_id" :paginator="true" :value="offers" :rows="8" :totalRecords="99999" lazy
                 @page="paginatorClick" :pageLinkSize="7" paginatorTemplate="PrevPageLink PageLinks NextPageLink">
         <template #header>
-          <Sort />
+          <Sort v-model:view="currentView" />
         </template>
         <template #list="{items: offers}">
           <div class="catalog__list grid grid--catalog">
-            <CatalogItem view="short" v-for="offer in offers" :key="offer.external_id" :offer="offer"/>
+            <CatalogItem :view="currentView === 's' ? 'short' : 'long'" v-for="offer in offers" :key="offer.external_id" :offer="offer"/>
           </div>
           <div class="grid__col-8">
             <Button class="button button--link button--more"
@@ -76,6 +76,8 @@ const offersStore = useOffers();
 const currentPage = ref(1);
 const lastPage = ref(1);
 const offers = ref<Offer[]>([]);
+
+const currentView = ref('s');
 
 const variables = computed<OffersQueryVariables>(() => {
   return {
