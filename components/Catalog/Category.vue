@@ -16,7 +16,7 @@
           </div>
           <div class="grid__col-8">
             <Button class="button button--link button--more"
-                    @click="paginatorClick({ page: currentPage + 1 })">
+                    @click="paginatorClick({ page: currentPage })">
               Далее
             </Button>
           </div>
@@ -68,7 +68,7 @@ const variables = computed<Partial<OffersQueryVariables>>(() => {
   };
 });
 
-async function paginatorClick({ page }: DataViewPageEvent) {
+async function paginatorClick({ page }: Pick<DataViewPageEvent, 'page'>) {
   currentPage.value = ++page;
   useRouter().push({ query: { page: page } });
   await refresh();
