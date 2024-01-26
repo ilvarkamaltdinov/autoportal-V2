@@ -1,5 +1,5 @@
 .p-skeleton {
-    background-color: #0C0C0C;
+    background-color: var(--color-bg);
     border-radius: $borderRadius;
 
     &:after {
