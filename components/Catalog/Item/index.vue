@@ -136,10 +136,8 @@
         <slot name="actions-button-long" v-if="view === 'long' && !isMobile">
           <ButtonAutoteka @click="onAutoteka"/>
         </slot>
-        <slot name="actions-button-left">
+        <slot name="actions-button-secondary">
           <ButtonFavorite @click="onFavoriteClick" :active="isFavorite"/>
-        </slot>
-        <slot name="actions-button-right">
           <Button class="button button--action button--call">
             <nuxt-icon class="button__icon" name="icon-call"/>
           </Button>
