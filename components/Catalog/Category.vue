@@ -1,7 +1,7 @@
 <template>
   <div ref="catalog">
     <div class="catalog__list grid grid--catalog" v-if="pending">
-      <CatalogItem v-for="i in 6" :key="i">
+      <CatalogItem v-for="i in 8" :key="i">
         <template #slider>
           <div class="catalog__img">
             <Skeleton height="100%" width="100%"/>
@@ -32,7 +32,7 @@
       </CatalogItem>
     </div>
     <div v-else class="">
-      <DataView :value="offers" paginator :rows="8" :totalRecords="99999" lazy @page="paginatorClick">
+      <DataView dataKey="external_id" :value="offers" paginator :rows="8" :totalRecords="99999" lazy @page="paginatorClick">
         <template #list="{items: offers}">
           <div class="catalog__list grid grid--catalog">
             <CatalogItem view="short" v-for="offer in offers" :key="offer.external_id" :offer="offer"/>
