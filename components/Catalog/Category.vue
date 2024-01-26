@@ -1,6 +1,6 @@
 <template>
   <div ref="catalog">
-    <div class="catalog__list grid grid--catalog" v-if="true">
+    <div class="catalog__list grid grid--catalog" v-if="pending">
       <CatalogItem v-for="i in 6" :key="i">
         <template #slider>
           <div class="catalog__img">
