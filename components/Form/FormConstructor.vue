@@ -1,46 +1,49 @@
 <template>
-    <div class="heading-group heading-group--form" v-if="$slots.name">
-      <div class="heading-group__wrap">
-        <h2 class="heading heading--h2">
-          <slot name="name"/>
-        </h2>
-      </div>
+  <div class="heading-group heading-group--form" v-if="$slots.name">
+    <div class="heading-group__wrap">
+      <h2 class="heading heading--h2">
+        <slot name="name"/>
+      </h2>
     </div>
-    <form class="form">
-      <fieldset class="form__fieldset">
-          <slot name="car-choose"/>
-      </fieldset>
+  </div>
+  <form class="form">
+    <fieldset class="form__fieldset">
+      <label class="form__field-wrap form__field-wrap--car">
+        <slot name="car-choose"/>
+      </label>
       <slot name="calculator"/>
-      <fieldset class="form__fieldset">
-        <div class="form__field-wrap" v-for="({ attrs, component, name }) in inputs" :key="name" :class="{
+    </fieldset>
+    <fieldset class="form__fieldset">
+      <div class="form__field-wrap" v-for="({ attrs, component, name }) in inputs" :key="name" :class="{
           'form__field-wrap--error': errors[name],
           'form__field-wrap--success': isFieldValid(name)
         }">
-          <component :is="component" v-bind="attrs" :unstyled="true" :modelValue="fields[name]" @update:model-value="fields[name] = $event" />
-        </div>
-        <slot name="inputs" />
-        <CheckBoxForm v-model="grazhdanstvo" :class="{
+        <component :is="component" v-bind="attrs" :unstyled="true" :modelValue="fields[name]"
+                   @update:model-value="fields[name] = $event"/>
+      </div>
+      <slot name="inputs"/>
+      <CheckBoxForm v-model="grazhdanstvo" :class="{
           'checkbox--error': errors['grazhdanstvo']
         }">
-          <template #text>
-            Подтверждаю наличие гражданства РФ
-          </template>
-        </CheckBoxForm>
-        <CheckBoxForm v-model="agree" :class="{
+        <template #text>
+          Подтверждаю наличие гражданства РФ
+        </template>
+      </CheckBoxForm>
+      <CheckBoxForm v-model="agree" :class="{
           'checkbox--error': errors['agree']
         }">
-          <template #text>
-            <span>Согласен на</span>
-          </template>
-          <template #link>
-            обработку личных данных
-          </template>
-        </CheckBoxForm>
-      </fieldset>
-      <Button :unstyled="true" class="button button--credit button--form" @click="onSubmit">
-        Оставить заявку
-      </Button>
-    </form>
+        <template #text>
+          <span>Согласен на</span>
+        </template>
+        <template #link>
+          обработку личных данных
+        </template>
+      </CheckBoxForm>
+    </fieldset>
+    <Button :unstyled="true" class="button button--credit button--form" @click="onSubmit">
+      Оставить заявку
+    </Button>
+  </form>
 </template>
 
 <script setup lang="ts">
@@ -66,7 +69,7 @@ const props = defineProps<{
   inputs: Input[]
 }>();
 
-function getValidationRulesFromProps(){
+function getValidationRulesFromProps() {
   return props.inputs.reduce((prev, current) => {
     return {
       ...prev,
@@ -86,7 +89,7 @@ const { defineField, handleSubmit, errors, isFieldValid } = useForm({
 });
 
 const fields: Record<string, unknown> = reactive({});
-Object.entries(props.inputs).forEach( ([_,v]) => {
+Object.entries(props.inputs).forEach(([_, v]) => {
   fields[v.name] = defineField(v.name)[0];
   validationRules.value[v.name] = v.validationRule;
 });

@@ -15,9 +15,9 @@
     </template>
     <template #calculator>
       <div class="catalog form__catalog">
-        <slot name="offer" />
+        <slot name="offer"/>
       </div>
-      <FormCreditCalculator :offer="offer" :params="creditParams" @changePeriod= "$emit('changePeriod', $event)"
+      <FormCreditCalculator :offer="offer" :params="creditParams" @changePeriod="$emit('changePeriod', $event)"
                             @changePayment="$emit('changePayment', $event)">
         <template #first-slider-name="{names}">
           {{ names.credit }}
