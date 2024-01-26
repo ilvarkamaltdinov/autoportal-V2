@@ -31,8 +31,15 @@
         </template>
       </CatalogItem>
     </div>
-    <div v-else class="catalog__list grid grid--catalog">
-      <CatalogItem view="short" v-for="offer in offers" :key="offer.external_id" :offer="offer"/>
+    <div v-else class="">
+      <DataView :value="offers" paginator :rows="8" :totalRecords="99999" lazy @page="paginatorClick">
+        <template #list="{items: offers}">
+          <div class="catalog__list grid grid--catalog">
+            <CatalogItem view="short" v-for="offer in offers" :key="offer.external_id" :offer="offer"/>
+          </div>
+        </template>
+      </DataView>
+<!--      <CatalogItem view="short" v-for="offer in offers" :key="offer.external_id" :offer="offer"/>-->
       <div class="grid__col-8">
         <Button class="button button--link button--more"
                 @click="paginationClick">
@@ -49,7 +56,6 @@
         </div>
       </div>
     </div>
-    <Paginator :rows="10" :totalRecords="120" :rowsPerPageOptions="[10, 20, 30]"></Paginator>
     <!--    TODO новый paginate-->
     <!--    <client-only>-->
     <!--      <Paginate-->
@@ -79,6 +85,7 @@ import CatalogItem from '~/components/Catalog/Item/index.vue';
 
 import { useOffers } from '~/store/offersStore';
 import { Offer, OffersQueryVariables } from '~/types/graphql';
+import type { DataViewPageEvent } from 'primevue/dataview';
 import CatalogItemImage from '~/components/Catalog/Item/Image.vue';
 
 const offersStore = useOffers();
@@ -92,11 +99,18 @@ const variables = computed<OffersQueryVariables>(() => {
     mark_slug_array: [],
     folder_slug_array: [],
     generation_slug_array: [],
-    limit: 3,
+    limit: 8,
     page: currentPage.value,
     dateFormat: 'j F Y года.',
   };
 });
+
+async function paginatorClick({ page }: DataViewPageEvent){
+  console.log(page);
+  currentPage.value = ++page;
+  await refresh();
+  // await getOffers();
+}
 
 async function getOffers() {
   const fetchedOffers = await offersStore.fetchOffers(variables.value);
@@ -104,7 +118,7 @@ async function getOffers() {
   lastPage.value = fetchedOffers.last_page;
 }
 
-const { pending } = useAsyncData('offerCategory', () => getOffers());
+const { pending, refresh } = useAsyncData('offerCategory', () => getOffers());
 
 function paginationClick() {
   console.log('paginationClick');
