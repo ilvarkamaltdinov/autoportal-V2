@@ -10,91 +10,7 @@
           </div>
         </div>
       </div>
-      <CatalogItem view="short">
-        <template #heading>
-          <nuxt-link to="/used/mark/model/123" class="catalog__title-link">
-            Б/У карточка
-          </nuxt-link>
-        </template>
-      </CatalogItem>
-      <CatalogItem view="short">
-        <template #heading>
-          <nuxt-link to="/new/mark/model/123" class="catalog__title-link">
-            Карточка нового авто
-          </nuxt-link>
-        </template>
-      </CatalogItem>
-      <CatalogItem view="short">
-        <template #heading>
-          Дефолтная карточка
-        </template>
-      </CatalogItem>
-      <CatalogItem view="short">
-        <template #slider>
-          <div class="catalog__img">
-            <img src="~/assets/img/repair@1x.png" alt="">
-          </div>
-        </template>
-        <template #heading>
-          Карточка со слотами
-        </template>
-        <template #price>
-          test price
-        </template>
-        <template #price-old>
-          test price old
-        </template>
-        <template #price-credit>
-          test price-credit
-        </template>
-        <template #stock>
-          <div class="stock stock--true" data-tippy-directive="" tabindex="0">
-            stock
-          </div>
-        </template>
-        <template #tech>
-          <Rating :max="5" :rating="4"/>
-          <ul class="catalog__tech-list">
-            <li class="catalog__tech-item">
-              test tech
-            </li>
-            <li class="catalog__tech-item">
-              test tech
-            </li>
-            <li class="catalog__tech-item">
-              test tech
-            </li>
-            <li class="catalog__tech-item">
-              test tech
-            </li>
-          </ul>
-        </template>
-        <template #actions-button-left>
-          <Button class="button button--action button--call">
-            1
-          </Button>
-        </template>
-        <template #actions-button-right>
-          <Button class="button button--action button--call">
-            2
-          </Button>
-        </template>
-        <template #main-button>
-          <Button class="button button--credit">
-            main-button
-          </Button>
-        </template>
-        <template #secondary-button>
-          <Button class="button button--credit">
-            secondary-button
-          </Button>
-        </template>
-      </CatalogItem>
-      <CatalogItem view="long">
-        <template #heading>
-          Длинная карточка
-        </template>
-      </CatalogItem>
+      <CatalogItem view="short" v-for="offer in offers" :key="offer.external_id" :offer="offer"/>
       <div class="grid__col-8">
         <Button class="button button--link button--more"
                 @click="paginationClick">
@@ -128,6 +44,34 @@
 
 <script setup lang="ts">
 import CatalogItem from '~/components/Catalog/Item/index.vue';
+
+import { useOffers } from '~/store/offersStore';
+import { Offer, OffersQueryVariables } from '~/types/graphql';
+
+const offersStore = useOffers();
+const currentPage = ref(1);
+const lastPage = ref(1);
+const offers = ref<Offer[]>([]);
+
+const variables = computed<OffersQueryVariables>(() => {
+  return {
+    category: 'cars',
+    mark_slug_array: [],
+    folder_slug_array: [],
+    generation_slug_array: [],
+    limit: 3,
+    page: currentPage.value,
+    dateFormat: 'j F Y года.',
+  };
+});
+
+async function getOffers() {
+  const fetchedOffers = await offersStore.fetchOffers(variables.value);
+  offers.value = fetchedOffers.data;
+  lastPage.value = fetchedOffers.last_page;
+}
+
+await getOffers();
 
 function paginationClick() {
   console.log('paginationClick');

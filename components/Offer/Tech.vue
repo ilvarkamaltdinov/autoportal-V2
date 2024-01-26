@@ -9,7 +9,7 @@
         </div>
         <div class="car__tech-content">
 <!--          {{ offer.year }}-->
-          test
+          test 1
         </div>
       </li>
       <li class="car__tech-item">
@@ -19,7 +19,7 @@
         </div>
         <div class="car__tech-content">
 <!--          {{ offer.gearbox.title_short_rus }}-->
-          test
+          test 2
         </div>
       </li>
       <li class="car__tech-item">
@@ -29,7 +29,7 @@
         </div>
         <div class="car__tech-content">
 <!--          {{ offer.run | run }} км-->
-          test
+          test 3
         </div>
       </li>
       <li class="car__tech-item">
@@ -39,7 +39,7 @@
         </div>
         <div class="car__tech-content">
 <!--          {{ offer.engine_volume | engineVolume }} л-->
-          test
+          test 4
         </div>
       </li>
       <li class="car__tech-item">
@@ -49,7 +49,7 @@
         </div>
         <div class="car__tech-content">
 <!--          {{ offer.engine_power }} л.с.-->
-          test
+          test 5
         </div>
       </li>
       <li class="car__tech-item">
@@ -59,7 +59,7 @@
         </div>
         <div class="car__tech-content">
 <!--          {{ offer.engineType.title }}-->
-          test
+          test 6
         </div>
       </li>
       <li class="car__tech-item">
@@ -69,7 +69,7 @@
         </div>
         <div class="car__tech-content">
 <!--          {{ offer.bodyType.title }}-->
-          test
+          test 7
         </div>
       </li>
       <li class="car__tech-item">
@@ -79,7 +79,7 @@
         </div>
         <div class="car__tech-content">
 <!--          {{ offer.driveType.title }}-->
-          test
+          test 8
         </div>
       </li>
       <li class="car__tech-item car__tech-item--mobile">
@@ -89,7 +89,7 @@
         </div>
         <div class="car__tech-content">
 <!--          {{ offer.color.title }}-->
-          test
+          test 9
         </div>
       </li>
       <li class="car__tech-item">
@@ -99,7 +99,7 @@
         </div>
         <div class="car__tech-content">
 <!--          {{ offer.owner.title === '0 владельцев' ? 'Новый' : offer.owner.title }}-->
-          test
+          test 10
         </div>
       </li>
     </ul>

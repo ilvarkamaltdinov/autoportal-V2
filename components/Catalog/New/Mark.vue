@@ -26,20 +26,44 @@
               </template>
               <template #tech>
                 <ul class="catalog__tech-list">
-                  <li class="catalog__tech-item">
-                    2.5 л
+                  <li class="car__tech-item">
+                    <div class="car__tech-icon-wrap">
+                      <nuxt-icon class="car__tech-icon"
+                                 name="icon-volume"/>
+                    </div>
+                    <div class="car__tech-content">
+                      2.5 л
+                    </div>
                   </li>
-                  <li class="catalog__tech-item">
-                    449 л.с.
+                  <li class="car__tech-item">
+                    <div class="car__tech-icon-wrap">
+                      <nuxt-icon class="car__tech-icon"
+                                 name="icon-engine"/>
+                    </div>
+                    <div class="car__tech-content">
+                      449 л.с.
+                    </div>
                   </li>
-                  <li class="catalog__tech-item">
-                    5.3 с
+                  <li class="car__tech-item">
+                    <div class="car__tech-icon-wrap">
+                      <nuxt-icon class="car__tech-icon"
+                                 name="icon-mileage"/>
+                    </div>
+                    <div class="car__tech-content">
+                      5.3 с
+                    </div>
                   </li>
                 </ul>
               </template>
               <template #main-button>
                 <Button class="button button--credit">
-                  Купить в кредит
+                  В наличии
+                </Button>
+
+              </template>
+              <template #actions-button-secondary>
+                <Button class="button button--link">
+                  Подробнее
                 </Button>
               </template>
             </CatalogItem>
@@ -57,5 +81,4 @@
 <script setup lang="ts">
 import Crumbs from '~/components/Crumbs/index.vue';
 import CatalogItem from '~/components/Catalog/Item/index.vue';
-import { engineVolume } from '~/utils/filters';
 </script>
