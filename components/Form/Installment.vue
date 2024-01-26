@@ -39,7 +39,7 @@ defineProps<{
   offer: Offer
 }>();
 
-defineEmits(['changePeriod', 'changePayment']);
+defineEmits(['changePeriod', 'changePayment', 'showModal']);
 const inputs = ref<Input[]>([
   {
     name: 'fullName',

@@ -7,8 +7,8 @@
     </template>
     <template #car-choose>
       <label class="form__field-wrap form__field-wrap--car" :class="{'form__field-wrap--car-active' : offer}">
-        <Button class="form__field" @click="isModalVisible = true">
-          {{ 'Выбрать автомобиль' }}
+        <Button class="form__field" @click="$emit('showModal')">
+          {{ (offer && `${offer.name}, ${numberFormat(offer.price)} ₽`) || 'Выбрать автомобиль' }}
         </Button>
         <nuxt-icon name="icon-form" class="form__car-icon"/>
       </label>
@@ -33,19 +33,14 @@ import { useModals, ModalOfferSelection_offerType } from '~/store/modals';
 import { OfferQuery } from '~/types/graphql';
 import { computed, ref } from '#imports';
 import FormCreditCalculator from '~/components/Form/form-components/FormCreditCalculator.vue';
-import OfferSelection from '~/components/Modals/OfferSelection.vue';
-import Sidebar from 'primevue/sidebar';
 import validation from '~/composables/validation';
 import { Input } from '~/components/Form/FormConstructor.vue';
 
-const props = defineProps<{
-  calculator: boolean;
-  hasChose?: boolean;
+defineProps<{
   offer: OfferQuery['offer'];
 }>();
 
-const currentCar = null;
-const isModalVisible = ref(false);
+defineEmits(['changePeriod', 'changePayment', 'showModal']);
 
 const inputs = ref<Input[]>([
   {
@@ -72,8 +67,6 @@ const inputs = ref<Input[]>([
   },
 ]);
 
-//todo fixme eto v primevue modalku
-const modalOfferSelection_offer = computed<ModalOfferSelection_offerType>(() => useModals().modalOfferSelection_offer);
 const creditParams = ref({
   rangePeriodValues: {
     snap: true,
@@ -107,8 +100,4 @@ const creditParams = ref({
   period: 84,
   payment: 0,
 });
-
-const submitForm = () => {
-
-};
 </script>
