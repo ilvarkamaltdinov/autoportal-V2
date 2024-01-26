@@ -2,7 +2,7 @@
   <article class="catalog__item" :class="classes">
     <div class="catalog__img">
       <slot name="slider">
-        <CatalogItemImage :images="offer.images" :view="view"/>
+<!--        <CatalogItemImage :images="offer.images" :view="view"/>-->
       </slot>
     </div>
     <!--    TODO подумать как сделать лучше стилями этот блок-->
@@ -13,10 +13,10 @@
             <slot name="heading">
               <nuxt-link to="/used/mark/model/123" class="catalog__title-link">
                 <span class="catalog__title">
-                  {{ offer.mark.title }} {{ offer.folder.title }}
-                  <span>, {{ engineVolume(offer.engine_volume) }} </span>
+                  {{ offer && offer.mark.title }} {{ offer && offer.folder.title }}
+                  <span>, {{ offer && engineVolume(offer.engine_volume) }} </span>
                 </span>
-                <span class="catalog__year">{{ offer.year }}</span>
+                <span class="catalog__year">{{ offer && offer.year }}</span>
               </nuxt-link>
             </slot>
           </h3>
@@ -24,18 +24,18 @@
         <div class="catalog__price-wrap">
           <div class="catalog__price">
             <slot name="price" :format="numberFormat" :postfix="'₽'">
-              {{ numberFormat(offer.price) }} ₽
+              {{ offer && numberFormat(offer.price) }} ₽
             </slot>
           </div>
           <div class="catalog__price-old">
             <slot name="price-old">
-              {{ numberFormat(offer.price_old) }} ₽
+              {{ offer && numberFormat(offer.price_old) }} ₽
             </slot>
           </div>
           <div class="catalog__credit-price">
             <slot name="price-credit">
 <!--              todo fix me wrong price-->
-              {{ creditPrice(offer.price) }} ₽ / мес. без взноса
+              {{ offer && creditPrice(offer.price) }} ₽ / мес. без взноса
             </slot>
           </div>
           <slot name="stock">
@@ -47,26 +47,26 @@
       </div>
       <div class="catalog__tech">
         <slot name="tech">
-          <Rating :rating="offer.rating.rating_total" :max="10" />
+<!--          <Rating :rating="offer && offer.rating.rating_total" :max="10" />-->
           <ul class="catalog__tech-list">
             <li class="catalog__tech-item">
-              {{ numberFormat(offer.run) }} км
+              {{ offer && numberFormat(offer.run) }} км
             </li>
             <li class="catalog__tech-item">
               <!--              todo fixme предусмотреть электрички-->
-              {{ offer.engine_power }} л.с.
+              {{ offer && offer.engine_power }} л.с.
             </li>
             <li class="catalog__tech-item">
-              {{ offer.gearbox.title_short_rus }}
+              {{ offer && offer.gearbox.title_short_rus }}
             </li>
             <li class="catalog__tech-item">
-              {{ offer.engineType.title }}
+              {{ offer && offer.engineType.title }}
             </li>
             <li class="catalog__tech-item">
-              {{ offer.owner.title }}
+              {{ offer && offer.owner.title }}
             </li>
             <li class="catalog__tech-item">
-              {{ offer.driveType.title }}
+              {{ offer && offer.driveType.title }}
             </li>
           </ul>
         </slot>
