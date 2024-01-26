@@ -1,35 +1,7 @@
 <template>
   <div ref="catalog">
     <div class="catalog__list grid grid--catalog" v-if="pending">
-      <CatalogItem v-for="i in 6" :key="i">
-        <template #slider>
-          <div class="catalog__img">
-            <Skeleton height="100%" width="100%"/>
-          </div>
-        </template>
-        <template #heading>
-          <Skeleton height="24px" width="100%"/>
-        </template>
-        <template #price>
-          <Skeleton height="24px" width="80px"/>
-        </template>
-        <template #price-credit>
-          <Skeleton height="24px" width="180px"/>
-        </template>
-        <template #tech>
-          <Skeleton height="48px" width="100%"/>
-        </template>
-        <template #actions-button-secondary>
-          <Skeleton height="48px" width="48px"/>
-          <Skeleton height="48px" width="48px"/>
-        </template>
-        <template #main-button>
-          <Skeleton height="48px" width="193px"/>
-        </template>
-        <template #stock>
-          <div></div>
-        </template>
-      </CatalogItem>
+      <CatalogItemSkeletonUsed v-for="i in 6" :key="i"/>
     </div>
     <div v-else class="catalog__list grid grid--catalog">
       <CatalogItem view="short" v-for="offer in offers" :key="offer.external_id" :offer="offer"/>
@@ -79,7 +51,7 @@ import CatalogItem from '~/components/Catalog/Item/index.vue';
 
 import { useOffers } from '~/store/offersStore';
 import { Offer, OffersQueryVariables } from '~/types/graphql';
-import CatalogItemImage from '~/components/Catalog/Item/Image.vue';
+import CatalogItemSkeletonUsed from '~/components/Catalog/Item/SkeletonUsed.vue';
 
 const offersStore = useOffers();
 const currentPage = ref(1);
