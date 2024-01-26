@@ -60,33 +60,45 @@
         <div class="grid">
           <ContentBlock class="grid__col-12">
             <template #content>
+              <h2 class="heading heading--h2 visually-hidden">
+                <!--                todo TODO тут текущий город-->
+                Оформите выгодный автокредит {{ 'TODO тут текущий город' }}
+              </h2>
               <p class="text__p">
-                На {{ $settings.dealer_title }} вы можете приобрести автомобиль в рассрочку без любых переплат и
-                процентов.
+                {{ $settings.dealer_title }} дает возможность оформить автокредит без первоначального взноса и пользоваться автомобилем уже сегодня. Мы выступаем в качестве кредитного брокера и осуществляем подбор проверенных автосалонов, выбираем банковские предложения с наиболее выгодными для клиента условиями.
+                Для того чтобы воспользоваться услугой, вам достаточно выбрать понравившийся автомобиль из предлагаемого нами ассортимента и оставить заявку на автокредит. Оформление документации и подбор программы мы полностью берем на себя. Оформите кредит на авто в Москве прямо в автосалоне без посещения офиса банка.
               </p>
               <p class="text__p">
-                Рассрочка является удобным способом покупки транспортного средства с пробегом, учитывая,
-                что процентная ставка не начисляется. Рассрочка станет идеальным решением в случае
-                погашения стоимости автомобиля за срок до 3 лет. Если же выплата всей суммы за 3 года
-                обременительна для семейного бюджета, оптимальным решением станет
-                <nuxt-link to="/credit">автокредит</nuxt-link>
-                {{ $settings.credit_percent }} со скидкой {{ $settings.sale_credit }}.
+                После звонка кредитного эксперта приезжайте в автоцентр, пробуйте
+                понравившийся автомобиль в рамках бесплатного тест-драйва и
+                оформляйте автокредит прямо в салоне без необходимости обращения в
+                отделение банка-партнера.
               </p>
               <p class="text__p">
-                Окончательное решение о предоставлении рассрочки принимается банками-партнерами
-                {{ $settings.dealer_title }}.
-              </p>
-              <p class="text__p">
-                Преимущества рассрочки {{ $settings.dealer_anchor }}
+                Преимущества автокредита {{$settings.dealer_anchor}}:
               </p>
               <ul class="text__list">
-                <li class="text__list-item">Ставка {{ $settings.first_installment }}</li>
-                <li class="text__list-item">Без первоначального взноса</li>
+                <li class="text__list-item">
+                  Низкая ставка {{ $settings.credit_percent }}
+                </li>
+                <li class="text__list-item">
+                  Сумма кредита от {{ $settings.min_sum_credit }} ₽ до
+                  {{ $settings.max_sum_credit }} ₽
+                </li>
+                <li class="text__list-item">
+                  Срок кредита от {{ $settings.min_period_credit }} до
+                  {{ $settings.max_period_credit }}
+                </li>
+                <li class="text__list-item">
+                  Досрочное погашение без штрафов и комиссий
+                </li>
+                <li class="text__list-item">Первоначальный взнос {{ $settings.first_credit }}</li>
+                <li class="text__list-item">Trade-In как первый взнос</li>
                 <li class="text__list-item">Комплект резины в подарок</li>
               </ul>
             </template>
             <template #figure>
-              <NuxtImg class="text__figure-img" src="figures/figure-2@2x.webp"/>
+              <NuxtImg class="text__figure-img" src="figures/figure-2@2x.webp" />
             </template>
           </ContentBlock>
         </div>

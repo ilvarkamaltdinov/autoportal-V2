@@ -2,12 +2,15 @@
   <div class="application__form grid__col-4">
     <FormConstructor :inputs="inputs">
       <template #car-choose>
-        <Button class="form__field" @click="isModalVisible = true">
-          {{ 'Выбрать автомобиль' }}
+        <Button class="form__field" @click="$emit('showModal')">
+          {{ (offer && `${offer.name}, ${numberFormat(offer.price)} ₽`) || 'Выбрать автомобиль' }}
         </Button>
         <nuxt-icon name="icon-form" class="form__car-icon"/>
       </template>
       <template #calculator>
+        <div class="catalog form__catalog">
+          <slot name="offer"/>
+        </div>
         <CheckBoxForm v-model="isAccordionExpanded">
           <template #text>
             Купить авто в кредит
@@ -15,15 +18,17 @@
         </CheckBoxForm>
         <Accordion v-model:activeIndex="accordionIndex" :unstyled="true">
           <template #collapseicon>
-            {{null}}
+            {{ null }}
           </template>
           <template #expandicon>
-            {{null}}
+            {{ null }}
           </template>
           <AccordionTab :unstyled="true">
-            <FormCreditCalculator :offer="null" :params="creditParams">
+            <FormCreditCalculator :offer="offer" :params="creditParams"
+                                  @changePeriod= "$emit('changePeriod', $event)"
+                                  @changePayment="$emit('changePayment', $event)">
               <template #first-slider-name="{names}">
-                {{ names.installment }}
+                {{ names.credit }}
               </template>
             </FormCreditCalculator>
           </AccordionTab>
@@ -31,29 +36,24 @@
       </template>
     </FormConstructor>
   </div>
-  <Sidebar v-model:visible="isModalVisible" position="right" header="Выберите автомобиль" class="modal">
-    <template #header>
-      <div class="heading-group heading-group--modal">
-        <div class="heading-group__wrap">
-          <h2 class="heading heading--h1">Выберите автомобиль</h2>
-        </div>
-      </div>
-    </template>
-    <OfferSelection/>
-  </Sidebar>
 </template>
 
 <script setup lang="ts">
+import CheckBoxForm from '~/components/Form/form-components/CheckBoxForm.vue';
 import FormCreditCalculator from '~/components/Form/form-components/FormCreditCalculator.vue';
 import { ref } from '#imports';
 import validation from '~/composables/validation';
 import { Input } from '~/components/Form/FormConstructor.vue';
-import OfferSelection from '~/components/Modals/OfferSelection.vue';
-import CheckBoxForm from '~/components/Form/form-components/CheckBoxForm.vue';
+import { Offer } from '~/types/graphql';
 
-const isAccordionExpanded = ref(false);
+const isAccordionExpanded = ref(true);
 const accordionIndex = computed(() => isAccordionExpanded.value ? 0 : -1);
 
+defineProps<{
+  offer: Offer
+}>();
+
+defineEmits(['changePeriod', 'changePayment', 'showModal']);
 const inputs = ref<Input[]>([
   {
     name: 'car',
@@ -88,8 +88,6 @@ const inputs = ref<Input[]>([
     validationRule: validation.value.phone.rule,
   },
 ]);
-
-const isModalVisible = ref(false);
 
 const creditParams = ref({
   rangePeriodValues: {
