@@ -1,10 +1,10 @@
 <template>
   <article class="catalog__item" :class="classes">
-    <div class="catalog__img">
-      <slot name="slider">
+    <slot name="slider">
+      <div class="catalog__img">
         <CatalogItemImage v-if="offer" :images="offer.images" :view="view"/>
-      </slot>
-    </div>
+      </div>
+    </slot>
     <!--    TODO подумать как сделать лучше стилями этот блок-->
     <div class="catalog__info-wrap" v-if="!isMobile">
       <div class="catalog__info">
@@ -34,7 +34,7 @@
           </div>
           <div class="catalog__credit-price">
             <slot name="price-credit">
-<!--              todo fix me wrong price-->
+              <!--              todo fix me wrong price-->
               {{ offer && creditPrice(offer.price) }} ₽ / мес. без взноса
             </slot>
           </div>
@@ -47,7 +47,7 @@
       </div>
       <div class="catalog__tech">
         <slot name="tech">
-<!--          <Rating :rating="offer && offer.rating.rating_total" :max="10" />-->
+          <!--          <Rating :rating="offer && offer.rating.rating_total" :max="10" />-->
           <ul class="catalog__tech-list">
             <li class="catalog__tech-item">
               {{ offer && numberFormat(offer.run) }} км
@@ -168,7 +168,7 @@ import { Offer } from '~/types/graphql';
 
 const props = defineProps<{
   // todo fixme добавть тип вот ТАК
-  view?: 'long' | 'short' ,
+  view?: 'long' | 'short',
   offer?: Offer
 }>();
 
