@@ -1,17 +1,10 @@
 <template>
   <div class="catalog__list grid grid--catalog">
-    <CatalogItem v-for="offer in offers" :key="offer.id" :offer="offer">
-      <template #main-button>
-        <Button class="button button--credit" @click="select('car', offer)">Выбрать</Button>
+    <VirtualScroller :items="lazyItems" :itemSize="50" showLoader :delay="250" :loading="lazyLoading" lazy @lazy-load="onLazyLoad" class="border-1 surface-border border-round" style="width: 200px; height: 200px">
+      <template v-slot:item="{ item, options }">
+        <div :class="['flex align-items-center p-2', { 'surface-hover': options.odd }]" style="height: 50px">{{ item }}</div>
       </template>
-    </CatalogItem>
-    <VueEternalLoading v-if="currentPage <= lastPage" :load="load">
-      <template #loading>
-        <div class="my-loading">
-          Trying to load content...
-        </div>
-      </template>
-    </VueEternalLoading>
+    </VirtualScroller>
     <!--    <component :is="component"-->
     <!--               v-for="offer in offersList"-->
     <!--               :offer="offer"-->
@@ -45,6 +38,7 @@ const offersStore = useOffers();
 const currentPage = ref(1);
 const lastPage = ref(1);
 const offers = ref<Offer[]>([]);
+const isLoading = ref(true);
 
 const componentProps = inject('componentProps');
 const select = inject('select');
@@ -64,13 +58,40 @@ const variables = computed<OffersQueryVariables>(() => {
 const getOffers = async () => {
   const fetchedOffers = await offersStore.fetchOffers(variables.value);
   offers.value.push(...fetchedOffers.data);
+  isLoading.value = false;
   lastPage.value = fetchedOffers.last_page;
 };
 
-async function load({ loaded }: LoadAction) {
+async function load() {
+  console.log('load');
   await getOffers();
   currentPage.value += 1;
-  loaded();
 }
 
+// await load();
+
+const lazyItems = ref(Array.from({ length: 10000 }));
+const lazyLoading = ref(false);
+const loadLazyTimeout = ref();
+const onLazyLoad = (event) => {
+  lazyLoading.value = true;
+
+  if (loadLazyTimeout.value) {
+    clearTimeout(loadLazyTimeout.value);
+  }
+
+  //imitate delay of a backend call
+  loadLazyTimeout.value = setTimeout(() => {
+    const { first, last } = event;
+    const _lazyItems = [...lazyItems.value];
+
+    for (let i = first; i < last; i++) {
+      _lazyItems[i] = `Item #${i}`;
+    }
+
+    lazyItems.value = _lazyItems;
+    lazyLoading.value = false;
+
+  }, Math.random() * 1000 + 250);
+};
 </script>
