@@ -35,6 +35,9 @@
       <!--      todo fix total records and empty class-->
       <DataView :first="currentPage * 8" dataKey="external_id" :paginator="true" :value="offers" :rows="8" :totalRecords="99999" lazy
                 @page="paginatorClick" :pageLinkSize="7" paginatorTemplate="PrevPageLink PageLinks NextPageLink">
+        <template #header>
+          <Sort />
+        </template>
         <template #list="{items: offers}">
           <div class="catalog__list grid grid--catalog">
             <CatalogItem view="short" v-for="offer in offers" :key="offer.external_id" :offer="offer"/>
@@ -66,6 +69,7 @@ import CatalogItem from '~/components/Catalog/Item/index.vue';
 import { useOffers } from '~/store/offersStore';
 import { Offer, OffersQueryVariables } from '~/types/graphql';
 import type { DataViewPageEvent } from 'primevue/dataview';
+import Sort from '~/components/Filters/Sort.vue';
 
 //todo add parse from query
 const offersStore = useOffers();
@@ -98,5 +102,4 @@ async function getOffers() {
 }
 
 const { pending, refresh } = useAsyncData('offerCategory', () => getOffers());
-
 </script>

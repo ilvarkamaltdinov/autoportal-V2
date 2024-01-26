@@ -32,7 +32,7 @@
           </section>
         </div>
         <div class="grid__col-8" ref="catalog">
-          <FiltersSort/>
+<!--          <FiltersSort/>-->
           <CatalogCategory/>
         </div>
       </section>
