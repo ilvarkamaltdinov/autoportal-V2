@@ -33,21 +33,21 @@
     </div>
     <div v-else class="">
       <!--      todo fix total records and empty class-->
-      <DataView dataKey="external_id" :paginator="true" :value="offers" :rows="8" :totalRecords="99999" lazy
-                @page="paginatorClick" paginatorTemplate="PrevPageLink PageLinks NextPageLink">
+      <DataView :first="currentPage * 8" dataKey="external_id" :paginator="true" :value="offers" :rows="8" :totalRecords="99999" lazy
+                @page="paginatorClick" :pageLinkSize="7" paginatorTemplate="PrevPageLink PageLinks NextPageLink">
         <template #list="{items: offers}">
           <div class="catalog__list grid grid--catalog">
             <CatalogItem view="short" v-for="offer in offers" :key="offer.external_id" :offer="offer"/>
           </div>
+          <div class="grid__col-8">
+            <Button class="button button--link button--more"
+                    @click="paginatorClick({ page: currentPage + 1 })">
+              Далее
+            </Button>
+          </div>
         </template>
       </DataView>
       <!--      <CatalogItem view="short" v-for="offer in offers" :key="offer.external_id" :offer="offer"/>-->
-      <div class="grid__col-8">
-        <Button class="button button--link button--more"
-                @click="paginationClick">
-          Далее
-        </Button>
-      </div>
       <div v-if="offers.length === 0" class="grid__col-8">
         <div class="catalog__no-cars">
           <h2 class="heading heading--h2">Автомобили не найдены</h2>
@@ -58,39 +58,16 @@
         </div>
       </div>
     </div>
-    <!--    TODO новый paginate-->
-    <!--    <client-only>-->
-    <!--      <Paginate-->
-    <!--          v-if="last_page > 1"-->
-    <!--          :value="currentPagination"-->
-    <!--          prev-class="prev"-->
-    <!--          next-class="next"-->
-    <!--          :page-count="last_page"-->
-    <!--          :click-handler="paginateClick"-->
-    <!--          :prev-text="'Назад'"-->
-    <!--          :next-text="'Вперед'"-->
-    <!--          :container-class="'pagination'">-->
-    <!--      </Paginate>-->
-    <!--    </client-only>-->
-    <!--    TODO старый paginate-->
-    <!--    <client-only>-->
-    <!--      -->
-    <!--      <pagination @click="paginationClick('pagination')" :active-button="Number(offers.current_page)"-->
-    <!--                  v-if="offers"-->
-    <!--                  :offers="offers"/>-->
-    <!--    </client-only>-->
   </div>
 </template>
 
 <script setup lang="ts">
 import CatalogItem from '~/components/Catalog/Item/index.vue';
-import DataViewLayoutOptions from 'primevue/dataviewlayoutoptions';   // optional
-
 import { useOffers } from '~/store/offersStore';
 import { Offer, OffersQueryVariables } from '~/types/graphql';
 import type { DataViewPageEvent } from 'primevue/dataview';
-import CatalogItemImage from '~/components/Catalog/Item/Image.vue';
 
+//todo add parse from query
 const offersStore = useOffers();
 const currentPage = ref(1);
 const lastPage = ref(1);
@@ -109,7 +86,6 @@ const variables = computed<OffersQueryVariables>(() => {
 });
 
 async function paginatorClick({ page }: DataViewPageEvent) {
-  console.log(page);
   currentPage.value = ++page;
   await refresh();
   // await getOffers();
@@ -123,7 +99,4 @@ async function getOffers() {
 
 const { pending, refresh } = useAsyncData('offerCategory', () => getOffers());
 
-function paginationClick() {
-  console.log('paginationClick');
-}
 </script>

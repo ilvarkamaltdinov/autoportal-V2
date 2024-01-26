@@ -25,6 +25,10 @@
   @extend .pagination__list;
 }
 
+.p-highlight {
+  @extend .pagination__item--active;
+}
+
 .pagination__arrow {
   display: block;
   width: 24px;
@@ -53,8 +57,8 @@
   height: 16px;
 }
 
-.pagination__item--active .pagination__link {
-  color: var(--color-text);
+.pagination__item--active {
+  color: var(--color-text) !important;
 }
 
 .pagination__link {
