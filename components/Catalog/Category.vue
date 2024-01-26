@@ -10,7 +10,8 @@
           </div>
         </div>
       </div>
-      <CatalogItem view="short" v-for="offer in offers" :key="offer.external_id" :offer="offer"/>
+      <div v-if="pending">Loading...</div>
+      <CatalogItem v-else view="short" v-for="offer in offers" :key="offer.external_id" :offer="offer"/>
       <div class="grid__col-8">
         <Button class="button button--link button--more"
                 @click="paginationClick">
@@ -71,7 +72,7 @@ async function getOffers() {
   lastPage.value = fetchedOffers.last_page;
 }
 
-await getOffers();
+const { pending } = useAsyncData('offerCategory', () => getOffers());
 
 function paginationClick() {
   console.log('paginationClick');
