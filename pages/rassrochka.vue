@@ -13,7 +13,7 @@
         </div>
         <div class="grid__col-12 grid grid--application">
           <form-installment :offer="offer" @showModal="isModalVisible = true"
-                            @changePeriod="installmentPayment = $event" @changePayment="installmentPayment = $event">
+                            @changePeriod="installmentPeriod = $event" @changePayment="installmentPayment = $event">
             <template #offer>
               <CatalogItem :offer="offer" view="long" v-if="offer && $device!.isMobile" class="catalog__item--form">
                 <!--            todo fix-->
@@ -47,21 +47,7 @@
             </template>
           </ApplicationBankCard>
 
-          <div class="application__terms grid__col-3">
-            <div class="application__terms-item">
-              <div class="application__terms-number application__terms-number--stake">{{ $settings.first_installment }}</div>
-              <div class="application__terms-text">Ставка по рассрочке</div>
-            </div>
-            <div class="application__terms-item">
-              <div class="application__terms-number application__terms-number--payment">{{ installmentPeriod }}</div>
-              <div class="application__terms-text">Срок рассрочки</div>
-            </div>
-            <div class="application__terms-item">
-<!--              todo add like carro 2-->
-              <div class="application__terms-number application__terms-number--payment">{{ numberFormat(installmentPayment.split(' ')[0]) }} ₽</div>
-              <div class="application__terms-text">Ежемесячный платеж</div>
-            </div>
-          </div>
+          <ApplicationTerms :terms="terms"/>
         </div>
       </section>
       <div class="benefits grid__col-12">
@@ -114,16 +100,36 @@
     <OfferSelection @choose="offer = $event.car; isModalVisible = false"/>
   </Sidebar>
 </template>
+
 <script setup lang="ts">
 import ApplicationBankCard from '~/components/Application/ApplicationBankCard.vue';
 import ContentBlock from '~/components/TextContent/ContentBlock.vue';
 import OfferSelection from '~/components/Modals/OfferSelection.vue';
 import { Offer } from '~/types/graphql';
 import { ref } from '#imports';
+import { Terms } from '~/components/Application/ApplicationTerms.vue';
+import { useNuxtApp } from '#app';
+import { calculatorPayment } from '~/utils/filters';
 
 const isModalVisible = ref(false);
 const offer = ref<Offer | null>(null);
 
 const installmentPeriod = ref('-');
 const installmentPayment = ref('-');
+
+const { $settings } = useNuxtApp();
+const terms = computed<Terms[]>(() => [
+  {
+    text: 'Ставка по рассрочке',
+    title: $settings.first_installment
+  },
+  {
+    text: 'Срок рассрочки',
+    title: installmentPeriod.value
+  },
+  {
+    text: 'Ежемесячный платеж',
+    title: installmentPayment.value === '-' ? '-': `${calculatorPayment(installmentPayment.value)} ₽`
+  }
+]);
 </script>

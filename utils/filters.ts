@@ -12,3 +12,6 @@ export const creditPrice = (value: number) => {
   const K: number = (i * Math.pow(1 + i, n)) / (Math.pow(1 + i, n) - 1);
   return numberFormat(Math.round(K * value));
 };
+export const calculatorPayment = (payment: string) => {
+  return `${numberFormat(payment.split(' ')[0])}`;
+};
