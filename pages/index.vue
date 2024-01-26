@@ -13,7 +13,7 @@
         </section>
       </div>
       <div class="page-main__credit-index grid__col-4">
-        <FormCredit has-chose :calculator="true"/>
+        <FormCredit :offer="offer" @showModal="isModalVisible = true" />
       </div>
       <section class="page-main__catalog catalog grid__col-12 catalog--slider">
         <CatalogHome/>
@@ -28,9 +28,25 @@
       <!--            <LazyHydrate when-visible>-->
       <!--              <text-main />-->
       <!--            </LazyHydrate>-->
+
     </div>
   </main>
+  <Sidebar v-model:visible="isModalVisible" position="right" header="Выберите автомобиль" class="modal">
+    <template #header>
+      <div class="heading-group heading-group--modal">
+        <div class="heading-group__wrap">
+          <h2 class="heading heading--h1">Выберите автомобиль</h2>
+        </div>
+      </div>
+    </template>
+    <OfferSelection @choose="offer = $event.car; isModalVisible = false"/>
+  </Sidebar>
 </template>
 <script setup lang="ts">
+import OfferSelection from '~/components/Modals/OfferSelection.vue';
+import { ref } from '#imports';
+import { Offer } from '~/types/graphql';
 
+const isModalVisible = ref(false);
+const offer = ref<Offer | null>(null);
 </script>

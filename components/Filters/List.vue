@@ -1,7 +1,7 @@
 <template>
   <ul class="filter__menu-list">
     <li>
-      <ControlsSelect @select="handlerSelect" :options="marks" title="Марка" type="mark" :value="mark"/>
+      <ControlsSelect @select="handlerSelect" :options="notEmptyMarks" title="Марка" type="mark" :value="mark"/>
     </li>
     <li>
       <ControlsSelect @select="handlerSelect" :options="folders" title="Модель" type="folder" :value="folder"/>
@@ -45,21 +45,23 @@ import RangeFilterPrice from '~/components/Range/FilterPrice.vue';
 import { useMarks } from '~/store/carbrandsStore';
 import { Mark } from '~/app/types/marks';
 import { Folder } from '~/app/types/folders';
+import { storeToRefs } from 'pinia';
 
 const allFilters = ref<boolean>(false);
 const router = useRouter();
-
-const marks = computed(() => {
-  return useMarks().allMarks.filter(item => item.offers_count > 0);
-});
-const folders = computed(() => {
-  return mark.value?.folders.filter(item => item.offers_count > 0) || [];
-});
-
-
+const marksStore = useMarks();
+marksStore.getAllMarksFillPopular();
+const { allMarks } = storeToRefs(marksStore);
 const mark = ref<Mark | null>();
 const folder = ref<Folder | null>();
 
+const notEmptyMarks = computed(() => {
+  return allMarks.value.filter(item => item.offers_count > 0);
+});
+
+const folders = computed(() => {
+  return mark.value?.folders.filter(item => item.offers_count > 0) || [];
+});
 
 async function handlerSelect(data: { option: object, type: string }) {
   await router.replace({ 'query': undefined });
