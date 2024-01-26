@@ -29,9 +29,8 @@
 </template>
 <script setup lang="ts">
 //todo пофиксить высоту контейнера, она выше чем левый блок со сторизами
-import { useModals, ModalOfferSelection_offerType } from '~/store/modals';
 import { OfferQuery } from '~/types/graphql';
-import { computed, ref } from '#imports';
+import { ref } from '#imports';
 import FormCreditCalculator from '~/components/Form/form-components/FormCreditCalculator.vue';
 import validation from '~/composables/validation';
 import { Input } from '~/components/Form/FormConstructor.vue';
