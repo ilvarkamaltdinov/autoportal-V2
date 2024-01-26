@@ -32,14 +32,16 @@
       </CatalogItem>
     </div>
     <div v-else class="">
-      <DataView dataKey="external_id" :value="offers" paginator :rows="8" :totalRecords="99999" lazy @page="paginatorClick">
+      <!--      todo fix total records and empty class-->
+      <DataView dataKey="external_id" :paginator="true" :value="offers" :rows="8" :totalRecords="99999" lazy
+                @page="paginatorClick" paginatorTemplate="PrevPageLink PageLinks NextPageLink">
         <template #list="{items: offers}">
           <div class="catalog__list grid grid--catalog">
             <CatalogItem view="short" v-for="offer in offers" :key="offer.external_id" :offer="offer"/>
           </div>
         </template>
       </DataView>
-<!--      <CatalogItem view="short" v-for="offer in offers" :key="offer.external_id" :offer="offer"/>-->
+      <!--      <CatalogItem view="short" v-for="offer in offers" :key="offer.external_id" :offer="offer"/>-->
       <div class="grid__col-8">
         <Button class="button button--link button--more"
                 @click="paginationClick">
@@ -82,6 +84,7 @@
 
 <script setup lang="ts">
 import CatalogItem from '~/components/Catalog/Item/index.vue';
+import DataViewLayoutOptions from 'primevue/dataviewlayoutoptions';   // optional
 
 import { useOffers } from '~/store/offersStore';
 import { Offer, OffersQueryVariables } from '~/types/graphql';
@@ -105,7 +108,7 @@ const variables = computed<OffersQueryVariables>(() => {
   };
 });
 
-async function paginatorClick({ page }: DataViewPageEvent){
+async function paginatorClick({ page }: DataViewPageEvent) {
   console.log(page);
   currentPage.value = ++page;
   await refresh();

@@ -15,6 +15,16 @@
   border-radius: $borderRadiusSmallest;;
 }
 
+.p-paginator-element {
+  &:not(.p-paginator-next):not(.p-paginator-prev) {
+    @extend .pagination__link;
+  }
+}
+
+.p-paginator-pages {
+  @extend .pagination__list;
+}
+
 .pagination__arrow {
   display: block;
   width: 24px;
