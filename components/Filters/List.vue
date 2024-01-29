@@ -36,7 +36,7 @@
   </ul>
   <div class="filter__more">
     <button class="button button--show" @click="allFilters = !allFilters" :class="{'button--show-active': allFilters}">
-      {{  allFilters ? 'Меньше фильтров' : 'Больше фильтров' }}
+      {{ allFilters ? 'Меньше фильтров' : 'Больше фильтров' }}
     </button>
   </div>
   <ul class="filter__menu-list filter__menu-list--more">

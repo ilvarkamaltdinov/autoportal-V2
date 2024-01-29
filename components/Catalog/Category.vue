@@ -5,33 +5,35 @@
     </div>
     <div v-else class="">
       <!--      todo fix total records and empty class-->
-      <DataView :first="currentPage * 8" dataKey="external_id" :paginator="true" :value="offers" :rows="8" :totalRecords="99999" lazy
+      <DataView :first="currentPage * 8" dataKey="external_id" :paginator="true" :value="offers" :rows="8"
+                :totalRecords="offersCount || 0" lazy
                 @page="paginatorClick" :pageLinkSize="7" paginatorTemplate="PrevPageLink PageLinks NextPageLink">
         <template #header>
-          <Sort v-model:view="currentView" v-model:sort="currentSort" @update:sort="changeSort" />
+          <Sort v-model:view="currentView" v-model:sort="currentSort" @update:sort="changeSort"/>
         </template>
         <template #list="{items: offers}">
           <div class="catalog__list grid grid--catalog">
-            <CatalogItem :view="currentView === 's' ? 'short' : 'long'" v-for="offer in offers" :key="offer.external_id" :offer="offer"/>
+            <CatalogItem :view="currentView === 's' ? 'short' : 'long'" v-for="offer in offers" :key="offer.external_id"
+                         :offer="offer"/>
           </div>
-          <div class="grid__col-8">
+          <div class="grid__col-8" v-if="lastPage > currentPage">
             <Button class="button button--link button--more"
                     @click="paginatorClick({ page: currentPage })">
               Далее
             </Button>
           </div>
         </template>
+        <template #empty>
+          <div class="catalog__no-cars">
+            <h2 class="heading heading--h2">Автомобили не найдены</h2>
+            <div class="catalog__no-cars-text">
+              Попробуйте изменить параметры поиска или обратите внимание на похожие
+              модели:
+            </div>
+          </div>
+        </template>
       </DataView>
       <!--      <CatalogItem view="short" v-for="offer in offers" :key="offer.external_id" :offer="offer"/>-->
-      <div v-if="offers.length === 0" class="grid__col-8">
-        <div class="catalog__no-cars">
-          <h2 class="heading heading--h2">Автомобили не найдены</h2>
-          <div class="catalog__no-cars-text">
-            Попробуйте изменить параметры поиска или обратите внимание на похожие
-            модели:
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -50,6 +52,7 @@ const offersStore = useOffers();
 const { query: { page: pageQuery, sort: sortQuery } } = useRoute();
 const currentPage = ref(1);
 const lastPage = ref(1);
+const offersCount = ref<number | null>(null);
 const offers = ref<Offer[]>([]);
 
 currentPage.value = Number(pageQuery || 1);
@@ -71,7 +74,7 @@ const variables = computed<Partial<OffersQueryVariables>>(() => {
   };
 });
 
-function changeSort(){
+function changeSort() {
   const query = useRoute().query;
   const queryReplaced = { ...query, sort: encodeURI(currentSort.value) };
   router.replace({ query: queryReplaced });
@@ -88,9 +91,10 @@ async function paginatorClick({ page }: Pick<DataViewPageEvent, 'page'>) {
 }
 
 async function getOffers() {
-  const fetchedOffers = await offersStore.fetchOffers(variables.value);
-  offers.value = fetchedOffers.data;
-  lastPage.value = fetchedOffers.last_page;
+  const { data, last_page, total } = await offersStore.fetchOffers(variables.value);
+  offers.value = data;
+  lastPage.value = last_page;
+  offersCount.value = total;
 }
 
 const { pending, refresh } = useAsyncData('offerCategory', () => getOffers());
