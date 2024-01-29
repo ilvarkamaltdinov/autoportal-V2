@@ -94,6 +94,9 @@ export default defineNuxtConfig({
   devServer: {
     port: process.env.PORT || 3000
   },
+  devtools: {
+    enabled: true
+  },
   apollo: {
     clients: {
       default: {
