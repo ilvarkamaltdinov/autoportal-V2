@@ -16,7 +16,7 @@
              @focusout="isActive = false">
           <div class="button button--action button--text filter__button" @click="isActive = !isActive">
             <nuxt-icon class="button__icon" :name="currentIcon"/>
-            <span class="button__text">{{ sort.name }}</span>
+            <span class="button__text">{{ currentSort!.name }}</span>
             <transition name="select">
               <ul v-if="!isMobile"
                   v-show="isActive"
@@ -24,7 +24,7 @@
                 <li class="select__item"
                     v-for="(sort, key) in sortList"
                     :key="key"
-                    @click="$emit('update:sort', sort)">
+                    @click="$emit('update:sort', sort.slug)">
                   {{ sort.name }}
                 </li>
               </ul>
@@ -77,8 +77,12 @@ const isActive = ref(false);
 // const currentView = ref('s');
 const props = defineProps<{
   view: string;
-  sort: SortOption;
+  sort: SortOption['slug'];
 }>();
+
+const currentSort = computed(() => {
+  return sortList.find(sort => sort.slug === props.sort);
+});
 
 defineEmits(['update:view', 'update:sort']);
 const sortList = [
@@ -100,7 +104,7 @@ const sortList = [
   }
 ];
 const currentIcon = computed(() => {
-  if (props.sort.slug.split('|')[1] === 'asc') {
+  if (props.sort.split('|')[1] === 'asc') {
     return 'icon-sort';
   } else {
     return 'icon-sort-alt';

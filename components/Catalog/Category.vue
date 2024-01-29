@@ -8,7 +8,7 @@
       <DataView :first="currentPage * 8" dataKey="external_id" :paginator="true" :value="offers" :rows="8" :totalRecords="99999" lazy
                 @page="paginatorClick" :pageLinkSize="7" paginatorTemplate="PrevPageLink PageLinks NextPageLink">
         <template #header>
-          <Sort v-model:view="currentView" v-model:sort="currentSort" @update:sort="refresh()" />
+          <Sort v-model:view="currentView" v-model:sort="currentSort" @update:sort="changeSort" />
         </template>
         <template #list="{items: offers}">
           <div class="catalog__list grid grid--catalog">
@@ -46,18 +46,16 @@ import type { SortOption } from '~/components/Filters/Sort.vue';
 
 //todo add parse from query upd: (че написал?)
 const offersStore = useOffers();
+const { query: { page: pageQuery, sort: sortQuery } } = useRoute();
 const currentPage = ref(1);
 const lastPage = ref(1);
 const offers = ref<Offer[]>([]);
 
-const { query } = useRoute();
-currentPage.value = Number(query.page || 1);
+currentPage.value = Number(pageQuery || 1);
 
 const currentView = ref('s');
-const currentSort = ref<SortOption>({
-  name: 'Сначала дешевле',
-  slug: 'price|asc'
-});
+const currentSort = ref<SortOption['slug']>('price|asc');
+currentSort.value = (sortQuery && decodeURI(sortQuery)) || 'price|asc';
 
 const variables = computed<Partial<OffersQueryVariables>>(() => {
   return {
@@ -68,9 +66,14 @@ const variables = computed<Partial<OffersQueryVariables>>(() => {
     limit: 8,
     page: currentPage.value,
     dateFormat: 'j F Y года.',
-    sort: currentSort.value.slug,
+    sort: currentSort.value,
   };
 });
+
+function changeSort(){
+  useRouter().push({ query: { sort: encodeURI(currentSort.value) } });
+  refresh();
+}
 
 async function paginatorClick({ page }: Pick<DataViewPageEvent, 'page'>) {
   currentPage.value = ++page;
