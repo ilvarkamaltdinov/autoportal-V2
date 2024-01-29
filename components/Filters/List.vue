@@ -1,26 +1,38 @@
 <template>
   <ul class="filter__menu-list">
-    <li>
-      <ControlsSelect @select="handlerSelect" :options="notEmptyMarks" title="Марка" type="mark" :value="mark"/>
-    </li>
-    <li>
-      <ControlsSelect @select="handlerSelect" :options="folders" title="Модель" type="folder" :value="folder"/>
-    </li>
-    <li>
-      <ControlsSelect options="" title="Поколение" type="" value=""/>
-    </li>
-    <li>
-      <ControlsSelect options="" title="Двигатель" type="" value=""/>
-    </li>
-    <li>
-      <ControlsSelect options="" title="Кузов" type="" value=""/>
-    </li>
-    <li>
-      <ControlsSelect options="" title="КПП" type="" value=""/>
-    </li>
-    <li>
-      <ControlsSelect options="" title="Привод" type="" value=""/>
-    </li>
+      <li>
+        <ControlsSelect @select="handlerSelect" :options="notEmptyMarks" title="Марка" type="mark" :value="mark"/>
+      </li>
+      <li>
+        <ControlsSelect @select="handlerSelect" :options="folders" title="Модель" type="folder" :value="folder"/>
+      </li>
+    <Accordion v-model:active-index="accordionIndex" :unstyled="true">
+      <template #collapseicon>
+        {{ null }}
+      </template>
+      <template #expandicon>
+        {{ null }}
+      </template>
+      <AccordionTab :unstyled="true">
+        <ul class="filter__menu-list filter__menu-list--more">
+        <li>
+          <ControlsSelect options="" title="Поколение" type="" value=""/>
+        </li>
+        <li>
+          <ControlsSelect options="" title="Двигатель" type="" value=""/>
+        </li>
+        <li>
+          <ControlsSelect options="" title="Кузов" type="" value=""/>
+        </li>
+        <li>
+          <ControlsSelect options="" title="КПП" type="" value=""/>
+        </li>
+        <li>
+          <ControlsSelect options="" title="Привод" type="" value=""/>
+        </li>
+        </ul>
+      </AccordionTab>
+    </Accordion>
   </ul>
   <div class="filter__more">
     <button class="button button--show" @click="allFilters = !allFilters">
@@ -47,7 +59,9 @@ import { Mark } from '~/app/types/marks';
 import { Folder } from '~/app/types/folders';
 import { storeToRefs } from 'pinia';
 
+
 const allFilters = ref<boolean>(false);
+const accordionIndex = computed(() => allFilters.value ? 0 : -1);
 const router = useRouter();
 const marksStore = useMarks();
 marksStore.getAllMarksFillPopular();
