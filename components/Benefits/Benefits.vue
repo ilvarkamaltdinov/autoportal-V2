@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import { BenefitType, useBenefitsStore } from '~/store/benefitsStore';
 import TwoSideBadge from '~/components/Inputs/TwoSideBadge.vue';
-import { type Benefit } from '~/app/types/benefits';
+import type { Benefit } from '~/app/types/benefits';
 
 const props = defineProps<{
   type: BenefitType
