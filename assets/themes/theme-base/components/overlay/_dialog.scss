@@ -5,7 +5,7 @@
 
     .p-dialog-header {
         border-bottom: $dialogHeaderBorder;
-        background: $dialogHeaderBg;
+        background: var(--color-section);
         color: $dialogHeaderTextColor;
         padding: $dialogHeaderPadding;
         border-top-right-radius: $borderRadius;
@@ -27,7 +27,7 @@
     }
 
     .p-dialog-content {
-        background: $overlayContentBg;
+        background: var(--color-section);
         color: $panelContentTextColor;
         padding: $dialogContentPadding;
 
@@ -39,7 +39,7 @@
 
     .p-dialog-footer {
         border-top:  $dialogFooterBorder;
-        background: $overlayContentBg;
+        background: var(--color-section);
         color: $panelFooterTextColor;
         padding: $dialogFooterPadding;
         text-align: right;

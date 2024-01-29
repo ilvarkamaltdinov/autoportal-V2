@@ -44,7 +44,7 @@ import Sort from '~/components/Filters/Sort.vue';
 import { useRoute } from '#imports';
 import type { SortOption } from '~/components/Filters/Sort.vue';
 
-//todo add parse from query
+//todo add parse from query upd: (че написал?)
 const offersStore = useOffers();
 const currentPage = ref(1);
 const lastPage = ref(1);
@@ -80,7 +80,6 @@ async function paginatorClick({ page }: Pick<DataViewPageEvent, 'page'>) {
 }
 
 async function getOffers() {
-  console.log(currentPage.value);
   const fetchedOffers = await offersStore.fetchOffers(variables.value);
   offers.value = fetchedOffers.data;
   lastPage.value = fetchedOffers.last_page;
