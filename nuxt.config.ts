@@ -58,7 +58,7 @@ export default defineNuxtConfig({
     '@/assets/themes/mytheme/theme.scss'
   ],
   modules: [
-    'nuxt-icon',
+    // 'nuxt-icon',
     'nuxt-swiper',
     'nuxt-icons',
     '@nuxtjs/apollo',
@@ -95,7 +95,11 @@ export default defineNuxtConfig({
     port: process.env.PORT || 3000
   },
   devtools: {
-    enabled: true
+    enabled: true,
+
+    timeline: {
+      enabled: true
+    }
   },
   apollo: {
     clients: {
