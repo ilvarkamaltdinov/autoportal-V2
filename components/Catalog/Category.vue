@@ -8,7 +8,7 @@
       <DataView :first="currentPage * 8" dataKey="external_id" :paginator="true" :value="offers" :rows="8" :totalRecords="99999" lazy
                 @page="paginatorClick" :pageLinkSize="7" paginatorTemplate="PrevPageLink PageLinks NextPageLink">
         <template #header>
-          <Sort v-model:view="currentView" v-model:sort="currentSort" />
+          <Sort v-model:view="currentView" v-model:sort="currentSort" @update:sort="refresh()" />
         </template>
         <template #list="{items: offers}">
           <div class="catalog__list grid grid--catalog">
@@ -68,6 +68,7 @@ const variables = computed<Partial<OffersQueryVariables>>(() => {
     limit: 8,
     page: currentPage.value,
     dateFormat: 'j F Y года.',
+    sort: currentSort.value.slug,
   };
 });
 
