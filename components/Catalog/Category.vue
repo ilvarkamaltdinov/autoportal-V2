@@ -45,6 +45,7 @@ import { useRoute } from '#imports';
 import type { SortOption } from '~/components/Filters/Sort.vue';
 
 //todo add parse from query upd: (че написал?)
+const router = useRouter();
 const offersStore = useOffers();
 const { query: { page: pageQuery, sort: sortQuery } } = useRoute();
 const currentPage = ref(1);
@@ -71,13 +72,17 @@ const variables = computed<Partial<OffersQueryVariables>>(() => {
 });
 
 function changeSort(){
-  useRouter().push({ query: { sort: encodeURI(currentSort.value) } });
+  const query = useRoute().query;
+  const queryReplaced = { ...query, sort: encodeURI(currentSort.value) };
+  router.replace({ query: queryReplaced });
   refresh();
 }
 
 async function paginatorClick({ page }: Pick<DataViewPageEvent, 'page'>) {
   currentPage.value = ++page;
-  useRouter().push({ query: { page: page } });
+  const query = useRoute().query;
+  const queryReplaced = { ...query, page };
+  router.replace({ query: queryReplaced });
   await refresh();
   // await getOffers();
 }
