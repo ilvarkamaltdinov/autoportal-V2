@@ -14,11 +14,9 @@
         <div tabindex="1"
              class="filter__buttons-sort select"
              @focusout="isActive = false">
-          <div class="button button--action button--text filter__button"
-               @click="isActive = !isActive">
-            <nuxt-icon class="button__icon"
-                       :name="currentIcon"/>
-            <span class="button__text">{{ currentSort.name }}</span>
+          <div class="button button--action button--text filter__button" @click="isActive = !isActive">
+            <nuxt-icon class="button__icon" :name="currentIcon"/>
+            <span class="button__text">{{ sort.name }}</span>
             <transition name="select">
               <ul v-if="!isMobile"
                   v-show="isActive"
@@ -26,7 +24,7 @@
                 <li class="select__item"
                     v-for="(sort, key) in sortList"
                     :key="key"
-                    @click="changeSort(sort)">
+                    @click="$emit('update:sort', sort)">
                   {{ sort.name }}
                 </li>
               </ul>
@@ -66,17 +64,23 @@
 </template>
 
 <script setup lang="ts">
-type Sort = {
-  slug: string,
+// todo не называй типы как компонент!!!
+export type SortOption = {
+  slug: SortSlug,
   name: string
 }
+
+type SortSlug = 'price|asc' | 'price|desc' | 'year|desc' | 'run|asc';
+
 const { isMobile } = useDevice();
 const isActive = ref(false);
 // const currentView = ref('s');
-defineProps<{
-  view: string
+const props = defineProps<{
+  view: string;
+  sort: SortOption;
 }>();
-defineEmits(['update:view']);
+
+defineEmits(['update:view', 'update:sort']);
 const sortList = [
   {
     slug: 'price|asc',
@@ -95,12 +99,8 @@ const sortList = [
     name: 'Минимальный пробег'
   }
 ];
-const currentSort = ref<Sort>({
-  slug: 'price|asc',
-  name: 'Сначала дешевле'
-},);
 const currentIcon = computed(() => {
-  if (currentSort.value.slug.split('|')[1] === 'asc') {
+  if (props.sort.slug.split('|')[1] === 'asc') {
     return 'icon-sort';
   } else {
     return 'icon-sort-alt';
@@ -111,8 +111,8 @@ function onFilterButtonClick() {
   console.log(123);
 }
 
-function changeSort(sort: Sort) {
-  currentSort.value = sort;
+function changeSort(sort: SortOption) {
+  // currentSort.value = sort;
   // let query = {sort: sort};
   // query.page = 1;
   // this.setSort(sort);

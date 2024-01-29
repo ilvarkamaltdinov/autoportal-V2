@@ -8,7 +8,7 @@
       <DataView :first="currentPage * 8" dataKey="external_id" :paginator="true" :value="offers" :rows="8" :totalRecords="99999" lazy
                 @page="paginatorClick" :pageLinkSize="7" paginatorTemplate="PrevPageLink PageLinks NextPageLink">
         <template #header>
-          <Sort v-model:view="currentView" />
+          <Sort v-model:view="currentView" v-model:sort="currentSort" />
         </template>
         <template #list="{items: offers}">
           <div class="catalog__list grid grid--catalog">
@@ -37,13 +37,12 @@
 </template>
 
 <script setup lang="ts">
-import CatalogItem from '~/components/Catalog/Item/index.vue';
-import CatalogItemSkeletonUsed from '~/components/Catalog/Item/SkeletonUsed.vue';
 import { useOffers } from '~/store/offersStore';
 import { Offer, OffersQueryVariables } from '~/types/graphql';
 import type { DataViewPageEvent } from 'primevue/dataview';
 import Sort from '~/components/Filters/Sort.vue';
 import { useRoute } from '#imports';
+import type { SortOption } from '~/components/Filters/Sort.vue';
 
 //todo add parse from query
 const offersStore = useOffers();
@@ -55,6 +54,10 @@ const { query } = useRoute();
 currentPage.value = Number(query.page || 1);
 
 const currentView = ref('s');
+const currentSort = ref<SortOption>({
+  name: 'Сначала дешевле',
+  slug: 'price|asc'
+});
 
 const variables = computed<Partial<OffersQueryVariables>>(() => {
   return {
