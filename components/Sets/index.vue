@@ -1,7 +1,7 @@
 <template>
   <h2 class="heading heading--h2">Подборки</h2>
   <ul class="featured__list grid grid--featured">
-    <BankCard :slug="set.slug" class="" :class="set.class" v-for="set in sets" :key="set.slug">>
+    <FeaturedItem :link="`used/${set.slug}`" class="" :class="set.class" v-for="set in sets" :key="set.slug">>
       <template #extra-picture v-if="set.extraImage">
         <nuxt-img loading="lazy" alt="carro-select" class="featured__label" :src="set.extraImage"/>
       </template>
@@ -14,14 +14,14 @@
       <template #image>
         <NuxtImg :src="`/featured/featured-${set.image}@2x.png`" class="featured__img lazyload"/>
       </template>
-    </BankCard>
+    </FeaturedItem>
   </ul>
   <nuxt-link to="/used" class="button button--link button--more">
     Все автомобили
   </nuxt-link>
 </template>
 <script setup lang="ts">
-import BankCard from '~/components/Banks/BankCard.vue';
+import FeaturedItem from '~/components/Featured/Item.vue';
 
 const sets = [
   {

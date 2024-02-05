@@ -39,6 +39,7 @@
 </template>
 
 <script setup lang="ts">
+import CatalogItem from '~/components/Catalog/Item';
 import { useOffers } from '~/store/offersStore';
 import { Offer, OffersQueryVariables } from '~/types/graphql';
 import type { DataViewPageEvent } from 'primevue/dataview';

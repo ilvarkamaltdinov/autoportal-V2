@@ -16,7 +16,7 @@
         <FormCredit :offer="offer" @showModal="isModalVisible = true" />
       </div>
       <section class="page-main__catalog catalog grid__col-12 catalog--slider">
-        <CatalogHome/>
+        <CatalogSlider has-tabs title="Автомобили в наличии" />
       </section>
       <section class="page-main__featured featured grid__col-12">
         <Sets/>
@@ -43,6 +43,7 @@
   </Sidebar>
 </template>
 <script setup lang="ts">
+import CatalogSlider from '~/components/Catalog/Slider.vue';
 import OfferSelection from '~/components/Modals/OfferSelection.vue';
 import { ref } from '#imports';
 import { Offer } from '~/types/graphql';

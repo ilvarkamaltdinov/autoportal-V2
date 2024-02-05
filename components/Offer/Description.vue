@@ -8,10 +8,10 @@
         <span class="heading-group__label">pageTitle</span>
       </div>
     </div>
-    <p class="text__p text__p--car-description">test test test</p>
+    <p class="text__p text__p--car-description" v-html="offer.description"></p>
   </div>
 </template>
 
 <script setup lang="ts">
-
+const offer = inject('offer');
 </script>

@@ -37,7 +37,7 @@
       <!--        TODO equipment_group_list.length-->
       <OfferComplectation class="car__info-group--options" v-if="showComplectation && true"/>
       <!--        TODO offer.description-->
-      <OfferDescription v-if="!isMobile && true"/>
+      <OfferDescription v-if="!isMobile && offer.description"/>
       <OfferDealer v-if="!isMobile" class="car__info-group--options"/>
     </div>
   </div>
@@ -51,6 +51,7 @@ import OfferDescription from '~/components/Offer/Description.vue';
 import OfferDealer from '~/components/Offer/Dealer.vue';
 
 const { isMobile } = useDevice();
+const offer = inject('offer');
 
 let activeTab = ref(1);
 const tabs = computed(() => {

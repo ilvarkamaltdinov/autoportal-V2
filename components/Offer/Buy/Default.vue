@@ -2,18 +2,17 @@
   <div class="car__buy">
     <div class="car__price-block">
       <div class="car__price">
-        1 000 000 ₽  <!--offer.price-->
+        {{numberFormat(offer.price)}} ₽
       </div>
       <TippyQuestion text="Цена актуальна при покупке в кредит"/>
       <div class="car__price-old">
         1 400 000 ₽  <!--offer.price_old-->
       </div>
       <div class="car__price-payment">
-        12 000 ₽ / мес. без взноса
+       {{creditPrice(offer.price)}} ₽ / мес. без взноса
       </div>
     </div>
-    <!--      TODO offer.is_active-->
-    <div v-if="true" class="car__buy-block">
+    <div v-if="offer.is_active" class="car__buy-block">
       <button @click.prevent="$emit('onCredit')" class="button button--credit">
         Купить в кредит
       </button>
@@ -26,7 +25,7 @@
       </button>
     </div>
     <div class="car__actions-block">
-      <Rating :max="5" :rating="4"/>
+      <Rating :max="5" :rating="offer.rating"/>
       <div class="car__actions-buttons">
         <ButtonAutoteka @click="$emit('onAutoteka')"/>
         <!--        TODO    offer.is_active-->
@@ -39,10 +38,10 @@
     <div class="car__stock">
       В наличии в автоцентре
       <a href="#" @click.prevent="$emit('aboutDealer')" class="car__stock-dealer">
-        «PRIME»
+        «{{offer.dealer.title}}»
       </a>
       <div class="car__stock-promo">
-        г. Москва, Варшавское шоссе, дом 170 Г, строение 3
+        {{ offer.dealer.address }}
       </div>
     </div>
   </div>
@@ -53,8 +52,9 @@ import TippyQuestion from '~/components/Tippy/TippyQuestion.vue';
 import ButtonFavorite from '~/components/Button/ButtonFavorite.vue';
 import ButtonAutoteka from '~/components/Button/ButtonAutoteka.vue';
 import Rating from '~/components/Rating/Rating.vue';
+import { numberFormat, creditPrice } from '~/utils/filters';
 
+const offer = inject('offer');
 const { isMobile } = useDevice();
-
 
 </script>

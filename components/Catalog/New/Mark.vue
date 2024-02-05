@@ -12,7 +12,7 @@
         </div>
         <div class="grid__col-12">
           <div class="grid catalog__list">
-            <CatalogItem view="short" v-for="item in 4" :key="item">
+            <CatalogItem view="short" v-for="item in 3" :key="item">
               <template #slider>
                 <img src="/img/mock/model-new.png" alt="">
               </template>
@@ -67,13 +67,12 @@
                 </Button>
               </template>
             </CatalogItem>
-
           </div>
         </div>
       </section>
-    </div>
-    <div class="grid grid--container">
-      <!--      <text-used v-if="$route.params.category === 'used'"/>-->
+      <section class="page-main__catalog catalog grid__col-12 catalog--slider">
+        <CatalogSlider title="Автомобили Lixiang в наличии"/>
+      </section>
     </div>
   </main>
 </template>
@@ -81,4 +80,5 @@
 <script setup lang="ts">
 import Crumbs from '~/components/Crumbs/index.vue';
 import CatalogItem from '~/components/Catalog/Item/index.vue';
+import CatalogSlider from '~/components/Catalog/Slider.vue';
 </script>

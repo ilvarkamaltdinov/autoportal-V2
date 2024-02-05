@@ -1,6 +1,6 @@
 <template>
   <ul class="featured__list grid__col-12 grid grid--featured featured__banks">
-    <BankCard v-for="(bank, key) in featuredBanks" :key="key" :class="bank.extraClass" :slug="bank.bank!.slug">
+    <FeaturedItem v-for="(bank, key) in featuredBanks" :key="key" :class="bank.extraClass" :link="`credit/${bank.bank!.slug}`">
       <template #title>
         {{ bank.bank!.name }}
       </template>
@@ -11,7 +11,7 @@
         <NuxtImg :src="`/featured/featured-${bank.pictureNumber}@2x.png`" densities="1x 2x" format="webp"
                  class="featured__img lazyload"/>
       </template>
-    </BankCard>
+    </FeaturedItem>
   </ul>
   <section class="banks grid__col-12">
     <h2 class="heading heading--h2">Рейтинг банков</h2>
@@ -57,7 +57,7 @@
 import { useBanks } from '~/store/banksStore';
 import { storeToRefs } from 'pinia';
 import { UnwrapRef } from 'vue';
-import BankCard from '~/components/Banks/BankCard.vue';
+import FeaturedItem from '~/components/Featured/Item.vue';
 
 const banksStore = useBanks();
 banksStore.fetchBanks();

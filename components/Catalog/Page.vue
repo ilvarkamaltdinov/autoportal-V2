@@ -45,7 +45,6 @@
 
 <script setup lang="ts">
 // import Benefits from '~/components/Benefits/index.vue';
-import FiltersSort from '~/components/Filters/Sort.vue';
 import FiltersList from '~/components/Filters/List.vue';
 import CatalogCategory from '~/components/Catalog/Category.vue';
 import ListMarks from '~/components/List/Marks.vue';

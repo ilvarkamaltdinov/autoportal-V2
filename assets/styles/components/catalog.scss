@@ -133,7 +133,6 @@
 }
 
 .catalog__heading * {
-  width: 100%;
   &:not(.catalog__vin) {
     @include font-mobile-h3-card;
   }

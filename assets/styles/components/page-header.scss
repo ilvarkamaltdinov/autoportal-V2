@@ -10,6 +10,11 @@
   z-index: 200;
 }
 
+.page-header__buttons-link--phone .nuxt-icon {
+  width: 24px;
+  height: 24px;
+}
+
 .page-header__logo-letters {
   filter: var(--svg-filter);
 }
@@ -228,9 +233,9 @@
       content: "";
       display: block;
       background: linear-gradient(
-        90deg,
-        rgb(145, 147, 153, 0%) 0,
-        rgb(145, 147, 153, 17%)
+                      90deg,
+                      rgb(145, 147, 153, 0%) 0,
+                      rgb(145, 147, 153, 17%)
       );
       position: absolute;
       right: 0;
@@ -256,9 +261,9 @@
   .page-header__logo {
     margin-right: 32px;
 
-     &:hover .page-header__logo-circle {
-       transform: rotate(22deg);
-     }
+    &:hover .page-header__logo-circle {
+      transform: rotate(22deg);
+    }
 
     &:hover .page-header__logo-hat {
       top: -14px;
@@ -319,6 +324,7 @@
     display: flex;
     align-items: center;
     width: auto;
+    gap: 8px;
   }
 
   .page-header__buttons-link--phone .icon {

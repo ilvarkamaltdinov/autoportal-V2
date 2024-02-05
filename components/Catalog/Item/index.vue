@@ -165,12 +165,12 @@ import CatalogItemImage from '~/components/Catalog/Item/Image.vue';
 import { creditPrice, engineVolume, numberFormat } from '~/utils/filters';
 import ButtonFavorite from '~/components/Button/ButtonFavorite.vue';
 import { Offer } from '~/types/graphql';
-import { offers } from '~/apollo/queries/filtersCount';
 
 const props = defineProps<{
   // todo fixme добавть тип вот ТАК
   view?: 'long' | 'short',
   offer?: Offer
+  slide?: boolean
 }>();
 
 const isFavorite = ref<boolean>(false);
@@ -192,10 +192,13 @@ function onCredit() {
   console.log('onCredit');
 }
 
-
 const classes = computed(() => {
+  let sliderClasses = ['catalog__item--vertical'];
   let shortClasses = ['grid__col-4', 'catalog__item--vertical'];
   let longClasses = ['grid__col-8', 'catalog__item--desktop-l'];
+  if (props.slide) {
+    return sliderClasses;
+  }
   return props.view === 'long' && !isMobile ? longClasses : shortClasses;
 });
 </script>

@@ -219,6 +219,8 @@
 
 .button--action .button__icon {
   width: 19px;
+  min-width: 19px;
+  height: 24px;
   fill: var(--color-text);
 }
 

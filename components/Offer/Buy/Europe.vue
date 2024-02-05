@@ -2,11 +2,11 @@
   <div class="car__buy">
     <div class="car__price-block">
       <div class="car__price">
-        1 000 000 ₽  <!--offer.price-->
+        {{ numberFormat(offer.price) }} ₽
       </div>
       <TippyQuestion text="Цена актуальна при покупке в кредит"/>
       <div class="car__price-payment">
-        12 000 ₽ / мес. без взноса
+        {{ creditPrice(offer.price) }} ₽ / мес. без взноса
       </div>
     </div>
     <!--      TODO offer.is_active-->
@@ -29,10 +29,11 @@
     <div class="car__stock">
       Под заказ в автоцентре
       <a href="#" @click.prevent="$emit('aboutDealer')" class="car__stock-dealer">
-        «PRIME Премиум»
+        «{{ offer.dealer.title }}»
       </a>
+
       <div class="car__stock-promo">
-        г. Москва, Варшавское шоссе, дом 170 Г, строение 3
+        {{ offer.dealer.address }}
       </div>
     </div>
   </div>
@@ -42,7 +43,7 @@
 import TippyQuestion from '~/components/Tippy/TippyQuestion.vue';
 import ButtonFavorite from '~/components/Button/ButtonFavorite.vue';
 
+const offer = inject('offer');
 const { isMobile } = useDevice();
-
 
 </script>

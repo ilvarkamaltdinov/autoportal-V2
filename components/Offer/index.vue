@@ -67,7 +67,7 @@
         </transition>
         <OfferInfo/>
         <OfferComplectation v-if="isMobile" class="car__info-group--complectation"/>
-        <OfferDescription v-if="isMobile" class="car__info-group--description"/>
+        <OfferDescription v-if="offer.description && isMobile" class="car__info-group--description"/>
       </div>
       <div class="grid grid--container">
 
