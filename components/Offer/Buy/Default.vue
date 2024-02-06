@@ -25,7 +25,7 @@
       </button>
     </div>
     <div class="car__actions-block">
-      <Rating :max="5" :rating="offer.rating"/>
+      <Rating :max="5" :rating="offer.rating.rating_total"/>
       <div class="car__actions-buttons">
         <ButtonAutoteka @click="$emit('onAutoteka')"/>
         <!--        TODO    offer.is_active-->

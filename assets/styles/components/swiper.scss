@@ -114,8 +114,9 @@
   &:active {
     transform: scale(0.98);
   }
+
   &:after {
-      content: '' !important;
+    content: '' !important;
   }
 }
 
@@ -197,10 +198,6 @@
   .swiper--stories .swiper-slide {
     transition: all $transitionHover;
     transition-property: opacity, background;
-
-    &:not(.swiper-slide-visible) {
-      opacity: 0;
-    }
   }
 }
 

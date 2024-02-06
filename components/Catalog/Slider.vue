@@ -1,5 +1,5 @@
 <template>
-  <h2 class="heading heading--h2">{{title}}</h2>
+  <h2 class="heading heading--h2">{{ title }}</h2>
   <div class="tabs" v-if="hasTabs">
     <ul class="tabs__list"
         role="tablist">
@@ -30,38 +30,11 @@
         <CatalogItem slide :offer="offer"/>
       </SwiperSlide>
     </Swiper>
-
-
   </div>
-  <!--    <swiper class="swiper swiper&#45;&#45;catalog">-->
-  <!--&lt;!&ndash;      <swiper-slide v-for="offer in offers" :key="offer.id">&ndash;&gt;-->
-  <!--&lt;!&ndash;        <MiniCardOffer :offer="offer"/>&ndash;&gt;-->
-  <!--&lt;!&ndash;      </swiper-slide>&ndash;&gt;-->
-  <!--    </swiper>-->
-
-
-  <!--    <div class="swiper swiper--catalog">-->
-  <!--      <div class="swiper-wrapper">-->
-  <!--        <catalog-item-small-desktop-->
-  <!--            slide-->
-  <!--            :key="offer.id"-->
-  <!--            v-for="offer in offers"-->
-  <!--            :offer="offer" />-->
-  <!--      </div>-->
-  <!--    </div>-->
-  <!--    <button class="swiper-button swiper-button-prev">-->
-  <!--      <svg-icon class="swiper-button__icon"-->
-  <!--                name="icon-arrow" />-->
-  <!--    </button>-->
-  <!--    <button class="swiper-button swiper-button-next">-->
-  <!--      <svg-icon class="swiper-button__icon"-->
-  <!--                name="icon-arrow" />-->
-  <!--    </button>-->
 </template>
 <script setup lang="ts">
 import CatalogItem from '~/components/Catalog/Item/index.vue';
 import CatalogItemSkeletonUsed from '~/components/Catalog/Item/SkeletonUsed.vue';
-
 import { useOffers } from '~/store/offersStore';
 import { Offer, OffersQueryVariables } from '~/types/graphql';
 import { UnwrapRef } from 'vue';
