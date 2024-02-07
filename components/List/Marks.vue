@@ -5,7 +5,7 @@
         <CarBrandLogo :car-brand="mark" v-for="mark in popularMarks" :key="mark.id"></CarBrandLogo>
       </ul>
       <ul class="makes__list makes__list--all makes__list--all-modal">
-        <TwoSideBadge :to="`${catalogRoute}/${mark.slug}`" v-for="mark in marksList" :key="mark.id">
+        <TwoSideBadge :to="`/${catalogRoute}/${mark.slug}`" v-for="mark in marksList" :key="mark.id">
           <template #title>
             {{ markTitle(mark) }}
           </template>

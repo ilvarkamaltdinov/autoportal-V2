@@ -17,16 +17,22 @@
 </template>
 
 <script setup lang="ts">
-import {Folder} from '~/app/types/folders';
+import { Folder } from '~/app/types/folders';
+import { storeToRefs } from 'pinia';
+import { useMarks } from '~/store/carbrandsStore';
 
 const route = useRoute();
-const marks = [];
+const carBrandsStore = useMarks();
+carBrandsStore.getAllMarksFillPopular();
+const { allMarks } = storeToRefs(carBrandsStore);
 
 const currentFolders = computed<Folder[]>(() => {
-  let currentMark = marks.find(mark => mark.slug === route.params.mark);
+  console.log(allMarks.value);
+  let currentMark = allMarks.value.find(mark => mark.slug === route.params.mark);
   if (currentMark) {
     return currentMark.folders;
   }
+
 
 });
 </script>
