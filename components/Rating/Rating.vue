@@ -13,7 +13,7 @@ type RatingProps = {
 }
 const props = defineProps<RatingProps>();
 
-const ratingText = computed(() => props.rating.toFixed(1));
+const ratingText = computed(() => props.rating?.toFixed(1));
 const ratingValue = computed(() => props.max === 100 ? props.rating : props.rating * 20);
 const ratingColor = computed(() => {
   if (props.max === 100) {

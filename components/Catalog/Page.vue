@@ -32,7 +32,7 @@
           </section>
         </div>
         <div class="grid__col-8" ref="catalog">
-<!--          <FiltersSort/>-->
+          <!--          <FiltersSort/>-->
           <CatalogCategory/>
         </div>
       </section>
@@ -48,6 +48,7 @@
 import FiltersList from '~/components/Filters/List.vue';
 import CatalogCategory from '~/components/Catalog/Category.vue';
 import ListMarks from '~/components/List/Marks.vue';
+import ListFolders from '~/components/List/Folders.vue';
 import Crumbs from '~/components/Crumbs/index.vue';
 import { BenefitType } from '~/store/benefitsStore';
 import Benefits from '~/components/Benefits/Benefits.vue';
@@ -56,7 +57,13 @@ const route = useRoute();
 
 const currentList = computed(() => {
   // TODO либо марки либо модели либо поколения
-  return ListMarks;
+  if (route.params.category && !route.params.mark) {
+    return ListMarks;
+  }
+  if (route.params.mark) {
+    return ListFolders;
+  }
+
 });
 const currentBenefitsType = computed<BenefitType>(() => {
   return 'credit';
