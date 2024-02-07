@@ -37,6 +37,11 @@ export default defineNuxtConfig({
       ],
     }
   },
+  vite: {
+    esbuild: {
+      drop: ['console', 'debugger']
+    }
+  },
   build: {
     transpile: ['tslib'],
   },
