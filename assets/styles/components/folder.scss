@@ -1,0 +1,111 @@
+.folder__page {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 16px;
+}
+
+.folder__page-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.folder__page-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.folder__page-img-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 3/2;
+}
+
+.folder__page-img-wrapper img {
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: contain;
+}
+
+.folder__page-colors {
+  @include horizontal-scroll;
+  @include white-back;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 12px;
+  margin: 0;
+}
+
+.folder__page-color {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 20px;
+
+  &:nth-child(1) {
+    background: #DADADA;
+  }
+
+  &:nth-child(2) {
+    background: #62646A;
+  }
+
+  &:nth-child(3) {
+    background: #313235;
+  }
+
+  &:nth-child(4) {
+    background: #D0C4B4;
+  }
+
+  &:nth-child(5) {
+    background: #879CB5;
+  }
+
+  &:nth-child(6) {
+    background: #ED2939;
+  }
+
+  &:nth-child(7) {
+    background: #004CC7;
+  }
+}
+
+.folder__page-buy {
+  @include white-back;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.folder__page-prices {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.folder__page-price {
+  @include font-body-strong;
+  color: $colorPrimary;
+}
+
+.folder__page-price-credit {
+  @include font-small;
+}
+
+.folder__page-buy-controls {
+  display: flex;
+  width: calc(100% + 32px);
+  margin-left: -16px;
+  padding: 0 16px 16px;
+  gap: 12px;
+  @include border-bottom;
+}
+
+
+.folder__page-buy-controls .button {
+  flex-grow: 1;
+}

@@ -1,10 +1,12 @@
 .heading {
   margin-top: 0;
-  margin-bottom: 16px;
 }
 
 .heading--h1 {
   @include font-mobile-h1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .heading--h1-car span {
@@ -13,10 +15,12 @@
 
 .heading--h2 {
   @include font-mobile-h2;
-  &.heading--h2--mt{
+
+  &.heading--h2--mt {
     margin-top: 16px;
   }
 }
+
 .heading--h3 {
   margin-bottom: 8px;
   @include font-mobile-h3;

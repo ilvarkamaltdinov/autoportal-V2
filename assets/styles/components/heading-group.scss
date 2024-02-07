@@ -2,13 +2,6 @@
   margin-bottom: 16px;
 }
 
-.heading-group .heading {
-  margin-bottom: 12px;
-  &.heading--h2-blog{
-    margin-bottom: 0;
-  }
-}
-
 .heading-group__label {
   color: var(--color-text-secondary);
   @include font-features;
@@ -43,6 +36,12 @@
 
 .heading-group__year {
   color: var(--color-text);
+}
+
+.heading-group__wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 @media (max-width: $iphone-mini-only) {

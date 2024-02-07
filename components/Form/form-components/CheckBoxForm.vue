@@ -1,14 +1,15 @@
 <template>
-  <label class="form__checkbox-wrap checkbox">
+  <label class="form__checkbox-wrap checkbox" :class="{'checkbox--checked':modelValue}">
     <input class="form__checkbox visually-hidden"
            name="checkbox-agree"
-           type="checkbox" :value="modelValue" @change="$emit('update:modelValue', !modelValue)" />
-    <nuxt-icon name="icon-checkmark" :class="{'checkbox__icon--checked':modelValue}" class="checkbox__icon" />
+           type="checkbox" :value="modelValue" @change="$emit('update:modelValue', !modelValue)"/>
+    <nuxt-icon name="icon-checkmark" :class="{'checkbox__icon--checked':modelValue}" class="checkbox__icon"/>
     <span class="form__checkbox-text">
-      <slot name="text"/>
-			<a href="/privacy" class="form__checkbox-text-link" rel="nofollow" target="_blank">
-        <slot name="link"/>
-			</a>
+       <slot name="text"/>
+       <slot name="value"/>
+<!--			<a href="/privacy" class="form__checkbox-text-link" rel="nofollow" target="_blank">-->
+<!--        <slot name="link"/>-->
+<!--			</a>-->
 		</span>
   </label>
 </template>

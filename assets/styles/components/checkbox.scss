@@ -9,8 +9,18 @@
   }
 }
 
+.checkbox .checkbox__text-value {
+  transition: 0.3s all;
+  color: var(--color-text-secondary);
+}
+
+.checkbox--checked .checkbox__text-value {
+  color: $colorPrimary;
+}
+
 .checkbox__text {
   transition: $transitionHover;
+
 }
 
 .checkbox--filter {
@@ -54,6 +64,9 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .checkbox__icon--active {

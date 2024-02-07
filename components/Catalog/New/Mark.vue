@@ -17,7 +17,7 @@
                 <img src="/img/mock/model-new.png" alt="">
               </template>
               <template #heading>
-                <nuxt-link to="/new/mark/model/123" class="catalog__title-link">
+                <nuxt-link to="/new/mark/model" class="catalog__title-link">
                   <span class="catalog__title">   Lixiang L8 </span>
                 </nuxt-link>
               </template>
