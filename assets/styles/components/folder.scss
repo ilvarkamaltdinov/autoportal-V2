@@ -39,6 +39,10 @@
   margin: 0;
 }
 
+.folder__tech {
+  @include white-back;
+}
+
 .folder__page-color {
   width: 40px;
   min-width: 40px;

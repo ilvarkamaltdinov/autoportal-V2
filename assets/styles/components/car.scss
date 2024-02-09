@@ -6,6 +6,10 @@
   margin-bottom: 16px;
 }
 
+.car__tech {
+  @include white-back;
+}
+
 .car__price-europe {
   flex-shrink: 0;
   @include font-body-strong;

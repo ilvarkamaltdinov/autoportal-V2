@@ -22,7 +22,7 @@
         <div class="grid__col-12">
           <div class="folder__page">
             <div class="folder__page-left">
-              test1
+              <Tech :techs="currentTechs" class="folder__tech"/>
             </div>
             <div class="folder__page-right">
               <div class="folder__page-group">
@@ -92,9 +92,64 @@
 
 <script setup lang="ts">
 import Crumbs from '~/components/Crumbs/index.vue';
+import Tech from '~/components/Tech/index.vue';
 import CheckBoxForm from '~/components/Form/form-components/CheckBoxForm.vue';
+import { TechType } from '~/app/types/tech';
 
 const hasCredit = ref(true);
 const hasExchange = ref(true);
 const hasGosProgram = ref(true);
+
+const currentTechs = computed<TechType[]>(() => {
+  return [
+    {
+      title: 'год',
+      slug: 'year',
+      value: '2022',
+      icon: 'icon-year'
+    },
+    {
+      title: 'коробка',
+      slug: 'gearbox',
+      value: 'АКПП',
+      icon: 'icon-gear'
+    },
+    {
+      title: 'пробег',
+      slug: 'run',
+      value: '107 520 км',
+      icon: 'icon-mileage',
+    },
+    {
+      title: 'объем двигателя',
+      slug: 'engine_volume',
+      value: '2.5 л',
+      icon: 'icon-volume',
+    },
+    {
+      title: 'мощность двигателя',
+      slug: 'engine_power',
+      value: '222 л.с.',
+      icon: 'icon-engine',
+    },
+    {
+      title: 'тип двигателя',
+      slug: 'engine_type',
+      value: 'Бензин',
+      icon: 'icon-fuel'
+    },
+    {
+      title: 'тип кузова',
+      slug: 'body_type',
+      value: 'Седан',
+      icon: 'icon-form'
+    },
+    {
+      title: 'привод',
+      slug: 'drive_type',
+      value: 'Задний',
+      icon: 'icon-wd'
+    }
+  ];
+});
 </script>

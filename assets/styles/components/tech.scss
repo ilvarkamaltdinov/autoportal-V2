@@ -1,0 +1,35 @@
+.tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tech__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: calc(50% - 4px);
+}
+
+.tech__item-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--color-bg);
+  width: 40px;
+  height: 40px;
+}
+
+.tech__item-icon {
+  width: 16px;
+  height: 16px;
+  fill: var(--color-text);
+}
+
+@media (min-width: $desktop-width) {
+  .tech__item {
+    width: calc(33% - 4px);
+  }
+
+}

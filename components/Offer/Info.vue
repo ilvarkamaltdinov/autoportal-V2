@@ -25,11 +25,11 @@
         </ul>
       </div>
     </div>
-    <div class="car__info-groups">
-      <OfferTech
-          v-if="showTech"
-          class="car__info-group--tech"
-      />
+    <div class="car__info-groups" v-if="showTech">
+      <div class="car__info-group">
+        <h2 class="visually-hidden">Характеристики автомобиля</h2>
+        <Tech :techs="currentTechs"/>
+      </div>
       <OfferTerms
           v-if="showTerms && isMobile"
           class="car__info-group--options"
@@ -44,11 +44,13 @@
 </template>
 
 <script setup lang="ts">
-import OfferTech from '~/components/Offer/Tech.vue';
+import Tech from '~/components/Tech/index.vue';
 import OfferTerms from '~/components/Offer/Terms.vue';
 import OfferComplectation from '~/components/Offer/Complectation.vue';
 import OfferDescription from '~/components/Offer/Description.vue';
 import OfferDealer from '~/components/Offer/Dealer.vue';
+import { TechType } from '~/app/types/tech';
+import { engineVolume, numberFormat } from '~/utils/filters';
 
 const { isMobile } = useDevice();
 const offer = inject('offer');
@@ -92,6 +94,76 @@ const showComplectation = computed(() => {
   } else {
     return true;
   }
+});
+const currentTechs = computed<TechType[]>(() => {
+  let techs = [
+    {
+      title: 'год',
+      slug: 'year',
+      value: offer?.value.year,
+      icon: 'icon-year'
+    },
+    {
+      title: 'коробка',
+      slug: 'gearbox',
+      value: offer?.value.gearbox.title_short_rus,
+      icon: 'icon-gear'
+    },
+    {
+      title: 'пробег',
+      slug: 'run',
+      value: `${numberFormat(offer?.value.run)} км`,
+      icon: 'icon-mileage',
+    },
+    {
+      title: 'объем двигателя',
+      slug: 'engine_volume',
+      value: `${engineVolume(offer?.value.engine_volume)} л`,
+      icon: 'icon-volume',
+    },
+    {
+      title: 'мощность двигателя',
+      slug: 'engine_power',
+      value: `${offer?.value.engine_power} л.с.`,
+      icon: 'icon-engine',
+    },
+    {
+      title: 'тип двигателя',
+      slug: 'engine_type',
+      value: offer?.value.engineType.title,
+      icon: 'icon-fuel'
+    },
+    {
+      title: 'тип кузова',
+      slug: 'body_type',
+      value: offer?.value.bodyType.title,
+      icon: 'icon-form'
+    },
+    {
+      title: 'привод',
+      slug: 'drive_type',
+      value: offer?.value.driveType.title,
+      icon: 'icon-wd'
+    },
+    {
+      title: 'владельцы',
+      slug: 'owner',
+      value: offer?.value.owner.title,
+      icon: 'icon-owners'
+    }
+  ];
+  if (isMobile) {
+    techs.push(
+      {
+        title: 'цвет',
+        slug: 'color',
+        value: offer?.value.color.title,
+        icon: 'icon-color'
+      }
+    );
+  }
+  return techs;
+
 });
 
 function onTabClick(index: number) {
