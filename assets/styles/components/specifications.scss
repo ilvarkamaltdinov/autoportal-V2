@@ -1,0 +1,17 @@
+.folder__specifications {
+
+}
+
+.specifications__group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.specification {
+  @include border-bottom;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+}

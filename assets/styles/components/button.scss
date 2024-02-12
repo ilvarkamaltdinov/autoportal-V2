@@ -95,6 +95,16 @@
   }
 }
 
+.button--action .nuxt-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-text);
+}
+
+.button--action .nuxt-icon svg {
+  margin-bottom: 0;
+}
+
 .button--filter {
   background-color: var(--color-button-secondary);
   width: 100%;
@@ -228,7 +238,7 @@
   fill: var(--color-text);
 }
 
-.button--link .icon {
+.button--link .nuxt-icon {
   fill: var(--color-text-link);
 }
 

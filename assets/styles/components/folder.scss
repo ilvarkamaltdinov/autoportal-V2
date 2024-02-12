@@ -16,6 +16,12 @@
   gap: 16px;
 }
 
+.folder__page-left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .folder__page-img-wrapper {
   width: 100%;
   display: flex;
@@ -30,7 +36,7 @@
   object-fit: contain;
 }
 
-.folder__page-colors {
+.folder__colors {
   @include horizontal-scroll;
   @include white-back;
   display: flex;
@@ -39,15 +45,12 @@
   margin: 0;
 }
 
-.folder__tech {
-  @include white-back;
-}
-
-.folder__page-color {
+.folder__colors .colors__item {
   width: 40px;
   min-width: 40px;
   height: 40px;
   border-radius: 20px;
+  cursor: pointer;
 
   &:nth-child(1) {
     background: #DADADA;
@@ -78,11 +81,28 @@
   }
 }
 
+.folder__tech {
+  @include white-back;
+}
+
+.folder__specifications {
+  @include white-back;
+}
+
+.folder__complectations {
+  @include white-back;
+}
+
+
 .folder__page-buy {
   @include white-back;
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.folder__page-buy-title {
+  display: none;
 }
 
 .folder__page-prices {
@@ -109,7 +129,24 @@
   @include border-bottom;
 }
 
-
 .folder__page-buy-controls .button {
   flex-grow: 1;
+}
+
+
+@media (min-width: $desktop-width) {
+  .folder__page {
+    flex-direction: row;
+    gap: 24px;
+  }
+  .folder__page-left {
+    width: calc(50% - 12px);
+  }
+  .folder__page-right {
+    width: calc(50% - 12px);
+  }
+  .folder__page-buy-title {
+    display: block;
+  }
+
 }

@@ -1,0 +1,75 @@
+.complectations {
+  @include white-back;
+}
+
+.complectations__filter {
+  width: calc(100% + 32px);
+  margin-left: -16px;
+  display: flex;
+  gap: 12px;
+  padding: 0 16px 16px;
+  @include border-bottom;
+}
+
+.complectation {
+  padding: 16px;
+  width: calc(100% + 32px);
+  margin-left: -16px;
+  @include border-bottom;
+}
+
+
+.complectation__buttons {
+  margin-top: 16px;
+  width: 100%;
+}
+
+.complectation__buttons-main {
+  display: flex;
+  gap: 16px;
+}
+
+.complectation__buttons-main .button {
+  flex: 1;
+  padding: 12px 0;
+}
+
+.complectation__buttons-actions {
+  display: none;
+}
+
+
+.complectation__price {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.complectation__tech {
+  margin-top: 16px;
+}
+
+.complectation__price-actual {
+  @include font-body-strong;
+  color: $colorPrimary;
+}
+
+.complectations__filter .p-dropdown {
+  width: calc(50% - 6px);
+}
+
+@media (min-width: $desktop-width) {
+  .complectation__buttons {
+    display: flex;
+    gap: 40px;
+
+  }
+  .complectation__buttons-main {
+    flex-grow: 1;
+    flex-direction: row-reverse;
+  }
+  .complectation__buttons-actions {
+    display: flex;
+    gap: 16px;
+  }
+}
